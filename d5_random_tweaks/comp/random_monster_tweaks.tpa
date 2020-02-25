@@ -1,0 +1,52 @@
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//								MONSTER TWEAKS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+//DEFINE_ACTION_FUNCTION personal_monster_changes BEGIN
+
+
+// vampires/level drain_____________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_vampires BEGIN
+// level drain allows save
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 216 match_savingthrow = 0 savingthrow = 4 END
+  END
+BUT_ONLY
+
+END
+//__________________________________________________________________________________
+
+
+// golems___________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_golems BEGIN
+// reduce MR and DR
+// apply free action
+// apply immunity to charm, confusion, fear, berserk, sleep, 
+// flesh = vulnerable to slashing & fire
+// clay = vulnerable to crushing & cold
+// stone = vulnerable to piercing & acid
+// iron = vulnerable to electricity
+// add some stuff to compensate?  (aura to reduce caster level?)
+
+END
+//__________________________________________________________________________________
+
+
+// rakshasa_________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_rakshasas BEGIN
+// make magic immunity dispellable?
+// or reducible
+// by breach and/or RRR/Spellstrike
+
+END
+//__________________________________________________________________________________
+

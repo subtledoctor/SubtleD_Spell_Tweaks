@@ -1,0 +1,263 @@
+BACKUP ~d5_random_tweaks/backup~
+AUTHOR ~SubtleD~
+
+VERSION ~0.1~
+
+ALWAYS
+
+	INCLUDE ~d5_random_tweaks/lib/misc_functions.tpa~
+	INCLUDE ~d5_random_tweaks/comp/random_spell_tweaks.tpa~
+	INCLUDE ~d5_random_tweaks/comp/random_item_tweaks.tpa~
+	INCLUDE ~d5_random_tweaks/comp/random_monster_tweaks.tpa~
+//	INCLUDE ~d5_random_tweaks/comp/random_magic_battles.tpa~
+
+END
+
+LANGUAGE
+  ~English~
+  ~english~
+  ~d5_random_tweaks/lang/english/setup.tra~
+
+
+//do stuff____________________________________________________________________________
+
+BEGIN @2105
+DESIGNATED 2105
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_color_spray END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2104
+DESIGNATED 2104
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_charm_person END
+LAF tweak_dire_charm END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2108
+DESIGNATED 2108
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_pro_petrification END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2112
+DESIGNATED 2112
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_magic_missile END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2209
+DESIGNATED 2209
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_luck END
+
+//____________________________________________________________________________________
+
+BEGIN @2212
+DESIGNATED 2212
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_mirror_image END
+
+//____________________________________________________________________________________
+
+BEGIN @2215
+DESIGNATED 2215
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_web END
+
+//____________________________________________________________________________________
+
+BEGIN @2251
+DESIGNATED 2251
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_decastave END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1205
+DESIGNATED 1205
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_find_traps END
+*/
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2316
+DESIGNATED 2316
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_dire_charm END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @1351
+DESIGNATED 1351
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_moonblade END
+
+//____________________________________________________________________________________
+
+BEGIN @2413
+DESIGNATED 2413
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_otilukes_sphere END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1409
+DESIGNATED 1409
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_death_ward END
+*/
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1413
+DESIGNATED 1413
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_negative_plane_protection END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2518
+DESIGNATED 2518
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_phantom_blade END
+
+//____________________________________________________________________________________
+
+BEGIN @1611
+DESIGNATED 1611
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_wondrous_recall END
+
+//____________________________________________________________________________________
+
+BEGIN @2708
+DESIGNATED 2708
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_mantle END
+
+//____________________________________________________________________________________
+
+BEGIN @2811
+DESIGNATED 2811
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_symbol_fear END
+
+//____________________________________________________________________________________
+
+BEGIN @2916
+DESIGNATED 2916
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_shapechange END
+
+//____________________________________________________________________________________
+
+BEGIN @2915
+DESIGNATED 2915
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_black_blade END
+
+//____________________________________________________________________________________
+
+BEGIN @2914
+DESIGNATED 2914
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_energy_drain END
+
+//____________________________________________________________________________________
+
+BEGIN @3000
+DESIGNATED 3000
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_spell_weap_apr END
+
+//____________________________________________________________________________________
+
+BEGIN @3010
+DESIGNATED 3010
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_ring_danger_sense END
+
+//____________________________________________________________________________________
+
+BEGIN @3020
+DESIGNATED 3020
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_gloves_missile_snaring END
+
+//____________________________________________________________________________________
+
+BEGIN @4010
+DESIGNATED 4010
+
+LAF tweak_vampires END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @4020
+DESIGNATED 4020
+
+LAF tweak_golems END
+*/
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @4030
+DESIGNATED 4030
+
+LAF tweak_rakshasas END
+*/
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @5000
+DESIGNATED 5000
+
+LAF revised_magic_battles END
+*/
+
+//____________________________________________________________________________________
+

@@ -1,0 +1,207 @@
+@1   = ~~
+@2   = ~~
+@3   = ~~
+@4   = ~~
+@5   = ~~
+@6   = ~...~
+@7   = ~ ~
+//
+@2105  = ~Tweak Color Spray~
+@2104  = ~Tweak Charm Person & Dire Charm~
+@2108  = ~Tweak Protection from Petrification~
+@2112  = ~Tweak Magic Missile~
+@2209  = ~Tweak Luck~
+@2212  = ~Tweak Mirror Image~
+@2215  = ~Tweak Web~
+@2251  = ~Tweak Decastave~
+@1205  = ~Tweak Find traps~
+@2316  = ~Tweak Dire Charm~
+@1351  = ~Tweak Moonblade~
+@2413  = ~Tweak Otiluke's Sphere~
+@1409  = ~Tweak Death Ward~
+@1413  = ~Tweak Negative Plane Protection~
+@2518  = ~Tweak Phantom Blade~
+@1611  = ~Tweak Wondrous Recall~
+@2708  = ~Tweak Mantle~
+@2811  = ~Tweak Symbol: Fear~
+@2916  = ~Tweak Shapechange~
+@2915  = ~Tweak Black Blade of Disaster~
+@2914  = ~Tweak Energy Drain~
+@3000  = ~Tweak Spell Weapon APR~
+@3010 = ~Tweak the Ring of Danger Sense~
+@3020 = ~Tweak the Gloves of Missile Snaring~
+@3030 = ~~
+@3040 = ~~
+@3050 = ~~
+@4010 = ~Tweak Vampires and Level Drain~
+@4020 = ~Tweak Golems~
+@4030 = ~Tweak Rakshasas~
+@4040 = ~~
+@4050 = ~~
+@5000 = ~Revised Revised Magic Battles~
+//
+@21081 = ~Mirrored Eyes~
+@21082 = ~Mirrored Eyes
+
+Level: 1
+School: Alteration
+Range: touch
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: none
+
+This spell grants the recipient immunity to all gaze attacks. This includes basilisk and medusa gaze, as well as vampire charm, and others.
+~
+@22092 = ~Luck
+
+Level: 1
+School: Divination
+Range: 30 ft.
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+The beneficiaries of this spell gain a slight, instinctive insight into the very immediate future. The result is that the subject appears to have unusually good luck in every regard, receiving a 5% bonus to all actions, for the next 5 rounds. This includes Saving Throws, to-hit rolls, damage, thieving skills, etc.
+~
+@22152 = ~Web
+
+Level: 2
+School: Evocation
+Range: 40 ft.
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within the webs can become stuck among the gluey fibers; they must roll a saving throw every round. If the saving throw is successful, then the creature is free to move out of the area, though at a reduced (by half) movement speed. A failed saving throw means the creature is stuck in the webs and are affected as if by a Slow spell: <PRO_HESHE> performs all actions at half the usual speed and suffers a -4 penalty to armor class, and additionally c annot make any physical attacks at all. This Slow effect is compounded by the movement speed penalty, so creatures who fail their saving throw can only move at one-quarter speed to escape the webbed area.~
+@22512 = ~Decastave
+
+Level: 2
+School: Evocation
+Range: 0
+Duration: 3 rounds + 1 round/level
+Casting Time: 2
+Area of Effect: The caster
+Saving Throw: None
+
+This spell creates a staff of force in the caster's hand. It is treated as a magical weapon, doing 1d6 Hit Points of damage per hit, and it can hit creatures that require +1 weapons to hit. It is a staff, however, so if the caster does not have a proficiency in staff weapons, then the Decastave is used at a penalty. The staff releases sonic energy with each hit; the effect is not strong enough to do damage outright, but it can deafen the target for three rounds on a failed saving throw vs. spells. The Decastave also has a weak vampiric effect, draining a target of 1d2 Hit Points with every strike. These Hit Points are added to the caster's, but they can only heal damage the caster has taken; they will not raise <PRO_HISHER> Hit Points beyond <PRO_HISHER> normal maximum.
+~
+@12052 = ~Find Traps
+
+Level: 2
+School: Divination
+Sphere: Divination
+Range: Personal
+Duration: 4 hours
+Casting Time: 5
+Area of Effect: 30' radius
+Saving Throw: None
+
+When a priest casts a find traps spell, all traps - concealed normally or magically - of magical or mechanical nature become apparent to him. Once per round, all traps within a 30 foot radius of the caster will be revealed. A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result, the spellcaster would view the result as undesirable or harmful, and the creator specifically intended the harmful or undesirable result as such. Thus, traps include glyphs and similar spells or devices.
+~
+@13512 = ~Moonblade
+
+Level: 3
+Sphere: Combat, Sun
+Range: 0
+Duration: 2 turns
+Casting Time: 6
+Area of Effect: The caster
+Saving Throw: None
+
+This spell summons forth a silent, weightless sword-like construct made of moonlight that extends four feet from the caster's hand. The moonblade is considered a +4 weapon for determining what creatures it can hit, though the bonus does not apply to attack rolls made with it. In addition, due to the insubstantial nature of the moonblade, melee bonuses from Strength do not apply.
+
+The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds.
+~
+@25182 = ~Phantom Blade
+
+Level: 5
+School: Illusion
+Range: 0
+Duration: 3 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+This spell creates a translucent, shadow-like, weightless area of magical force extending from the caster's hand. The silent, blade-shaped construct inflicts a combination of psychic/stunning damage and magic damage. The caster wields the phantom blade as if proficient with it, at <PRO_HISHER> normal THAC0.
+
+The phantom blade acts as a +3 magical sword in terms of to-hit and damage bonuses as well as the type of creatures it can hit. Due to its etheric nature, it causes spellcasters struck to be unable to use magic for one round. This sword can only be used by the caster and remains in <PRO_HISHER> hand for the duration of the spell or until dispelled.
+~
+@16112 = ~Wondrous Recall
+
+Level: 6
+School: Alteration
+Sphere: All, Thought
+Range: Personal
+Duration: Instant
+Casting Time: 1 round
+Area of Effect: Caster
+Saving Throw: None
+
+This spell enables the caster to bring back into memory all spells that have been previously cast, of the first and second spell levels. (If no spells have been cast yet, nothing happens.)
+~
+@27081 = ~Iron Skin~
+@27082 = ~Iron Skin
+~
+@29152 = ~Black Blade of Disaster
+
+Level: 8
+School: Enchantment
+Range: 0
+Duration: 18 rounds
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None 
+
+This spell imposes a black, magical planar rift over the blade of a normal weapon. The caster wields the blade as if proficient with the weapon, and brandishes it with a base THAC0 of 0. The sword deals 2d12 damage per strike, and acts as a +5 magical weapon in all regards, including hit and damage bonuses. With each hit, there is a 15% chance the victim must make a save vs. spell at -2 or be disintegrated.
+~
+@29142 = ~Energy Drain
+(Necromancy) 
+
+Level: 8
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane.  This has the  practical effect of draining the victim of 4 levels of experience. The target loses levels, Hit Dice, Hit Points, and abilities permanently - they can only be restored by a priest's Restoration spell.  There is no saving throw to resist the effect.  What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.
+~
+@29143 = ~Larloch's Energy Drain
+
+Level: 8
+School: Necromancy
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane. The practical effect is to drain the victim 4 levels of experience - levels, Hit Dice, hit points, and abilities are lost permanently. These can only be restored by a priest's Restoration spell. As the life force passes through the caster, it temporarily invigorates him, granting him an additional 20 hit points, a +4 bonus to attack rolls and saving throws, and +20% bonus to every skill. These effects last for 1 hour. The target's magic resistance, if any, does not affect this spell, and there is no saving throw to avoid the Drain. What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.
+~
+@30102 = ~Ring of Danger Sense
+
+Nizzuf's Maze was a grand hedge maze created by the archmage Nizzuf for his amusement. The maze boasted hundreds of magical traps, most of them extremely lethal. Nizzuf posted a reward big enough to buy a kingdom to the man or woman brave enough to enter the maze and reach its core. Thousands tried and died. But one, Oteg Verm, completed the maze, thanks mainly to this ring which let him "see" where the traps were hidden.
+
+STATISTICS:
+
+Equipped abilities:
+- Detect Traps: +25%
+- 1-point bonus to Armor Class
+- immunity to backstabs
+
+Weight: 0
+~
+@30202 = ~Foik Morur demonstrated the effectiveness of these gloves at a community fair near Beregost several years back. He paid a local Archer to fire arrows at him. As the arrows approached, Foik's hands would move of their own accord, either knocking the arrow away or catching it. He earned more than a few pieces of gold for his troubles, and these earnings attracted some shadowy figures to Foik's tent that evening. The next morning, Foik was found dead and the gloves missing.
+
+NOTE: while these gloves allow the wearer to avoid the base missile damage of a projectile that is caught or deflected, any effects accompanying that projectile, like fire or electricity or poison, may still be applied.
+
+STATISTICS:
+
+Equipped abilities:
+- Armor Class: 3-point bonus vs. missile attacks
+- Deflect first missile attack each round
+
+Weight: 2~
