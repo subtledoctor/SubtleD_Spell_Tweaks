@@ -57,16 +57,9 @@ CREATE EFF ~d5misgl~
   WRITE_ASCII 0x30 ~d5misgl1~ #8
   WRITE_LONG 0x28 102
 
-COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5misgl0.spl~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 328 target = 1 parameter2 = %missile_snaring_state% timing = 1 END
-
 COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5misgl1.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5misgl1~ END
   LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 335 target = 1 power = 0 parameter1 = %missile_snaring_state% parameter2 = %7eyes_row% timing = 0 duration = 7 END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~d5misgl2~ END
-
-COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5misgl2.spl~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5misgl0~ END
 
 COPY_EXISTING ~brac18.itm~ ~override~
   SAY IDENTIFIED_DESC @30202
@@ -75,11 +68,38 @@ COPY_EXISTING ~brac18.itm~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 305 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spra303~ END
   LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi311~ END
-  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5misgl0~ END
-  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~d5misgl2~ END
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 328 target = 1 parameter2 = %missile_snaring_state% timing = 2 END
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 2 STR_VAR resource = ~d5misgl~ END
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 3 parameter2 = 2 timing = 2 END
 IF_EXISTS BUT_ONLY
 
 END
 //__________________________________________________________________________________
+
+
+// weapons that explode on hit_______________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_detonating_weapons BEGIN
+
+ADD_PROJECTILE ~d5_random_tweaks/misc/b_pfire.pro~ 
+COPY ~d5_random_tweaks/misc/PFIREA.bam~ ~override~
+COPY ~d5_random_tweaks/misc/PFIREX.bam~ ~override~
+COPY ~d5_random_tweaks/misc/#PRFIRE.vvc~ ~override~
+COPY ~d5_random_tweaks/misc/#EFF_P45.WAV~ ~override~
+COPY ~d5_random_tweaks/misc/#ARE_P03.WAV~ ~override~
+
+COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5detwp.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_pfire% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 2 parameter2 = 43 timing = 0 duration = 0 STR_VAR resource = ~%SOURCE_RES%~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target = 2 power = 4 parameter1 = 0 parameter2 = 8 timing = 1 dicenumber = 5 dicesize = 6 savingthrow = (1 << 24) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 power = 4 parameter1 = (0 - 1) timing = 0 duration = 6 STR_VAR resource = ~d5detwp~ END
+
+COPY_EXISTING ~blun26.itm~ ~override~
+			  ~blun26.itm~ ~override~
+			  ~bdstaf03.itm~ ~override~
+	LPF ALTER_EFFECT INT_VAR header_type = 1 match_opcode = 146 STR_VAR resource = ~d5detwp~ END
+IF_EXISTS BUT_ONLY
+
+END
+//__________________________________________________________________________________
+

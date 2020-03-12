@@ -21,6 +21,7 @@
 @1409  = ~Tweak Death Ward~
 @1413  = ~Tweak Negative Plane Protection~
 @2518  = ~Tweak Phantom Blade~
+@2523  = ~Tweak Sunfire~
 @1611  = ~Tweak Wondrous Recall~
 @2708  = ~Tweak Mantle~
 @2811  = ~Tweak Symbol: Fear~
@@ -30,13 +31,13 @@
 @3000  = ~Tweak Spell Weapon APR~
 @3010 = ~Tweak the Ring of Danger Sense~
 @3020 = ~Tweak the Gloves of Missile Snaring~
-@3030 = ~~
+@3030 = ~Tweak Detonating Weapons~
 @3040 = ~~
 @3050 = ~~
 @4010 = ~Tweak Vampires and Level Drain~
-@4020 = ~Tweak Golems~
-@4030 = ~Tweak Rakshasas~
-@4040 = ~~
+@4020 = ~Tweak Monster Stats~
+@4030 = ~Tweak Golems~
+@4040 = ~Tweak Rakshasas~
 @4050 = ~~
 @5000 = ~Revised Revised Magic Battles~
 //
@@ -52,6 +53,18 @@ Area of Effect: 1 creature
 Saving Throw: none
 
 This spell grants the recipient immunity to all gaze attacks. This includes basilisk and medusa gaze, as well as vampire charm, and others.
+~
+@21083 = ~Mirrored Eyes
+
+Level: 1
+School: Alteration
+Range: touch
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: none
+
+This spell grants the recipient resistance to all gaze attacks, including basilisk and medusa gaze, as well as vampire charm, and others. When targeted by such an effect, the beneficiary of this spell may attempt a saving throw vs. spells, in addition to any saving throw usually allowed by the attack. If the additional save vs. spells is successful, the effect transmitted by the gaze is avoided entirely.
 ~
 @22092 = ~Luck
 
@@ -129,6 +142,19 @@ This spell creates a translucent, shadow-like, weightless area of magical force 
 
 The phantom blade acts as a +3 magical sword in terms of to-hit and damage bonuses as well as the type of creatures it can hit. Due to its etheric nature, it causes spellcasters struck to be unable to use magic for one round. This sword can only be used by the caster and remains in <PRO_HISHER> hand for the duration of the spell or until dispelled.
 ~
+@25231 = ~Missile Storm~
+@25232 = ~Missile Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as up to five Magic Missiles race toward each enemy within the area of effect. These are identical to Magic Missiles created by the 1st-level spell, in every respect: each one does 1d6+1 damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
+~
 @16112 = ~Wondrous Recall
 
 Level: 6
@@ -140,10 +166,18 @@ Casting Time: 1 round
 Area of Effect: Caster
 Saving Throw: None
 
-This spell enables the caster to bring back into memory all spells that have been previously cast, of the first and second spell levels. (If no spells have been cast yet, nothing happens.)
+This spell enables the caster to bring back into memory all spells that have been previously cast, of the 1st and 2nd spell levels. (If no spells have been cast yet, nothing happens.)
 ~
 @27081 = ~Iron Skin~
 @27082 = ~Iron Skin
+
+Level: 7
+School: Alteration
+Range: Personal
+Duration: 
+Casting Time: 1
+Area of Effect: Caster
+Saving Throw: n/a
 ~
 @29152 = ~Black Blade of Disaster
 

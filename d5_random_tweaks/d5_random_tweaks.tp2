@@ -1,11 +1,12 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.1~
+VERSION ~0.2a~
 
 ALWAYS
 
 	INCLUDE ~d5_random_tweaks/lib/misc_functions.tpa~
+	INCLUDE ~d5_random_tweaks/lib/spell_evasion.tpa~
 	INCLUDE ~d5_random_tweaks/comp/random_spell_tweaks.tpa~
 	INCLUDE ~d5_random_tweaks/comp/random_item_tweaks.tpa~
 	INCLUDE ~d5_random_tweaks/comp/random_monster_tweaks.tpa~
@@ -155,6 +156,14 @@ LAF tweak_phantom_blade END
 
 //____________________________________________________________________________________
 
+BEGIN @2523
+DESIGNATED 2523
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_sunfire END
+
+//____________________________________________________________________________________
+
 BEGIN @1611
 DESIGNATED 1611
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
@@ -227,6 +236,14 @@ LAF tweak_gloves_missile_snaring END
 
 //____________________________________________________________________________________
 
+BEGIN @3030
+DESIGNATED 3030
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_detonating_weapons END
+
+//____________________________________________________________________________________
+
 BEGIN @4010
 DESIGNATED 4010
 
@@ -234,8 +251,15 @@ LAF tweak_vampires END
 
 //____________________________________________________________________________________
 
-/*
 BEGIN @4020
+DESIGNATED 4020
+
+LAF tweak_monster_stats END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @4030
 DESIGNATED 4020
 
 LAF tweak_golems END
@@ -244,7 +268,7 @@ LAF tweak_golems END
 //____________________________________________________________________________________
 
 /*
-BEGIN @4030
+BEGIN @4040
 DESIGNATED 4030
 
 LAF tweak_rakshasas END

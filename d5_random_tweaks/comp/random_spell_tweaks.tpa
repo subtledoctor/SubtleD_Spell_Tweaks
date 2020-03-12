@@ -36,6 +36,7 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION tweak_pro_petrification BEGIN
+/*
 // SR pro petrification --> mirrored eyes... or pro from transmutations
 COPY_EXISTING ~spwi108.spl~ ~override~
   SAY NAME1 @21081
@@ -44,7 +45,76 @@ COPY_EXISTING ~spwi108.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 206 parameter1 = 0 STR_VAR resource = ~SPIN839~ END
   LPF CLONE_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 206 parameter1 = 0 STR_VAR resource = ~SPIN883~ END
 IF_EXISTS BUT_ONLY
+*/
 
+// okay no - instead give evasion vs. gazes
+
+LAF d5_resolve_state STR_VAR new_state_id = ~D5_GAZEEVADE~ RET new_state_ind END
+OUTER_SET gaze_evasion_state = %new_state_ind%
+<<<<<<<< d5/d5gazeev.2da
+2DA V1.0 
+RES
+>>>>>>>> 
+COPY ~d5/d5gazeev.2da~ ~override/d5gazeev.2da~ 
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	READ_SHORT 0x68 num_ab
+	PATCH_IF (num_ab > 0) BEGIN
+	  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+	  PHP_EACH ab_array AS int => ab_off BEGIN
+		READ_SHORT (ab_off + 0x26) spl_proj
+		PATCH_IF (spl_proj = 64) BEGIN
+		  INNER_ACTION BEGIN
+			APPEND ~d5gazeev.2da~ ~%SOURCE_RES% 	SPL~ UNLESS ~%SOURCE_RES%~
+		  END
+		END
+	  END
+	END
+  END
+BUT_ONLY
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	READ_SHORT 0x68 num_ab
+	PATCH_IF (num_ab > 0) BEGIN
+	  GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
+	  PHP_EACH ab_array AS int => ab_off BEGIN
+		READ_SHORT (ab_off + 0x2a) itm_proj
+		PATCH_IF (spl_proj = 64) BEGIN
+		  INNER_ACTION BEGIN
+			APPEND ~d5gazeev.2da~ ~%SOURCE_RES% 	ITM~ UNLESS ~%SOURCE_RES%~
+		  END
+		END
+	  END
+	END
+  END
+BUT_ONLY
+COPY_EXISTING ~d5gazeev.2da~ ~override~ 
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 0 cols gaze_evade_res
+	READ_2DA_ENTRY row 1 cols gaze_evade_type
+	PATCH_IF (~%gaze_evade_type%~ STRING_EQUAL_CASE ~spl~) BEGIN 
+	  PATCH_IF (FILE_EXISTS_IN_GAME ~%hold_evade_res%.spl~) BEGIN
+		INNER_ACTION BEGIN
+		  LAF add_evade_spell INT_VAR evasion_spellstate = %gaze_evasion_state% evasion_save = 1 STR_VAR evade_ext = ~spl~ evade_condition = ~spellstate~ evade_res = EVAL ~%gaze_evade_res%~ evade_prefix = ~D5VG~ END
+		END
+	  END
+	END
+	PATCH_IF (~%gaze_evade_type%~ STRING_EQUAL_CASE ~itm~) BEGIN 
+	  PATCH_IF (FILE_EXISTS_IN_GAME ~%hold_evade_res%.itm~) BEGIN
+		INNER_ACTION BEGIN
+		  LAF add_evade_spell INT_VAR evasion_spellstate = %gaze_evasion_state% evasion_save = 1 STR_VAR evade_ext = ~itm~ evade_condition = ~spellstate~ evade_res = EVAL ~%gaze_evade_res%~ evade_prefix = ~D5VG~ END
+		END
+	  END
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~spwi108.spl~ ~override~
+  SAY NAME1 @21081
+  SAY UNIDENTIFIED_DESC @21083
+  LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = %gaze_evasion_state% END
 END
 
 //__________________________________________________________________________________
@@ -81,11 +151,11 @@ DEFINE_ACTION_FUNCTION tweak_web BEGIN
 COPY_EXISTING  ~spwi215.spl~ ~override~
 				~spwi215d.spl~ ~override~
   SAY UNIDENTIFIED_DESC @22152
-  LPF DELETE_EFFECT INT_VAR opcode = 126 END
-  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 126 target = 2 parameter1 = 30 parameter2 = 2 END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 126 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 126 target = 2 parameter1 = 30 parameter2 = 2 savingthrow = 0 END
   LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 40 target = 2 END
   LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 1 target = 2 parameter1 = 0 parameter2 = 3 END
-  LPF DELETE_EFFECT INT_VAR opcode = 109 END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 109 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -259,25 +329,27 @@ DEFINE_ACTION_FUNCTION tweak_otilukes_sphere BEGIN
 COPY_EXISTING ~spwi413a.spl~ ~override~
 			  ~spwi413d.spl~ ~override~
 //  SAY UNIDENTIFIED_DESC @24132
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 target = 1 parameter1 = 0 parameter2 = 0 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 target = 1 parameter1 = 0 parameter2 = 1 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 target = 1 parameter1 = 0 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 0 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 1 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 3 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 4 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 5 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 6 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 7 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 8 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 9 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 10 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 11 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 12 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 13 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 target = 1 parameter1 = 0 parameter2 = 14 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 parameter1 = 0 parameter2 = 0 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 parameter1 = 0 parameter2 = 1 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 145 parameter1 = 0 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 0 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 1 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 3 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 4 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 5 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 6 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 7 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 8 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 9 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 10 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 11 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 12 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 13 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 14 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 185 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 2 parameter2 = 49 timing = 0 duration = 0 STR_VAR resource = ~%SOURCE_RES%~ END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 176 opcode = 185 parameter1 = 0 parameter2 = 2 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -334,6 +406,20 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_sunfire BEGIN
+// sunfire: change to Missile Storm - cast MM at everybody
+COPY_EXISTING ~spwi523.spl~ ~override~
+  SAY NAME1 @25231
+  SAY UNIDENTIFIED_DESC @25232
+  LPF DELETE_EFFECT END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 159 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
+IF_EXISTS BUT_ONLY
+	
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_wondrous_recall BEGIN
 // wondrous recall: restore all 1st & 2nd-level slots
 COPY_EXISTING ~sppr611.spl~ ~override~
@@ -378,9 +464,12 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi408b~ END
 END
 
+/* old version: immune to +2 as long as skins are in effect
 COPY_EXISTING ~spwi408.spl~ ~override/spwi708.spl~
   SAY NAME1 @27081
   SAY UNIDENTIFIED_DESC @27082
+  WRITE_ASCII 0x3a ~sppr506c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~sppr506b~ END
   LPF ALTER_EFFECT INT_VAR silent = 1 power = 7 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 120 parameter1 = 0 parameter2 = 2 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 120 parameter1 = 1 parameter2 = 2 END
@@ -409,7 +498,70 @@ CREATE EFF ~d5mantl~
 COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5mantle.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 power = 0 parameter1 = 0 timing = 1 STR_VAR resource = ~spwi708~ END
   LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 power = 0 parameter2 = %stoneskin_row% timing = 1 STR_VAR resource = ~d5mantle~ END
- 
+*/
+
+COPY_EXISTING ~spwi408.spl~ ~override/spwi708.spl~
+  SAY NAME1 @27081
+  SAY UNIDENTIFIED_DESC @27082
+  WRITE_LONG 0x34 7
+  LPF ALTER_EFFECT INT_VAR silent = 1 power = 7 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 120 parameter1 = 0 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 328 parameter1 = 0 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 328 parameter2 = 121 special = 1 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 233 parameter1 = 1 parameter2 = 128 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 target = 1 power = 7 parameter2 = 0 STR_VAR resource = ~spprotec~ END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = ~d5mantl~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 power = 7 END
+IF_EXISTS BUT_ONLY
+
+CREATE EFF ~d5mantl~
+  WRITE_LONG 0x10 232
+  WRITE_LONG 0x14 1
+  WRITE_LONG 0x18 1
+  WRITE_LONG 0x1c 0
+  WRITE_LONG 0x20 20
+  WRITE_LONG 0x24 0
+  WRITE_LONG 0x28 3600
+  WRITE_SHORT 0x2c 100
+  WRITE_ASCII 0x30 ~d5mantle~ #8
+  WRITE_LONG 0x48 102
+
+COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5mantle.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 power = 0 parameter1 = 0 timing = 1 STR_VAR resource = ~spwi708~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 power = 0 parameter2 = %stoneskin_row% timing = 1 STR_VAR resource = ~d5mantle~ END
+
+/*
+CREATE EFF ~d5mantim~
+  WRITE_LONG 0x10 101
+  WRITE_LONG 0x14 2
+  WRITE_LONG 0x18 1
+  WRITE_LONG 0x1c 0
+  WRITE_LONG 0x20 12
+  WRITE_LONG 0x24 0
+  WRITE_LONG 0x28 0
+  WRITE_SHORT 0x2c 100
+  WRITE_LONG 0x90 1
+  WRITE_ASCII 0x94 ~d5mantim~ #8
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 1 match_opcode = 12 opcode = 248 target = 2 timing = 0 duration = 0 STR_VAR resource = ~d5mantim~ insert = ~first~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 1 match_opcode = 12 opcode = 318 target = 2 parameter1 = 121 parameter2 = 111 timing = 0 duration = 0 STR_VAR resource = ~d5mantim~ insert = ~first~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 2 match_opcode = 12 opcode = 249 target = 2 timing = 0 duration = 0 STR_VAR resource = ~d5mantim~ insert = ~first~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 2 match_opcode = 12 opcode = 318 target = 2 parameter1 = 121 parameter2 = 111 timing = 0 duration = 0 STR_VAR resource = ~d5mantim~ insert = ~first~ END
+  END
+IF_EXISTS BUT_ONLY
+*/
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 1 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 header_type = 2 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
+  END
+IF_EXISTS BUT_ONLY
+
+// ***** add ProMissiles?
+
 END
 
 //__________________________________________________________________________________
