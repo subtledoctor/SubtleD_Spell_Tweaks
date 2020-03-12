@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 0.1 </strong><br />
+  <p><strong> Version 0.2 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -41,7 +41,7 @@
   </div>
   <h4 class="subheader">Component 2108: Tweak Protection from Petrification</h4>
   <div class="section">
-    <p>This turns Pro Petrification into "Mirrored Eyes," giving protection from any effects using the GAZE projectile. AFAIK that includes vampire Charm, umber Hulk Confusion, and Aec'Letec's Death Gaze. This is probably too powerful.</p>
+    <p>This turns Pro Petrification into "Mirrored Eyes," giving protection from any effects using the GAZE projectile. AFAIK that includes vampire Charm, umber Hulk Confusion, and Aec'Letec's Death Gaze. This works like the IWD thieves' Evasion ability, giving you a saving throw to avoid the effect.</p>
   </div>
   <h4 class="subheader">Component 2209: Tweak Luck</h4>
   <div class="section">
@@ -77,7 +77,7 @@
   </div>
   <h4 class="subheader">Component 2708: Tweak Mantle</h4>
   <div class="section">
-    <p>This changes Mantle into "Iron Skin" (and renames the druid Ironskins spell to "Stoneskin"). It applies the Stoneskin effect, identically to the 4th-level spell; but it also protects you from non-magical, +1, and +2 weapons while the stoneskin effect is active. So only +3 or better weapons can remove skins.</p>
+    <p>This changes Mantle into "Iron Skin" (and renames the druid Ironskins spell to "Stoneskin"). It applies the Stoneskin effect, identically to the 4th-level spell; but it also protects you from non-magical melee weapons and all missile weapons while the stoneskin effect is active, and also prevents elemental damage and other effects of melee weapons while the stoneskin effect is active.</p>
   </div>
   <h4 class="subheader">Component 2811: Tweak Symbol: Fear</h4>
   <div class="section">
@@ -107,7 +107,15 @@
   <div class="section">
     <p>The gloves now allow you to escape the missile damage (but not elemental damage) from the first missile weapon attack that hits you each round. Big props to OlvynChuru for showing how to do this!</p>
   </div>
+  <h4 class="subheader">Component 3030: Tweak Detonating Weapons</h4>
+  <div class="section">
+    <p>Weapons like the Club of Detonation that can create Fireballs on-hit will now trigger the IWD priest spell "Produce Fire" instead.</p>
+  </div>
   <h4 class="subheader">Component 4010: Tweak Vampires & Level Drain</h4>
+  <div class="section">
+    <p>Adds a saving throw vs. Death to all weapon-delivered level drain effects.</p>
+  </div>
+  <h4 class="subheader">Component 4020: Tweak Monster Stats</h4>
   <div class="section">
     <p>Adds a saving throw vs. Death to all weapon-delivered level drain effects.</p>
   </div>
