@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.2a~
+VERSION ~0.3~
 
 ALWAYS
 
@@ -24,7 +24,6 @@ LANGUAGE
 
 BEGIN @2105
 DESIGNATED 2105
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_color_spray END
 
@@ -69,7 +68,6 @@ LAF tweak_luck END
 
 BEGIN @2212
 DESIGNATED 2212
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_mirror_image END
 
@@ -77,7 +75,6 @@ LAF tweak_mirror_image END
 
 BEGIN @2215
 DESIGNATED 2215
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_web END
 
@@ -85,7 +82,6 @@ LAF tweak_web END
 
 BEGIN @2251
 DESIGNATED 2251
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_decastave END
 
@@ -101,6 +97,13 @@ LAF tweak_find_traps END
 
 //____________________________________________________________________________________
 
+BEGIN @1212
+DESIGNATED 1212
+
+LAF tweak_slow_poison END
+
+//____________________________________________________________________________________
+
 /*
 BEGIN @2316
 DESIGNATED 2316
@@ -111,9 +114,15 @@ LAF tweak_dire_charm END
 
 //____________________________________________________________________________________
 
+BEGIN @1323
+DESIGNATED 1323
+
+LAF tweak_exaltation_spiritual_clarity END
+
+//____________________________________________________________________________________
+
 BEGIN @1351
 DESIGNATED 1351
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_moonblade END
 
@@ -124,6 +133,13 @@ DESIGNATED 2413
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_otilukes_sphere END
+
+//____________________________________________________________________________________
+
+BEGIN @1404
+DESIGNATED 1404
+
+LAF tweak_neutralize_poison END
 
 //____________________________________________________________________________________
 
@@ -149,7 +165,6 @@ LAF tweak_negative_plane_protection END
 
 BEGIN @2518
 DESIGNATED 2518
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 
 LAF tweak_phantom_blade END
@@ -158,7 +173,6 @@ LAF tweak_phantom_blade END
 
 BEGIN @2523
 DESIGNATED 2523
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_sunfire END
 
@@ -166,7 +180,6 @@ LAF tweak_sunfire END
 
 BEGIN @1611
 DESIGNATED 1611
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_wondrous_recall END
 
@@ -182,7 +195,6 @@ LAF tweak_mantle END
 
 BEGIN @2811
 DESIGNATED 2811
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_symbol_fear END
 
@@ -190,7 +202,6 @@ LAF tweak_symbol_fear END
 
 BEGIN @2916
 DESIGNATED 2916
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_shapechange END
 
@@ -198,7 +209,6 @@ LAF tweak_shapechange END
 
 BEGIN @2915
 DESIGNATED 2915
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_black_blade END
 
@@ -206,7 +216,6 @@ LAF tweak_black_blade END
 
 BEGIN @2914
 DESIGNATED 2914
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_energy_drain END
 
@@ -214,7 +223,6 @@ LAF tweak_energy_drain END
 
 BEGIN @3000
 DESIGNATED 3000
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_spell_weap_apr END
 
@@ -222,7 +230,6 @@ LAF tweak_spell_weap_apr END
 
 BEGIN @3010
 DESIGNATED 3010
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_ring_danger_sense END
 

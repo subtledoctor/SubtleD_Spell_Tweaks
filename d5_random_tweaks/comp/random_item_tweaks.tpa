@@ -13,7 +13,7 @@
 // ring of danger sense_____________________________________________________________
 //
 DEFINE_ACTION_FUNCTION tweak_ring_danger_sense BEGIN
-// AC, backstab immunity, spell evasion
+// AC, backstab immunity, spell evasion...?
 COPY_EXISTING ~ring36.itm~ ~override~
   SAY IDENTIFIED_DESC @30102
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 292 target = 1 parameter2 = 1 timing = 2 END

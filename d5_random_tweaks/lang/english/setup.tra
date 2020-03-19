@@ -14,10 +14,13 @@
 @2212  = ~Tweak Mirror Image~
 @2215  = ~Tweak Web~
 @2251  = ~Tweak Decastave~
-@1205  = ~Tweak Find traps~
+@1205  = ~Tweak Find Traps~
+@1212  = ~Tweak Slow Poison~
 @2316  = ~Tweak Dire Charm~
+@1323  = ~Tweak Exaltation and Spiritual Clarity~
 @1351  = ~Tweak Moonblade~
 @2413  = ~Tweak Otiluke's Sphere~
+@1404  = ~Tweak Neutralize Poison~
 @1409  = ~Tweak Death Ward~
 @1413  = ~Tweak Negative Plane Protection~
 @2518  = ~Tweak Phantom Blade~
@@ -88,7 +91,8 @@ Casting Time: 2
 Area of Effect: 15-ft. radius
 Saving Throw: Neg.
 
-A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within the webs can become stuck among the gluey fibers; they must roll a saving throw every round. If the saving throw is successful, then the creature is free to move out of the area, though at a reduced (by half) movement speed. A failed saving throw means the creature is stuck in the webs and are affected as if by a Slow spell: <PRO_HESHE> performs all actions at half the usual speed and suffers a -4 penalty to armor class, and additionally c annot make any physical attacks at all. This Slow effect is compounded by the movement speed penalty, so creatures who fail their saving throw can only move at one-quarter speed to escape the webbed area.~
+A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within the webs can become stuck among the gluey fibers; they must roll a saving throw every round. If the saving throw is successful, then the creature is free to move out of the area, though at a reduced (by half) movement speed. A failed saving throw means the creature is stuck in the webs and are affected as if by a Slow spell: <PRO_HESHE> performs all actions at half the usual speed and suffers a -4 penalty to armor class, and additionally c annot make any physical attacks at all. This Slow effect is compounded by the movement speed penalty, so creatures who fail their saving throw can only move at one-quarter speed to escape the webbed area.
+~
 @22512 = ~Decastave
 
 Level: 2
@@ -100,6 +104,19 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell creates a staff of force in the caster's hand. It is treated as a magical weapon, doing 1d6 Hit Points of damage per hit, and it can hit creatures that require +1 weapons to hit. It is a staff, however, so if the caster does not have a proficiency in staff weapons, then the Decastave is used at a penalty. The staff releases sonic energy with each hit; the effect is not strong enough to do damage outright, but it can deafen the target for three rounds on a failed saving throw vs. spells. The Decastave also has a weak vampiric effect, draining a target of 1d2 Hit Points with every strike. These Hit Points are added to the caster's, but they can only heal damage the caster has taken; they will not raise <PRO_HISHER> Hit Points beyond <PRO_HISHER> normal maximum.
+~
+@12122 = ~Slow Poison
+
+Level: 2
+School: Alteration
+Sphere: Healing
+Range: touch
+Duration: 4 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spell is cast upon a poisoned individual, it greatly slows the effects of venom, actually neutralizing all but the most deadly poisons. The effect remains in the target's body for a short time, preventing <PRO_HIMHER> from be affected by poison for 4 rounds after the spell is cast.
 ~
 @12052 = ~Find Traps
 
@@ -114,6 +131,59 @@ Saving Throw: None
 
 When a priest casts a find traps spell, all traps - concealed normally or magically - of magical or mechanical nature become apparent to him. Once per round, all traps within a 30 foot radius of the caster will be revealed. A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result, the spellcaster would view the result as undesirable or harmful, and the creator specifically intended the harmful or undesirable result as such. Thus, traps include glyphs and similar spells or devices.
 ~
+@13232 = ~Exaltation
+
+Level: 3
+School: Abjuration
+Sphere: Healing
+Range: Touch
+Duration: 1 turn
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell enables a priest to aid and protect any one being other than the priest. By touch, the caster removes the effects of fear, sleep, feeblemindedness, unconsciousness, and intoxication, as well as berserk and confused states of mind. In addition, the recipient is protected against spells and other attacks that cause these effects for the duration of the spell.
+~
+@14041 = ~Remove Afflictions~
+@14042 = ~Remove Afflictions
+
+Level: 4
+School: Necromancy
+Sphere: Healing 
+Range: Touch 
+Duration: Instant 
+Casting Time: 1 
+Area of Effect: 1 creature 
+Saving Throw: None 
+
+This spell removes all toxins diseases, and fatigue from the body, both natural and magical in nature. When this spell is cast upon an individual, it immediately neutralizes any poison cures any disease, alleviates any paralysis, and eliminates any fatigue. This spell will also cure the target of blindness and deafness.
+~
+@14043 = ~Remove Afflictions
+
+Level: 4
+School: Necromancy
+Sphere: Healing
+Range: Touch
+Duration: 1 turn/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell removes all toxins, diseases, and fatigue from the body, both natural and magical in nature. When this spell is cast upon an individual, it immediately neutralizes any poison, cures any disease, alleviates any paralysis, and eliminates any fatigue. In addition, for the duration of the spell, the recipient is immune to any poison or disease they are exposed to, and spells like Poison and Cloudkill won't affect the protected creature.
+~
+@13502 = ~Spiritual Clarity
+
+Level: 3
+School: Abjuration
+Sphere: Protection
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell enables a priest to aid and protect any one being other than the priest. By touch, the caster removes the effects of fear, sleep, feeblemindedness, unconsciousness, and intoxication, as well as berserk and confused states of mind. In addition, the recipient is protected against spells and other attacks that cause these effects for the duration of the spell.
+~
 @13512 = ~Moonblade
 
 Level: 3
@@ -126,7 +196,7 @@ Saving Throw: None
 
 This spell summons forth a silent, weightless sword-like construct made of moonlight that extends four feet from the caster's hand. The moonblade is considered a +4 weapon for determining what creatures it can hit, though the bonus does not apply to attack rolls made with it. In addition, due to the insubstantial nature of the moonblade, melee bonuses from Strength do not apply.
 
-The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds.
+The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. There is a 50% chance that someone struck by the Moonblade will be affected by Faerie Fire if they fail a saving throw vs. spells, resulting in a 2-point penalty to armor class and preventing them from going invisible. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds. 
 ~
 @25182 = ~Phantom Blade
 
