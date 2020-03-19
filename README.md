@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 0.2 </strong><br />
+  <p><strong> Version 0.3 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -30,7 +30,6 @@
 </div>
 <h2>Compatibility</h2>
 <div class="section">
-  <p>Requires the EE 2.5+ engine. Should work fine on BGEE, BG2EE, IWDEE, and EET.</p>
   <p>This mod should be installed after spell mods like Spell Revisions, IWDification, and SCS IWD Spells. It should probably be installed before kit mods, including Tome & Blood and Faiths & Powers.</p>
 </div>
 <h2>Contents</h2>
@@ -39,7 +38,7 @@
   <div class="section">
     <p>This adds a chance for any target to be blinded for one round, regardless of their level. If you have SR installed, the Confusion effect is switched to the three-round duration.</p>
   </div>
-  <h4 class="subheader">Component 2108: Tweak Protection from Petrification</h4>
+  <h4 class="subheader">Component 2108: Tweak Protection from Petrification (requires EE v2.5+ engine)</h4>
   <div class="section">
     <p>This turns Pro Petrification into "Mirrored Eyes," giving protection from any effects using the GAZE projectile. AFAIK that includes vampire Charm, umber Hulk Confusion, and Aec'Letec's Death Gaze. This works like the IWD thieves' Evasion ability, giving you a saving throw to avoid the effect.</p>
   </div>
@@ -59,25 +58,41 @@
   <div class="section">
     <p>Adds a chance to Deafen anyone struck by the Decastave for three rounds if they fail a save.</p>
   </div>
+  <h4 class="subheader">Component 1212: Tweak Slow Poison</h4>
+  <div class="section">
+    <p>Adds a short three-round immunity to being re-poisoned after a target is affected by the spell.</p>
+  </div>
+  <h4 class="subheader">Component 1323: Tweak Exaltation and Spiritual Clarity</h4>
+  <div class="section">
+    <p>Gives all the effects of Exaltation to Spiritual Clarity (curing more conditions, though the duration lasts only half as long) and improves the spells' casting times: to 4 for Exaltation and to 1 for Spiritual Clarity.</p>
+  </div>
   <h4 class="subheader">Component 1351: Tweak Moonblade</h4>
   <div class="section">
-    <p>Adds a chance to Slow any undead creature struck by the Moonblade.</p>
+    <p>Adds a chance to cast Faerie Fire on anyone struck by the Moonblade, and a chance to Slow if the target is undead.</p>
   </div>
-  <h4 class="subheader">Component 2413: Tweak Otiluke's Sphere</h4>
+  <h4 class="subheader">Component 2413: Tweak Otiluke's Sphere (requires EE v2.5+ engine)</h4>
   <div class="section">
     <p>This removes the Hold effect, and adds effects to prevent spellcasting and disable all UI buttons. The idea is, if you find yourself inside the sphere, you are still awake and aware. You cannot interact with the outside world, but you <b>can</b> go to the inventory screen and do things there, like drink potions!</p>
   </div>
+  <h4 class="subheader">Component 1404: Tweak Neutralize Poison</h4>
+  <div class="section">
+    <p>This spell become "Remove Afflictions," a combination of Slow Poison, Cure Disease, Remove Paralysis, and IWD's Unfailing Endurance. It removes poison, disease, blindness, deafness, Hold, and fatigue. If Spell Revisions is installed first, this also extends immunity to disease for the same duration as the spell's immunity to poison.</p>
+  </div>
   <h4 class="subheader">Component 2518: Tweak Phantom Blade</h4>
   <div class="section">
-    <p>Makes the Phantom Blade more of a phantasmal, psychic weapon. It now does 1d8 "stunning/nonlethal" damage, plus 1d8 magic damage. It removes the extra damage vs. undead (that's what Moonblade is for). If you use Spell Revisions it will retain the casting failure-on-hit. Finally, it moves the spell to the Illusion school.</p>
+    <p>Makes the Phantom Blade more of a phantasmal, psychic weapon. It now does 1d8 "stunning/nonlethal" damage, plus 1d8 magic damage. It removes the extra damage vs. undead (that's what Moonblade is for). There is a chance that anyone struck by the Phantom Blade will be confused for three rounds if they fail a save. If you use Spell Revisions it will also retain SR's casting-failure-on-hit. Finally, it moves the spell to the Illusion school.</p>
+  </div>
+  <h4 class="subheader">Component 2523: Tweak Sunfire</h4>
+  <div class="section">
+    <p>This spell becomes "Missile Storm." Put simply, it casts a maximum-strength Magic Missile at every enemy within 20' of the caster.</p>
   </div>
   <h4 class="subheader">Component 2611: Tweak Wondrous Recall</h4>
   <div class="section">
     <p>Instead of restoring two random spells you have no control over, this will now use a 6th-level slot to restore <b>ALL</b> 1st- and 2nd-level spells.</p>
   </div>
-  <h4 class="subheader">Component 2708: Tweak Mantle</h4>
+  <h4 class="subheader">Component 2708: Tweak Mantle (requires EE v2.5+ engine)</h4>
   <div class="section">
-    <p>This changes Mantle into "Iron Skin" (and renames the druid Ironskins spell to "Stoneskin"). It applies the Stoneskin effect, identically to the 4th-level spell; but it also protects you from non-magical melee weapons and all missile weapons while the stoneskin effect is active, and also prevents elemental damage and other effects of melee weapons while the stoneskin effect is active.</p>
+    <p>This changes Mantle into "Iron Skin" (and renames the druid Ironskins spell to "Stoneskin"). It applies the Stoneskin effect, identically to the 4th-level spell; but it also protects you from non-magical melee weapons and all missile weapons while the stoneskin effect is active, and also prevents elemental damage and other secondary effects of melee weapons while the stoneskin effect is active.</p>
   </div>
   <h4 class="subheader">Component 2811: Tweak Symbol: Fear</h4>
   <div class="section">
@@ -138,6 +153,9 @@
   <p>Copyright 2020. If you want to use or adapt any part of this mod in another mod or similar endeavor, please try to contact me at forums.gibberlings3.net or forum.baldursgate.com to discuss it.  As a general rule, I have no problem with that as long as you credit the source of the work.  If you cannot get in touch with me, assume that you have my permission to use any of this code for any project that is non-commercial, offered for free, and intended for the greater enjoyment of players of Infinity Engine games.  If you do so, please credit me, and mention how awesome I am in a comment in the code, or something like that.  You may NOT use this code for any profit-making or commercial venture, without express permission from me.</p>
 </div>
 <h2>Version History</h2>
+<div class="section">
+  <p><strong>Version 0.2 - 2020</strong></p>
+</div>
 <div class="section">
   <p><strong>Version 0.1 - 2020</strong></p>
 </div>
