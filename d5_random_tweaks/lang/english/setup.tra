@@ -39,9 +39,13 @@
 @3050 = ~~
 @4010 = ~Tweak Vampires and Level Drain~
 @4020 = ~Tweak Monster Stats~
-@4030 = ~Tweak Golems~
-@4040 = ~Tweak Rakshasas~
-@4050 = ~~
+@4030 = ~Tweak Dragon Hit Points~
+@4031 = ~50% More Hit Points~
+@4032 = ~100% More Hit Points~
+@4033 = ~200% More Hit Points~
+@4050 = ~Tweak Golems~
+@4060 = ~Tweak Rakshasas~
+@4070 = ~~
 @5000 = ~Revised Revised Magic Battles~
 //
 @21081 = ~Mirrored Eyes~

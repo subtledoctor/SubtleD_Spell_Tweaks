@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.3~
+VERSION ~0.4~
 
 ALWAYS
 
@@ -262,6 +262,28 @@ BEGIN @4020
 DESIGNATED 4020
 
 LAF tweak_monster_stats END
+
+//____________________________________________________________________________________
+
+BEGIN @4031
+DESIGNATED 4031
+SUBCOMPONENT @4030
+
+LAF buff_dragon_hp INT_VAR hp_multiplier = 3 END	//	1.5x normal hp
+
+
+BEGIN @4032
+DESIGNATED 4032
+SUBCOMPONENT @4030
+
+LAF buff_dragon_hp INT_VAR hp_multiplier = 4 END	//	2x normal hp
+
+
+BEGIN @4033
+DESIGNATED 4033
+SUBCOMPONENT @4030
+
+LAF buff_dragon_hp INT_VAR hp_multiplier = 6 END	//	3x normal hp
 
 //____________________________________________________________________________________
 
