@@ -18,6 +18,7 @@ COPY_EXISTING ~ring36.itm~ ~override~
   SAY IDENTIFIED_DESC @30102
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 292 target = 1 parameter2 = 1 timing = 2 END
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 1 parameter2 = 0 timing = 2 END
+IF_EXISTS BUT_ONLY
 // 
 END
 //__________________________________________________________________________________
@@ -102,4 +103,44 @@ IF_EXISTS BUT_ONLY
 
 END
 //__________________________________________________________________________________
+
+
+// skin of the forest_____________________________________________________________
+//
+DEFINE_ACTION_FUNCTION forest_leather_armor BEGIN
+// recurring stoneskin, like carapace
+// use alternate stonekin opcode, test against ironskin
+
+CREATE EFF ~d5leat14~
+  WRITE_LONG 0x10 232
+  WRITE_LONG 0x14 1
+  WRITE_LONG 0x18 0
+  WRITE_LONG 0x1c 0
+  WRITE_LONG 0x20 20
+  WRITE_LONG 0x24 2
+  WRITE_LONG 0x28 0
+  WRITE_SHORT 0x2c 100
+  WRITE_ASCII 0x30 ~d5leat14~ #8
+  WRITE_LONG 0x48 102
+
+COPY_EXISTING ~leat14.itm~ ~override~
+  SAY IDENTIFIED_DESC @30402
+  LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~sppr202~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 match_parameter1 = 1 parameter1 = 5 END
+// add skin effect
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 2 STR_VAR resource = ~d5leat14~ END
+IF_EXISTS BUT_ONLY
+
+COPY ~d5_random_tweaks/data/item_tweaks/d5leat14.spl~ ~override~
+//  LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = ~d5leat14~ END
+
+COPY_EXISTING ~tomegol4.bcs~ ~override~
+  DECOMPILE_BCS_TO_BAF
+	REPLACE_TEXTUALLY ~!CheckStatGT(LastSummonerOf(Myself),0,STONESKINSGOLEM)~ ~~
+	REPLACE_TEXTUALLY ~!CheckStatGT(Player[1-6],0,STONESKINSGOLEM)~ ~~
+  COMPILE_BAF_TO_BCS
+IF_EXISTS BUT_ONLY
+END
+//__________________________________________________________________________________
+
 

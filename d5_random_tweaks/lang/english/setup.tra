@@ -14,6 +14,7 @@
 @2212  = ~Tweak Mirror Image~
 @2215  = ~Tweak Web~
 @2251  = ~Tweak Decastave~
+@1202  = ~Tweak Barkskin~
 @1205  = ~Tweak Find Traps~
 @1212  = ~Tweak Slow Poison~
 @2316  = ~Tweak Dire Charm~
@@ -35,7 +36,7 @@
 @3010 = ~Tweak the Ring of Danger Sense~
 @3020 = ~Tweak the Gloves of Missile Snaring~
 @3030 = ~Tweak Detonating Weapons~
-@3040 = ~~
+@3040 = ~Tweak 'Skin of the Forest' Armor~
 @3050 = ~~
 @4010 = ~Tweak Vampires and Level Drain~
 @4020 = ~Tweak Monster Stats~
@@ -108,6 +109,19 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell creates a staff of force in the caster's hand. It is treated as a magical weapon, doing 1d6 Hit Points of damage per hit, and it can hit creatures that require +1 weapons to hit. It is a staff, however, so if the caster does not have a proficiency in staff weapons, then the Decastave is used at a penalty. The staff releases sonic energy with each hit; the effect is not strong enough to do damage outright, but it can deafen the target for three rounds on a failed saving throw vs. spells. The Decastave also has a weak vampiric effect, draining a target of 1d2 Hit Points with every strike. These Hit Points are added to the caster's, but they can only heal damage the caster has taken; they will not raise <PRO_HISHER> Hit Points beyond <PRO_HISHER> normal maximum.
+~
+@12022 = ~Barkskin
+
+Level: 2
+School: Alteration
+Sphere: Plant
+Range: Caster
+Duration: 2 turns
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: None
+
+When cast upon a creature, its skin takes on the appearance of rough, woody bark. What's more, this bark-like texture continually grows to protect the recipient of the spell. The bark can completely turn aside a single blow (but not any magical secondary effects) and is chipped off in the process; one round later, the bark will regrow enough to block another blow. This process of protection and regrowth continues for 2 turns, protecting the recipient from one physical attack per round, after which the spell fades. Multiple castings of this spell are not cumulative.
 ~
 @12122 = ~Slow Poison
 
@@ -313,3 +327,14 @@ Equipped abilities:
 - Deflect first missile attack each round
 
 Weight: 2~
+
+@30402 = ~This was the armor of Seffer Ekr, and a sign of the goddess Mielikki's favor. She had rewarded the ranger's loyalty with the promise that he would never die in battle, and he defied death for many years, holding hordes of monsters back from his home forest. A heart attack claimed him when his time was done, not an enemy's blade.
+
+STATISTICS:
+
+Equipped Abilities:
+ Bark Armor: fast-growing bark grows on the exterior of this armor, providing tough protection that can completely block one physical attack. A successful hit against the wearer dislodges the bark-like growth; it regrows enough to block another hit after one round.
+
+Armor Class: 5
+Weight: 15
+Requires: 4 Strength~

@@ -256,6 +256,63 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_barkskin BEGIN
+// 
+CREATE EFF ~d5bbark~
+  WRITE_LONG 0x10 232
+  WRITE_LONG 0x14 2
+  WRITE_LONG 0x18 0
+  WRITE_LONG 0x1c 0
+  WRITE_LONG 0x20 20
+//  WRITE_LONG 0x24 0
+  WRITE_LONG 0x28 120
+  WRITE_SHORT 0x2c 100
+  WRITE_ASCII 0x30 ~d5bbark~ #8
+  WRITE_LONG 0x48 102
+
+COPY_EXISTING  ~sppr202.spl~ ~override~
+				~staf14a.spl~ ~override~
+				~d5bp202.spl~ ~override~
+				~qdfv_202.spl~ ~override~
+				~d5rnm21.spl~ ~override~
+				~d5rt202.spl~ ~override~
+  SAY IDENTIFIED_DESC @12022
+// no stacking
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~staf14a~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~d5bp202~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~qdfv_202~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~d5rnm21~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~d5rt202~ END
+// remove AC bonus, add stoneskin effect
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 0 opcode = 177 parameter1 = 0 parameter2 = 2 timing = 0 duration = 120 STR_VAR resource = ~d5bbark~ END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING  ~sppr202.spl~ ~override~
+				~staf14a.spl~ ~override~
+				~d5bp202.spl~ ~override~
+				~qdfv_202.spl~ ~override~
+				~d5rnm21.spl~ ~override~
+				~d5rt202.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_timing = 0 target = 1 duration = 120 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_timing = 4 target = 1 duration = 120 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_timing = 1 target = 1 END
+IF_EXISTS BUT_ONLY
+
+COPY ~d5_random_tweaks/data/item_tweaks/d5leat14.spl~ ~override/d5bbark.spl~
+//  LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = ~d5bbark~ END
+
+COPY_EXISTING ~tomegol4.bcs~ ~override~
+  DECOMPILE_BCS_TO_BAF
+	REPLACE_TEXTUALLY ~!CheckStatGT(LastSummonerOf(Myself),0,STONESKINSGOLEM)~ ~~
+	REPLACE_TEXTUALLY ~!CheckStatGT(Player[1-6],0,STONESKINSGOLEM)~ ~~
+  COMPILE_BAF_TO_BCS
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_find_traps BEGIN
 // find traps: last a long time, (fire every 3 seconds (ok not the 2nd part))
 COPY_EXISTING ~sppr205.spl~ ~override~

@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.4~
+VERSION ~0.5~
 
 ALWAYS
 
@@ -87,6 +87,14 @@ LAF tweak_decastave END
 
 //____________________________________________________________________________________
 
+BEGIN @1202
+DESIGNATED 1202
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_barkskin END
+
+//____________________________________________________________________________________
+
 /*
 BEGIN @1205
 DESIGNATED 1205
@@ -97,10 +105,12 @@ LAF tweak_find_traps END
 
 //____________________________________________________________________________________
 
+/*
 BEGIN @1212
 DESIGNATED 1212
 
 LAF tweak_slow_poison END
+*/
 
 //____________________________________________________________________________________
 
@@ -248,6 +258,14 @@ DESIGNATED 3030
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_detonating_weapons END
+
+//____________________________________________________________________________________
+
+BEGIN @3040
+DESIGNATED 3040
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF forest_leather_armor END
 
 //____________________________________________________________________________________
 
