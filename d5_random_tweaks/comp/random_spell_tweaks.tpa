@@ -276,7 +276,7 @@ COPY_EXISTING  ~sppr202.spl~ ~override~
 				~qdfv_202.spl~ ~override~
 				~d5rnm21.spl~ ~override~
 				~d5rt202.spl~ ~override~
-  SAY IDENTIFIED_DESC @12022
+  SAY UNIDENTIFIED_DESC @12022
 // no stacking
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~staf14a~ END
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR match_resource = ~sppr202~ resource = ~d5bp202~ END
