@@ -126,7 +126,7 @@ CREATE EFF ~d5leat14~
 COPY_EXISTING ~leat14.itm~ ~override~
   SAY IDENTIFIED_DESC @30402
   LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~sppr202~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 0 match_parameter1 = 1 parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 0 match_parameter1 = 1 parameter1 = 5 END
 // add skin effect
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 2 STR_VAR resource = ~d5leat14~ END
 IF_EXISTS BUT_ONLY

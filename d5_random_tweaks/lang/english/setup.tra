@@ -242,7 +242,7 @@ Casting Time: 6
 Area of Effect: The caster
 Saving Throw: None
 
-This spell summons forth a silent, weightless sword-like construct made of moonlight that extends four feet from the caster's hand. The moonblade is considered a +4 weapon for determining what creatures it can hit, though the bonus does not apply to attack rolls made with it. In addition, due to the insubstantial nature of the moonblade, melee bonuses from Strength do not apply.
+This spell summons forth a silent, weightless sword-like construct made of moonlight that extends four feet from the caster's hand. The moonblade is considered a +4 weapon for determining what creatures it can hit, though the bonus does not apply to attack rolls made with it. Due to the insubstantial nature of the moonblade, melee bonuses from Strength do not apply, but attacks with the moonblade are considered melee touch attacks, and thus gain a +4 bonus to hit.
 
 The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. There is a 50% chance that someone struck by the Moonblade will be affected by Faerie Fire if they fail a saving throw vs. spells, resulting in a 2-point penalty to armor class and preventing them from going invisible. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds. 
 ~

@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 0.3 </strong><br />
+  <p><strong> Version 0.6 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -50,6 +50,10 @@
   <div class="section">
     <p>Moves Mirror Image to 3rd level. A straight nerf. But Illusion also has Blur at 2nd level, and having illusionary protection spells there seems silly. Mirror Image is incredibly useful, I think it works quite well one level below Stoneskin.</p>
   </div>
+  <h4 class="subheader">Component 2213: Tweak Stinking Cloud</h4>
+  <div class="section">
+    <p>Only available  if Spell Revisions is installed first. This buffs the SR version of Stinking Cloud a bit by making the effects of nausea remain for a short time after leaving the area with the noxious gas. Movement rate is slowed for two rounds, the inability to cast spells or attack is extended to two rounds, and residual 2-point penalties to thac0, AC, and casting speed remain for another two rounds after that.</p>
+  </div>
   <h4 class="subheader">Component 2215: Tweak Web</h4>
   <div class="section">
     <p>Web no longer Holds targets who fail their save. Instead it Slows them and sets their APR to zero. Additionally, it cuts movement rate to 30% for anyone in the area of effect, regardless whether they make their save. This compounds with the Slow effect so on a failed save you will only be able to move at 15% your normal rate.  And you won't be able to attack, and spellcasting will take twice as long, and you'll have a 4-point AC penalty. This is a nerf, to be sure... but man, vanilla Web is just too powerful. A non-party-friendly Slow spell one level below the party-friendly Slow spell makes a lot of sense to me.</p>
@@ -58,9 +62,14 @@
   <div class="section">
     <p>Adds a chance to Deafen anyone struck by the Decastave for three rounds if they fail a save.</p>
   </div>
-  <h4 class="subheader">Component 1212: Tweak Slow Poison</h4>
+  <h4 class="subheader">Component 1202: Tweak Barkskin</h4>
   <div class="section">
-    <p>Adds a short three-round immunity to being re-poisoned after a target is affected by the spell.</p>
+    <p>Instead of giving an AC bonus to avoid attacks, Barkskin acts like a slow version of Stoneskin, giving the caster one 'skin' of protection which regenerates each round. So the spell can block one attack per round for its duration. For balance reasons, this version can only target the caster, not an ally. This effect <b>does</b> stack with Stoneskin/Ironskin.</p>
+    <p>For technical reasons, if installed in BG2EE, the ending of the Stoneskin effect triggered by the Juggernaut Golem in the Golem Manual will no longer cause the golem to die.</p>
+  </div>
+  <h4 class="subheader">Component 1207: Tweak Goodberry</h4>
+  <div class="section">
+    <p>Instead of creating consumable berries, that is abstracted away. Upon casting the spell, all nearby allies are assumed to have eaten berries; any intoxication and fatigue are removed, and they regenerate 2 hit points per round, for one round per level of the caster (to a maximum of 10 rounds). This spell cannot be cast in combat.</p>
   </div>
   <h4 class="subheader">Component 1323: Tweak Exaltation and Spiritual Clarity</h4>
   <div class="section">
@@ -84,7 +93,7 @@
   </div>
   <h4 class="subheader">Component 2523: Tweak Sunfire</h4>
   <div class="section">
-    <p>This spell becomes "Missile Storm." Put simply, it casts a maximum-strength Magic Missile at every enemy within 20' of the caster.</p>
+    <p>This spell becomes "Missile Storm." Put simply, it casts a maximum-strength Magic Missile at every enemy within 20' of the caster - twice.</p>
   </div>
   <h4 class="subheader">Component 2611: Tweak Wondrous Recall</h4>
   <div class="section">
@@ -126,6 +135,10 @@
   <div class="section">
     <p>Weapons like the Club of Detonation that can create Fireballs on-hit will now trigger the IWD priest spell "Produce Fire" instead.</p>
   </div>
+  <h4 class="subheader">Component 3040: Tweak Skin of the Forest Armor</h4>
+  <div class="section">
+    <p>This leather armor will now act like a permanent version of the modified Barskin spell described above, absorbing one physical attack each round.</p>
+  </div>
   <h4 class="subheader">Component 4010: Tweak Vampires & Level Drain</h4>
   <div class="section">
     <p>Adds a saving throw vs. Death to all weapon-delivered level drain effects.</p>
@@ -133,6 +146,10 @@
   <h4 class="subheader">Component 4020: Tweak Monster Stats</h4>
   <div class="section">
     <p>Adds a saving throw vs. Death to all weapon-delivered level drain effects.</p>
+  </div>
+  <h4 class="subheader">Component 4030: Tweak Dragon Hit Points</h4>
+  <div class="section">
+    <p>Dragons are huge. Bigger than giants. For their sheer girth, they should arguably be a lot more durable, regardless of scales and magic and other protective characteristics. This component will let you increase their hit points by 50%, 100%, or 200%.</p>
   </div>
 <h2>Contact Information</h2>
 <div class="section">
@@ -150,9 +167,15 @@
 </div>
 <h2>Credits and Copyright Information</h2>
 <div class="section">
-  <p>Copyright 2020. If you want to use or adapt any part of this mod in another mod or similar endeavor, please try to contact me at forums.gibberlings3.net or forum.baldursgate.com to discuss it.  As a general rule, I have no problem with that as long as you credit the source of the work.  If you cannot get in touch with me, assume that you have my permission to use any of this code for any project that is non-commercial, offered for free, and intended for the greater enjoyment of players of Infinity Engine games.  If you do so, please credit me, and mention how awesome I am in a comment in the code, or something like that.  You may NOT use this code for any profit-making or commercial venture, without express permission from me.</p>
+  <p>Copyright 2020. If you want to use or adapt any part of this mod in another mod or similar endeavor, please try to contact me at forums.gibberlings3.net or forum.baldursgate.com to discuss it. As a general rule, I have no problem with that as long as you credit the source of the work. If you cannot get in touch with me, assume that you have my permission to use any of this code for any project that is non-commercial, offered for free, and intended for the greater enjoyment of players of Infinity Engine games. If you do so, please credit me, and mention how awesome I am in a comment in the code, or something like that. You may NOT use this code for any profit-making or commercial venture, without express permission from me.</p>
 </div>
 <h2>Version History</h2>
+<div class="section">
+  <p><strong>Version 0.6 - 2020</strong></p>
+</div>
+<div class="section">
+  <p><strong>Et cetera</strong></p>
+</div>
 <div class="section">
   <p><strong>Version 0.2 - 2020</strong></p>
 </div>
