@@ -1,0 +1,29 @@
+BACKUP ~d5_goodberry/backup~
+AUTHOR ~SubtleD~
+
+VERSION ~0.1~
+
+ALWAYS
+
+	INCLUDE ~d5_goodberry/lib/misc_functions.tpa~
+	INCLUDE ~d5_goodberry/comp/random_spell_tweaks.tpa~
+
+END
+
+LANGUAGE
+  ~English~
+  ~english~
+  ~d5_goodberry/lang/english/setup.tra~
+
+
+
+//____________________________________________________________________________________
+
+BEGIN @1207
+DESIGNATED 1207
+//REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_good_berry END
+
+//____________________________________________________________________________________
+

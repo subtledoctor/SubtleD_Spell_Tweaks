@@ -12,10 +12,12 @@
 @2112  = ~Tweak Magic Missile~
 @2209  = ~Tweak Luck~
 @2212  = ~Tweak Mirror Image~
+@2213  = ~Tweak Stinking Cloud~
 @2215  = ~Tweak Web~
 @2251  = ~Tweak Decastave~
 @1202  = ~Tweak Barkskin~
 @1205  = ~Tweak Find Traps~
+@1207  = ~Tweak Goodberry~
 @1212  = ~Tweak Slow Poison~
 @2316  = ~Tweak Dire Charm~
 @1323  = ~Tweak Exaltation and Spiritual Clarity~
@@ -86,6 +88,18 @@ Saving Throw: None
 
 The beneficiaries of this spell gain a slight, instinctive insight into the very immediate future. The result is that the subject appears to have unusually good luck in every regard, receiving a 5% bonus to all actions, for the next 5 rounds. This includes Saving Throws, to-hit rolls, damage, thieving skills, etc.
 ~
+@22132 = ~Stinking Cloud
+
+Level: 2
+School: Alteration
+Range: Long
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 30' radius
+Saving Throw: Poison negates
+
+When Stinking Cloud is cast, a billowing mass of nauseous vapors appears centered on a point selected by the caster. Each round a creature is within the cloud, <PRO_HISHER> movement rate is cut by 50% for two rounds. Additionally, if the <PRO_HESHE> fails a saving throw vs. death/poison, <PRO_HESHE> will become nauseated. Nauseated characters are unable to attack or cast spells for two rounds, and have 2-point penalties to armor class, to-hit rolls, and casting speed for four rounds. Those who make successful saving throws can leave the cloud without suffering any ill effects, apart from the movement rate reduction; however, those who remain within the cloud must continue to save each round.  Certain creatures are immune to the effects of the cloud, including all undead and creatures who don't need to breathe, such as elementals.
+~
 @22152 = ~Web
 
 Level: 2
@@ -122,6 +136,22 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 When cast upon a creature, its skin takes on the appearance of rough, woody bark. What's more, this bark-like texture continually grows to protect the recipient of the spell. The bark can completely turn aside a single blow (but not any magical secondary effects) and is chipped off in the process; one round later, the bark will regrow enough to block another blow. This process of protection and regrowth continues for 2 turns, protecting the recipient from one physical attack per round, after which the spell fades. Multiple castings of this spell are not cumulative.
+~
+@12071 = ~Goodberry~
+@12072 = ~Goodberry
+
+Level: 2
+School: Alteration
+Sphere: Plant
+Range: 15 feet
+Duration: 1 round/level
+Casting Time: 5
+Area of Effect: party
+Saving Throw: None
+
+With this spell, the caster causes a bunch of enchanted berries to grow to unnatural size, and distributes them among <PRO_HISHER> allies. Each portion is as filling and nutritious as a full home-cooked meal, and the enchantment makes them unusually restorative: partaking of the berries eliminates intoxication, reduces fatigue, and causes the eater to regenerate 2 hit points per round, for a number of rounds equal to the caster's level (to a maximum of 20 hit points healed over 10 rounds).
+
+Creating and eating the Goodberries can only be done outside of combat.
 ~
 @12122 = ~Slow Poison
 
@@ -262,10 +292,14 @@ This spell enables the caster to bring back into memory all spells that have bee
 Level: 7
 School: Alteration
 Range: Personal
-Duration: 
+Duration: 8 hours
 Casting Time: 1
 Area of Effect: Caster
 Saving Throw: n/a
+
+When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against him, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a dispel magic or Breach, all of the skins are removed due to physical attacks, or the spell duration expires.
+
+While this will not protect the caster from any area attacks (such as Fireball). However, the skins gained from this spell are tougher than those from Stoneskin, in that they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
 ~
 @29152 = ~Black Blade of Disaster
 

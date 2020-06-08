@@ -1,0 +1,52 @@
+
+/- more skins for ironskin
+/ -- and immunity to stoneskin
+
+- shield blocks skull trap?
+
+/- SR stinking cloud: nausea should last several rounds
+/ -- like, 12 seconds no attack or cast
+/  --- and reduce movement
+/ -- then 12 more seconds with penalties
+
+/- improve sunfire
+/ -- cast MM twice
+ -- or make a different one that has 10 projectiles
+
+/- tweak Goodberry!
+ -- always make 6?  (for whole party?)
+ -- only last an hour or so?
+ -- no stacking (206 for same duration)
+ -- heal 8+2(lvl/5) hp..?
+ -- set fatigue to 1
+ -- restore 1 spell of each level
+ -- ...
+ -- I don't love it
+ -- what is the fucking use case of this spell??
+- maybe simplify
+ -- make it like MnG alchemy - make one of several potions
+ -- convert it to an innate ability?
+/- OR, just mass regenerate light wounds, non-combat only (plus reduce fatigue)
+
+- revised magic battles
+/ -- basic code
+/ -- rewrite spell descriptions
+ -- fix portrait icons
+
+/- make globes of invulnerability undispellable
+/ -- so Dispel and Breach are the same, not working on spell protections
+
+/- set all cure spells to power level 11 (or 0 if that doesn't work)
+/ -- ...to bypass Deflections
+
+- make specific and combat protections dispellable, make dispellable buffs specific protections
+ -- (if the dispellable buff isn't already a specific or combat protection)
+ -- so Dispel and Breach affect the same group of spells
+
+- cap dispel magic at 20th level
+ -- for every spell that uses opcode 58 with param2 = 1:
+ -- set param2 to 2
+ -- use extend-o-matic to 50 headers, with param1 set to header min level
+ -- for headers 21 through 50, set param1 to 20.
+
+- deal with illusionary creatures/summons
