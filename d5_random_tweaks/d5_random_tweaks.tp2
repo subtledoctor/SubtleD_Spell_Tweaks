@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.6~
+VERSION ~0.6.1~
 
 ALWAYS
 
@@ -58,6 +58,21 @@ LAF tweak_magic_missile END
 
 //____________________________________________________________________________________
 
+BEGIN @1151
+DESIGNATED 1151
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
+
+LAF tweak_sunscorch END
+
+//____________________________________________________________________________________
+
+BEGIN @1152
+DESIGNATED 1152
+
+LAF tweak_faerie_fire END
+
+//____________________________________________________________________________________
+
 BEGIN @2209
 DESIGNATED 2209
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
@@ -85,6 +100,14 @@ BEGIN @2215
 DESIGNATED 2215
 
 LAF tweak_web END
+
+//____________________________________________________________________________________
+
+BEGIN @2224
+DESIGNATED 2224
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_glitterdust END
 
 //____________________________________________________________________________________
 
@@ -127,6 +150,13 @@ DESIGNATED 1212
 
 LAF tweak_slow_poison END
 */
+
+//____________________________________________________________________________________
+
+BEGIN @1251
+DESIGNATED 1251
+
+LAF tweak_alicorn_lance END
 
 //____________________________________________________________________________________
 
@@ -216,6 +246,13 @@ DESIGNATED 2708
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_mantle END
+
+//____________________________________________________________________________________
+
+BEGIN @1710
+DESIGNATED 1710
+
+LAF tweak_holy_word END
 
 //____________________________________________________________________________________
 

@@ -134,6 +134,40 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_sunscorch BEGIN
+// reduce damage, extend blindness, make undead unable to save vs. blindness
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+ ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SUNSCORCH[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SUNSCORCH~ RET spell_res END
+  COPY ~d5_random_tweaks/data/spell_tweaks/d5dvsuns.spl~ ~override/%spell_res%.spl~
+	SAY UNIDENTIFIED_DESC @11512
+ END
+END
+
+// maybe make undead unable to save against the blindness?
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_faerie_fire BEGIN
+// 
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_FAERIE_FIRE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_FAERIE_FIRE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 savingthrow = 0 END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 41 END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 0 opcode = 215 parameter1 = 0 parameter2 = 1 STR_VAR resource = ~d5_ffire~ END
+  IF_EXISTS BUT_ONLY
+END
+
+COPY ~d5_random_tweaks/data/spell_tweaks/d5_ffire.vvc~ ~override~
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_luck BEGIN
 // Luck: AoE, 5-round duration
 COPY_EXISTING ~spwi209.spl~ ~override~
@@ -233,6 +267,26 @@ COPY_EXISTING  ~spwi215.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 1 target = 2 parameter1 = 0 parameter2 = 3 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 109 END
 IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_glitterdust BEGIN
+// 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi224.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 116 savingthrow = 0 END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 215 savingthrow = 0 END
+  IF_EXISTS BUT_ONLY
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi224.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 savingthrow = 0 END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 54 opcode = 0 savingthrow = 0 END
+  IF_EXISTS BUT_ONLY
+END
 
 END
 
@@ -358,7 +412,7 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_good_berry BEGIN
 //
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_GOOD_BERRIES[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_GOOD_BERRIES~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	READ_LONG 0x34 res_level
@@ -368,14 +422,14 @@ ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%
 	REPLACE_TEXTUALLY ~Level: 2~ ~Level: %res_level%~
   END
 
-  COPY ~d5_goodberry/data/spell_tweaks/d5goodb.spl~ ~override/%spell_res%.spl~
+  COPY ~d5_random_tweaks/data/spell_tweaks/d5goodb.spl~ ~override/%spell_res%.spl~
 	SAY NAME1 @12071
 	SAY UNIDENTIFIED_DESC ~%level_berry_desc%~
 	LPF ALTER_EFFECT INT_VAR power = 0 END
 	WRITE_LONG 0x34 res_level
 END
 
-COPY ~d5_goodberry/data/spell_tweaks/d5goodb.spl~ ~override/sppr207.spl~
+COPY ~d5_random_tweaks/data/spell_tweaks/d5goodb.spl~ ~override/sppr207.spl~
   SAY NAME1 @12071
   SAY UNIDENTIFIED_DESC @12072
   LPF ALTER_EFFECT INT_VAR power = 0 END
@@ -384,6 +438,22 @@ COPY ~d5_goodberry/data/spell_tweaks/d5goodb.spl~ ~override/sppr207.spl~
 ACTION_IF (GAME_IS ~iwdee~) BEGIN
   COPY_EXISTING ~sppr207.spl~ ~override/sppr215.spl~
 END
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_alicorn_lance BEGIN
+// 
+
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ALICORN_LANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_ALICORN_LANCE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @12512
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 12 parameter2 = 4194304 dicenumber = 4 savingthrow = 0 END
+END
+
+// maybe make undead unable to save against the blindness?
 
 END
 
@@ -702,6 +772,17 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 1 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
 //	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 2 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
   END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_holy_word BEGIN
+// add 5-round... Slow?
+// 
+COPY_EXISTING ~sppr710.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 80 opcode = 40 duration = 30 END
 IF_EXISTS BUT_ONLY
 
 END

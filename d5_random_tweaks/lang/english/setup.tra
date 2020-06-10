@@ -10,15 +10,19 @@
 @2104  = ~Tweak Charm Person & Dire Charm~
 @2108  = ~Tweak Protection from Petrification~
 @2112  = ~Tweak Magic Missile~
+@1151  = ~Tweak Sunscorch~
+@1152  = ~Tweak Faerie Fire~
 @2209  = ~Tweak Luck~
 @2212  = ~Tweak Mirror Image~
 @2213  = ~Tweak Stinking Cloud~
 @2215  = ~Tweak Web~
+@2224  = ~Tweak Glitterdust~
 @2251  = ~Tweak Decastave~
 @1202  = ~Tweak Barkskin~
 @1205  = ~Tweak Find Traps~
 @1207  = ~Tweak Goodberry~
 @1212  = ~Tweak Slow Poison~
+@1251  = ~Tweak Alicorn Lance~
 @2316  = ~Tweak Dire Charm~
 @1323  = ~Tweak Exaltation and Spiritual Clarity~
 @1351  = ~Tweak Moonblade~
@@ -30,6 +34,7 @@
 @2523  = ~Tweak Sunfire~
 @1611  = ~Tweak Wondrous Recall~
 @2708  = ~Tweak Mantle~
+@1710  = ~Tweak Holy Word~
 @2811  = ~Tweak Symbol: Fear~
 @2916  = ~Tweak Shapechange~
 @2915  = ~Tweak Black Blade of Disaster~
@@ -75,6 +80,19 @@ Area of Effect: 1 creature
 Saving Throw: none
 
 This spell grants the recipient resistance to all gaze attacks, including basilisk and medusa gaze, as well as vampire charm, and others. When targeted by such an effect, the beneficiary of this spell may attempt a saving throw vs. spells, in addition to any saving throw usually allowed by the attack. If the additional save vs. spells is successful, the effect transmitted by the gaze is avoided entirely.
+~
+@11512 = ~Sunscorch
+
+Level: 1
+School: Evocation
+Sphere: Sun
+Range: Long
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+When this spell is cast, a brilliant ray of scorching heat slants down from the sky and strikes one target of the caster's choice. The creature struck by the ray sustains 1d3 points of fire damage plus 1d3 every two extra levels of experience (up to a maximum of 5d3). Undead creatures and monsters vulnerable to bright light suffer an extra 1d6 per two levels in addition to this, to a maximum total of 5d3 + 5d6. In addition, targets who fail a saving throw vs. spells are blinded for 3 rounds.
 ~
 @22092 = ~Luck
 
@@ -178,6 +196,19 @@ Area of Effect: 30' radius
 Saving Throw: None
 
 When a priest casts a find traps spell, all traps - concealed normally or magically - of magical or mechanical nature become apparent to him. Once per round, all traps within a 30 foot radius of the caster will be revealed. A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result, the spellcaster would view the result as undesirable or harmful, and the creator specifically intended the harmful or undesirable result as such. Thus, traps include glyphs and similar spells or devices.
+~
+@12512 = ~Alicorn Lance
+(Invocation)
+
+Level: 2
+Sphere: Combat
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell creates a silver-hued, partially ethereal lance shaped in the form of an alicorn (a unicorn horn). The caster chooses a target, and the alicorn lance instantaneously fires at it, inflicting 4d6 points of magic damage. Although the alicorn lance dissipates after it strikes, it leaves a silvery radiance around the target that makes it easier to see and hit, giving it a -2 penalty to its Armor Class for 3 rounds.
 ~
 @13232 = ~Exaltation
 

@@ -42,6 +42,14 @@
   <div class="section">
     <p>This turns Pro Petrification into "Mirrored Eyes," giving protection from any effects using the GAZE projectile. AFAIK that includes vampire Charm, umber Hulk Confusion, and Aec'Letec's Death Gaze. This works like the IWD thieves' Evasion ability, giving you a saving throw to avoid the effect.</p>
   </div>
+  <h4 class="subheader">Component 1151: Tweak Sunscorch</h4>
+  <div class="section">
+    <p>Only available if Spell Revisions is installed. Damage to non-undead is halved, from 1d6 per 2 levels to 1d3 per 2 levels, up to 5d3 max. Damage to undead is 1d6 per 2 levels on top of that, to 5d3+5d6 max. No saving throws are allowed relating to the damage. On a failed save vs. spells, the duration of blindness is increased from 1 round to 3 rounds.</p>
+  </div>
+  <h4 class="subheader">Component 2105: Tweak Faerie Fire</h4>
+  <div class="section">
+    <p>No saving throw is allowed to avoid either the AC penalty or the inability to turn invisible. A new animation is added.</p>
+  </div>
   <h4 class="subheader">Component 2209: Tweak Luck</h4>
   <div class="section">
     <p>Makes Luck into an AoE spell that can affect the whole party, and extends the duration from 3 rounds to 5 rounds.</p>
@@ -58,11 +66,15 @@
   <div class="section">
     <p>Web no longer Holds targets who fail their save. Instead it Slows them and sets their APR to zero. Additionally, it cuts movement rate to 30% for anyone in the area of effect, regardless whether they make their save. This compounds with the Slow effect so on a failed save you will only be able to move at 15% your normal rate.  And you won't be able to attack, and spellcasting will take twice as long, and you'll have a 4-point AC penalty. This is a nerf, to be sure... but man, vanilla Web is just too powerful. A non-party-friendly Slow spell one level below the party-friendly Slow spell makes a lot of sense to me.</p>
   </div>
+  <h4 class="subheader">Component 2105: Tweak Glitterdust</h4>
+  <div class="section">
+    <p>No saving throw is allowed to avoid the inability to turn invisible. An AC penalty is added to match the thac0 penalty.</p>
   <h4 class="subheader">Component 2251: Tweak Decastave</h4>
+  </div>
   <div class="section">
     <p>Adds a chance to Deafen anyone struck by the Decastave for three rounds if they fail a save.</p>
   </div>
-  <h4 class="subheader">Component 1202: Tweak Barkskin</h4>
+  <h4 class="subheader">Component 1202: Tweak Barkskin (requires EE v2.5+ engine)</h4>
   <div class="section">
     <p>Instead of giving an AC bonus to avoid attacks, Barkskin acts like a slow version of Stoneskin, giving the caster one 'skin' of protection which regenerates each round. So the spell can block one attack per round for its duration. For balance reasons, this version can only target the caster, not an ally. This effect <b>does</b> stack with Stoneskin/Ironskin.</p>
     <p>For technical reasons, if installed in BG2EE, the ending of the Stoneskin effect triggered by the Juggernaut Golem in the Golem Manual will no longer cause the golem to die.</p>
@@ -70,6 +82,10 @@
   <h4 class="subheader">Component 1207: Tweak Goodberry</h4>
   <div class="section">
     <p>Instead of creating consumable berries, that is abstracted away. Upon casting the spell, all nearby allies are assumed to have eaten berries; any intoxication and fatigue are removed, and they regenerate 2 hit points per round, for one round per level of the caster (to a maximum of 10 rounds). This spell cannot be cast in combat.</p>
+  </div>
+  <h4 class="subheader">Component 1251: Tweak Alicorn Lance</h4>
+  <div class="section">
+    <p>The damage caused by this spell is increased from 3d6 to 4d6, and the damage type changed to 'magic.'</p>
   </div>
   <h4 class="subheader">Component 1323: Tweak Exaltation and Spiritual Clarity</h4>
   <div class="section">
@@ -103,6 +119,10 @@
   <div class="section">
     <p>This changes Mantle into "Iron Skin" (and renames the druid Ironskins spell to "Stoneskin"). It applies the Stoneskin effect, identically to the 4th-level spell; but it also protects you from non-magical melee weapons and all missile weapons while the stoneskin effect is active, and also prevents elemental damage and other secondary effects of melee weapons while the stoneskin effect is active.</p>
   </div>
+  <h4 class="subheader">Component 1710: Tweak Holy Word</h4>
+  <div class="section">
+    <p>Against enemies of the same level as the caster or above, Holy Word only applies deafness, which does nothing to hinder non-spellcasters. This Tweak adds a Slow effect that alsts for five rounds.</p>
+  </div>
   <h4 class="subheader">Component 2811: Tweak Symbol: Fear</h4>
   <div class="section">
     <p>Moves Symbol: fear to 7th level. This is the weakest Symbol spell, I think, and this will diversify the Symbol spells a bit, instead of lumping them all at the same spell level.</p>
@@ -135,7 +155,7 @@
   <div class="section">
     <p>Weapons like the Club of Detonation that can create Fireballs on-hit will now trigger the IWD priest spell "Produce Fire" instead.</p>
   </div>
-  <h4 class="subheader">Component 3040: Tweak Skin of the Forest Armor</h4>
+  <h4 class="subheader">Component 3040: Tweak Skin of the Forest Armor (requires EE v2.5+ engine)</h4>
   <div class="section">
     <p>This leather armor will now act like a permanent version of the modified Barskin spell described above, absorbing one physical attack each round.</p>
   </div>
