@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.6.1~
+VERSION ~0.7~
 
 ALWAYS
 
@@ -373,6 +373,29 @@ DESIGNATED 4030
 
 LAF tweak_rakshasas END
 */
+
+//____________________________________________________________________________________
+
+
+BEGIN @5000
+DESIGNATED 5000
+
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+INCLUDE ~d5_random_tweaks/MBR_settings.ini~
+
+LAF mbr INT_VAR msd_block = %minor_deflection_levels_blocked% sd_block = %spell_deflection_levels_blocked% gsd_block = %greater_deflection_levels_blocked% lvl_1_st = %level_one_spell_thrust% END
+
+LAF dispel_globes INT_VAR bypass = %dispel_bypass_globes% remove = %dispel_removes_globes% END
+
+LAF breach_what INT_VAR combat_protections = %breach_combat_protections% specific_protections = %breach_specific_protections% combination_protections = %breach_combination_protections% noncombat_protections = %breach_noncombat_protections% END
+
+ACTION_IF (%change_cure_power_level% = 1) BEGIN
+  LAF cure_power INT_VAR power_level = %cure_power_level% END
+END
 
 //____________________________________________________________________________________
 
