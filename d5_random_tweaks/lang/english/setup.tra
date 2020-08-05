@@ -6,55 +6,63 @@
 @6   = ~...~
 @7   = ~ ~
 //
-@2105  = ~Tweak Color Spray~
+@2105  = ~Add 1-Round Blindness Effect to Color Spray~
 @2104  = ~Tweak Charm Person & Dire Charm~
-@2108  = ~Tweak Protection from Petrification~
+@2108  = ~Change Protection from Petrification into 'Mirrored Eyes'~
 @2112  = ~Tweak Magic Missile~
-@1151  = ~Tweak Sunscorch~
-@1152  = ~Tweak Faerie Fire~
-@2209  = ~Tweak Luck~
-@2212  = ~Tweak Mirror Image~
-@2213  = ~Tweak Stinking Cloud~
-@2215  = ~Tweak Web~
-@2224  = ~Tweak Glitterdust~
-@2251  = ~Tweak Decastave~
-@1202  = ~Tweak Barkskin~
+@1151  = ~Reduce Damage but Improve Blindness in SR's Sunscorch~
+@1152  = ~Improve Faerie Fire~
+@2209  = ~Make Luck Affect Whole Party~
+@2212  = ~Move Mirror Image to 3rd Level~
+@2213  = ~Add Lingering Effects to SR's Stinking Cloud~
+@2215  = ~Make Web Slow Instead of Hold~
+@2224  = ~Improve Glitterdust~
+@2251  = ~Add Deafening Effect On Hit to Decastave~
+@1202  = ~Make Barkskin Block One Attack Each Round~
 @1205  = ~Tweak Find Traps~
-@1207  = ~Tweak Goodberry~
+@1207  = ~Make Goodberry an Out-of-Combat Mass Regeneration~
 @1212  = ~Tweak Slow Poison~
-@1251  = ~Tweak Alicorn Lance~
+@1251  = ~Improve Damage and Damage Type of Alicorn Lance~
+@2305  = ~Make Haste and Slow Properly Cancel Each Other~
 @2316  = ~Tweak Dire Charm~
-@1323  = ~Tweak Exaltation and Spiritual Clarity~
-@1351  = ~Tweak Moonblade~
-@2413  = ~Tweak Otiluke's Sphere~
-@1404  = ~Tweak Neutralize Poison~
+@2324  = ~Make Hold Undead and Control Undead Bypass MR~
+@1323  = ~Improve Casting Time of Exaltation and Spiritual Clarity~
+@1351  = ~Add Faerie Fire and Slow On Hit to Moonblade~
+@2413  = ~Allow Target of Otiluke's Sphere to Use Inventory Screen~
+@1404  = ~Change Neutralize Poison into 'Remove Afflictions'~
 @1409  = ~Tweak Death Ward~
 @1413  = ~Tweak Negative Plane Protection~
-@2518  = ~Tweak Phantom Blade~
-@2523  = ~Tweak Sunfire~
-@1611  = ~Tweak Wondrous Recall~
-@2708  = ~Tweak Mantle~
-@1710  = ~Tweak Holy Word~
-@2811  = ~Tweak Symbol: Fear~
-@2916  = ~Tweak Shapechange~
-@2915  = ~Tweak Black Blade of Disaster~
-@2914  = ~Tweak Energy Drain~
-@3000  = ~Tweak Spell Weapon APR~
-@3010 = ~Tweak the Ring of Danger Sense~
-@3020 = ~Tweak the Gloves of Missile Snaring~
-@3030 = ~Tweak Detonating Weapons~
-@3040 = ~Tweak 'Skin of the Forest' Armor~
-@3050 = ~~
-@4010 = ~Tweak Vampires and Level Drain~
-@4020 = ~Tweak Monster Stats~
-@4030 = ~Tweak Dragon Hit Points~
+@2508  = ~Improve Function of SR's Waves of Fatigue~
+@2518  = ~Change Damage Type and School of Phantom Blade~
+@2523  = ~Change Sunfire into 'Missile Storm'~
+@1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
+@1614  = ~Make Sol's Searing Orb Easier to Throw~
+@2708  = ~Change Mantle into 'Iron Skin'~
+@1710  = ~Add Slow Effect to Holy Word~
+@2811  = ~Move Symbol: Fear to 7th Level~
+@2916  = ~Move Shapechange to 8th Level~
+@2915  = ~Move Black Blade of Disaster to 8th level~
+@2914  = ~Add Instant Death Effect to Energy Drain~
+@2923  = ~Change Summon Planetar into Summon Noble Genie~
+@3000  = ~Set Spell Weapon APR to 2~
+@3010 = ~Add Backstab Immunity to the Ring of Danger Sense~
+@3020 = ~Proper Missile Deflection for the Gloves of Missile Snaring~
+@3030 = ~Improve Detonating Weapons~
+@3040 = ~Add Revised Barkskin to 'Skin of the Forest' Armor~
+@3050 = ~Make IR's Rod of Absorption Truly Instantaneous~
+@3060 = ~Make the Gargoyle Cloak Apply Stoneskin Instead of an AC Bonus~
+@3070 = ~Make the Dwarven Thrower Hammer Usable by Non-Dwarves~
+@4010 = ~Add a Saving Throw Against Level Drain Effects~
+@4020 = ~Improve Monster Ability Scores~
+@4030 = ~Increase Dragons' Hit Points~
 @4031 = ~50% More Hit Points~
 @4032 = ~100% More Hit Points~
 @4033 = ~200% More Hit Points~
 @4050 = ~Tweak Golems~
 @4060 = ~Tweak Rakshasas~
-@4070 = ~~
+@4100 = ~Remove Planetars and Change HLA Summons~
 @5000 = ~Revised Magic Battles~
+@5010 = ~Cure-type Spells Bypass Spell Deflection~
 //
 @21081 = ~Mirrored Eyes~
 @21082 = ~Mirrored Eyes
@@ -278,6 +286,17 @@ This spell summons forth a silent, weightless sword-like construct made of moonl
 
 The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. There is a 50% chance that someone struck by the Moonblade will be affected by Faerie Fire if they fail a saving throw vs. spells, resulting in a 2-point penalty to armor class and preventing them from going invisible. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds. 
 ~
+@25082 = ~Waves of Fatigue
+Level: 5
+School: Alteration
+Range: Long
+Duration: 5 rounds
+Casting Time: 5
+Area of Effect: 30' radius
+Saving Throw: None
+
+Surges of negative energy render all hostile living creatures in the spell's area fatigued. Fatigued individuals have 2-point reductions to attacks rolls and damage dealt by weapons, and take 2 points per die more damage from enemy spells. Such individuals will also have any Haste effects removed. Furthermore, if someone affected by this spell fails a saving throw vs. petrification/polymorph, <PRO_HESHE> will also endure a 2-point penalty to all saving throws, a reduction of 1 attack per 2 rounds, and a 2-point penalty to spellcasting speed.
+~
 @25182 = ~Phantom Blade
 
 Level: 5
@@ -318,6 +337,8 @@ Saving Throw: None
 
 This spell enables the caster to bring back into memory all spells that have been previously cast, of the 1st and 2nd spell levels. (If no spells have been cast yet, nothing happens.)
 ~
+@16113 = ~Also known as "mage wine", this potion is highly sought after by mages and bards. When imbibed, the drinker can immediately bring back into memory all spells that have been previously cast of the 1st and 2nd spell levels. If no spells have been cast yet, then nothing happens.
+~
 @27081 = ~Iron Skin~
 @27082 = ~Iron Skin
 
@@ -329,9 +350,9 @@ Casting Time: 1
 Area of Effect: Caster
 Saving Throw: n/a
 
-When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against him, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a dispel magic or Breach, all of the skins are removed due to physical attacks, or the spell duration expires.
+When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against <PRO_HIMHER>, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a Dispel Magic or Breach, all of the skins are removed by physical attacks, or the spell duration expires.
 
-While this will not protect the caster from any area attacks (such as Fireball). However, the skins gained from this spell are tougher than those from Stoneskin, in that they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
+Iron Skins will not protect the caster from any area-effect magical attacks, such as Fireball. However, they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
 ~
 @29152 = ~Black Blade of Disaster
 
@@ -369,6 +390,36 @@ Saving Throw: None
 
 The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane. The practical effect is to drain the victim 4 levels of experience - levels, Hit Dice, hit points, and abilities are lost permanently. These can only be restored by a priest's Restoration spell. As the life force passes through the caster, it temporarily invigorates him, granting him an additional 20 hit points, a +4 bonus to attack rolls and saving throws, and +20% bonus to every skill. These effects last for 1 hour. The target's magic resistance, if any, does not affect this spell, and there is no saving throw to avoid the Drain. What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.
 ~
+@29231 = ~Summon Noble Djinni~
+@29232 = ~Summon Noble Djinni
+
+Level: 10
+Range: 120 ft.
+Duration: 4 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+When wizards and similar magic users become very powerful they may forge an arrangement with an extremely powerful denizen of the inner planes, whereby the creature, an elite noble genie, will assent to assist the wizard in the Prime Material Plane. Only one such arrangement may be made - in this case with a chaotic good Noble Djinni from the Elemental Plane of Air. 
+
+While it appears as though the genie is gated, in actuality it only generates a temporary vessel to act in this world. It has the abilities of a powerful fighter/priest, and carries an electrically charged sword. If the Djinni sustains enough damage in the Prime Material Plane for this temporary body to "die" then its spirit will return to its home plane.
+~
+@29233 = ~Noble Djinni~
+@29241 = ~Summon Noble Efreet~
+@29242 = ~Summon Noble Efreet
+
+Level: 10
+Range: 120 ft.
+Duration: 4 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+When wizards and similar magic users become very powerful they may forge an arrangement with an extremely powerful denizen of the inner planes, whereby the creature, an elite noble genie, will assent to assist the wizard in the Prime Material Plane. Only one such arrangement may be made - in this case with a neutral evil Noble Efreet from the Elemental Plane of Fire.
+
+While it appears as though the genie is gated, in actuality it only generates a temporary vessel to act in this world. It has the abilities of a powerful fighter/priest, and carries a magical flaming sword. If the Efreet sustains enough damage in the Prime Material Plane for this temporary body to "die" then its spirit will return to its home plane.
+~
+@29243 = ~Noble Efreet~
 @30102 = ~Ring of Danger Sense
 
 Nizzuf's Maze was a grand hedge maze created by the archmage Nizzuf for his amusement. The maze boasted hundreds of magical traps, most of them extremely lethal. Nizzuf posted a reward big enough to buy a kingdom to the man or woman brave enough to enter the maze and reach its core. Thousands tried and died. But one, Oteg Verm, completed the maze, thanks mainly to this ring which let him "see" where the traps were hidden.
@@ -404,6 +455,12 @@ Equipped Abilities:
 Armor Class: 5
 Weight: 15
 Requires: 4 Strength
+~
+@30602 = ~Cloak of the Gargoyle
+
+...
+
+Weight: 1
 ~
 @51701 = ~Shield of the Archons
 Level: 7

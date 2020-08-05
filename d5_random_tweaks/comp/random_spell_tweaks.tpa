@@ -164,6 +164,12 @@ END
 
 COPY ~d5_random_tweaks/data/spell_tweaks/d5_ffire.vvc~ ~override~
 
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvffire.pro~) BEGIN
+  COPY_EXISTING ~dvffire.pro~ ~override~
+	WRITE_SHORT 0x206 160
+  BUT_ONLY
+END
+
 END
 
 //__________________________________________________________________________________
@@ -459,6 +465,61 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_haste_slow BEGIN
+
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Haste~) BEGIN
+	  SET k1haste_row = (%row% - 1)
+	END
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Slow~) BEGIN
+	  SET k1slow_row = (%row% - 1)
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	READ_BYTE 0x27 sec_type
+	PATCH_IF (sec_type = %k1haste_row%) BEGIN
+	  SPRINT $haste_list(~%SOURCE_RES%~) ~haste~
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 176 opcode = 226 parameter1 = 1 parameter2 = %k1slow_row% STR_VAR resource = ~d5xw305~ END
+// ***** add 291 effect to suppress spell shield animation
+	END
+	PATCH_IF (sec_type = %k1slow_row%) BEGIN
+	  SPRINT $slow_list(~%SOURCE_RES%~) ~slow~
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 40 opcode = 226 parameter1 = 1 parameter2 = %k1haste_row% STR_VAR resource = ~d5xw312~ END
+// ***** add 291 effect to suppress spell shield animation
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~spwi312.spl~ ~override/d5xw305.spl~
+  WRITE_BYTE 0x27 0
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 1 END
+  LPF DELETE_EFFECT END
+  PHP_EACH haste_list AS haste_res => type BEGIN
+	PATCH_IF (~%type%~ STRING_EQUAL_CASE ~haste~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = EVAL ~%haste_res%~ END
+	END
+  END
+
+COPY_EXISTING ~spwi312.spl~ ~override/d5xw312.spl~
+  WRITE_BYTE 0x27 0
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 1 END
+  LPF DELETE_EFFECT END
+  PHP_EACH slow_list AS slow_res => type BEGIN
+	PATCH_IF (~%type%~ STRING_EQUAL_CASE ~slow~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = EVAL ~%slow_res%~ END
+	END
+  END
+
+END
+
+//__________________________________________________________________________________
+
 /*
 DEFINE_ACTION_FUNCTION tweak_dire_charm BEGIN
 // dire charm disable spellcasting
@@ -468,6 +529,18 @@ IF_EXISTS BUT_ONLY
 
 END
 */
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_hold_control_undead BEGIN
+
+COPY_EXISTING ~spwi324.spl~ ~override~
+			  ~spwi324d.spl~ ~override~
+			  ~spwi720.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR resist_dispel = 3 END
+IF_EXISTS BUT_ONLY
+
+END
 
 //__________________________________________________________________________________
 
@@ -645,6 +718,32 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_waves_of_fatigue BEGIN
+// 
+COPY_EXISTING ~msectype.2da~ ~override~
+	READ_2DA_ENTRIES_NOW rows 2
+	FOR (row = 1; row < rows; ++row) BEGIN 
+	  READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	  PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Haste~) BEGIN
+	    SET k1haste_row = %row%
+	  END
+	END
+BUT_ONLY
+COPY_EXISTING ~spwi508d.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 22 target = 2 power = 5 parameter1 = (0 - 2) parameter2 = 0 timing = 0 duration = 30 resist_dispel = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 221 target = 2 power = 5 parameter1 = 9 parameter2 = %k1haste_row% timing = 0 duration = 30 resist_dispel = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 325 target = 2 power = 5 parameter1 = (0 - 2) parameter2 = 0 timing = 0 duration = 30 resist_dispel = 1 savingthrow = 16 savebonus = (0 - 2) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 189 target = 2 power = 5 parameter1 = (0 - 2) parameter2 = 0 timing = 0 duration = 30 resist_dispel = 1 savingthrow = 16 savebonus = (0 - 2) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 39 target = 2 power = 5 parameter1 = 0 parameter2 = 1 timing = 0 duration = 6 resist_dispel = 1 savingthrow = 16 savebonus = (0 - 2) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 1 target = 2 power = 5 parameter1 = (0 - 6) parameter2 = 0 timing = 0 duration = 30 resist_dispel = 1 savingthrow = 16 savebonus = (0 - 2) END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 93 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 power = 5 timing = 1 resist_dispel = 1 savingthrow = 16 savebonus = (0 - 2) STR_VAR resource = ~spwi508d~ END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_phantom_blade BEGIN
 // phantom blade: do 1d8 stunning +1d8 magic damage; casting failure on hit if SR
 COPY_EXISTING ~phanblad.itm~ ~override~
@@ -705,7 +804,43 @@ COPY_EXISTING ~sppr611.spl~ ~override~
   FOR (spls = 1; spls < 15; ++spls) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 2 parameter2 = 1 timing = 1 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 parameter2 = 1 timing = 1 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-1~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-2~ END
   END
+IF_EXISTS BUT_ONLY
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~potn43.spl~) BEGIN
+	COPY_EXISTING ~sppr611.spl~ ~override/potn43.spl~
+	  FOR (spls = 1; spls < 15; ++spls) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 2 parameter2 = 0 timing = 1 END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 parameter2 = 0 timing = 1 END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-1~ END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-2~ END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-1~ END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-2~ END
+	  END
+	IF_EXISTS BUT_ONLY
+  END
+  COPY_EXISTING ~potn43.itm~ ~override~
+	SAY IDENTIFIED_DESC @16113
+  IF_EXISTS BUT_ONLY
+END
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_sols_orb BEGIN
+// 
+COPY_EXISTING ~bulletex.pro~ ~override~
+  WRITE_SHORT 0x204 192
+  WRITE_SHORT 0x206 192
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~sorb.itm~ ~override~
+  LPF ALTER_ITEM_HEADER INT_VAR range = 30 speed = 0 END
+  LPF ADD_ITEM_EQEFFECT INT_VAR target = 1 opcode = 190 parameter1 = 5 timing = 2 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -807,6 +942,8 @@ COPY_EXISTING ~sppr710.spl~ ~override~
 IF_EXISTS BUT_ONLY
 
 END
+
+//***** if SR is installed, need to do this via a pre-existing SR Slow subspell.
 
 //__________________________________________________________________________________
 
@@ -1017,6 +1154,69 @@ DEFINE_ACTION_FUNCTION tweak_energy_drain BEGIN
 		END
 	END
  END
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_planetars BEGIN
+// change to noble genies; allow the choice of either one
+// 
+COPY_EXISTING ~sw1h67.itm~ ~override/TG#plang.itm~	//	usuno's blade, elec. damage
+  WRITE_BYTE 0X18 (THIS BOR 0B00000100)
+COPY_EXISTING ~sw1h67.itm~ ~override/planetar.itm~
+  WRITE_BYTE 0X18 (THIS BOR 0B00000100)
+  
+
+COPY_EXISTING ~plangood.cre~ ~override~ 	//	djinn
+  SAY 0x08 @29233
+  SAY 0x0c @29233
+  WRITE_LONG 0x28 32517
+  WRITE_SHORT 0x4c 10
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 50
+  WRITE_BYTE 0x5b 100
+  WRITE_BYTE 0x5c 50
+  WRITE_BYTE 0x5d 30
+  WRITE_BYTE 0x241 0
+
+IF_EXISTS BUT_ONLY
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~TG#devae.itm~) AND (FILE_EXISTS_IN_GAME ~sw1h53.itm~) BEGIN
+  COPY_EXISTING ~sw1h53.itm~ ~override/d5sw1h53.itm~	//	sword of flame
+END
+COPY_EXISTING ~planevil.cre~ ~override~ 	//	efreet
+  SAY 0x08 @29243
+  SAY 0x0c @29243
+  WRITE_LONG 0x28 32577
+  WRITE_BYTE 0x27b 35
+  WRITE_BYTE 0x59 100
+  WRITE_BYTE 0x5a 0
+  WRITE_BYTE 0x5b 50
+  WRITE_BYTE 0x5c 50
+  WRITE_BYTE 0x5d 30
+  REMOVE_CRE_ITEM ~TG#plang~
+  REMOVE_CRE_ITEM ~planetar~
+  PATCH_IF (FILE_EXISTS_IN_GAME ~TG#devae.itm~) BEGIN
+	ADD_CRE_ITEM ~TG#devae~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5sw1h53.itm~) BEGIN
+	ADD_CRE_ITEM ~d5sw1h53~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~spwi923.spl~ ~override~
+  SAY NAME1 @29231
+  SAY UNIDENTIDFIED_DESC @29232
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~spwi924.spl~ ~override~
+  SAY NAME1 @29241
+  SAY UNIDENTIDFIED_DESC @29242
+IF_EXISTS BUT_ONLY
+
+// ***** need to make them not exclusive in HLA tables
+// ...or at least not bound by alignment
 
 END
 

@@ -144,3 +144,44 @@ END
 //__________________________________________________________________________________
 
 
+// IR rod of absorption_____________________________________________________________
+//
+DEFINE_ACTION_FUNCTION instant_rod_absorb BEGIN
+
+COPY_EXISTING ~rods01.itm~ ~override~
+	LPF ALTER_SPELL_HEADER INT_VAR target = 7 END
+IF_EXISTS BUT_ONLY
+
+END
+//__________________________________________________________________________________
+
+
+// Gargoyle Cloak___________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION gargoyle_cloak BEGIN
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~boot12.spl~) BEGIN
+  COPY_EXISTING ~bdclck05.itm~ ~override~
+	LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~boot12~ END
+  IF_EXISTS BUT_ONLY
+END
+
+END
+//__________________________________________________________________________________
+
+
+// Dwarven Thrower__________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_dwarven_thrower BEGIN
+
+COPY_EXISTING ~hamm06.itm~ ~override~
+			  ~hamm06a.itm~ ~override~
+			  ~hamm06b.itm~ ~override~
+	WRITE_BYTE 0x20 (THIS BAND 0b01111111)
+	WRITE_BYTE 0x21 (THIS BAND 0b01100000)
+IF_EXISTS BUT_ONLY
+
+END
+//__________________________________________________________________________________
+
+

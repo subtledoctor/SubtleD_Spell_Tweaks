@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.7~
+VERSION ~0.8~
 
 ALWAYS
 
@@ -160,6 +160,15 @@ LAF tweak_alicorn_lance END
 
 //____________________________________________________________________________________
 
+BEGIN @2305
+DESIGNATED 2305
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_haste_slow END
+
+//____________________________________________________________________________________
+
 /*
 BEGIN @2316
 DESIGNATED 2316
@@ -167,6 +176,13 @@ REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1
 
 LAF tweak_dire_charm END
 */
+
+//____________________________________________________________________________________
+
+BEGIN @2324
+DESIGNATED 2324
+
+LAF tweak_hold_control_undead END
 
 //____________________________________________________________________________________
 
@@ -219,6 +235,15 @@ LAF tweak_negative_plane_protection END
 
 //____________________________________________________________________________________
 
+BEGIN @2508
+DESIGNATED 2508
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_waves_of_fatigue END
+
+//____________________________________________________________________________________
+
 BEGIN @2518
 DESIGNATED 2518
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
@@ -238,6 +263,13 @@ BEGIN @1611
 DESIGNATED 1611
 
 LAF tweak_wondrous_recall END
+
+//____________________________________________________________________________________
+
+BEGIN @1614
+DESIGNATED 1614
+
+LAF tweak_sols_orb END
 
 //____________________________________________________________________________________
 
@@ -284,6 +316,13 @@ LAF tweak_energy_drain END
 
 //____________________________________________________________________________________
 
+BEGIN @2923
+DESIGNATED 2923
+
+LAF tweak_planetars END
+
+//____________________________________________________________________________________
+
 BEGIN @3000
 DESIGNATED 3000
 
@@ -319,6 +358,31 @@ DESIGNATED 3040
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF forest_leather_armor END
+
+//____________________________________________________________________________________
+
+BEGIN @3050
+DESIGNATED 3050
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF instant_rod_absorb END
+
+//____________________________________________________________________________________
+
+BEGIN @3060
+DESIGNATED 3060
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~bdclck05.itm~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~boot12.spl~) @1
+
+LAF gargoyle_cloak END
+
+//____________________________________________________________________________________
+
+BEGIN @3070
+DESIGNATED 3070
+
+LAF tweak_dwarven_thrower END
 
 //____________________________________________________________________________________
 
@@ -376,7 +440,6 @@ LAF tweak_rakshasas END
 
 //____________________________________________________________________________________
 
-
 BEGIN @5000
 DESIGNATED 5000
 
@@ -393,9 +456,12 @@ LAF dispel_globes INT_VAR bypass = %dispel_bypass_globes% remove = %dispel_remov
 
 LAF breach_what INT_VAR combat_protections = %breach_combat_protections% specific_protections = %breach_specific_protections% combination_protections = %breach_combination_protections% noncombat_protections = %breach_noncombat_protections% END
 
-ACTION_IF (%change_cure_power_level% = 1) BEGIN
-  LAF cure_power INT_VAR power_level = %cure_power_level% END
-END
+//____________________________________________________________________________________
+
+BEGIN @5010
+DESIGNATED 5010
+
+LAF cure_power INT_VAR power_level = %cure_power_level% END
 
 //____________________________________________________________________________________
 
