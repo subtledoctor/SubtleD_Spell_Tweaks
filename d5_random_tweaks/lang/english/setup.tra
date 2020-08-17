@@ -52,6 +52,7 @@
 @3050 = ~Make IR's Rod of Absorption Truly Instantaneous~
 @3060 = ~Make the Gargoyle Cloak Apply Stoneskin Instead of an AC Bonus~
 @3070 = ~Make the Dwarven Thrower Hammer Usable by Non-Dwarves~
+@3080 = ~Improve Azlaer's Harp and Methild's Harp~
 @4010 = ~Add a Saving Throw Against Level Drain Effects~
 @4020 = ~Improve Monster Ability Scores~
 @4030 = ~Increase Dragons' Hit Points~
@@ -456,12 +457,25 @@ Armor Class: 5
 Weight: 15
 Requires: 4 Strength
 ~
-@30602 = ~Cloak of the Gargoyle
+@30602 = ~Though this dark gray cloak appears to be made of stone, it is soft and flexible as cloth. When donned, it allows its wearer to assume a statue-like form once per day. These cloaks are often found among the duergar, who first designed them, but occasionally one winds up on the surface. 
 
-...
+STATISTICS:
 
-Weight: 1
+Equipped abilities:
+- Physical Damage Resistance: +5%
+- Protects against critical hits
+
+Charge abilities:
+- Stoneskin (2x per day): 5 skins
+  Duration: 1 turn
+
+Weight: 2
 ~
+@30801 = ~Resist Fear (~
+@30802 = ~Resist Fear, Aid (~
+@30811 = ~Remove Paralysis (~
+@30812 = ~Remove Paralysis/Remove Curse (~
+@30813 = ~Remove Paralysis/Break Enchantment~
 @51701 = ~Shield of the Archons
 Level: 7
 School: Abjuration

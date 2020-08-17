@@ -485,13 +485,11 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	READ_BYTE 0x27 sec_type
 	PATCH_IF (sec_type = %k1haste_row%) BEGIN
 	  SPRINT $haste_list(~%SOURCE_RES%~) ~haste~
-	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 176 opcode = 226 parameter1 = 1 parameter2 = %k1slow_row% STR_VAR resource = ~d5xw305~ END
-// ***** add 291 effect to suppress spell shield animation
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 176 opcode = 226 parameter1 = 1 parameter2 = %k1slow_row% STR_VAR resource = ~d5xw305~ insert = ~first~ END
 	END
 	PATCH_IF (sec_type = %k1slow_row%) BEGIN
 	  SPRINT $slow_list(~%SOURCE_RES%~) ~slow~
-	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 40 opcode = 226 parameter1 = 1 parameter2 = %k1haste_row% STR_VAR resource = ~d5xw312~ END
-// ***** add 291 effect to suppress spell shield animation
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 40 opcode = 226 parameter1 = 1 parameter2 = %k1haste_row% STR_VAR resource = ~d5xw312~ insert = ~first~ END
 	END
   END
 BUT_ONLY
@@ -515,6 +513,19 @@ COPY_EXISTING ~spwi312.spl~ ~override/d5xw312.spl~
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 timing = 1 STR_VAR resource = EVAL ~%slow_res%~ END
 	END
   END
+
+COPY_EXISTING ~spturni2.bam~ ~override/d5turni2.bam~
+IF_EXISTS BUT_ONLY
+
+COPY ~d5_random_tweaks/data/spell_tweaks/d5turni2.vvc~ ~override~
+COPY ~d5_random_tweaks/data/spell_tweaks/d5noanim.bam~ ~override/spturni2.bam~
+
+COPY_EXISTING ~k1#scre.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 215 STR_VAR resource = ~d5turni2~ END   
+IF_EXISTS BUT_ONLY
+COPY_EXISTING ~spwi519.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 215 STR_VAR resource = ~d5turni2~ END   
+IF_EXISTS BUT_ONLY
 
 END
 

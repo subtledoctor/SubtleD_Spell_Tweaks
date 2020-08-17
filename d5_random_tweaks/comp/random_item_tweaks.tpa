@@ -160,11 +160,15 @@ END
 //
 DEFINE_ACTION_FUNCTION gargoyle_cloak BEGIN
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~boot12.spl~) BEGIN
-  COPY_EXISTING ~bdclck05.itm~ ~override~
-	LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~boot12~ END
-  IF_EXISTS BUT_ONLY
+ACTION_IF !(FILE_EXISTS_IN_GAME ~boot12.spl~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/boot12.spl~ ~override~
 END
+
+COPY_EXISTING ~bdclck05.itm~ ~override~
+  SAY IDENTIFIED_DESC @30602
+  LPF ALTER_ITEM_HEADER INT_VAR headcer_type = 3 charges = 2 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~boot12~ END
+IF_EXISTS BUT_ONLY
 
 END
 //__________________________________________________________________________________
@@ -184,4 +188,53 @@ IF_EXISTS BUT_ONLY
 END
 //__________________________________________________________________________________
 
+
+// Methild's Harp___________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_instruments BEGIN
+
+COPY_EXISTING ~misc3n.itm~ ~override~
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~sppr201~ END
+    FOR (index = 0x54 ; index >= 0x50 ; index -= 4) BEGIN
+	READ_LONG "%index%" "valid"
+	PATCH_IF ("%valid%" < 2147483646) AND ("%valid%" >= 0) BEGIN
+	  READ_STRREF "%index%" "description"
+	  SPRINT rf @30801
+	  SPRINT rfa @30802
+	  PATCH_IF (~%description%~ STRING_CONTAINS_REGEXP ~%rf%~) = 0 BEGIN
+		INNER_PATCH_SAVE new_desc ~%description%~ BEGIN
+		  REPLACE_TEXTUALLY ~%rf%~ ~%rfa%~
+		END
+		SAY_EVALUATED "%index%" ~%new_desc%~
+	  END
+	END
+  END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~misc3o.itm~ ~override~
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~sppr307~ END
+    FOR (index = 0x54 ; index >= 0x50 ; index -= 4) BEGIN
+	READ_LONG "%index%" "valid"
+	PATCH_IF ("%valid%" < 2147483646) AND ("%valid%" >= 0) BEGIN
+	  READ_STRREF "%index%" "description"
+	  SPRINT rp @30811
+	  SPRINT rprc @30812
+	  SPRINT rpbe @30813
+	  PATCH_IF (~%description%~ STRING_CONTAINS_REGEXP ~%rp%~) = 0 BEGIN
+		INNER_PATCH_SAVE new_desc ~%description%~ BEGIN
+		  PATCH_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+			REPLACE_TEXTUALLY ~%rp%~ ~%rprc%~
+		  END
+		  PATCH_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+			REPLACE_TEXTUALLY ~%rp%~ ~%rpbe%~
+		  END
+		END
+		SAY_EVALUATED "%index%" ~%new_desc%~
+	  END
+	END
+  END
+IF_EXISTS BUT_ONLY
+
+END
+//__________________________________________________________________________________
 

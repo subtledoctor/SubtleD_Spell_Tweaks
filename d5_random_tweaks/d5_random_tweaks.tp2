@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.8~
+VERSION ~0.8.1~
 
 ALWAYS
 
@@ -373,7 +373,6 @@ LAF instant_rod_absorb END
 BEGIN @3060
 DESIGNATED 3060
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~bdclck05.itm~) @1
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~boot12.spl~) @1
 
 LAF gargoyle_cloak END
 
@@ -383,6 +382,13 @@ BEGIN @3070
 DESIGNATED 3070
 
 LAF tweak_dwarven_thrower END
+
+//____________________________________________________________________________________
+
+BEGIN @3080
+DESIGNATED 3080
+
+LAF tweak_instruments END
 
 //____________________________________________________________________________________
 
