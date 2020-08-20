@@ -63,7 +63,16 @@
 @4060 = ~Tweak Rakshasas~
 @4100 = ~Remove Planetars and Change HLA Summons~
 @5000 = ~Revised Magic Battles~
-@5010 = ~Cure-type Spells Bypass Spell Deflection~
+@5010 = ~Cure and Similar Spells Bypass Spell Protections~
+@5020 = ~Breachy Breach~
+@5021 = ~Just Breachier Breach~
+@5022 = ~Breachier Breach and Modified Rakshasa~
+@5030 = ~Modify Pierce Shield~
+@5031 = ~Pierce Shield Actually Just Casts Breach~
+@5032 = ~Pierce Shield Removes Specific Protections~
+@5033 = ~Pierce Shield Removes Spell Shield~
+@5034 = ~Pierce Shield Removes Dispelling Screen~
+@5035 = ~Pierce Shield Removes Spell Shield and Dispelling Screen~
 //
 @21081 = ~Mirrored Eyes~
 @21082 = ~Mirrored Eyes

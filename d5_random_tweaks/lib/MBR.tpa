@@ -441,4 +441,282 @@ END	//	end function
 
 //____________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION breachy_breach BEGIN
+/*
+COPY_EXISTING ~rakring.itm~ ~override~
+// add level 5 spell immunity
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~lich.itm~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~dw#licim.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+// set power levels of breach spells
+
+// ***** make these faster!!
+/*
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	READ_LONG 0x34 spell_level
+	PATCH_IF (spell_level < 8) BEGIN
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 9 END
+	  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
+	END
+  END
+BUT_ONLY
+*/
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+ PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  READ_LONG 0x34 spell_level
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_opcode
+	  READ_SHORT (fx_off + 0x08) fx_param2
+	  READ_ASCII (fx_off + 0x14) fx_resource
+	  PATCH_IF (fx_opcode = 146) BEGIN
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513b~) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
+		END
+	  END
+	  PATCH_IF (fx_opcode = 146) AND (spell_level < 8) BEGIN
+		PATCH_IF fx_param2 = 7 BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 9 END
+		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
+		END
+	  END
+	END
+  END
+ END
+BUT_ONLY
+*/
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION just_breachy BEGIN
+
+// give level 5 immunity to level-5-immune creatures
+
+COPY_EXISTING ~rakring.itm~ ~override~
+// add level 5 spell immunity
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~lich.itm~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~dw#licim.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+// set power levels of breach spells
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+ PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  READ_LONG 0x34 spell_level
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_opcode
+	  READ_SHORT (fx_off + 0x08) fx_param2
+	  READ_ASCII (fx_off + 0x14) fx_resource
+	  PATCH_IF (fx_opcode = 146) BEGIN
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513b~) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
+		END
+	  END
+	  PATCH_IF (fx_opcode = 146) AND (spell_level < 8) BEGIN
+		PATCH_IF fx_param2 = 7 BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 9 END
+		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
+		END
+	  END
+	END
+  END
+ END
+BUT_ONLY
+
+// make appropriate deflections provide immunity to Breach
+
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~Breach~) BEGIN
+	  SET breach_type = (%row% - 1)
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 201 match_parameter2 = 5 opcode = 205 parameter2 = %breach_type% END
+  END
+BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION breachy_plus_rakshasa BEGIN
+
+// give level 5 immunity to level-5-immune creatures
+
+COPY_EXISTING ~rakring.itm~ ~override~
+// add level 5 spell immunity
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~lich.itm~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~dw#licim.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+IF_EXISTS BUT_ONLY
+
+// set power levels of breach spells
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+ PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  READ_LONG 0x34 spell_level
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_opcode
+	  READ_SHORT (fx_off + 0x08) fx_param2
+	  READ_ASCII (fx_off + 0x14) fx_resource
+	  PATCH_IF (fx_opcode = 146) BEGIN
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513b~) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
+		END
+	  END
+	  PATCH_IF (fx_opcode = 146) AND (spell_level < 8) BEGIN
+		PATCH_IF fx_param2 = 7 BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 7 END
+		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
+		END
+	  END
+	END
+  END
+ END
+BUT_ONLY
+
+COPY_EXISTING ~rakring.itm~ ~override~
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 102 match_parameter1 = 7 opcode = 173 parameter1 = 100 parameter2 = 1 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 102 match_parameter1 = 7 opcode = 27 parameter1 = 100 parameter2 = 1 END
+IF_EXISTS BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION ps_cast_breach BEGIN
+
+COPY_EXISTING ~spwi805b.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 opcode = 146 power = 0 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~spwi513b~ END
+IF_EXISTS BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION ps_remove_specific BEGIN
+
+COPY_EXISTING ~spwi805b.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 parameter2 = 2 END
+IF_EXISTS BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION ps_remove_ss BEGIN
+
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~SpellShield~) BEGIN
+	  SET ss_type = (%row% - 1)
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+ PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  READ_LONG 0x34 spell_level
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_opcode
+	  READ_SHORT (fx_off + 0x08) fx_param2
+	  READ_ASCII (fx_off + 0x14) fx_resource
+	  PATCH_IF (fx_opcode = 146) BEGIN
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi805b~) BEGIN
+		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 146 opcode = 221 power = 8 target = 2 parameter1 = 9 parameter2 = %ss_type% timing = 1 resist_dispel = 2 STR_VAR insert = ~first~ match_resource = ~spwi805b~ END
+		END
+	  END
+	END
+  END
+ END
+BUT_ONLY
+
+COPY_EXISTING ~spwi805b.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 221 match_parameter2 = 7 END
+IF_EXISTS BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION ps_remove_ds BEGIN
+
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Dispel~) BEGIN
+	  SET ds_type = (%row% - 1)
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~spwi805b.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 parameter2 = %ds_type% END
+IF_EXISTS BUT_ONLY
+
+END
+
+//____________________________________________________________________________________
+
+//DEFINE_ACTION_FUNCTION ps_remove_ss_ds BEGIN
+
+//END
+
+//____________________________________________________________________________________
 

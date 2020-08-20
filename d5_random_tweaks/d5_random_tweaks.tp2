@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.8.1~
+VERSION ~0.9~
 
 ALWAYS
 
@@ -10,7 +10,6 @@ ALWAYS
 	INCLUDE ~d5_random_tweaks/comp/random_spell_tweaks.tpa~
 	INCLUDE ~d5_random_tweaks/comp/random_item_tweaks.tpa~
 	INCLUDE ~d5_random_tweaks/comp/random_monster_tweaks.tpa~
-//	INCLUDE ~d5_random_tweaks/comp/random_magic_battles.tpa~
 
 END
 
@@ -468,6 +467,80 @@ BEGIN @5010
 DESIGNATED 5010
 
 LAF cure_power INT_VAR power_level = %cure_power_level% END
+
+//____________________________________________________________________________________
+
+BEGIN @5021
+DESIGNATED 5021
+SUBCOMPONENT @5020
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF just_breachy END
+
+//____________________________________________________________________________________
+
+BEGIN @5022
+DESIGNATED 5022
+SUBCOMPONENT @5020
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF breachy_plus_rakshasa END
+
+//____________________________________________________________________________________
+
+BEGIN @5031
+DESIGNATED 5031
+SUBCOMPONENT @5030
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF ps_cast_breach END
+
+//____________________________________________________________________________________
+
+BEGIN @5032
+DESIGNATED 5032
+SUBCOMPONENT @5030
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF ps_remove_specific END
+
+//____________________________________________________________________________________
+
+BEGIN @5033
+DESIGNATED 5033
+SUBCOMPONENT @5030
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF ps_remove_ss END
+
+//____________________________________________________________________________________
+
+BEGIN @5034
+DESIGNATED 5034
+SUBCOMPONENT @5030
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF ps_remove_ds END
+
+//____________________________________________________________________________________
+
+BEGIN @5035
+DESIGNATED 5035
+SUBCOMPONENT @5030
+
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+
+LAF ps_remove_ds END
+
+LAF ps_remove_ss END
 
 //____________________________________________________________________________________
 
