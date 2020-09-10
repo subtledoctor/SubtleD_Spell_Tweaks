@@ -790,14 +790,15 @@ DEFINE_ACTION_FUNCTION tweak_sunfire BEGIN
 // sunfire: change to Missile Storm - cast MM at everybody
 COPY_EXISTING ~spwi523.spl~ ~override~
   SAY NAME1 @25231
-  SAY UNIDENTIFIED_DESC @25232
   LPF DELETE_EFFECT END
   LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 159 END
   PATCH_IF !(MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
+	SAY UNIDENTIFIED_DESC @25232
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
   END
   PATCH_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
+	SAY UNIDENTIFIED_DESC @25233
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI217~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI217~ END
   END
@@ -837,6 +838,32 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	SAY IDENTIFIED_DESC @16113
   IF_EXISTS BUT_ONLY
 END
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_physical_mirror BEGIN
+// 
+COPY_EXISTING ~sppr613.spl~ ~override~
+//  WRITE_BYTE 0x27 0	//	remove combat protections sectype
+  PATCH_FOR_EACH dur IN ~6~ ~12~ ~18~ ~24~ ~30~ ~36~ ~42~ ~48~ ~54~ ~60~ ~66~ ~72~ ~78~ ~84~ ~90~ ~96~ ~102~ ~108~ ~114~ BEGIN
+	SET new_dur = (dur - 3)
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 146 duration = %dur% duration = %new_dur% STR_VAR match_resource = ~sppr613d~ END
+  END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 146 duration = 114 duration = 117 STR_VAR match_resource = ~sppr613d~ insert = ~below~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 142 opcode = 22 parameter1 = 2 parameter2 = 0 END
+IF_EXISTS BUT_ONLY
+COPY_EXISTING ~sppr613d.spl~ ~override~
+//  WRITE_BYTE 0x27 0	//	remove combat protections sectype
+  PATCH_IF (GAME_IS ~bgee bg2ee iwdee eet~) BEGIN
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 159 duration = 7 END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 1 STR_VAR resource = ~sppr613d~ END
+  END
+  PATCH_IF (ENGINE_IS ~tob bgt~) BEGIN
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 159 duration = 3 END
+  END
+IF_EXISTS BUT_ONLY
 
 END
 
@@ -1218,12 +1245,12 @@ IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~spwi923.spl~ ~override~
   SAY NAME1 @29231
-  SAY UNIDENTIDFIED_DESC @29232
+  SAY UNIDENTIFIED_DESC @29232
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~spwi924.spl~ ~override~
   SAY NAME1 @29241
-  SAY UNIDENTIDFIED_DESC @29242
+  SAY UNIDENTIFIED_DESC @29242
 IF_EXISTS BUT_ONLY
 
 // ***** need to make them not exclusive in HLA tables

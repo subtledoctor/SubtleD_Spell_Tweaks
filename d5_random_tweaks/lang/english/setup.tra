@@ -36,6 +36,7 @@
 @2518  = ~Change Damage Type and School of Phantom Blade~
 @2523  = ~Change Sunfire into 'Missile Storm'~
 @1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
+@1613  = ~Make Physical Mirror Block 1 Attack Per Three Seconds~
 @1614  = ~Make Sol's Searing Orb Easier to Throw~
 @2708  = ~Change Mantle into 'Iron Skin'~
 @1710  = ~Add Slow Effect to Holy Word~
@@ -333,6 +334,18 @@ Area of Effect: Enemies within range
 Saving Throw: None
 
 The air around the caster crackles with energy as up to ten Magic Missiles race toward each enemy within the area of effect. These are identical to Magic Missiles created by the 1st-level spell, in every respect: each one does 1d6+1 damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
+~
+@25233 = ~Missile Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as up to ten Fiery Missiles race toward each enemy within the area of effect. These are identical to the flaiming Magic Missiles created by the 2nd-level spell, in every respect: each one does 1d4 base damage plus 1d4 fire damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
 ~
 @16112 = ~Wondrous Recall
 

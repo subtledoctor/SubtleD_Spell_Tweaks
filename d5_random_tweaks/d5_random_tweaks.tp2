@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.9~
+VERSION ~0.9.1~
 
 ALWAYS
 
@@ -161,8 +161,8 @@ LAF tweak_alicorn_lance END
 
 BEGIN @2305
 DESIGNATED 2305
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 
 LAF tweak_haste_slow END
 
@@ -236,8 +236,8 @@ LAF tweak_negative_plane_protection END
 
 BEGIN @2508
 DESIGNATED 2508
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 
 LAF tweak_waves_of_fatigue END
 
@@ -262,6 +262,14 @@ BEGIN @1611
 DESIGNATED 1611
 
 LAF tweak_wondrous_recall END
+
+//____________________________________________________________________________________
+
+BEGIN @1613
+DESIGNATED 1613
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_physical_mirror END
 
 //____________________________________________________________________________________
 
