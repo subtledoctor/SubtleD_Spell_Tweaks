@@ -672,6 +672,245 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_shadow_monsters BEGIN
+
+// SM: gobbos/lizardmen
+// DSM: lizardmen/trolls
+// SHD: trolls/hulks
+
+// add modified summon tables
+
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/smonste.2da~ ~override~
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/cdismons.2da~ ~override~
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/dsmonst.2da~ ~override~
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/cdidsmon.2da~ ~override~
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/shades.2da~ ~override~
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/cdishade.2da~ ~override~
+
+<<<<<<<< d5/smonste.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    SS1gob2	MSumm1H	MSumm1X
+2    SS1gob2	MSumm1H	MSumm1X
+3    SS2gob2	MSumm1H	MSumm1X
+4    SS2gob3	MSumm1H	MSumm1X
+5    SS1liz4	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~smonste.2da~) BEGIN
+  COPY ~d5/smonste.2da~ ~override/smonste.2da~ 
+END
+
+<<<<<<<< d5/cdismons.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    cdis1gb2	MSumm1H	MSumm1X
+2    cdis1gb2	MSumm1H	MSumm1X
+3    cdis2gb2	MSumm1H	MSumm1X
+4    cdis2gb3	MSumm1H	MSumm1X
+5    cdis1lz4	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~cdismons.2da~) BEGIN
+  COPY ~d5/cdismons.2da~ ~override/cdismons.2da~ 
+END
+
+<<<<<<<< d5/dsmonst.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    SS2gob2	MSumm1H	MSumm1X
+2    SS1liz4	MSumm1H	MSumm1X
+3    SS1liz4	MSumm1H	MSumm1X
+4    SS2liz5	MSumm1H	MSumm1X
+5    SS2liz5	MSumm1H	MSumm1X
+6    SS1trl6	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~dsmonst.2da~) BEGIN
+  COPY ~d5/dsmonst.2da~ ~override/dsmonst.2da~ 
+END
+
+<<<<<<<< d5/cdidsmon.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    cdis2gb2	MSumm1H	MSumm1X
+2    cdis1lz4	MSumm1H	MSumm1X
+3    cdis1lz4	MSumm1H	MSumm1X
+4    cdis2lz5	MSumm1H	MSumm1X
+5    cdis2lz5	MSumm1H	MSumm1X
+6    cdis1tr6	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~cdidsmon.2da~) BEGIN
+  COPY ~d5/cdidsmon.2da~ ~override/cdidsmon.2da~ 
+END
+
+<<<<<<<< d5/shades.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    SS1liz4	MSumm1H	MSumm1X
+2    SS1trl6	MSumm1H	MSumm1X
+3    SS1trl6	MSumm1H	MSumm1X
+4    SS3trl7	MSumm1H	MSumm1X
+5    SS3trl7	MSumm1H	MSumm1X
+6    SS3umb8	MSumm1H	MSumm1X
+7    SS3umb8	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~shades.2da~) BEGIN
+  COPY ~d5/shades.2da~ ~override/shades.2da~ 
+END
+
+<<<<<<<< d5/cdishade.2da
+2DA V1.0
+0
+     RESREF HitAnimation AreaHitAnimation
+1    cdis1lz4	MSumm1H	MSumm1X
+2    cdis1tr6	MSumm1H	MSumm1X
+3    cdis1tr6	MSumm1H	MSumm1X
+4    cdis3tr7	MSumm1H	MSumm1X
+5    cdis3tr7	MSumm1H	MSumm1X
+6    cdis3um8	MSumm1H	MSumm1X
+7    cdis3um8	MSumm1H	MSumm1X
+>>>>>>>>
+ACTION_IF (FILE_EXISTS_IN_GAME ~cdishade.2da~) BEGIN
+  COPY ~d5/cdishade.2da~ ~override/cdishade.2da~ 
+END
+
+// add new weapons that do non-lethal damage
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5st1-2.itm~ ~override~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5st1-4.itm~ ~override~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5st1-6.itm~ ~override~
+
+// make .EFFs for on-hit spells
+
+CREATE EFF ~d5sswp1~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5sswp1~ #8
+CREATE EFF ~d5sswp2~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5sswp2~ #8
+CREATE EFF ~d5sswp3~
+	WRITE_LONG 0x10 146
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5sswp3~ #8
+
+// make on-hit spells & subspells
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp1.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target = 2 parameter1 = 0 parameter2 = (0 + (2048 << 16)) dicenumber = 2 dicesize = 4 timing = 1 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 1 savingthrow = 1 STR_VAR resource = ~d5sswp1a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 17 parameter2 = 128 timing = 9 STR_VAR resource = EVAL ~d5sswp1~ END
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp1a.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 6 STR_VAR resource = ~d5sswp1~ END
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp2.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target = 2 parameter1 = 0 parameter2 = (0 + (2048 << 16)) dicenumber = 2 dicesize = 6 timing = 1 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 1 savingthrow = 1 STR_VAR resource = ~d5sswp2a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 17 parameter2 = 128 timing = 9 STR_VAR resource = EVAL ~d5sswp2~ END
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp2a.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 6 STR_VAR resource = ~d5sswp2~ END
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp3.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target = 2 parameter1 = 0 parameter2 = (0 + (2048 << 16)) dicenumber = 2 dicesize = 8 timing = 1 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 1 savingthrow = 1 STR_VAR resource = ~d5sswp2a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 17 parameter2 = 128 timing = 9 STR_VAR resource = EVAL ~d5sswp2~ END
+
+COPY ~%MOD_FOLDER%/data/d5_base.spl~ ~override/d5sswp3a.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 = (0 - 1) timing = 0 duration = 6 STR_VAR resource = ~d5sswp3~ END
+
+// modify summoned creatures
+
+COPY_EXISTING ~ss1gob2.cre~ ~override~
+			  ~cdis1gb2.cre~ ~override~
+  WRITE_BYTE 0x52 17
+  WRITE_LONG 0x18 2
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-2~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp1~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss2gob2.cre~ ~override~
+			  ~cdis2gb2.cre~ ~override~
+  WRITE_BYTE 0x52 16
+  WRITE_LONG 0x18 2
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-2~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp1~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss2gob3.cre~ ~override~
+			  ~cdis2gb3.cre~ ~override~
+  WRITE_BYTE 0x52 15
+  WRITE_LONG 0x18 3
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-4~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp2~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss1liz4.cre~ ~override~
+			  ~cdis1lz4.cre~ ~override~
+  WRITE_BYTE 0x52 15
+  WRITE_LONG 0x18 4
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-4~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp1~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss2liz5.cre~ ~override~
+			  ~cdis1lz5.cre~ ~override~
+  WRITE_BYTE 0x52 13
+  WRITE_LONG 0x18 4
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-6~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp2~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss1trl6.cre~ ~override~
+			  ~cdis1tr6.cre~ ~override~
+  WRITE_BYTE 0x52 13
+  WRITE_LONG 0x18 5
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-4~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp2~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss3trl7.cre~ ~override~
+			  ~cdis3tr7.cre~ ~override~
+  WRITE_BYTE 0x52 11
+  WRITE_LONG 0x18 6
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-4~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp3~ END
+IF_EXISTS
+
+COPY_EXISTING ~ss3umb8.cre~ ~override~
+			  ~cdis3um8.cre~ ~override~
+  WRITE_LONG 0x18 7
+  WRITE_BYTE 0x238 19
+  WRITE_BYTE 0x275 7
+  ADD_CRE_ITEM ~d5st1-6~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+  LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp3~ END
+IF_EXISTS
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_neutralize_poison BEGIN
 // 
 COPY_EXISTING ~sppr404.spl~ ~override~

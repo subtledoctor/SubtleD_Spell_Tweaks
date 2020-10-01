@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.9.1~
+VERSION ~0.9.3~
 
 ALWAYS
 
@@ -204,6 +204,15 @@ DESIGNATED 2413
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_otilukes_sphere END
+
+//____________________________________________________________________________________
+
+BEGIN @2451
+DESIGNATED 2451
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_SHADES[ %TAB%%LNL%%MNL%%WNL%]~)) @1 
+
+LAF tweak_shadow_monsters END
 
 //____________________________________________________________________________________
 
