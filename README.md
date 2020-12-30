@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 0.8.1 </strong><br />
+  <p><strong> Version 0.9 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -107,6 +107,10 @@
   <div class="section">
     <p>This removes the Hold effect, and adds effects to prevent spellcasting and disable all UI buttons. The idea is, if you find yourself inside the sphere, you are still awake and aware. You cannot interact with the outside world, but you <b>can</b> go to the inventory screen and do things there, like drink potions!</p>
   </div>
+  <h4 class="subheader">Component 2451: Tweak Shadow Monsters/Shades (EE-only)</h4>
+  <div class="section">
+    <p>This component alters the summoned creatures in the Shadow Monsters, Demi-Shadow Monsters, and Shades spells from IWDification or SCS IWD spells (or in IWDEE). There are several changes: 1) the summoned creatures do "non-lethal" damage; 2) most of the melee damage done by the summons can be resisted if the victim makes a saving throw vs. spells; 3) victims with intelligence of 17 or higher are immune to most of the damage done by the summons; and 4) the "gender" of the summoned creatures is changed from "SUMMONED" to "ILLUSIONARY," which means that they can bypass the normal summoning cap, and any spells that affect illusionary creatures will affect these ones (like Spell Revisions' version of True Sight). In general, these summons should be stronger than those in the equivalent-level Monster Summoning spells, but their power will be inconsistent and prone to being disbelieved.</p>
+  </div>
   <h4 class="subheader">Component 1404: Tweak Neutralize Poison</h4>
   <div class="section">
     <p>This spell become "Remove Afflictions," a combination of Slow Poison, Cure Disease, Remove Paralysis, and IWD's Unfailing Endurance. It removes poison, disease, blindness, deafness, Hold, and fatigue. If Spell Revisions is installed first, this also extends immunity to disease for the same duration as the spell's immunity to poison.</p>
@@ -191,6 +195,14 @@
   <div class="section">
     <p>Allows the Dwarven Thrower hammer to be used by any race, not just dwarves.</p>
   </div>
+  <h4 class="subheader">Component 3080: Tweak Bard Harps</h4>
+  <div class="section">
+    <p>Azlaer's Harp will now cast Aid in addition to Resist Fear; Methild's Harp will cast Remove Curse in addition to Remove Paralysis.</p>
+  </div>
+  <h4 class="subheader">Component 3090: Tweak Edwin's Amulet</h4>
+  <div class="section">
+    <p>There are options to limit the amulet to providing +1 bonus slot per level, to limit the bonus slots to 7th level spells, or both.</p>
+  </div>
   <h4 class="subheader">Component 4010: Tweak Vampires & Level Drain</h4>
   <div class="section">
     <p>Adds a saving throw vs. Death to all weapon-delivered level drain effects.</p>
@@ -228,6 +240,23 @@
   	  <li>Freedom</li><br />
     </ul>
   </div>
+  <h4 class="subheader">Component 5020: Breachier Breach (SR-only)</h4>
+  <div class="section">
+    <p>This came about from an old bug in SCS when paired with Spell Revisions, in which the "More Consistent Breach" component, meant to allow Breach to be used against liches and rakshasa, did not so. The bug is not there now - SCS achieves this by making those monsters immune to individual offensive 5th-level spells, instead of having blanket immunity against all 5th-level spells. This solution generally works fine, though there are some small issues: the combat log messages will differ for 5th-level spells that fail, vs. spells of other levels; and SCS may miss some mod-added spells.  This component restores basic blanket immunity to all 5th-level spells to liches and rakshasa, and allows Breach to circumvent it via a different mechanism, while preserving SCS' priority of preventing Breach from bypassing Spell deflections.</p>
+    <p>The first subcomponent does what I described: sets Breach effects to have a "power level" of 9 in order to affect liches and rakshasa. There might be an issue with SR's Spell Deflection spell, which is supposed to block spells of up to 7th level; to account for this, Spell Deflections will now grant immunity to Breach. To work correctly, this relies on a new machanism introduced in the EE 2.5 patch, so DO NOT use this option on older versions of the engine!</p>
+    <p>The second subcomponent sets the "power level" of the Breach effects to 7 instead of 9; this makes it work fine with SR's Spell Deflection. However, this means it would not affect rakshasa. So Rakshasa lose their immunity to 7th-level spells. They are still immune to spells of levels 1-6, and they get a bonus of 100% acid and poison resistance.</p>
+  </div>
+  <h4 class="subheader">Component 5030: Modify Pierce Shield (SR-only)</h4>
+  <div class="section">
+    <p>With Spell Revisions, Pierce Shield distinguishes itself and earns its 8th-level slot by removing the target's combat protections, in addition to one spell protection. It's <i>sort of</i> like Ruby Ray + Breach. Problem is, with SR and/or SCS, Breach is supposed to be blocked by spell protections like Spell Deflection. Pierce Shield's secondary Breach-like effect, however, works through any spell protections. That means Pierce Shield is basically Breach that ignores spell protections - which creates the same problems that Breach has in the unmodded game. So here you have five different options for modifying Pierce Shield to avoid that problem:</p>
+  	<ul>
+  	  <li>Pierce Shield Just Casts Breach - this cast Breach on a one-second delay. This Breach will be subject to the usual limitations, i.e. being blocked by any remaining spell protections; however, if it goes through it will be more powerful because it will remove "specific protections" (e.g. elemental resistance) from the target, which SR's Pierce Shield does not normally do.</li><br />
+  	  <li>Pierce Shield Removes Specific Protections - <b>instead</b> of combat protections. This changes what the secondary effect does, exposing the target to follow-up magic attacks instead of exposing them to follow-up melee attacks. This makes Pierce Shield a bit more focused as a "magic attack..." but also probably makes it a little less valuable.</li><br />
+  	  <li>Pierce Shield Removes Spell Shield - this removes the Breach-like secondary effects and instead allows Pierce Shield to eliminate a Spell Shield <i>and</i> a spell protection, whereas normally it would be stymied by Spell Shield.</li><br />
+  	  <li>Pierce Magic Removes Dispelling Screen - in a similar vein, instead of the Breach-like secondary effect the spell will remove both a spell protection and a Dispelling Screen. Dispelling Screen blocks Breach, so this will be useful in getting you one step closer to being able to Breach the target.</li><br />
+  	  <li>Pierce Shield Removes Spell Shield and Dispelling Screen - if you think options 3 and 4 are a bit underpowered for an 8th level spell, this option simply combines them. Pierce Shield will remove one spell protection, up to and including Spell Trap, <i>and</i> will remove both the Spell Shield and Dispelling Screen secondary protections. The target make have some remaining protections, like Globe of Invulnerability or Nondetection... but this will make substantial progress toward making them fully vulnerable.</li><br />
+    </ul>
+  </div>
 <h2>Contact Information</h2>
 <div class="section">
   <p>This mod was created by SubtleDoctor. You can visit <a href="http://forums.gibberlings3.net/index.php">The
@@ -244,20 +273,7 @@
 </div>
 <h2>Credits and Copyright Information</h2>
 <div class="section">
-  <p>Copyright 2020. If you want to use or adapt any part of this mod in another mod or similar endeavor, please try to contact me at forums.gibberlings3.net or forum.baldursgate.com to discuss it. As a general rule, I have no problem with that as long as you credit the source of the work. If you cannot get in touch with me, assume that you have my permission to use any of this code for any project that is non-commercial, offered for free, and intended for the greater enjoyment of players of Infinity Engine games. If you do so, please credit me, and mention how awesome I am in a comment in the code, or something like that. You may NOT use this code for any profit-making or commercial venture, without express permission from me.</p>
-</div>
-<h2>Version History</h2>
-<div class="section">
-  <p><strong>Version 0.6 - 2020</strong></p>
-</div>
-<div class="section">
-  <p><strong>Et cetera</strong></p>
-</div>
-<div class="section">
-  <p><strong>Version 0.2 - 2020</strong></p>
-</div>
-<div class="section">
-  <p><strong>Version 0.1 - 2020</strong></p>
+  <p>Copyright 2020. If you want to use or adapt any part of this mod in another mod or similar endeavor, please try to contact me at forums.gibberlings3.net to discuss it. As a general rule, I have no problem with that as long as you credit the source of the work. If you cannot get in touch with me, assume that you have my permission to use any of this code for any project that is non-commercial, offered for free, and intended for the greater enjoyment of players of Infinity Engine games. If you do so, please credit me, and mention how awesome I am in a comment in the code, or something like that. You may NOT use this code for any profit-making or commercial venture, without express permission from me.</p>
 </div>
 </body>
 </html>

@@ -238,3 +238,24 @@ IF_EXISTS BUT_ONLY
 END
 //__________________________________________________________________________________
 
+
+// Edwin's Amulet___________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_edwin_amulet INT_VAR slot_reduction = 0 level_reduction = 0 BEGIN
+
+COPY_EXISTING ~misc89.itm~ ~override~
+  PATCH_IF slot_reduction = 1 BEGIN
+	SAY UNIDENTIFIED_DESC @30912
+	LPF ALTER_EFFECT INT_VAR match_opcode = 42 match_parameter1 = 2 parameter1 = 1 END
+  END
+  PATCH_IF level_reduction = 1 BEGIN
+	SAY UNIDENTIFIED_DESC @30922
+	LPF DELETE_EFFECT INT_VAR match_opcode = 42 match_parameter2 = 128 END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 42 match_parameter2 = 256 END
+  END  
+IF_EXISTS BUT_ONLY
+
+END
+//__________________________________________________________________________________
+
+

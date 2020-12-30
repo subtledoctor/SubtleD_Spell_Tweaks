@@ -55,6 +55,10 @@
 @3060 = ~Make the Gargoyle Cloak Apply Stoneskin Instead of an AC Bonus~
 @3070 = ~Make the Dwarven Thrower Hammer Usable by Non-Dwarves~
 @3080 = ~Improve Azlaer's Harp and Methild's Harp~
+@3090 = ~Nerf Edwin's Amulet~
+@3091 = ~Only +1 Bonus Slot per Spell Level~
+@3092 = ~Limit Bonus Slots to 7th Level Spells~
+@3093 = ~Only +1 Bonus Slots AND Limited to 7th Level~
 @4010 = ~Add a Saving Throw Against Level Drain Effects~
 @4020 = ~Improve Monster Ability Scores~
 @4030 = ~Increase Dragons' Hit Points~
@@ -101,6 +105,7 @@ Saving Throw: none
 
 This spell grants the recipient resistance to all gaze attacks, including basilisk and medusa gaze, as well as vampire charm, and others. When targeted by such an effect, the beneficiary of this spell may attempt a saving throw vs. spells, in addition to any saving throw usually allowed by the attack. If the additional save vs. spells is successful, the effect transmitted by the gaze is avoided entirely.
 ~
+@11511 = ~Sunscorch~
 @11512 = ~Sunscorch
 
 Level: 1
@@ -499,6 +504,24 @@ Weight: 2
 @30811 = ~Remove Paralysis (~
 @30812 = ~Remove Paralysis/Remove Curse (~
 @30813 = ~Remove Paralysis/Break Enchantment~
+@30912 = ~This is Edwin's birthright, inlaid with his family stone.
+
+STATISTICS:
+
+Equipped abilities:
+– Can memorize one extra wizard spell of each level
+
+Weight: 1
+~
+@30922 = ~This is Edwin's birthright, inlaid with his family stone.
+
+STATISTICS:
+
+Equipped abilities:
+– Can memorize extra wizard spells of up to 7th level
+
+Weight: 1
+~
 @51701 = ~Shield of the Archons
 Level: 7
 School: Abjuration

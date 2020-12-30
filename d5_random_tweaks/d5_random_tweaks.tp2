@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.9.3~
+VERSION ~0.9.5~
 
 ALWAYS
 
@@ -405,6 +405,30 @@ BEGIN @3080
 DESIGNATED 3080
 
 LAF tweak_instruments END
+
+//____________________________________________________________________________________
+
+BEGIN @3091
+DESIGNATED 3091
+SUBCOMPONENT @3090
+
+LAF tweak_edwin_amulet INT_VAR slot_reduction = 1 level_reduction = 0 END
+
+//____________________________________________________________________________________
+
+BEGIN @3092
+DESIGNATED 3092
+SUBCOMPONENT @3090
+
+LAF tweak_edwin_amulet INT_VAR slot_reduction = 0 level_reduction = 1 END
+
+//____________________________________________________________________________________
+
+BEGIN @3093
+DESIGNATED 3093
+SUBCOMPONENT @3090
+
+LAF tweak_edwin_amulet INT_VAR slot_reduction = 1 level_reduction = 1 END
 
 //____________________________________________________________________________________
 
