@@ -1,0 +1,270 @@
+
+/- 5E Casting: add renewal ability to evermemory in items function
+
+/- SDRT: fix breachy breach
+
+/- MnG: let 2E bards use 5E casting
+
+- 5E Casting: let specialists know/cast their school spells for free... with .ini setting
+
+- SDRT: buff Spirit Ward
+
+- SDRT: nerf SR's Summon Death Knight
+
+- SDRT: Smashing Wave = party-friendly
+ -- how? projectile?
+
+- MnG: put all fighting stances together:
+ -- aggressive
+ -- disarming
+ -- parry slashing
+ -- parry piercing
+ -- parry crushing
+ -- swashbuckling
+ -- interrupt magic?
+ -- fighting dirty? (I think no)
+ -- missile snaring? (I think no)
+ -- group tactics? (I think no)
+
+- SDRT: give noble efreet a repeating aura of flaming death (sppr730)
+- SDRT: give noble djinn a repeating globe of blades (sppr725)
+
+- SDRT: make SR Physical Mirror block 50% of hits
+ -- renew image on 50%? and add a luck bonus so the image has 100% chance to block?
+ -- can add reflection visual if no RI?  
+ -- bigger luck bonus?
+ -- spell evasion?
+
+- SDRT: make EE Enchanted Weapon scale with level
+
+- SDRT: make gargoyle cloak like barkskin?
+
+- TnB: give more innate cantrips at higher levels
+ -- set up UI choice or dialogue
+ -- the current system STINKS
+
+- MnG bards:
+ -- add new aura that does extra sonic damage with melee attacks
+
+- MnG ranger/mage:
+ -- use simplified semi-spont system for ranger spells
+ -- include Goodberry in that
+ -- check ranger spell table to determine when can cast druid spells
+
+- MnG whistler:
+ -- use simplified semi-spont system for nature spells
+
+- make a function for simplified semi-spont innates
+ -- BUT! Beware possibility of dual-classing!
+ -- maybe enable it to use different profs
+ -- keep record in a .2da file
+ -- find next unused one
+
+- SoB: add diff poison portrait icons
+
+- SDRT: Change Aerial Servant to summon an air elemental
+ -- ...?
+ 
+- SDRT: Stone to Flesh damage golems and earth elementals and...?
+ -- maybe change name to something else.  "Stonebrittle?" 
+
+/- MnG bards: remove need for initialization
+
+- TnB: change priests' Invisibility Purge to See Invisible...?
+
+- SDRT: Thorn Spray: SCS damage
+ -- just double damage dice from 2(d10) to 4(d10)
+
+- SDRT: change Dispel to a a minor Breach
+ -- like MBR ST/SW, remove x layers of combat & specific protections
+ -- 1st level: 1 removal each
+ -- 6th level: 1 removal, 50% chance of a 2nd
+ -- 15th level: 1 removal, 75% chance of a 2nd, 50% chance of a 3rd
+ -- make new sectype for all nondispellable combat protections
+ -- set Breach to remove new_sectype as well
+
+/- SDRT: remove planetars
+ /-- change dark planetar to supercharged efreet?
+ /-- change good planetar to supercharged djinn?
+ /-- rewrite ability descriptions
+ /-- first pass done
+ -- edit tables so not mutually exclusive?
+  --- might be difficult. keep them exclusive for now, maybe change later
+
+/- SDRT: make SR haste/slow properly cancel each other
+ /-- need to to remove/alter the animation
+ -- need to do the same thing with the portrait icon
+ -- need to make potion of speed a k1#haste spell (set sectype and add 226 effect)
+
+- SoB: replace proficiency terms in kit descriptions
+
+- Refinements:
+ -- figure out arcane/divine vs. innate for HLA spells
+ -- add new component to decide which and convert them
+
+/- SDRT: nerf edwin's amulet
+/- SDRT: remove sound from barkskin
+/- SDRT: fix shadow monsters
+
+/- NPCEE: 
+ /-- just make one ability and script for both sc and mc
+ /-- remove FnP spells and cancel sphere immunity
+  /--- after answering first question "yes change kit"
+
+/- MnG: fix quickstride spam messages
+
+/- MnG ranger/mage:
+ /-- replace ~...~ with -1
+
+/- MnG Mage Hunter:
+ /-- remove mention of stat penalties
+ /-- give bonus spells at level 1
+ /-- check duration of vocal disruption deafness
+ /-- check kit gets HLAs
+
+/- MnG marksman:
+ /-- fix 2da table
+
+/- MnG corsair:
+ /-- check AC bonuses applied if no feat system
+ /-- remove talk of not dualling to thief
+ -- (or prevent dualling to thief)
+
+/- MnG: remove spell slot penalties for OG Gallant (et al.)
+
+/- MnG spellfilcher: 
+ /-- make sure Silence is targetable
+ /-- fix text for non-detection passive ability
+
+/- MnG slinger:
+ /-- mention animal empathy and armor restriction in description
+
+/- MnG bards: 
+ /-- use new arcanist portable code for casting system
+ /-- make bonus spells for INT work
+ /-- make Ring of Wizardry work
+ /-- patch kit descriptions for TnB Identify/metamagic
+
+/- MnG: 
+ /-- add extra kit if next one will match abjurer or conjurer
+
+/- Arcanist: 
+ /-- add extra kit if next one will match abjurer or conjurer
+
+/- Arcanist: 
+ /-- make casting system portable
+ /-- make bonus spells for INT work
+ /-- make Ring of Wizardry work
+ /-- add HLAs to cloned spell list if they are not innate
+  --- vanilla and refinements
+ /-- obviate initialize ability
+ /-- apply casting slot recalculation on level-up
+  /--- and add a 1-second 206 to it...?
+ /-- improve text in preparation name & description & tooltip
+  /--- and add an effect to give log feedback about what the player needs to do next
+ /-- patch kit descriptions for TnB Identify/metamagic
+
+/- TnB: make sure other mod kits getting innate cantrips and familiars
+
+/- SDRT: cloak of gargoyle casts stoneskin (bdclck05.itm (if exists) -> boot12.spl (if exists))
+ -- rather than depending on IR, just recreate it
+
+/- SDRT: make dwarven thrower usable by any race
+
+/- SDRT: sunfire cast lvl 2 MM if TnB L1C is installed
+
+- SDRT: improve faerie fire
+ /-- give it a bigger AoE
+ /-- make it dispel invisible...?
+ -- basically FF should just make things visible and hittable; GD should make them visible and dazzled/confused
+
+/- SDRT: Sol's Searing Orb quicker to throw and smaller AoE
+ /-- while-equipped effect reducing weapon speed
+ /-- smaller AoE
+
+/- SDRT: IR potions of memory give back all 1st/2nd-level spells 
+
+/- SDRT: make Wondrous Recall cancel FnP spontaneous slot spells for 1st/2nd level
+ /-- and Potion of Memory do the same, and also for MnG/TnB/Arcanist slot spells
+
+/- SDRT: Hold/Control Undead bypass MR
+
+/- SDRT: change SR Waves of Fatigue to directly effect Luck and... saves? Thac0? 
+
+/- SDRT: IR Rod of Absorption use target mode 7
+ /-- (if it uses the instant-cast, 1-round duration effect)
+
+/- SoB: fix IWO tweak weapon names
+
+/- TnB: give Potions of Sight opcode 193, and make sure their repeated effects match the Detect Invisible spell
+ /-- potn30.spl
+ /-- and change 116&160 to 136 in potn30d.spl
+
+/- in current game, too
+ 
+/- TnB: make cloak of nondetection protect from div attacks
+ /-- add 205 effect
+ /-- to spell too
+** -- and those mod bracers...? need to find their name: 
+  --- 
+ 
+- TnB: new cantrips option: restore level 1 spells after fight...?
+
+/- in current game, too
+
+/- in current game, too
+
+/- for current game: "crusade's distant ally" armor should be enchanted
+ -- better AC, less DEX penalty
+ 
+/- for current game: fix icons for Cure Moderate
+
+/- for current game: make xbows usable by mages
+
+/- more skins for ironskin
+/ -- and immunity to stoneskin
+
+/- weaken sunscorch
+
+- shield blocks skull trap?
+
+/- SR stinking cloud: nausea should last several rounds
+/ -- like, 12 seconds no attack or cast
+/  --- and reduce movement
+/ -- then 12 more seconds with penalties
+
+/- improve sunfire
+/ -- cast MM twice
+ -- or make a different one that has 10 projectiles
+
+/- tweak Goodberry!
+ -- always make 6?  (for whole party?)
+ -- only last an hour or so?
+ -- no stacking (206 for same duration)
+ -- heal 8+2(lvl/5) hp..?
+ -- set fatigue to 1
+ -- restore 1 spell of each level
+ -- ...
+ -- I don't love it
+ -- what is the fucking use case of this spell??
+- maybe simplify
+ -- make it like MnG alchemy - make one of several potions
+ -- convert it to an innate ability?
+/- OR, just mass regenerate light wounds, non-combat only (plus reduce fatigue)
+
+- revised magic battles
+/ -- basic code
+/ -- rewrite spell descriptions
+ -- fix portrait icons
+
+/- make globes of invulnerability undispellable
+/ -- so Dispel and Breach are the same, not working on spell protections
+
+/- set all cure spells to power level 0
+/ -- ...to bypass Deflections
+
+- cap dispel magic at 20th level
+ -- for every spell that uses opcode 58 with param2 = 1:
+ -- set param2 to 2
+ -- use extend-o-matic to 50 headers, with param1 set to header min level
+ -- for headers 21 through 50, set param1 to 20.

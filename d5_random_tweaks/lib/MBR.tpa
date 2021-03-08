@@ -429,13 +429,35 @@ ACTION_FOR_EACH cure IN
 		~WIZARD_FREEDOM~           BEGIN 
   ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%cure%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
 	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%cure%~ RET spell_res END
-	ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
-	  COPY_EXISTING ~%spell_res%.spl~ ~override~ 	
-		LPF ALTER_EFFECT INT_VAR power = %power_level% END
-	  BUT_ONLY
-	END
+	OUTER_SPRINT $cure_spells(~%spell_res%~) ~%cure%~
   END
 END
+
+ACTION_PHP_EACH cure_spells AS res => name BEGIN
+  COPY_EXISTING ~%spell_res%.spl~ ~override~ 	
+	LPF ALTER_EFFECT INT_VAR power = %power_level% END
+  IF_EXISTS BUT_ONLY
+END
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+    PHP_EACH ab_array AS int => ab_off BEGIN
+	  GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	  PHP_EACH fx_array AS int => fx_off BEGIN
+	    READ_SHORT fx_off fx_opcode
+	    READ_ASCII (fx_off + 0x14) fx_resource
+	    PATCH_IF (fx_opcode = 146) BEGIN
+	      PHP_EACH cure_spells AS res => name BEGIN
+			PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~%res%~) BEGIN
+			  LPF ALTER_EFFECT INT_VAR match_opcode = 146 power = %power_level% /*STR_VAR match_resource = EVAL ~%res%~*/ END
+			END
+		  END
+		END
+	  END
+    END
+  END
+BUT_ONLY
 
 END	//	end function
 
@@ -509,22 +531,35 @@ END
 
 DEFINE_ACTION_FUNCTION just_breachy BEGIN
 
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Dispel~) BEGIN
+	  SET d_screen_type = (%row% -1)
+	END
+  END
+BUT_ONLY
+ACTION_IF !(IS_AN_INT %d_screen_type%) BEGIN
+  OUTER_SET d_screen_type = 999
+END
+
 // give level 5 immunity to level-5-immune creatures
 
 COPY_EXISTING ~rakring.itm~ ~override~
 // add level 5 spell immunity
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~lich.itm~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~dw#licim.spl~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 // set power levels of breach spells
@@ -543,11 +578,14 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513b~) BEGIN
 		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
 		END
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513c~) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513c~ END
+		END
 	  END
-	  PATCH_IF (fx_opcode = 146) AND (spell_level < 8) BEGIN
-		PATCH_IF fx_param2 = 7 BEGIN
-		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 9 END
-		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
+	  PATCH_IF (fx_opcode = 221) AND (spell_level < 8) BEGIN
+		PATCH_IF (fx_param2 = 7) OR (fx_param2 = %d_screen_type%) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 /*match_opcode = 221*/ /*match_parameter2 = 7*/ power = 9 END
+		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
 		END
 	  END
 	END
@@ -573,28 +611,43 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
   END
 BUT_ONLY
 
+PRINT ~d_screen sectype is %d_screen_type%~
+
 END
 
 //____________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION breachy_plus_rakshasa BEGIN
 
+COPY_EXISTING ~msectype.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 1; row < rows; ++row) BEGIN 
+	READ_2DA_ENTRY_FORMER rows row 0 ~sectype~ 
+	PATCH_IF (~%sectype%~ STRING_EQUAL_CASE ~k1#Dispel~) BEGIN
+	  SET d_screen_type = (%row% - 1)
+	END
+  END
+BUT_ONLY
+ACTION_IF !(IS_AN_INT %d_screen_type%) BEGIN
+  OUTER_SET d_screen_type = 999
+END
+
 // give level 5 immunity to level-5-immune creatures
 
 COPY_EXISTING ~rakring.itm~ ~override~
 // add level 5 spell immunity
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~lich.itm~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~dw#licim.spl~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 5 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 102 match_parameter1 = 4 parameter1 = 5 END
 IF_EXISTS BUT_ONLY
 
 // set power levels of breach spells
@@ -613,10 +666,13 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513b~) BEGIN
 		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513b~ END
 		END
+		PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi513c~) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 power = 0 STR_VAR match_resource = ~spwi513c~ END
+		END
 	  END
-	  PATCH_IF (fx_opcode = 146) AND (spell_level < 8) BEGIN
-		PATCH_IF fx_param2 = 7 BEGIN
-		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 match_parameter2 = 7 power = 7 END
+	  PATCH_IF (fx_opcode = 221) AND (spell_level < 8) BEGIN
+		PATCH_IF (fx_param2 = 7) OR (fx_param2 = %d_screen_type%) BEGIN
+		  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 221 /*match_parameter2 = 7*/ power = 9 END
 		  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 221 match_parameter2 = 7 opcode = 0 parameter1 = 0 parameter2 = 0 timing = 0 duration = 0 power = %spell_level% STR_VAR insert = ~first~ END
 		END
 	  END

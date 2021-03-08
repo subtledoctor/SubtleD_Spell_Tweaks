@@ -120,7 +120,7 @@ CREATE EFF ~d5leat14~
   WRITE_LONG 0x24 2
   WRITE_LONG 0x28 0
   WRITE_SHORT 0x2c 100
-  WRITE_ASCII 0x30 ~d5leat14~ #8
+  WRITE_ASCII 0x30 ~d5bbark~ #8
   WRITE_LONG 0x48 102
 
 COPY_EXISTING ~leat14.itm~ ~override~
@@ -131,15 +131,24 @@ COPY_EXISTING ~leat14.itm~ ~override~
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 2 STR_VAR resource = ~d5leat14~ END
 IF_EXISTS BUT_ONLY
 
-COPY ~d5_random_tweaks/data/item_tweaks/d5leat14.spl~ ~override~
-//  LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = ~d5leat14~ END
+COPY ~d5_random_tweaks/data/item_tweaks/d5bbark.spl~ ~override~
 
+// allow opcode 314 to function alongside the juggernaut golem manual
 COPY_EXISTING ~tomegol4.bcs~ ~override~
   DECOMPILE_BCS_TO_BAF
 	REPLACE_TEXTUALLY ~!CheckStatGT(LastSummonerOf(Myself),0,STONESKINSGOLEM)~ ~~
 	REPLACE_TEXTUALLY ~!CheckStatGT(Player[1-6],0,STONESKINSGOLEM)~ ~~
+	REPLACE_TEXTUALLY ~Kill(Myself)~ ~~
   COMPILE_BAF_TO_BCS
 IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~tomegol4.cre~ ~override~
+  WRITE_ASCII 0x248 ~~
+IF_EXISTS BUT_ONLY
+
+// remove awful sound
+COPY ~d5_random_tweaks/data/item_tweaks/blank.wav~ ~override/eff_e02.wav~
+
 END
 //__________________________________________________________________________________
 

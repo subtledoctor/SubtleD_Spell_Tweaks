@@ -379,15 +379,23 @@ COPY_EXISTING  ~sppr202.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR silent = 1 match_timing = 1 target = 1 END
 IF_EXISTS BUT_ONLY
 
-COPY ~d5_random_tweaks/data/item_tweaks/d5leat14.spl~ ~override/d5bbark.spl~
-//  LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = ~d5bbark~ END
+COPY ~d5_random_tweaks/data/item_tweaks/d5bbark.spl~ ~override~
 
+// allow opcode 314 to function alongside the juggernaut golem manual
 COPY_EXISTING ~tomegol4.bcs~ ~override~
   DECOMPILE_BCS_TO_BAF
 	REPLACE_TEXTUALLY ~!CheckStatGT(LastSummonerOf(Myself),0,STONESKINSGOLEM)~ ~~
 	REPLACE_TEXTUALLY ~!CheckStatGT(Player[1-6],0,STONESKINSGOLEM)~ ~~
+	REPLACE_TEXTUALLY ~Kill(Myself)~ ~~
   COMPILE_BAF_TO_BCS
 IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~tomegol4.cre~ ~override~
+  WRITE_ASCII 0x248 ~~
+IF_EXISTS BUT_ONLY
+
+// remove awful sound
+COPY ~d5_random_tweaks/data/item_tweaks/blank.wav~ ~override/eff_e02.wav~
 
 END
 
@@ -515,9 +523,13 @@ COPY_EXISTING ~spwi312.spl~ ~override/d5xw312.spl~
 	END
   END
 
-COPY_EXISTING ~spturni2.bam~ ~override/d5turni2.bam~
+COPY_EXISTING ~potn14.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 221 opcode = 226 resource = ~dxw305~ END
 IF_EXISTS BUT_ONLY
 
+// remove spell shield animation
+COPY_EXISTING ~spturni2.bam~ ~override/d5turni2.bam~
+IF_EXISTS BUT_ONLY
 COPY ~d5_random_tweaks/data/spell_tweaks/d5turni2.vvc~ ~override~
 COPY ~d5_random_tweaks/data/spell_tweaks/d5noanim.bam~ ~override/spturni2.bam~
 
@@ -1180,7 +1192,7 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION tweak_sunfire BEGIN
-// sunfire: change to Missile Storm - cast MM at everybody
+// sunfire: change to Missile Storm - cast MM at everybody two (or three!) times
 COPY_EXISTING ~spwi523.spl~ ~override~
   SAY NAME1 @25231
   LPF DELETE_EFFECT END
@@ -1192,8 +1204,11 @@ COPY_EXISTING ~spwi523.spl~ ~override~
   END
   PATCH_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
 	SAY UNIDENTIFIED_DESC @25233
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI217~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI217~ END
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI217~ END
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI217~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 2 STR_VAR resource = ~SPWI112~ END
   END
 IF_EXISTS BUT_ONLY
 	
@@ -1245,16 +1260,18 @@ COPY_EXISTING ~sppr613.spl~ ~override~
 	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 146 duration = %dur% duration = %new_dur% STR_VAR match_resource = ~sppr613d~ END
   END
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 146 duration = 114 duration = 117 STR_VAR match_resource = ~sppr613d~ insert = ~below~ END
-  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 142 opcode = 22 parameter1 = 2 parameter2 = 0 END
+//  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 142 opcode = 22 parameter1 = 2 parameter2 = 0 END
 IF_EXISTS BUT_ONLY
 COPY_EXISTING ~sppr613d.spl~ ~override~
 //  WRITE_BYTE 0x27 0	//	remove combat protections sectype
   PATCH_IF (GAME_IS ~bgee bg2ee iwdee eet~) BEGIN
 	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 159 duration = 7 END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 133 target = 1 parameter1 = 3 parameter2 = 0 timing = 0 duration = 7 END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 1 STR_VAR resource = ~sppr613d~ END
   END
   PATCH_IF (ENGINE_IS ~tob bgt~) BEGIN
 	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 159 duration = 3 END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 133 target = 1 parameter1 = 3 parameter2 = 0 timing = 0 duration = 7 END
   END
 IF_EXISTS BUT_ONLY
 
