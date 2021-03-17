@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~0.9.6~
+VERSION ~1.0~
 
 ALWAYS
 
@@ -18,7 +18,7 @@ LANGUAGE
   ~english~
   ~d5_random_tweaks/lang/english/setup.tra~
 
-
+/*
 //do stuff____________________________________________________________________________
 
 BEGIN @2105
@@ -102,6 +102,13 @@ LAF tweak_web END
 
 //____________________________________________________________________________________
 
+BEGIN @2217
+DESIGNATED 2217
+
+LAF tweak_scorcher END
+
+//____________________________________________________________________________________
+
 BEGIN @2224
 DESIGNATED 2224
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
@@ -143,12 +150,10 @@ LAF tweak_good_berry END
 
 //____________________________________________________________________________________
 
-/*
 BEGIN @1212
 DESIGNATED 1212
 
 LAF tweak_slow_poison END
-*/
 
 //____________________________________________________________________________________
 
@@ -207,6 +212,14 @@ LAF tweak_otilukes_sphere END
 
 //____________________________________________________________________________________
 
+BEGIN @2418
+DESIGNATED 2418
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_fire_shields END
+
+//____________________________________________________________________________________
+
 BEGIN @2451
 DESIGNATED 2451
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
@@ -243,6 +256,13 @@ LAF tweak_negative_plane_protection END
 
 //____________________________________________________________________________________
 
+BEGIN @1451
+DESIGNATED 1451
+
+LAF tweak_smashing_wave END
+
+//____________________________________________________________________________________
+
 BEGIN @2508
 DESIGNATED 2508
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
@@ -264,6 +284,14 @@ BEGIN @2523
 DESIGNATED 2523
 
 LAF tweak_sunfire END
+
+//____________________________________________________________________________________
+
+BEGIN @1603
+DESIGNATED 1603
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_blade_barrier END
 
 //____________________________________________________________________________________
 
@@ -304,6 +332,14 @@ LAF tweak_holy_word END
 
 //____________________________________________________________________________________
 
+BEGIN @2808
+DESIGNATED 2808
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_moment_of_prescience END
+
+//____________________________________________________________________________________
+
 BEGIN @2811
 DESIGNATED 2811
 
@@ -334,6 +370,7 @@ LAF tweak_energy_drain END
 
 BEGIN @2923
 DESIGNATED 2923
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1 
 
 LAF tweak_planetars END
 
@@ -510,11 +547,11 @@ DESIGNATED 5010
 LAF cure_power INT_VAR power_level = %cure_power_level% END
 
 //____________________________________________________________________________________
-
+*/
 BEGIN @5021
 DESIGNATED 5021
 SUBCOMPONENT @5020
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~setup-stratagems.tp2~ ~5900~) OR (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
 
 INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
 

@@ -16,6 +16,7 @@
 @2212  = ~Move Mirror Image to 3rd Level~
 @2213  = ~Add Lingering Effects to SR's Stinking Cloud~
 @2215  = ~Make Web Slow Instead of Hold~
+@2217  = ~Change Agannazar's Scorcher to Melf's Fiery Missiles~
 @2224  = ~Improve Glitterdust~
 @2251  = ~Add Deafening Effect On Hit to Decastave~
 @1202  = ~Make Barkskin Block One Attack Each Round~
@@ -29,18 +30,22 @@
 @1323  = ~Improve Casting Time of Exaltation and Spiritual Clarity~
 @1351  = ~Add Faerie Fire and Slow On Hit to Moonblade~
 @2413  = ~Allow Target of Otiluke's Sphere to Use Inventory Screen~
+@2418  = ~Set Fire Shield and Acid Sheath Spells to be Breachable~
 @2451  = ~Make Shadow Monster Summons More Illusionary~
 @1404  = ~Change Neutralize Poison into 'Remove Afflictions'~
 @1409  = ~Tweak Death Ward~
 @1413  = ~Tweak Negative Plane Protection~
+@1451  = ~Make Smashing Wave Party-Friendly~
 @2508  = ~Improve Function of SR's Waves of Fatigue~
 @2518  = ~Change Damage Type and School of Phantom Blade~
 @2523  = ~Change Sunfire into 'Missile Storm'~
+@1603  = ~Set Blade Barrier to be Breachable~
 @1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
 @1613  = ~Make Physical Mirror Block 1 Attack Per Three Seconds~
 @1614  = ~Make Sol's Searing Orb Easier to Throw~
 @2708  = ~Change Mantle into 'Iron Skin'~
 @1710  = ~Add Slow Effect to Holy Word~
+@2808  = ~Set Moment of Prescience to Not Breachable~
 @2811  = ~Move Symbol: Fear to 7th Level~
 @2916  = ~Move Shapechange to 8th Level~
 @2915  = ~Move Black Blade of Disaster to 8th level~
@@ -155,6 +160,21 @@ Saving Throw: Neg.
 
 A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within the webs can become stuck among the gluey fibers; they must roll a saving throw every round. If the saving throw is successful, then the creature is free to move out of the area, though at a reduced (by half) movement speed. A failed saving throw means the creature is stuck in the webs and are affected as if by a Slow spell: <PRO_HESHE> performs all actions at half the usual speed and suffers a -4 penalty to armor class, and additionally c annot make any physical attacks at all. This Slow effect is compounded by the movement speed penalty, so creatures who fail their saving throw can only move at one-quarter speed to escape the webbed area.
 ~
+@22171 = ~Melf's Fiery Missiles~
+@22172 = ~Melf's Fiery Missiles
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Breath Weapon
+
+Similar to Mordenkainen's 'Force Missiles' variant, this is an attempt to improve on the basic Magic Missile spell. This version creates two missiles of sizzling magical energy that dart forth and unerringly strike their target, which must be a creature of some sort. Each missile inflicts 1d4 points of magic damage plus 1d4 points of fire damage (the victim may save vs. Breath to avoid the fire damage). The spell will create three missiles at 4th level, four missiles at 6th level, five missiles at 8th level, and six missiles at 10th level.
+
+The Shield spell will block this, just as it blocks the lesser Magic Missile spell.
+~
 @22512 = ~Decastave
 
 Level: 2
@@ -207,7 +227,7 @@ Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: None
 
-When this spell is cast upon a poisoned individual, it greatly slows the effects of venom, actually neutralizing all but the most deadly poisons. The effect remains in the target's body for a short time, preventing <PRO_HIMHER> from be affected by poison for 4 rounds after the spell is cast.
+When this spell is cast upon a poisoned individual, it greatly slows the effects of venom, actually neutralizing all but the most deadly poisons. The effect remains in the target's body for a short time, preventing <PRO_HIMHER> from be affected by poison for three rounds after the spell is cast.
 ~
 @12052 = ~Find Traps
 

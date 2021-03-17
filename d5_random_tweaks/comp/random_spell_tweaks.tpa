@@ -201,8 +201,11 @@ DEFINE_ACTION_FUNCTION tweak_mirror_image BEGIN
 			END
 			SAY_EVALUATED 0x50 ~%new_desc%~
 		END
-	ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-		APPEND ~hidespl.2da~ ~spwi212	1		0		0~
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI212	1		0~
+	END
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI212	1		0		0~
 	END
 	LAF RES_NUM_OF_SPELL_NAME
 		STR_VAR spell_name = ~WIZARD_MIRROR_IMAGE_D5~
@@ -279,15 +282,32 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_scorcher BEGIN
+// scorcher: change to Melf's Fiery Missiles
+COPY ~d5_random_tweaks/data/spell_tweaks/spmagmis.bam~ ~override~
+COPY ~d5_random_tweaks/data/spell_tweaks/spwi112z.spl~ ~override/spwi217.spl~
+	SAY NAME1 @22171
+	SAY UNIDENTIFIED_DESC @22172
+	WRITE_ASCII 0x3a ~spwi217c~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi217b~ END
+COPY_EXISTING ~scrl1b.itm~ ~override~
+	SAY NAME2 @22171
+	SAY IDENTIFIED_DESC @22172
+COPY_EXISTING ~spwi114.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = ~spwi217~ END
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_glitterdust BEGIN
-// 
+// glitterdust:  
 ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
   COPY_EXISTING ~spwi224.spl~ ~override~
 	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 116 savingthrow = 0 END
 	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 215 savingthrow = 0 END
   IF_EXISTS BUT_ONLY
 END
-
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
   COPY_EXISTING ~spwi224.spl~ ~override~
 	LPF ALTER_EFFECT INT_VAR silent = 1 savingthrow = 0 END
@@ -305,7 +325,6 @@ COPY_EXISTING ~decasta.itm~ ~override~
 			  ~cdideca.itm~ ~override~
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~d5decas~ END
 IF_EXISTS BUT_ONLY
-
 ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_DECASTAVE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -329,7 +348,13 @@ DEFINE_ACTION_FUNCTION tweak_slow_poison BEGIN
 // 
 COPY_EXISTING ~sppr212.spl~ ~override~
   SAY UNIDENTIFIED_DESC @12122
-
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 173 target = 2 power = 2 parameter1 = 100 resist_dispel = 3 timing = 0 duration = 18 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 2 power = 2 parameter2 = 25 resist_dispel = 3 timing = 0 duration = 18 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target = 2 power = 2 parameter2 = 30 resist_dispel = 3 timing = 0 duration = 18 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 target = 2 power = 2 parameter2 = 6 resist_dispel = 3 timing = 0 duration = 18 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 power = 2 parameter1 = (0 - 1) resist_dispel = 3 timing = 0 duration = 18 STR_VAR resource = ~sppr411~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 power = 2 parameter1 = (0 - 1) resist_dispel = 3 timing = 0 duration = 18 STR_VAR resource = ~spwi501~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 power = 2 parameter1 = (0 - 1) resist_dispel = 3 timing = 0 duration = 18 STR_VAR resource = ~spin979~ END
 IF_EXISTS BUT_ONLY
 
 END
@@ -685,6 +710,17 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_fire_shields BEGIN
+// make breachable
+COPY_EXISTING ~spwi418.spl~ ~override~
+			  ~spwi403.spl~ ~override~
+  WRITE_BYTE 0x27 7
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_shadow_monsters BEGIN
 
 // SM: gobbos/lizardmen
@@ -935,8 +971,11 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 	END
 	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-  APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
 END
 ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
   PRINT ~%cre% => %dv%~ 
@@ -986,8 +1025,11 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 	END
 	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-  APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
 END
 ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
   PRINT ~%cre% => %dv%~ 
@@ -1037,8 +1079,11 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 	END
 	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-  APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
 END
 ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
   PRINT ~%cre% => %dv%~ 
@@ -1134,6 +1179,19 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_smashing_wave BEGIN
+// make party-friendly
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SMASHING_WAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SMASHING_WAVE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
+  IF_EXISTS BUT_ONLY
+END
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_waves_of_fatigue BEGIN
 // 
 COPY_EXISTING ~msectype.2da~ ~override~
@@ -1212,6 +1270,16 @@ COPY_EXISTING ~spwi523.spl~ ~override~
   END
 IF_EXISTS BUT_ONLY
 	
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_blade_barrier BEGIN
+// make breachable
+COPY_EXISTING ~sppr603.spl~ ~override~
+  WRITE_BYTE 0x27 7
+IF_EXISTS BUT_ONLY
+
 END
 
 //__________________________________________________________________________________
@@ -1395,6 +1463,16 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_moment_of_prescience BEGIN
+// make not breachable
+COPY_EXISTING ~sppr603.spl~ ~override~
+  WRITE_BYTE 0x27 0
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_symbol_fear BEGIN
 // Symbol Fear: level 7
  ACTION_IF FILE_EXISTS_IN_GAME ~spwi811.spl~ THEN BEGIN
@@ -1409,8 +1487,11 @@ DEFINE_ACTION_FUNCTION tweak_symbol_fear BEGIN
 			END
 			SAY_EVALUATED 0x50 ~%new_desc%~
 		END
-	ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-		APPEND ~hidespl.2da~ ~spwi811	1		0		0~
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI811	1		0~
+	END
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI811	1		0		0~
 	END
 	LAF RES_NUM_OF_SPELL_NAME
 		STR_VAR spell_name = ~WIZARD_SYMBOL_FEAR_D5~
@@ -1466,8 +1547,11 @@ DEFINE_ACTION_FUNCTION tweak_shapechange BEGIN
 			END
 			SAY_EVALUATED 0x50 ~%new_desc%~
 		END
-	ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-		APPEND ~hidespl.2da~ ~spwi916	1		0		0~
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI916	1		0~
+	END
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI916	1		0		0~
 	END
 	LAF RES_NUM_OF_SPELL_NAME
 		STR_VAR spell_name = ~WIZARD_SHAPECHANGE_D5~
@@ -1516,8 +1600,11 @@ DEFINE_ACTION_FUNCTION tweak_black_blade BEGIN
 	ADD_SPELL ~override/spwi915.spl~ 2 8 WIZARD_BLACK_BLADE_OF_DISASTER_D5
 		WRITE_LONG 0x34 8
 		SAY UNIDENTIFIED_DESC @29152
-	ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-		APPEND ~hidespl.2da~ ~spwi915	1		0		0~
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI915	1		0~
+	END
+	ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+		APPEND ~hidespl.2da~ ~SPWI915	1		0		0~
 	END
 	LAF RES_NUM_OF_SPELL_NAME
 		STR_VAR spell_name = ~WIZARD_BLACK_BLADE_OF_DISASTER_D5~
@@ -1570,8 +1657,11 @@ DEFINE_ACTION_FUNCTION tweak_energy_drain BEGIN
 		ADD_SPELL ~override/spwi914.spl~ 2 8 WIZARD_ENERGY_DRAIN_D5
 			WRITE_LONG 0x34 8
 			SAY UNIDENTIFIED_DESC @29143
-		ACTION_IF FILE_EXISTS_IN_GAME ~hidespl.2da~ BEGIN
-			APPEND ~hidespl.2da~ ~spwi914	1		0		0~
+		ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+			APPEND ~hidespl.2da~ ~SPWI914	1		0~
+		END
+		ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+			APPEND ~hidespl.2da~ ~SPWI914	1		0		0~
 		END
 		LAF RES_NUM_OF_SPELL_NAME
 			STR_VAR spell_name = ~WIZARD_ENERGY_DRAIN_D5~

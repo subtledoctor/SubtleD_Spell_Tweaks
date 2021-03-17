@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 0.9 </strong><br />
+  <p><strong> Version 1.0 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -66,6 +66,10 @@
   <div class="section">
     <p>Web no longer Holds targets who fail their save. Instead it Slows them and sets their APR to zero. Additionally, it cuts movement rate to 30% for anyone in the area of effect, regardless whether they make their save. This compounds with the Slow effect so on a failed save you will only be able to move at 15% your normal rate.  And you won't be able to attack, and spellcasting will take twice as long, and you'll have a 4-point AC penalty. This is a nerf, to be sure... but man, vanilla Web is just too powerful. A non-party-friendly Slow spell one level below the party-friendly Slow spell makes a lot of sense to me.</p>
   </div>
+  <h4 class="subheader">Component 2217: Tweak Agannazar's Scorcher</h4>
+  <div class="section">
+    <p>I find Agannazar's Scorcher to be too finicky for common use. This component changes it into a new spell, which is similar to Magic Missile but fires one extra missile, and can do 1d4 extra fire damage on a failed save.</p>
+  </div>
   <h4 class="subheader">Component 2105: Tweak Glitterdust</h4>
   <div class="section">
     <p>No saving throw is allowed to avoid the inability to turn invisible. An AC penalty is added to match the thac0 penalty.</p>
@@ -82,6 +86,10 @@
   <h4 class="subheader">Component 1207: Tweak Goodberry</h4>
   <div class="section">
     <p>Instead of creating consumable berries, that is abstracted away. Upon casting the spell, all nearby allies are assumed to have eaten berries; any intoxication and fatigue are removed, and they regenerate 2 hit points per round, for one round per level of the caster (to a maximum of 10 rounds). This spell cannot be cast in combat.</p>
+  </div>
+  <h4 class="subheader">Component 1212: Tweak Slow Poison</h4>
+  <div class="section">
+    <p>There's nothing more annoying than curing an ally of poison and then watching them immediately get poisoned again. This adds a very short immunity to poison damage - just three rounds - for convenience, to help you finish out a fight against those spiders or snakes or what have you.</p>
   </div>
   <h4 class="subheader">Component 1251: Tweak Alicorn Lance</h4>
   <div class="section">
@@ -107,13 +115,21 @@
   <div class="section">
     <p>This removes the Hold effect, and adds effects to prevent spellcasting and disable all UI buttons. The idea is, if you find yourself inside the sphere, you are still awake and aware. You cannot interact with the outside world, but you <b>can</b> go to the inventory screen and do things there, like drink potions!</p>
   </div>
+  <h4 class="subheader">Component 2418: Tweak Fire Shields (SR-only)</h4>
+  <div class="section">
+    <p>This allows the Breach spell to work against Fire Shield and Acid Sheath spells.</p>
+  </div>
   <h4 class="subheader">Component 2451: Tweak Shadow Monsters/Shades (EE-only)</h4>
   <div class="section">
     <p>This component alters the summoned creatures in the Shadow Monsters, Demi-Shadow Monsters, and Shades spells from IWDification or SCS IWD spells (or in IWDEE). There are several changes: 1) the summoned creatures do "non-lethal" damage; 2) most of the melee damage done by the summons can be resisted if the victim makes a saving throw vs. spells; 3) victims with intelligence of 17 or higher are immune to most of the damage done by the summons; and 4) the "gender" of the summoned creatures is changed from "SUMMONED" to "ILLUSIONARY," which means that they can bypass the normal summoning cap, and any spells that affect illusionary creatures will affect these ones (like Spell Revisions' version of True Sight). In general, these summons should be stronger than those in the equivalent-level Monster Summoning spells, but their power will be inconsistent and prone to being disbelieved.</p>
   </div>
   <h4 class="subheader">Component 1404: Tweak Neutralize Poison</h4>
   <div class="section">
-    <p>This spell become "Remove Afflictions," a combination of Slow Poison, Cure Disease, Remove Paralysis, and IWD's Unfailing Endurance. It removes poison, disease, blindness, deafness, Hold, and fatigue. If Spell Revisions is installed first, this also extends immunity to disease for the same duration as the spell's immunity to poison.</p>
+    <p>This spell becomes "Remove Afflictions," a combination of Slow Poison, Cure Disease, Remove Paralysis, and IWD's Unfailing Endurance. It removes poison, disease, blindness, deafness, Hold, and fatigue. If Spell Revisions is installed first, this also extends immunity to disease for the same duration as the spell's immunity to poison.</p>
+  </div>
+  <h4 class="subheader">Component 1451: Tweak Smashing Wave</h4>
+  <div class="section">
+    <p>With a long casting time and finicky targeting, Smashing Wave is just too hard/annoying to use. This sets it to be party-friendly, so you don't have to worry about positioning and risk missing the enemies.</p>
   </div>
   <h4 class="subheader">Component 2508: Tweak Waves of Fatigue (SR-only)</h4>
   <div class="section">
@@ -127,11 +143,15 @@
   <div class="section">
     <p>This spell becomes "Missile Storm." Put simply, it casts a maximum-strength Magic Missile at every enemy within 20' of the caster - twice.</p>
   </div>
-  <h4 class="subheader">Component 2611: Tweak Wondrous Recall</h4>
+  <h4 class="subheader">Component 1603: Tweak Blade Barrier (SR-only)</h4>
+  <div class="section">
+    <p>This allows the Breach spell to work against Blade Barrier spells.</p>
+  </div>
+  <h4 class="subheader">Component 1611: Tweak Wondrous Recall</h4>
   <div class="section">
     <p>Instead of restoring two random spells you have no control over, this will now use a 6th-level slot to restore <b>ALL</b> 1st- and 2nd-level spells. If you have Item revisions installed, this will also affect Potions of Memory in the same way.</p>
   </div>
-  <h4 class="subheader">Component 2614: Tweak Sol's Searing Orb</h4>
+  <h4 class="subheader">Component 1614: Tweak Sol's Searing Orb</h4>
   <div class="section">
     <p>This will give the Searing Orb item a faster attack speed, and a slightly smaller radius of destruction, so that you can actually throw it before your target closes the distance and causes the thrower to be affected as well.</p>
   </div>
@@ -142,6 +162,10 @@
   <h4 class="subheader">Component 1710: Tweak Holy Word</h4>
   <div class="section">
     <p>Against enemies of the same level as the caster or above, Holy Word only applies deafness, which does nothing to hinder non-spellcasters. This Tweak adds a Slow effect that lasts for five rounds.</p>
+  </div>
+  <h4 class="subheader">Component 2808: Tweak Moment of Prescience (SR-only)</h4>
+  <div class="section">
+    <p>This makes the Breach spell unable to remove Moment of Prescience.</p>
   </div>
   <h4 class="subheader">Component 2811: Tweak Symbol: Fear</h4>
   <div class="section">
