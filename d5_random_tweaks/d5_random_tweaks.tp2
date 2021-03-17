@@ -18,7 +18,7 @@ LANGUAGE
   ~english~
   ~d5_random_tweaks/lang/english/setup.tra~
 
-/*
+
 //do stuff____________________________________________________________________________
 
 BEGIN @2105
@@ -547,7 +547,7 @@ DESIGNATED 5010
 LAF cure_power INT_VAR power_level = %cure_power_level% END
 
 //____________________________________________________________________________________
-*/
+
 BEGIN @5021
 DESIGNATED 5021
 SUBCOMPONENT @5020
