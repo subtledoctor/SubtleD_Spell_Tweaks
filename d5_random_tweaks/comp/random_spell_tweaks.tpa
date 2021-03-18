@@ -549,7 +549,7 @@ COPY_EXISTING ~spwi312.spl~ ~override/d5xw312.spl~
   END
 
 COPY_EXISTING ~potn14.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 221 opcode = 226 resource = ~dxw305~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 221 opcode = 226 STR_VAR resource = ~dxw305~ END
 IF_EXISTS BUT_ONLY
 
 // remove spell shield animation
