@@ -544,6 +544,9 @@ LAF breach_what INT_VAR combat_protections = %breach_combat_protections% specifi
 BEGIN @5010
 DESIGNATED 5010
 
+INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
+INCLUDE ~d5_random_tweaks/MBR_settings.ini~
+
 LAF cure_power INT_VAR power_level = %cure_power_level% END
 
 //____________________________________________________________________________________
