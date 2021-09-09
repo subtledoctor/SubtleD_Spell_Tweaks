@@ -1,4 +1,15 @@
 
+/*
+TO DO:
+ - add Luck bonus to MI if moved to 3rd level
+ - reduce Blur's AC bonus to -2
+ - add missile snaring to Blur
+ - make a "melee snaring" version of missile snaring...?
+  -- this could stand in for Barkskin's alt-stoneskin effect
+  -- and could be used with Physical Mirror to immunize it from image/luck interactions
+*/
+
+
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -175,6 +186,58 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_blur BEGIN
+
+LAF d5_resolve_state STR_VAR new_state_id = ~D5_SNAREARROW~ RET new_state_ind END
+OUTER_SET missile_snaring_state = %new_state_ind%
+OUTER_SET nada = RESOLVE_STR_REF (~ ~)
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~7eyes.2da~ BEGIN
+	COPY ~d5_random_tweaks/data/item_tweaks/7eyes.2da~ ~override~
+END
+
+APPEND ~7eyes.2da~ ~SNARE_ARROW  %missile_snaring_state%         %nada%         12*0x800000 *           *           *            *            *          *          *          * ~ UNLESS ~SNARE_ARROW~
+
+COPY_EXISTING ~7eyes.2da~ ~override~
+  COUNT_2DA_ROWS 1 rows
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 0 1 tag
+	PATCH_IF (~%tag%~ STRING_EQUAL_CASE ~SNARE_ARROW~) BEGIN
+	  SET 7eyes_row = row
+	END
+  END
+BUT_ONLY
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl.eff~) BEGIN
+  CREATE EFF ~d5misgl~
+    WRITE_LONG 0x10 232
+    WRITE_LONG 0x14 1
+    WRITE_LONG 0x18 0
+    WRITE_LONG 0x1c 0
+    WRITE_LONG 0x20 20
+    WRITE_LONG 0x24 2
+    WRITE_LONG 0x28 0
+    WRITE_SHORT 0x2c 100
+    WRITE_ASCII 0x30 ~d5misgl1~ #8
+    WRITE_LONG 0x28 102
+END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl1.spl~) BEGIN
+  COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5misgl1.spl~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5misgl1~ END
+    LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 335 target = 1 power = 0 parameter1 = %missile_snaring_state% parameter2 = %7eyes_row% timing = 0 duration = 7 END
+END
+
+COPY_EXISTING ~spwi201.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @22012
+//  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 0 match_parameter1 = 3 parameter1 = 2 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 65 opcode = 328 target = 1 parameter2 = %missile_snaring_state% END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 65 opcode = 177 target = 1 parameter2 = 2 STR_VAR resource = ~d5misgl~ END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_luck BEGIN
 // Luck: AoE, 5-round duration
 COPY_EXISTING ~spwi209.spl~ ~override~
@@ -268,13 +331,22 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_web BEGIN
 // web = Slow + movement reduction (+ APR reduction?)
+
+COPY ~d5_random_tweaks/data/spell_tweaks/d5_webf.bam~ ~override~
+COPY ~d5_random_tweaks/data/spell_tweaks/d5_webf.vvc~ ~override~
+
 COPY_EXISTING  ~spwi215.spl~ ~override~
 				~spwi215d.spl~ ~override~
   SAY UNIDENTIFIED_DESC @22152
   LPF DELETE_EFFECT INT_VAR match_opcode = 126 END
-  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 126 target = 2 parameter1 = 30 parameter2 = 2 savingthrow = 0 END
-  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 40 target = 2 END
-  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 109 opcode = 1 target = 2 parameter1 = 0 parameter2 = 3 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 126 /*target = 2*/ parameter1 = 30 parameter2 = 2 savingthrow = 0 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 40 /*target = 2*/ END
+  LPF CLONE_EFFECT_DW INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 0 parameter1 = (0 - 4) parameter2 = 0 END
+  LPF CLONE_EFFECT_DW INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 54 parameter1 = (0 - 4) parameter2 = 0 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 1 target = 2 parameter1 = 0 parameter2 = 3 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 215 parameter2 = 1 STR_VAR resource = ~webentd~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 215 parameter2 = 1 STR_VAR resource = ~d5_webf~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 157 END  
   LPF DELETE_EFFECT INT_VAR match_opcode = 109 END
 IF_EXISTS BUT_ONLY
 
@@ -526,6 +598,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 40 opcode = 226 parameter1 = 1 parameter2 = %k1haste_row% STR_VAR resource = ~d5xw312~ insert = ~first~ END
 	END
   END
+// should the 221 effects be removed?? I don't remember. Probably.
 BUT_ONLY
 
 COPY_EXISTING ~spwi312.spl~ ~override/d5xw305.spl~
@@ -553,8 +626,10 @@ COPY_EXISTING ~potn14.spl~ ~override~
 IF_EXISTS BUT_ONLY
 
 // remove spell shield animation
-COPY_EXISTING ~spturni2.bam~ ~override/d5turni2.bam~
-IF_EXISTS BUT_ONLY
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5turni2.bam~) BEGIN
+  COPY_EXISTING ~spturni2.bam~ ~override/d5turni2.bam~
+  IF_EXISTS
+END
 COPY ~d5_random_tweaks/data/spell_tweaks/d5turni2.vvc~ ~override~
 COPY ~d5_random_tweaks/data/spell_tweaks/d5noanim.bam~ ~override/spturni2.bam~
 
@@ -1454,12 +1529,15 @@ DEFINE_ACTION_FUNCTION tweak_holy_word BEGIN
 // add 5-round... Slow?
 // 
 COPY_EXISTING ~sppr710.spl~ ~override~
+			  ~sppr710d.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 80 opcode = 40 duration = 30 END
+  LPF CLONE_EFFECT_DW INT_VAR silent = 1 multi_match = 1 match_opcode = 80 opcode = 0 parameter1 = (0 - 4) parameter2 = 0 duration = 30 END
+  LPF CLONE_EFFECT_DW INT_VAR silent = 1 multi_match = 1 match_opcode = 80 opcode = 54 parameter1 = (0 - 4) parameter2 = 0 duration = 30 END
 IF_EXISTS BUT_ONLY
 
 END
 
-//***** if SR is installed, need to do this via a pre-existing SR Slow subspell.
+// ***** if SR is installed, need to do this via a pre-existing SR Slow subspell. (Handled with the 'd' subspell...?)
 
 //__________________________________________________________________________________
 

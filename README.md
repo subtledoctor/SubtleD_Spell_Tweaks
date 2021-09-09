@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 1.1 </strong><br />
+  <p><strong> Version 1.2 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -44,11 +44,15 @@
   </div>
   <h4 class="subheader">Component 1151: Tweak Sunscorch</h4>
   <div class="section">
-    <p>Only available if Spell Revisions is installed. Damage to non-undead is halved, from 1d6 per 2 levels to 1d3 per 2 levels, up to 5d3 max. Damage to undead is 1d6 per 2 levels on top of that, to 5d3+5d6 max. No saving throws are allowed relating to the damage. On a failed save vs. spells, the duration of blindness is increased from 1 round to 3 rounds.</p>
+    <p>Only available if Spell Revisions is installed. Damage to non-undead is halved, from 1d6 per 2 levels to 1d3 per 2 levels, up to 5d3 max. Damage to undead is 1d6 per 2 levels on top of that, so up to 5d3+5d6. No saving throws are allowed relating to the damage. On a failed save vs. spells, the duration of blindness is increased from 1 round to 3 rounds.</p>
   </div>
   <h4 class="subheader">Component 2105: Tweak Faerie Fire</h4>
   <div class="section">
     <p>No saving throw is allowed to avoid either the AC penalty or the inability to turn invisible. A new animation is added. If Faerie Fire was added by Spell Revisions, the AoE radius will be doubled.</p>
+  </div>
+  <h4 class="subheader">Component 2201: Tweak Blur (EE-only)</h4>
+  <div class="section">
+    <p>Adds a missile avoidance effect to the Blur spell, which avoids the damage (of the "missile" damage type) from one projectile each round. Basically the same as the tweak to the Gloves of Missile Snaring, below.</p>
   </div>
   <h4 class="subheader">Component 2209: Tweak Luck</h4>
   <div class="section">
@@ -56,7 +60,7 @@
   </div>
   <h4 class="subheader">Component 2212: Tweak Mirror Image</h4>
   <div class="section">
-    <p>Moves Mirror Image to 3rd level. A straight nerf. But Illusion also has Blur at 2nd level, and having illusionary protection spells there seems silly. Mirror Image is incredibly useful, I think it works quite well one level below Stoneskin.</p>
+    <p>Moves Mirror Image to 3rd level. A straight nerf. But Illusion also has Blur at 2nd level, and having two illusionary protection spells there seems silly - and there are none at 3rd level. Mirror Image is incredibly useful, I think it works quite well one level below Stoneskin. (Pro tip: if you install the "Revised Invisibility" component of Tome & Blood, then Nondetection (renamed to "Protection from Divination") will protect your images from divination attacks like True Sight and Oracle, making them as effective as Stoneskins.)</p>
   </div>
   <h4 class="subheader">Component 2213: Tweak Stinking Cloud</h4>
   <div class="section">
@@ -64,7 +68,7 @@
   </div>
   <h4 class="subheader">Component 2215: Tweak Web</h4>
   <div class="section">
-    <p>Web no longer Holds targets who fail their save. Instead it Slows them and sets their APR to zero. Additionally, it cuts movement rate to 30% for anyone in the area of effect, regardless whether they make their save. This compounds with the Slow effect so on a failed save you will only be able to move at 15% your normal rate.  And you won't be able to attack, and spellcasting will take twice as long, and you'll have a 4-point AC penalty. This is a nerf, to be sure... but man, vanilla Web is just too powerful. A non-party-friendly Slow spell one level below the party-friendly Slow spell makes a lot of sense to me.</p>
+    <p>Web no longer Holds targets who fail their save. Instead it Slows them and sets their APR to zero. Additionally, it cuts movement rate to 30% for anyone in the area of effect, regardless whether they make their save. This compounds with the Slow effect so on a failed save you will only be able to move at 15% your normal rate. And you won't be able to attack, and spellcasting will take twice as long, and you'll have a 4-point AC penalty. This is a nerf, to be sure... but man, vanilla Web is just too powerful. A non-party-friendly Slow spell one level below the party-friendly Slow spell makes a lot of sense to me.</p>
   </div>
   <h4 class="subheader">Component 2217: Tweak Agannazar's Scorcher</h4>
   <div class="section">

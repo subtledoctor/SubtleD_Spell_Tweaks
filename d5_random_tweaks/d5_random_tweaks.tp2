@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~1.1~
+VERSION ~1.2~
 
 ALWAYS
 
@@ -19,6 +19,7 @@ LANGUAGE
   ~d5_random_tweaks/lang/english/setup.tra~
 
 
+/*
 //do stuff____________________________________________________________________________
 
 BEGIN @2105
@@ -72,9 +73,16 @@ LAF tweak_faerie_fire END
 
 //____________________________________________________________________________________
 
+BEGIN @2201
+DESIGNATED 2201
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_blur END
+
+//____________________________________________________________________________________
+
 BEGIN @2209
 DESIGNATED 2209
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_luck END
 
@@ -94,12 +102,14 @@ REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
 LAF tweak_stinking_cloud END
 
 //____________________________________________________________________________________
+*/
 
 BEGIN @2215
 DESIGNATED 2215
 
 LAF tweak_web END
 
+/*
 //____________________________________________________________________________________
 
 BEGIN @2217
@@ -622,4 +632,5 @@ LAF ps_remove_ss END
 
 //____________________________________________________________________________________
 
+*/
 
