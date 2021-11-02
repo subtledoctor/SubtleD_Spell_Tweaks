@@ -23,6 +23,70 @@ TO DO:
 
 // various spell tweaks_____________________________________________________________
 //
+DEFINE_ACTION_FUNCTION cure_power INT_VAR power_level = 0 BEGIN
+
+// set cure spells to power 0 to bypass deflections
+
+ACTION_FOR_EACH cure IN 
+		~CLERIC_CURE_LIGHT_WOUNDS~
+		~CLERIC_CURE_MODERATE_WOUNDS~ 
+		~CLERIC_CURE_MEDIUM_WOUNDS~ 
+		~CLERIC_CURE_SERIOUS_WOUNDS~ 
+		~CLERIC_CURE_CRITICAL_WOUNDS~ 
+		~CLERIC_HEAL~ 
+		~CLERIC_MASS_CURE~ 
+		~CLERIC_CURE_DISEASE~
+		~CLERIC_CURE_BLIND_DEAF~
+		~CLERIC_SLOW_POISON~ 
+		~CLERIC_NEUTRALIZE_POISON~ 
+		~CLERIC_REMOVE_CURSE~
+		~CLERIC_BREAK_ENCHANTMENT~
+		~CLERIC_REMOVE_PARALYSIS~
+		~CLERIC_EXALTATION~
+		~CLERIC_SPIRITUAL_CLARITY~
+		~CLERIC_FREE_ACTION~ 
+		~CLERIC_LESSER_RESTORATION~
+		~CLERIC_RESTORATION~
+		~WIZARD_REMOVE_CURSE~
+		~WIZARD_BREAK_ENCHANTMENT~
+		~WIZARD_FREEDOM~           BEGIN 
+  OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~%cure%~)
+  ACTION_IF !(spell_ios = 0 - 1) BEGIN
+	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%cure%~ RET spell_res END
+	OUTER_SPRINT $cure_spells(~%spell_res%~) ~%cure%~
+  END
+END
+
+ACTION_PHP_EACH cure_spells AS res => name BEGIN
+  COPY_EXISTING ~%spell_res%.spl~ ~override~ 	
+	LPF ALTER_EFFECT INT_VAR power = %power_level% END
+  IF_EXISTS BUT_ONLY
+END
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+    PHP_EACH ab_array AS int => ab_off BEGIN
+	  GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	  PHP_EACH fx_array AS int => fx_off BEGIN
+	    READ_SHORT fx_off fx_opcode
+	    READ_ASCII (fx_off + 0x14) fx_resource
+	    PATCH_IF (fx_opcode = 146) BEGIN
+	      PHP_EACH cure_spells AS res => name BEGIN
+			PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~%res%~) BEGIN
+			  LPF ALTER_EFFECT INT_VAR match_opcode = 146 power = %power_level% /*STR_VAR match_resource = EVAL ~%res%~*/ END
+			END
+		  END
+		END
+	  END
+    END
+  END
+BUT_ONLY
+
+END	//	end function
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_magic_missile BEGIN
 // MM: do missile damage (?)
 COPY_EXISTING ~spwi112.spl~ ~override~
@@ -149,7 +213,8 @@ DEFINE_ACTION_FUNCTION tweak_sunscorch BEGIN
 // reduce damage, extend blindness, make undead unable to save vs. blindness
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
- ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SUNSCORCH[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+ OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_SUNSCORCH~)
+ ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SUNSCORCH~ RET spell_res END
   ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
     COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -178,7 +243,8 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_faerie_fire BEGIN
 // 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_FAERIE_FIRE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_FAERIE_FIRE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_FAERIE_FIRE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	LPF ALTER_EFFECT INT_VAR silent = 1 savingthrow = 0 END
@@ -411,7 +477,8 @@ COPY_EXISTING ~decasta.itm~ ~override~
 			  ~cdideca.itm~ ~override~
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~d5decas~ END
 IF_EXISTS BUT_ONLY
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_DECASTAVE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_DECASTAVE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @22512
@@ -539,7 +606,8 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_good_berry BEGIN
 //
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_GOOD_BERRIES[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_GOOD_BERRIES~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_GOOD_BERRIES~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	READ_LONG 0x34 res_level
@@ -572,8 +640,8 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_alicorn_lance BEGIN
 // 
-
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ALICORN_LANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_ALICORN_LANCE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_ALICORN_LANCE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @12512
@@ -696,7 +764,8 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_exaltation_spiritual_clarity BEGIN
 // 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_EXALTATION[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_EXALTATION~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_EXALTATION~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @13232
@@ -717,7 +786,7 @@ COPY_EXISTING ~ohtyr1.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 4 END
 IF_EXISTS BUT_ONLY
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~ohtyr1.spl~) AND !(FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_EXALTATION[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~ohtyr1.spl~) AND (spell_ios = 0 - 1) BEGIN
   COPY_EXISTING ~ohtyr1.spl~ ~override/sppr350.spl~
 	SAY NAME1 @13501
 	SAY UNIDENTIFIED_DESC @13502
@@ -756,7 +825,8 @@ CREATE EFF ~d5moonb~
   WRITE_ASCII 0x30 ~d5moonb2~ #8
 */
 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_MOONBLADE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_MOONBLADE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_MOONBLADE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @13512
@@ -781,16 +851,18 @@ END
 DEFINE_ACTION_FUNCTION tweak_icelance BEGIN
 // 
 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_ICELANCE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_ICELANCE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 25 END
+	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 30 END
 END
 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_ICELANCE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_ICELANCE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 25 END
+	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 30 END
 END
 
 END
@@ -1076,166 +1148,172 @@ COPY_EXISTING ~ss3umb8.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp3~ END
 IF_EXISTS
 
-LAF RES_NUM_OF_SPELL_NAME
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_SHADOW_MONSTERS~
 	RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  ADD_SPELL ~override/%spell_res%.spl~ 2 3 WIZARD_SHADOW_MONSTERS_D5
-  WRITE_LONG 0x34 3
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN
-	READ_STRREF 0x50 "desc"
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	  REPLACE_TEXTUALLY ~Level: 4~ ~Level: 3~
-	END
-	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
-END
-ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
-  PRINT ~%cre% => %dv%~ 
-  COPY_EXISTING ~%cre%~ ~override~
-	PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
-	  READ_BYTE 0x273 class
-	  PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
-		REMOVE_MEMORIZED_SPELL ~%spell_res%~
-		REMOVE_KNOWN_SPELL ~%spell_res%~
-	  END
-	END
-  BUT_ONLY
-END
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_SHADOW_MONSTERS_D5~
-  RET spell_res
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~cdia433.itm~ THEN BEGIN
-  COPY_EXISTING ~cdia433.itm~ ~override~
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
-	READ_LONG 0x54 "valid"
-	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-	  READ_STRREF 0x54 "desc"
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    ADD_SPELL ~override/%spell_res%.spl~ 2 3 WIZARD_SHADOW_MONSTERS_D5
+    WRITE_LONG 0x34 3
+    READ_LONG 0x50 "valid"
+    PATCH_IF (%valid% >= 0) BEGIN
+	  READ_STRREF 0x50 "desc"
 	  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-		REPLACE_TEXTUALLY ~Level: 4~ ~Level: 3~
+	    REPLACE_TEXTUALLY ~Level: 4~ ~Level: 3~
 	  END
-	  SAY_EVALUATED 0x54 ~%new_desc%~
-	END
-  BUT_ONLY
+	  SAY_EVALUATED 0x50 ~%new_desc%~
+    END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+  END
+  ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
+    PRINT ~%cre% => %dv%~ 
+    COPY_EXISTING ~%cre%~ ~override~
+	  PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+	    READ_BYTE 0x273 class
+	    PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
+		  REMOVE_MEMORIZED_SPELL ~%spell_res%~
+		  REMOVE_KNOWN_SPELL ~%spell_res%~
+	    END
+	  END
+    BUT_ONLY
+  END
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_SHADOW_MONSTERS_D5~
+    RET spell_res
+  END
+  ACTION_IF FILE_EXISTS_IN_GAME ~cdia433.itm~ THEN BEGIN
+    COPY_EXISTING ~cdia433.itm~ ~override~
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+	  READ_LONG 0x54 "valid"
+	  PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+	    READ_STRREF 0x54 "desc"
+	    INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+		  REPLACE_TEXTUALLY ~Level: 4~ ~Level: 3~
+	    END
+	    SAY_EVALUATED 0x54 ~%new_desc%~
+	  END
+    BUT_ONLY
+  END
 END
 
-LAF RES_NUM_OF_SPELL_NAME
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_DEMI_SHADOW_MONSTERS~
 	RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  ADD_SPELL ~override/%spell_res%.spl~ 2 4 WIZARD_DEMI_SHADOW_MONSTERS_D5
-  WRITE_LONG 0x34 4
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN
-	READ_STRREF 0x50 "desc"
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	  REPLACE_TEXTUALLY ~Level: 5~ ~Level: 4~
-	END
-	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
-END
-ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
-  PRINT ~%cre% => %dv%~ 
-  COPY_EXISTING ~%cre%~ ~override~
-	PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
-	  READ_BYTE 0x273 class
-	  PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
-		REMOVE_MEMORIZED_SPELL ~%spell_res%~
-		REMOVE_KNOWN_SPELL ~%spell_res%~
-	  END
-	END
-  BUT_ONLY
-END
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_DEMI_SHADOW_MONSTERS_D5~
-  RET spell_res
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~cdia527.itm~ THEN BEGIN
-  COPY_EXISTING ~cdia527.itm~ ~override~
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
-	READ_LONG 0x54 "valid"
-	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-	  READ_STRREF 0x54 "desc"
+ COPY_EXISTING ~%spell_res%.spl~ ~override~
+    ADD_SPELL ~override/%spell_res%.spl~ 2 4 WIZARD_DEMI_SHADOW_MONSTERS_D5
+    WRITE_LONG 0x34 4
+    READ_LONG 0x50 "valid"
+    PATCH_IF (%valid% >= 0) BEGIN
+	  READ_STRREF 0x50 "desc"
 	  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-		REPLACE_TEXTUALLY ~Level: 5~ ~Level: 4~
+	    REPLACE_TEXTUALLY ~Level: 5~ ~Level: 4~
 	  END
-	  SAY_EVALUATED 0x54 ~%new_desc%~
-	END
-  BUT_ONLY
+	  SAY_EVALUATED 0x50 ~%new_desc%~
+    END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+  END
+  ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
+    PRINT ~%cre% => %dv%~ 
+    COPY_EXISTING ~%cre%~ ~override~
+	  PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+	    READ_BYTE 0x273 class
+	    PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
+		  REMOVE_MEMORIZED_SPELL ~%spell_res%~
+		  REMOVE_KNOWN_SPELL ~%spell_res%~
+	    END
+	  END
+    BUT_ONLY
+  END
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_DEMI_SHADOW_MONSTERS_D5~
+    RET spell_res
+  END
+  ACTION_IF FILE_EXISTS_IN_GAME ~cdia527.itm~ THEN BEGIN
+    COPY_EXISTING ~cdia527.itm~ ~override~
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+	  READ_LONG 0x54 "valid"
+	  PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+	    READ_STRREF 0x54 "desc"
+	    INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+		  REPLACE_TEXTUALLY ~Level: 5~ ~Level: 4~
+	    END
+	    SAY_EVALUATED 0x54 ~%new_desc%~
+	  END
+    BUT_ONLY
+  END
 END
 
-LAF RES_NUM_OF_SPELL_NAME
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_SHADES~
 	RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  ADD_SPELL ~override/%spell_res%.spl~ 2 5 WIZARD_SHADES_D5
-  WRITE_LONG 0x34 5
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN
-	READ_STRREF 0x50 "desc"
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	  REPLACE_TEXTUALLY ~Level: 6~ ~Level: 5~
-	END
-	SAY_EVALUATED 0x50 ~%new_desc%~
   END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
-	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
-END
-ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
-  PRINT ~%cre% => %dv%~ 
-  COPY_EXISTING ~%cre%~ ~override~
-	PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
-	  READ_BYTE 0x273 class
-	  PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
-		REMOVE_MEMORIZED_SPELL ~%spell_res%~
-		REMOVE_KNOWN_SPELL ~%spell_res%~
-	  END
-	END
-  BUT_ONLY
-END
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_SHADES_D5~
-  RET spell_res
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~cdia632.itm~ THEN BEGIN
-  COPY_EXISTING ~cdia632.itm~ ~override~
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
-	READ_LONG 0x54 "valid"
-	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-	  READ_STRREF 0x54 "desc"
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    ADD_SPELL ~override/%spell_res%.spl~ 2 5 WIZARD_SHADES_D5
+    WRITE_LONG 0x34 5
+    READ_LONG 0x50 "valid"
+    PATCH_IF (%valid% >= 0) BEGIN
+	  READ_STRREF 0x50 "desc"
 	  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-		REPLACE_TEXTUALLY ~Level: 6~ ~Level: 5~
+	    REPLACE_TEXTUALLY ~Level: 6~ ~Level: 5~
 	  END
-	  SAY_EVALUATED 0x54 ~%new_desc%~
-	END
-  BUT_ONLY
+	  SAY_EVALUATED 0x50 ~%new_desc%~
+    END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~%spell_res%	1		0		0~
+  END
+  ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
+    PRINT ~%cre% => %dv%~ 
+    COPY_EXISTING ~%cre%~ ~override~
+	  PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+	    READ_BYTE 0x273 class
+	    PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
+		  REMOVE_MEMORIZED_SPELL ~%spell_res%~
+		  REMOVE_KNOWN_SPELL ~%spell_res%~
+	    END
+	  END
+    BUT_ONLY
+  END
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_SHADES_D5~
+    RET spell_res
+  END
+  ACTION_IF FILE_EXISTS_IN_GAME ~cdia632.itm~ THEN BEGIN
+    COPY_EXISTING ~cdia632.itm~ ~override~
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END					
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+	  READ_LONG 0x54 "valid"
+	  PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+	    READ_STRREF 0x54 "desc"
+	    INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+		  REPLACE_TEXTUALLY ~Level: 6~ ~Level: 5~
+	    END
+	    SAY_EVALUATED 0x54 ~%new_desc%~
+	  END
+    BUT_ONLY
+  END
 END
 
 END
@@ -1301,7 +1379,8 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_smashing_wave BEGIN
 // make party-friendly
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SMASHING_WAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_SMASHING_WAVE~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SMASHING_WAVE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
     LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
@@ -1955,7 +2034,8 @@ COPY_EXISTING ~shillel.itm~ ~override~
 	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 1 target = 1 parameter1 = 2 parameter2 = 1 timing = 2 END
 IF_EXISTS BUT_ONLY
 
-ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_STONE_FIST[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_STONE_FIST~)
+ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_STONE_FIST~ RET spell_res END
   OUTER_TEXT_SPRINT stone_fist_res ~%spell_res%~
   ACTION_IF (FILE_EXISTS_IN_GAME ~%stone_fist_res%.itm~) BEGIN

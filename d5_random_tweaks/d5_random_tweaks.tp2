@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.3~
+VERSION ~1.3.1~
 
 AUTO_EVAL_STRINGS
 
@@ -45,6 +45,15 @@ LANGUAGE
   ~d5_random_tweaks/lang/french/setup.tra~
 
 //do stuff____________________________________________________________________________
+
+BEGIN @5010
+DESIGNATED 5010
+
+INCLUDE ~d5_random_tweaks/sdrt_settings.ini~
+
+LAF cure_power INT_VAR power_level = %cure_power_level% END
+
+//____________________________________________________________________________________
 
 BEGIN @2105
 DESIGNATED 2105
@@ -92,6 +101,7 @@ LAF tweak_sunscorch END
 
 BEGIN @1152
 DESIGNATED 1152
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SUNSCORCH[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_faerie_fire END
 
@@ -151,6 +161,7 @@ LAF tweak_glitterdust END
 
 BEGIN @2251
 DESIGNATED 2251
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_decastave END
 
@@ -191,6 +202,7 @@ LAF tweak_slow_poison END
 
 BEGIN @1251
 DESIGNATED 1251
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ALICORN_LANCE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_alicorn_lance END
 
@@ -239,17 +251,17 @@ LAF tweak_exaltation_spiritual_clarity END
 
 BEGIN @1351
 DESIGNATED 1351
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_MOONBLADE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_moonblade END
 
 //____________________________________________________________________________________
 
-/*
 BEGIN @1352
 DESIGNATED 1352
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_icelance END
-*/
 
 //____________________________________________________________________________________
 
@@ -307,6 +319,7 @@ LAF tweak_negative_plane_protection END
 
 BEGIN @1451
 DESIGNATED 1451
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SMASHING_WAVE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_smashing_wave END
 
@@ -593,105 +606,3 @@ LAF tweak_rakshasas END
 */
 
 //____________________________________________________________________________________
-
-/*
-BEGIN @5000
-DESIGNATED 5000
-
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @1
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-INCLUDE ~d5_random_tweaks/MBR_settings.ini~
-
-LAF mbr INT_VAR msd_block = %minor_deflection_levels_blocked% sd_block = %spell_deflection_levels_blocked% gsd_block = %greater_deflection_levels_blocked% lvl_1_st = %level_one_spell_thrust% END
-
-LAF dispel_globes INT_VAR bypass = %dispel_bypass_globes% remove = %dispel_removes_globes% END
-
-LAF breach_what INT_VAR combat_protections = %breach_combat_protections% specific_protections = %breach_specific_protections% combination_protections = %breach_combination_protections% noncombat_protections = %breach_noncombat_protections% END
-
-//____________________________________________________________________________________
-
-BEGIN @5010
-DESIGNATED 5010
-
-LAF cure_power INT_VAR power_level = %cure_power_level% END
-
-//____________________________________________________________________________________
-
-BEGIN @5021
-DESIGNATED 5021
-SUBCOMPONENT @5020
-REQUIRE_PREDICATE (MOD_IS_INSTALLED ~setup-stratagems.tp2~ ~5900~) OR (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF just_breachy END
-
-//____________________________________________________________________________________
-
-BEGIN @5022
-DESIGNATED 5022
-SUBCOMPONENT @5020
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF breachy_plus_rakshasa END
-
-//____________________________________________________________________________________
-
-BEGIN @5031
-DESIGNATED 5031
-SUBCOMPONENT @5030
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF ps_cast_breach END
-
-//____________________________________________________________________________________
-
-BEGIN @5032
-DESIGNATED 5032
-SUBCOMPONENT @5030
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF ps_remove_specific END
-
-//____________________________________________________________________________________
-
-BEGIN @5033
-DESIGNATED 5033
-SUBCOMPONENT @5030
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF ps_remove_ss END
-
-//____________________________________________________________________________________
-
-BEGIN @5034
-DESIGNATED 5034
-SUBCOMPONENT @5030
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF ps_remove_ds END
-
-//____________________________________________________________________________________
-
-BEGIN @5035
-DESIGNATED 5035
-SUBCOMPONENT @5030
-
-INCLUDE ~d5_random_tweaks/lib/MBR.tpa~
-
-LAF ps_remove_ds END
-
-LAF ps_remove_ss END
-
-//____________________________________________________________________________________
-
-*/
