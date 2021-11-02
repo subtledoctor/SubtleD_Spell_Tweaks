@@ -151,9 +151,22 @@ DEFINE_ACTION_FUNCTION tweak_sunscorch BEGIN
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SUNSCORCH[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SUNSCORCH~ RET spell_res END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
+    COPY_EXISTING ~%spell_res%.spl~ ~override~
+      PATCH_IF (%SOURCE_SIZE% > 0x7d) BEGIN
+        READ_ASCII 0x3a icon_c
+        READ_ASCII 0x76 icon_b
+      END
+  END
   COPY ~d5_random_tweaks/data/spell_tweaks/d5dvsuns.spl~ ~override/%spell_res%.spl~
 	SAY NAME1 @11511
 	SAY UNIDENTIFIED_DESC @11512
+	PATCH_IF (VARIABLE_IS_SET %icon_c%) BEGIN
+	  WRITE_EVALUATED_ASCII 0x3a ~%icon_c%~ #8
+	END
+	PATCH_IF (VARIABLE_IS_SET %icon_c%) BEGIN
+	  LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~%icon_b%~ END
+	END
  END
 END
 
@@ -191,7 +204,7 @@ DEFINE_ACTION_FUNCTION tweak_blur BEGIN
 LAF d5_resolve_state STR_VAR new_state_id = ~D5_SNAREARROW~ RET new_state_ind END
 OUTER_SET missile_snaring_state = %new_state_ind%
 OUTER_SET nada = RESOLVE_STR_REF (~ ~)
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~7eyes.2da~ BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~7eyes.2da~) BEGIN
 	COPY ~d5_random_tweaks/data/item_tweaks/7eyes.2da~ ~override~
 END
 
@@ -228,7 +241,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl1.spl~) BEGIN
 END
 
 COPY_EXISTING ~spwi201.spl~ ~override~
-  SAY UNIDENTIFIED_DESC @22012
+//  SAY UNIDENTIFIED_DESC @22012
 //  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 0 match_parameter1 = 3 parameter1 = 2 END
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 65 opcode = 328 target = 1 parameter2 = %missile_snaring_state% END
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 65 opcode = 177 target = 1 parameter2 = 2 STR_VAR resource = ~d5misgl~ END
@@ -252,7 +265,7 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_mirror_image BEGIN
 // move to level 3
- ACTION_IF FILE_EXISTS_IN_GAME ~spwi212.spl~ THEN BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~spwi212.spl~) BEGIN
 	COPY_EXISTING ~spwi212.spl~ ~override~
 	ADD_SPELL ~override/spwi212.spl~ 2 3 WIZARD_MIRROR_IMAGE_D5
 		WRITE_LONG 0x34 3
@@ -274,7 +287,7 @@ DEFINE_ACTION_FUNCTION tweak_mirror_image BEGIN
 		STR_VAR spell_name = ~WIZARD_MIRROR_IMAGE_D5~
 		RET spell_res
 	END
-	ACTION_IF FILE_EXISTS_IN_GAME ~scrl96.itm~ THEN BEGIN
+	ACTION_IF (FILE_EXISTS_IN_GAME ~scrl96.itm~) THEN BEGIN
 		COPY_EXISTING ~scrl96.itm~ ~override~
 			WRITE_LONG 0x34 300
 			LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
@@ -290,6 +303,7 @@ DEFINE_ACTION_FUNCTION tweak_mirror_image BEGIN
 			END
 		BUT_ONLY
 	END
+	LAM JOINABLE_NPC_ARRAYS
 	ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
 	  PRINT ~%cre% => %dv%~ 
 	  COPY_EXISTING ~%cre%~ ~override~
@@ -298,7 +312,7 @@ DEFINE_ACTION_FUNCTION tweak_mirror_image BEGIN
 			PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
 				REMOVE_MEMORIZED_SPELL ~spwi212~
 				REMOVE_KNOWN_SPELL ~spwi212~
-//				ADD_KNOWN_SPELL ~%spell_res%~ #2 ~wizard~
+				ADD_KNOWN_SPELL ~%spell_res%~ #2 ~wizard~
 //				ADD_MEMORIZED_SPELL ~%spell_res%~ #2 ~wizard~
 			END
 		END
@@ -500,6 +514,7 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_find_traps BEGIN
 // find traps: last a long time, (fire every 3 seconds (ok not the 2nd part))
+//
 COPY_EXISTING ~sppr205.spl~ ~override~
   SAY UNIDENTIFIED_DESC @12052
   LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~sppr205d~ END
@@ -656,8 +671,19 @@ END
 
 //__________________________________________________________________________________
 
-DEFINE_ACTION_FUNCTION tweak_hold_control_undead BEGIN
+DEFINE_ACTION_FUNCTION tweak_spell_thrust BEGIN
+// make SR Spell Thrust target living actor instead of any spot in range
+//
+COPY_EXISTING ~spwi321.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 target = 1 END 
+IF_EXISTS BUT_ONLY
 
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_hold_control_undead BEGIN
+//
 COPY_EXISTING ~spwi324.spl~ ~override~
 			  ~spwi324d.spl~ ~override~
 			  ~spwi720.spl~ ~override~
@@ -747,6 +773,25 @@ ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_MOONBLADE[ %TAB%
 END
 
 COPY ~d5_random_tweaks/data/spell_tweaks/d5moonb1.spl~ ~override~
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_icelance BEGIN
+// 
+
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_ICELANCE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 25 END
+END
+
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_ICELANCE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+	LPF ALTER_SPELL_HEADER INT_VAR header_type = 2 range = 25 END
+END
 
 END
 
@@ -1259,8 +1304,13 @@ DEFINE_ACTION_FUNCTION tweak_smashing_wave BEGIN
 ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SMASHING_WAVE[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SMASHING_WAVE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
+    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
   IF_EXISTS BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%d.spl~) BEGIN
+    COPY_EXISTING ~%spell_res%d.spl~ ~override~
+      LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 power = 4 parameter2 = 43 STR_VAR resource = EVAL ~%spell_res%d~ END
+      LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 power = 4 parameter2 = 49 STR_VAR resource = EVAL ~%spell_res%d~ END
+  END
 END
 
 END
@@ -1353,6 +1403,16 @@ DEFINE_ACTION_FUNCTION tweak_blade_barrier BEGIN
 // make breachable
 COPY_EXISTING ~sppr603.spl~ ~override~
   WRITE_BYTE 0x27 7
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_false_dawn BEGIN
+// 
+COPY_EXISTING ~sppr609.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_resist_dispel = 1 resist_dispel = 3 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -1519,6 +1579,16 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 1 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
 //	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 2 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
   END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_sunray BEGIN
+// 
+COPY_EXISTING ~sppr707.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_resist_dispel = 1 resist_dispel = 3 END
 IF_EXISTS BUT_ONLY
 
 END

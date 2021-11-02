@@ -274,3 +274,15 @@ END
 //__________________________________________________________________________________
 
 
+// cloak of the weave_______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_cloak_of_the_weave BEGIN
+
+COPY ~d5_random_tweaks/data/item_tweaks/clck15.itm~ ~override~
+  SAY IDENTIFIED_DESC @31002
+
+END
+//__________________________________________________________________________________
+
+
+

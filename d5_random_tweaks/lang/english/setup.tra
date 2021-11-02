@@ -27,9 +27,11 @@
 @1251  = ~Improve Damage and Damage Type of Alicorn Lance~
 @2305  = ~Make Haste and Slow Properly Cancel Each Other~
 @2316  = ~Tweak Dire Charm~
+@2321  = ~Make Spell Thrust Target Actors~
 @2324  = ~Make Hold Undead and Control Undead Bypass MR~
 @1323  = ~Improve Casting Time of Exaltation and Spiritual Clarity~
 @1351  = ~Add Faerie Fire and Slow On Hit to Moonblade~
+@1352  = ~Increase Range of Icelance~
 @2413  = ~Allow Target of Otiluke's Sphere to Use Inventory Screen~
 @2418  = ~Set Fire Shield and Acid Sheath Spells to be Breachable~
 @2451  = ~Make Shadow Monster Summons More Illusionary~
@@ -41,10 +43,12 @@
 @2518  = ~Change Damage Type and School of Phantom Blade~
 @2523  = ~Change Sunfire into 'Missile Storm'~
 @1603  = ~Set Blade Barrier to be Breachable~
+@1609  = ~Make False Dawn Bypass Magic Resistance~
 @1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
 @1613  = ~Make Physical Mirror Block 1 Attack Per Three Seconds~
 @1614  = ~Make Sol's Searing Orb Easier to Throw~
 @2708  = ~Change Mantle into 'Iron Skin'~
+@1707  = ~Make Sunray Bypass Magic Resistance~
 @1710  = ~Add Slow Effect to Holy Word~
 @2808  = ~Set Moment of Prescience to Not Breachable~
 @2811  = ~Move Symbol: Fear to 7th Level~
@@ -65,6 +69,9 @@
 @3091 = ~Only +1 Bonus Slot per Spell Level~
 @3092 = ~Limit Bonus Slots to 7th Level Spells~
 @3093 = ~Only +1 Bonus Slots AND Limited to 7th Level~
+@3100 = ~Metamagic Instead of MR for Cloak of the Weave~
+@31002 = ~Crafted by some of the finest mages and weavers of the Realms, this robe is made from the fibers of plants specially cultivated during the Time of Troubles, and the weave of the robe is woven counter to the magical Weave of Faerun. The resulting robes grant the wearer the ability to raise a Minor Spell Deflection once per day, and can retain and later release a pair of spells just like a Minor Spell Sequencer. (Note: using these powers is indistinguishable from casting the magic spells of the same names. For good or ill, doing can be detected and identified as using arcane magic.)
+~
 @4010 = ~Add a Saving Throw Against Level Drain Effects~
 @4020 = ~Improve Monster Ability Scores~
 @4030 = ~Increase Dragons' Hit Points~

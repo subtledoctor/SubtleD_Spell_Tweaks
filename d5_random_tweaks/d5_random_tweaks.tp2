@@ -1,7 +1,7 @@
 BACKUP ~d5_random_tweaks/backup~
 AUTHOR ~SubtleD~
 
-VERSION ~1.2~
+VERSION ~1.3~
 
 ALWAYS
 
@@ -190,6 +190,14 @@ LAF tweak_dire_charm END
 
 //____________________________________________________________________________________
 
+BEGIN @2321
+DESIGNATED 2321
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_spell_thrust END
+
+//____________________________________________________________________________________
+
 BEGIN @2324
 DESIGNATED 2324
 
@@ -208,6 +216,15 @@ BEGIN @1351
 DESIGNATED 1351
 
 LAF tweak_moonblade END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1352
+DESIGNATED 1352
+
+LAF tweak_icelance END
+*/
 
 //____________________________________________________________________________________
 
@@ -302,6 +319,13 @@ LAF tweak_blade_barrier END
 
 //____________________________________________________________________________________
 
+BEGIN @1609
+DESIGNATED 1609
+
+LAF tweak_false_dawn END
+
+//____________________________________________________________________________________
+
 BEGIN @1611
 DESIGNATED 1611
 
@@ -321,6 +345,13 @@ BEGIN @1614
 DESIGNATED 1614
 
 LAF tweak_sols_orb END
+
+//____________________________________________________________________________________
+
+BEGIN @1707
+DESIGNATED 1707
+
+LAF tweak_sunray END
 
 //____________________________________________________________________________________
 
@@ -424,7 +455,7 @@ LAF forest_leather_armor END
 BEGIN @3050
 DESIGNATED 3050
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~item_rev.tp2~ ~0~) @1
 
 LAF instant_rod_absorb END
 
@@ -473,6 +504,14 @@ DESIGNATED 3093
 SUBCOMPONENT @3090
 
 LAF tweak_edwin_amulet INT_VAR slot_reduction = 1 level_reduction = 1 END
+
+//____________________________________________________________________________________
+
+BEGIN @3100
+DESIGNATED 3100
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~item_rev.tp2~ ~0~) @1
+
+LAF tweak_cloak_of_the_weave END
 
 //____________________________________________________________________________________
 
@@ -530,6 +569,7 @@ LAF tweak_rakshasas END
 
 //____________________________________________________________________________________
 
+/*
 BEGIN @5000
 DESIGNATED 5000
 
@@ -629,4 +669,4 @@ LAF ps_remove_ss END
 
 //____________________________________________________________________________________
 
-
+*/
