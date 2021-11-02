@@ -27,9 +27,11 @@
 @1251  = ~Améliorer les dégâts et modifier le type de dégâts pour Lance d'Alicorne~
 @2305  = ~Modifer Rapidité et Lenteur pour qu'ils s'annulent l'un l'autre~
 @2316  = ~Ajuster Charme Néfaste~
+@2321  = ~Permettre à Annulation des Protections de cibler les "acteurs"~
 @2324  = ~Modifier Immobilisation des Morts-Vivants et Contrôle des Morts-Vivants pour ignorer la résistance à la magie~
 @1323  = ~Améliorer le temps d'incantation pour Exaltation et Clarté Spirituelle~
 @1351  = ~Ajouter des effets de Lueur Féérique et Lenteur au toucher de la Lame de Lune~
+@1352  = ~Augmenter la portée de Lance de Glace~
 @2413  = ~Autoriser la cible de Sphère Résistante d'Otiluke à utiliser son inventaire~
 @2418  = ~Rendre Bouclier de Feu et Gaine Acide de Mestil dissipable par Brêche~
 @2451  = ~Modifier les monstres de Convocation d'Ombre plus illusoires~
@@ -41,10 +43,12 @@
 @2518  = ~Changer le type de dégâts et l'école de Lame Fantomatique~
 @2523  = ~Remplacer Feu du Soleil par 'Tempête de Projectiles'~
 @1603  = ~Rendre Barrière de Lames dissipable par Brêche~
+@1609  = ~Modifier Aube Illusoire pour ignorer la résistance à la magire~
 @1611  = ~Modifier Souvenir Merveilleux pour restaurer tous les sorts de niveau 1 et 2~
 @1613  = ~Modifier Miroir Physique pour bloquer une attaque toutes les 3 secondes~
 @1614  = ~Rendre Orbe Desséchant de Sol plus facile à lancer~
 @2708  = ~Remplacer Manteau par 'Peau de Fer'~
+@1707  = ~Modifier Rayon deSoleil pour ignorer la résistance à la magie~
 @1710  = ~Ajouter un effet de Lenteur à Parole Sacrée~
 @2808  = ~Rendre Moment de Prescience dissipable par Brêche~
 @2811  = ~Déplacer Symbole, Terreur au niveau 7~
@@ -65,6 +69,9 @@
 @3091 = ~Un seul emplacement de sort bonus par niveau de sorts~
 @3092 = ~Limiter les emplacements de sorts bonus aux sorts de niveau 7~
 @3093 = ~Un seul emplacement de sort bonus par niveau de sorts ET limiter au niveau 7~
+@3100 = ~Remplacer la résistance à la magie par de la métamagie pour la Robe de la Toile~
+@31002 = ~Conçues par les meilleurs mages et tisserands des Royaumes, ces robes sont faites de fibres provenant de plantes spécialement cultivées durant le Temps des Troubles, et la structure de la robe est tissée pour contrer la Toile magique de Féérune. Les robes ainsi créées accordent au porteur la capacité de lever une Déflection de Sorts Mineure uen fois par jour, et peuvent conserver et plus tard relâcher deux sorts de la même façon qu'un Séqueneur de Sorts Mineur. (Note: L'utilisation de ces pouvoir est  	impossible à distinguer du lancer des sorts du même nom. Que ce soit un bien ou un mal, les utiliser sera détecté et identifié comme le serait l'utilisation de magie profane).
+~
 @4010 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
 @4020 = ~Améliorer les valeurs de caractéristiques des monstres~
 @4030 = ~Augmenter les points de vie des dragons~
@@ -110,7 +117,7 @@ Temps d'incantation : 1
 Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
-Ce sort confère à la cible une résistance aux attaques de regar, qui incluent le regard des basiliques et des méduses, le charme des vampires, ainsi que d'autres effet. Quand il subit un tel effet, le bénéficiaire peut tenter un jet de sauvegarde contre les sorts en plus de tout jet de sauvegarde ordinairement autorisé par l'attaque. Si le jet de sauvegarde additionnel contre les sorts est réussit, l'effet causé par le regard estentièrement évité.
+Ce sort confère à la cible une résistance aux attaques de regard, qui incluent le regard des basiliques et des méduses, le charme des vampires, ainsi que d'autres effet. Quand il subit un tel effet, le bénéficiaire peut tenter un jet de sauvegarde contre les sorts en plus de tout jet de sauvegarde ordinairement autorisé par l'attaque. Si le jet de sauvegarde additionnel contre les sorts est réussit, l'effet causé par le regard estentièrement évité.
 ~
 @11511 = ~Soleil Ardent~
 @11512 = ~Soleil Ardent
