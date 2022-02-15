@@ -10,6 +10,7 @@
 @2104  = ~Ajuster Charme Personne et Charme Néfaste~
 @2108  = ~Changer Protection contre la Pétrification en 'Rétrovision'~
 @2112  = ~Ajuster Projectiles Magiques~
+@2116  = ~Autoriser les cibles de Sommeil a se réveiller quand ils sont frappés~
 @1151  = ~Réduire les dégâts mais améliorer la Cécité pour le Soleil Ardent de Spell Revisions~
 @1152  = ~Améliorer Lueur Féérique~
 @2201  = ~Ajouter un évitement des projectiles à Flou~
@@ -42,12 +43,15 @@
 @2508  = ~Améliorer Vagues de Fatigue de Spell Revisions~
 @2518  = ~Changer le type de dégâts et l'école de Lame Fantomatique~
 @2523  = ~Remplacer Feu du Soleil par 'Tempête de Projectiles'~
+@1505  = ~Modifier la Visée Vraie pour affecter le groupe~
 @1603  = ~Rendre Barrière de Lames dissipable par Brêche~
 @1609  = ~Modifier Aube Illusoire pour ignorer la résistance à la magire~
 @1611  = ~Modifier Souvenir Merveilleux pour restaurer tous les sorts de niveau 1 et 2~
 @1613  = ~Modifier Miroir Physique pour bloquer une attaque toutes les 3 secondes~
 @1614  = ~Rendre Orbe Desséchant de Sol plus facile à lancer~
 @2708  = ~Remplacer Manteau par 'Peau de Fer'~
+@2711  = ~Ajouter les effets de Chaos~
+@2714  = ~Ajouter les effets de Vaporisation Prismatique~
 @1707  = ~Modifier Rayon deSoleil pour ignorer la résistance à la magie~
 @1710  = ~Ajouter un effet de Lenteur à Parole Sacrée~
 @2808  = ~Rendre Moment de Prescience dissipable par Brêche~
@@ -412,6 +416,25 @@ Jet de sauvegarde : aucun
 Quand ce puissant sort est lancé, une peau de pierre émerge du sol et couvre et protège le lanceur. Bien sûr,cette peau est magique et n'entrave absolument pas le lanceur. Cinq de ces peaux protectrices sont accordées, plusune tous les deux niveaux du lanceur. Par exemple, un magiciel de niveau 10 obtiendra 10 peaux, tandis qu'un magicien de niveau 20 en obtiendra 15. Chacune de ces peaux arrêtera uen attaque physiqueavant de disparaitre. Ainsi, un magicien de niveau 10 sera protégé contre les dix premières attaques qui lui seront portées, mais la 11ème l'affectera normalement. Les peaux couvriront le lanceur jusqu'à ce qu'il soit affecté par un sortde Dissipation de la Magie, de Brêche, ou que toutes les peaux soient détruites par des attaques physiques, ou le le sort arrive à son terme.
 
 LesPeaux de Fer ne protégeront pas le lanceur contre des attaques magiques de zone comme Boule de Feu. Par contre, elle le protégeront contre les effets secondaires des attaques physiques comme le feu, l'acide ou le poison portés par une arme, et même les effets magiques au toucher, comme l'Immobilistion. Plusieurs sorts lancés ne se cumulent pas, et le nombre de peaux générées nese cumule pas avec celles d'un sort de Peau de Pierre.
+~
+@27142 = ~Vaporisation Prismatique
+Niveau : 7
+Ecole : Altèration
+PortÈe : spèciale
+DurÈe : spèciale
+Temps d'incantation : 1
+Zone d'effet : cùne
+Jet de sauvegarde : spècial
+
+Lorsque ce sort est lancè, le magicien crèe sept rayons de lumiëre multicolore qui jaillissent de sa main. Chaque rayon a une couleur et un effet dèterminè. Toute crèature dans la zone d'effet sera touchèe par un ou plusieurs rayons. Les effets des rayons sont listès ci-dessous et tous les jets de sauvegarde se font avec un malus de -4.
+
+Rouge - 10d6 points de dèg‚ts de feu (jet de sauvegarde contre le souffle pour rèduire de moitiè)
+Orange - 10d6 points de dèg‚ts d'acide (jet de sauvegarde contre le souffle pour rèduire de moitiè)
+Jaune - 10d6 points de dèg‚ts d'èlectricitè (jet de sauvegarde contre le souffle pour rèduire de moitiè)
+Vert - Mort (20 points de dèg‚ts de poison si jet de sauvegarde contre le poison rèussi)
+Bleu - Pètrification (jet de sauvegarde contre la mètamorphose annule)
+Indigo - Aveuglè (jet de sauvegarde contre les baguettes annule)
+Violet - Labyrinthe (jet de sauvegarde contre les sorts annule)
 ~
 @29152 = ~Lame Noire du Désastre
 Niveau : 8

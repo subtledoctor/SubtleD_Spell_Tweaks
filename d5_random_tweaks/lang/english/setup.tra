@@ -10,6 +10,7 @@
 @2104  = ~Tweak Charm Person & Dire Charm~
 @2108  = ~Change Protection from Petrification into 'Mirrored Eyes'~
 @2112  = ~Tweak Magic Missile~
+@2116  = ~Allow Targets of Sleep to Wake on Hit~
 @1151  = ~Reduce Damage but Improve Blindness in SR's Sunscorch~
 @1152  = ~Improve Faerie Fire~
 @2201  = ~Add Missile Avoidance to Blur~
@@ -42,12 +43,15 @@
 @2508  = ~Improve Function of SR's Waves of Fatigue~
 @2518  = ~Change Damage Type and School of Phantom Blade~
 @2523  = ~Change Sunfire into 'Missile Storm'~
+@1505  = ~Make True Seeing Party-Wide~
 @1603  = ~Set Blade Barrier to be Breachable~
 @1609  = ~Make False Dawn Bypass Magic Resistance~
 @1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
 @1613  = ~Make Physical Mirror Block 1 Attack Per Three Seconds~
 @1614  = ~Make Sol's Searing Orb Easier to Throw~
 @2708  = ~Change Mantle into 'Iron Skin'~
+@2711  = ~Adjust the Effects of Chaos~
+@2714  = ~Change the Effects of Prismatic Spray~
 @1707  = ~Make Sunray Bypass Magic Resistance~
 @1710  = ~Add Slow Effect to Holy Word~
 @2808  = ~Set Moment of Prescience to Not Breachable~
@@ -410,6 +414,25 @@ Saving Throw: n/a
 When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against <PRO_HIMHER>, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a Dispel Magic or Breach, all of the skins are removed by physical attacks, or the spell duration expires.
 
 Iron Skins will not protect the caster from any area-effect magical attacks, such as Fireball. However, they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
+~
+@27142 = ~Prismatic Spray
+Level: 7
+School: Alteration
+Range: Special
+Duration: Special
+Casting Time: 1
+Area of Effect: Cone
+Saving Throw: Special
+
+When this spell is cast, the wizard causes seven shimmering, multicolored rays of light to flash from his hand. These include all colors of the visible spectrum; each ray has a different power and purpose. Any creature that is caught within the area of effect will be touched by one or more rays. The effects of the rays are listed below and all saves are made at a -4 penalty.
+
+Red - 10d6 points of fire damage (save vs. breath half)
+Orange - 10d6 points of acid damage (save vs. breath half)
+Yellow - 10d6 points of electrical damage (save vs. breath half)
+Green - Death (save vs. poison reduces to 20 poison damage)
+Blue - Petrification (save vs. polymorph neg.)
+Indigo - Blindness (save vs. wands neg.)
+Violet - Maze (save vs. spell neg.)
 ~
 @29152 = ~Black Blade of Disaster
 

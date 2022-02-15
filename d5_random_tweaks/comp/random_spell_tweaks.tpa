@@ -209,6 +209,16 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_sleep BEGIN
+
+COPY_EXISTING ~spwi116.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 39 parameter2 = 0 END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_sunscorch BEGIN
 // reduce damage, extend blindness, make undead unable to save vs. blindness
 
@@ -705,7 +715,7 @@ COPY_EXISTING ~spwi312.spl~ ~override/d5xw312.spl~
   END
 
 COPY_EXISTING ~potn14.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 221 opcode = 226 STR_VAR resource = ~dxw305~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 221 opcode = 226 STR_VAR resource = ~d5xw305~ END
 IF_EXISTS BUT_ONLY
 
 // remove spell shield animation
@@ -1478,6 +1488,75 @@ END
 
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION tweak_true_seeing BEGIN
+// make SR's True Seeing party-wide
+COPY_EXISTING ~sppr505.spl~ ~override~
+  READ_LONG 0x08 pts_name
+  READ_LONG 0x50 pts_desc
+BUT_ONLY
+COPY_EXISTING ~spwi609.spl~ ~override~
+  READ_LONG 0x08 wts_name
+  READ_LONG 0x50 wts_desc
+COPY_EXISTING ~spcl232.spl~ ~override~
+  READ_LONG 0x08 its_name
+BUT_ONLY
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~sppr505.spl~
+  WRITE_LONG 0x08 pts_name
+  WRITE_LONG 0x50 pts_desc
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 5
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~sppr505d~ END
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spwi609.spl~
+  WRITE_LONG 0x08 wts_name
+  WRITE_LONG 0x50 wts_desc
+  WRITE_SHORT 0x1c 1
+  WRITE_LONG 0x34 6
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spwi609d~ END
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl232.spl~
+  WRITE_LONG 0x08 pts_name
+  WRITE_LONG 0x50 pts_desc
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 speed = 1 STR_VAR icon = ~spwi609b~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spcl232d~ END
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl732.spl~
+  WRITE_LONG 0x08 pts_name
+  WRITE_LONG 0x50 pts_desc
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 speed = 3 STR_VAR icon = ~spwi609b~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spcl232d~ END
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/sppr505d~
+  WRITE_SHORT 0x1c 2
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+  
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spwi609d~
+  WRITE_SHORT 0x1c 1
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+  
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spcl232d~
+  WRITE_SHORT 0x1c 4
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+  
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewe.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_resist_dispel = 2 resist_dispel = 3 END
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewf.spl~ ~override~
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
+
+END
+
+//__________________________________________________________________________________
+
 DEFINE_ACTION_FUNCTION tweak_blade_barrier BEGIN
 // make breachable
 COPY_EXISTING ~sppr603.spl~ ~override~
@@ -1658,6 +1737,31 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 1 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
 //	LPF CLONE_EFFECT INT_VAR silent = 1 check_globals = 0 multi_match = 1 header_type = 2 opcode = 318 target = 2 parameter1 = 121 parameter2 = 110 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ insert = ~first~ END
   END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_chaos BEGIN
+// replace opcode 3 (berserk) with opcode 76 (feeblemind)
+// 
+COPY_EXISTING ~spwi711.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 3 opcode = 76 END
+IF_EXISTS BUT_ONLY
+
+END
+
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION tweak_prismatic_spray BEGIN
+// replace stun with petrification, replace feeblemind with blindness, remove trash mob blindness
+//
+COPY_EXISTING ~spwi714.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @27142
+  LPF DELETE_EFFECT INT_VAR match_opcode = 74 match_dicenumber = 8 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 45 opcode = 146 parameter2 = 1 savingthrow = 0 STR_VAR resource = ~spwi604~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 76 opcode = 74 END
 IF_EXISTS BUT_ONLY
 
 END

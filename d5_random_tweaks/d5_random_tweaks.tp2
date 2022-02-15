@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.3.1~
+VERSION ~1.4~
 
 AUTO_EVAL_STRINGS
 
@@ -43,6 +43,10 @@ LANGUAGE
   ~Français~
   ~french~
   ~d5_random_tweaks/lang/french/setup.tra~
+
+
+// ***** implement SR-style spell shield-style stuff for mental attacks...?
+
 
 //do stuff____________________________________________________________________________
 
@@ -91,6 +95,14 @@ LAF tweak_magic_missile END
 
 //____________________________________________________________________________________
 
+BEGIN @2116
+DESIGNATED 2116
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+
+LAF tweak_sleep END
+
+//____________________________________________________________________________________
+
 BEGIN @1151
 DESIGNATED 1151
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
@@ -101,7 +113,7 @@ LAF tweak_sunscorch END
 
 BEGIN @1152
 DESIGNATED 1152
-REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SUNSCORCH[ %TAB%%LNL%%MNL%%WNL%]~)) @1
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_FAERIE_FIRE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_faerie_fire END
 
@@ -349,6 +361,14 @@ LAF tweak_sunfire END
 
 //____________________________________________________________________________________
 
+BEGIN @1505
+DESIGNATED 1505
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) OR (FILE_EXISTS_IN_GAME ~qdtnb_spelltweaks_invis.qd~) @1
+
+LAF tweak_true_seeing END
+
+//____________________________________________________________________________________
+
 BEGIN @1603
 DESIGNATED 1603
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
@@ -398,6 +418,22 @@ DESIGNATED 2708
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_mantle END
+
+//____________________________________________________________________________________
+
+BEGIN @2711
+DESIGNATED 2711
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_chaos END
+
+//____________________________________________________________________________________
+
+BEGIN @2714
+DESIGNATED 2714
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+
+LAF tweak_prismatic_spray END
 
 //____________________________________________________________________________________
 
