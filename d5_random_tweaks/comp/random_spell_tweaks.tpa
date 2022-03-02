@@ -35,6 +35,13 @@ ACTION_FOR_EACH cure IN
 		~CLERIC_CURE_CRITICAL_WOUNDS~ 
 		~CLERIC_HEAL~ 
 		~CLERIC_MASS_CURE~ 
+		~CLERIC_REGENERATE_LIGHT_WOUNDS~
+		~CLERIC_REGENERATE_MODERATE_WOUNDS~
+		~CLERIC_REGENERATE_SERIOUS_WOUNDS~
+		~CLERIC_REGENERATE_CRITICAL_WOUNDS~
+		~CLERIC_MASS_REGENERATE~
+		~CLERIC_REGENERATION_DRUID_VERSION~
+		~CLERIC_REGENERATE~
 		~CLERIC_CURE_DISEASE~
 		~CLERIC_CURE_BLIND_DEAF~
 		~CLERIC_SLOW_POISON~ 
@@ -58,7 +65,7 @@ ACTION_FOR_EACH cure IN
 END
 
 ACTION_PHP_EACH cure_spells AS res => name BEGIN
-  COPY_EXISTING ~%spell_res%.spl~ ~override~ 	
+  COPY_EXISTING ~%res%.spl~ ~override~ 	
 	LPF ALTER_EFFECT INT_VAR power = %power_level% END
   IF_EXISTS BUT_ONLY
 END
@@ -124,6 +131,10 @@ IF_EXISTS BUT_ONLY
 
 // okay no - instead give evasion vs. gazes
 
+COPY_EXISTING ~spin883.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = 65 END
+IF_EXISTS BUT_ONLY
+
 LAF d5_resolve_state STR_VAR new_state_id = ~D5_GAZEEVADE~ RET new_state_ind END
 OUTER_SET gaze_evasion_state = %new_state_ind%
 <<<<<<<< d5/d5gazeev.2da
@@ -138,7 +149,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
 	  PHP_EACH ab_array AS int => ab_off BEGIN
 		READ_SHORT (ab_off + 0x26) spl_proj
-		PATCH_IF (spl_proj = 64) BEGIN
+		PATCH_IF (spl_proj = 65) BEGIN
 		  INNER_ACTION BEGIN
 			APPEND ~d5gazeev.2da~ ~%SOURCE_RES% 	SPL~ UNLESS ~%SOURCE_RES%~
 		  END
@@ -154,7 +165,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	  GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
 	  PHP_EACH ab_array AS int => ab_off BEGIN
 		READ_SHORT (ab_off + 0x2a) itm_proj
-		PATCH_IF (spl_proj = 64) BEGIN
+		PATCH_IF (spl_proj = 65) BEGIN
 		  INNER_ACTION BEGIN
 			APPEND ~d5gazeev.2da~ ~%SOURCE_RES% 	ITM~ UNLESS ~%SOURCE_RES%~
 		  END
@@ -190,6 +201,8 @@ COPY_EXISTING ~spwi108.spl~ ~override~
   SAY NAME1 @21081
   SAY UNIDENTIFIED_DESC @21083
   LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = %gaze_evasion_state% END
+IF_EXISTS BUT_ONLY
+
 END
 
 //__________________________________________________________________________________
