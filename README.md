@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 1.2 </strong><br />
+  <p><strong> Version 1.4 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -34,6 +34,22 @@
 </div>
 <h2>Contents</h2>
 <div class="section">
+  <h4 class="subheader">Component 5010: Cure Spells Bypass Deflection</h4>
+  <div class="section">
+    <p>Some friendly spells have their power level set to 0, so that they can bypass Spell Deflection. I always get frustrated when a battle is over and I try to heal a party member, but the Cure Wounds spell fails because their Spell Deflection is still in effect. This fixes that. The spells changed in this way include:
+  	<ul>
+  	  <li>All Cure/Regenerate Wounds spells and Heal</li><br />
+  	  <li>Cure Disease</li><br />
+  	  <li>Cure Blindness and Deafness</li><br />
+  	  <li>Slow Poison and Neutralize Poison</li><br />
+  	  <li>Remove Curse and Break Enchantment</li><br />
+  	  <li>Remove Paralysis</li><br />
+  	  <li>Exaltation and Spiritual Clarity</li><br />
+  	  <li>Free Action</li><br />
+  	  <li>Lesser and Greater Restoration</li><br />
+  	  <li>Freedom</li><br />
+    </ul>
+  </div>
   <h4 class="subheader">Component 2105: Tweak Color Spray</h4>
   <div class="section">
     <p>This adds a chance for any target to be blinded for one round, regardless of their level. If you have SR installed, the Confusion effect is switched to the three-round duration.</p>
@@ -243,47 +259,6 @@
   <h4 class="subheader">Component 4030: Tweak Dragon Hit Points</h4>
   <div class="section">
     <p>Dragons are huge. Bigger than giants. For their sheer girth, they should arguably be a lot more durable, regardless of scales and magic and other protective characteristics. This component will let you increase their hit points by 50%, 100%, or 200%.</p>
-  </div>
-  <h4 class="subheader">Component 5000: Revised Magic Battles (EE-only)</h4>
-  <div class="section">
-    <p>This component aims to make the "mage duel" system of spell protections and magic attacks a bit simpler and more flexible. It <b>requires</b> Spell Revisions to be installed first. Spell Revisions eliminates "Spell Turning" spells and instead gives you Minor, Normal, and Greater Spell Deflection at 3rd, 5th, and 7th level. This component assumes that structure of spell protections. It make four kinds of changes:</p>
-    <p>1. Spell deflections are counted in 'layers.' 5th-level "Spell Deflection" automatically casts the 3rd-level "Minor Spell Deflection," resulting in two layers of defense; 7th-level "Greater Spell Deflection" automatically casts "Spell Deflection" and "Minor Spell Deflection," resulting in three layers of defense. A Globe of Invulnerability (either one) counts as one more layer. There is no cap on the spell level against which deflections are effective; even Minor Spell Deflection will block a 9th-level spell.  The magic attacks, in turn, are not differentiated by the spell level of the defense against which they are active, but by how many layers they dispel. Spell Thrust will remove one layer of defense, of any defense up to 8th level (i.e. any defense except Spell Trap).  Secret Word will dispel two layers of defense. Pierce Magic, Ruby Ray, and Pierce Shield will dispel three layers of defense. Khelben's Warding Whip will remove six layers in total - it is like casting Secret Word every round, for three rounds.</p>
-  	<p>2. Spell Thrust is changed from a 3rd-level spell to a 1st-level spell. If installed before Tome  & Blood, this works with the "Level 1 Cantrips" component, which means you will never run out of this one tool to attack enemy spell protections.</p>
-  	<p>3. Dispel Magic can bypass Globes of Invulnerability, or not; and can <i>remove</i> Globes of Invulnerability, or not - at your discretion.  This can be controlled by two variables in the "MBR_settings.ini" file. For reference, the in the unmodded game, Dispel Magic can bypass (M)GOI, but not remove it; with Spell Revisions, DM can bypass <i>and</i> remove Globes. The default setting with this mod is that DM can neither bypass nor dispel Globes... but you can decide for yourself by changing those two variables.</p>
-  	<p>4. Breach normally removes all "combat protections" (like Stoneskin) and "specific protections (like Protection from Lightning). Using variables in the settings file, you can change this behavior and decide what kinds of spells Breach should remove: "combat protections," "specific protections," "combination protections," and/or "noncombat protections." The default behavior is for Breach to remove spells in the first three categories, but not in the last one.</p>
-  </div>
-  <h4 class="subheader">Component 5010: Cure Spells Bypass Deflection</h4>
-  <div class="section">
-    <p>Some friendly spells have their power level set to 0, so that they can bypass Spell Deflection. I always get frustrated when a battle is over and I try to heal a party member, but the Cure Wounds spell fails because their Spell Deflection is still in effect. This fixes that. The spells changed in this way include:
-  	<ul>
-  	  <li>All Cure Wounds spells and Heal</li><br />
-  	  <li>Cure Disease</li><br />
-  	  <li>Cure Blindness and Deafness</li><br />
-  	  <li>Slow Poison and Neutralize Poison</li><br />
-  	  <li>Remove Curse and Break Enchantment</li><br />
-  	  <li>Remove Paralysis</li><br />
-  	  <li>Exaltation and Spiritual Clarity</li><br />
-  	  <li>Free Action</li><br />
-  	  <li>Lesser and Greater Restoration</li><br />
-  	  <li>Freedom</li><br />
-    </ul>
-  </div>
-  <h4 class="subheader">Component 5020: Breachier Breach (SR-only)</h4>
-  <div class="section">
-    <p>This came about from an old bug in SCS when paired with Spell Revisions, in which the "More Consistent Breach" component, meant to allow Breach to be used against liches and rakshasa, did not so. The bug is not there now - SCS achieves this by making those monsters immune to individual offensive 5th-level spells, instead of having blanket immunity against all 5th-level spells. This solution generally works fine, though there are some small issues: the combat log messages will differ for 5th-level spells that fail, vs. spells of other levels; and SCS may miss some mod-added spells.  This component restores basic blanket immunity to all 5th-level spells to liches and rakshasa, and allows Breach to circumvent it via a different mechanism, while preserving SCS' priority of preventing Breach from bypassing Spell deflections.</p>
-    <p>The first subcomponent does what I described: sets Breach effects to have a "power level" of 9 in order to affect liches and rakshasa. There might be an issue with SR's Spell Deflection spell, which is supposed to block spells of up to 7th level; to account for this, Spell Deflections will now grant immunity to Breach. To work correctly, this relies on a new machanism introduced in the EE 2.5 patch, so DO NOT use this option on older versions of the engine!</p>
-    <p>The second subcomponent sets the "power level" of the Breach effects to 7 instead of 9; this makes it work fine with SR's Spell Deflection. However, this means it would not affect rakshasa. So Rakshasa lose their immunity to 7th-level spells. They are still immune to spells of levels 1-6, and they get a bonus of 100% acid and poison resistance.</p>
-  </div>
-  <h4 class="subheader">Component 5030: Modify Pierce Shield (SR-only)</h4>
-  <div class="section">
-    <p>With Spell Revisions, Pierce Shield distinguishes itself and earns its 8th-level slot by removing the target's combat protections, in addition to one spell protection. It's <i>sort of</i> like Ruby Ray + Breach. Problem is, with SR and/or SCS, Breach is supposed to be blocked by spell protections like Spell Deflection. Pierce Shield's secondary Breach-like effect, however, works through any spell protections. That means Pierce Shield is basically Breach that ignores spell protections - which creates the same problems that Breach has in the unmodded game. So here you have five different options for modifying Pierce Shield to avoid that problem:</p>
-  	<ul>
-  	  <li>Pierce Shield Just Casts Breach - this cast Breach on a one-second delay. This Breach will be subject to the usual limitations, i.e. being blocked by any remaining spell protections; however, if it goes through it will be more powerful because it will remove "specific protections" (e.g. elemental resistance) from the target, which SR's Pierce Shield does not normally do.</li><br />
-  	  <li>Pierce Shield Removes Specific Protections - <b>instead</b> of combat protections. This changes what the secondary effect does, exposing the target to follow-up magic attacks instead of exposing them to follow-up melee attacks. This makes Pierce Shield a bit more focused as a "magic attack..." but also probably makes it a little less valuable.</li><br />
-  	  <li>Pierce Shield Removes Spell Shield - this removes the Breach-like secondary effects and instead allows Pierce Shield to eliminate a Spell Shield <i>and</i> a spell protection, whereas normally it would be stymied by Spell Shield.</li><br />
-  	  <li>Pierce Magic Removes Dispelling Screen - in a similar vein, instead of the Breach-like secondary effect the spell will remove both a spell protection and a Dispelling Screen. Dispelling Screen blocks Breach, so this will be useful in getting you one step closer to being able to Breach the target.</li><br />
-  	  <li>Pierce Shield Removes Spell Shield and Dispelling Screen - if you think options 3 and 4 are a bit underpowered for an 8th level spell, this option simply combines them. Pierce Shield will remove one spell protection, up to and including Spell Trap, <i>and</i> will remove both the Spell Shield and Dispelling Screen secondary protections. The target make have some remaining protections, like Globe of Invulnerability or Nondetection... but this will make substantial progress toward making them fully vulnerable.</li><br />
-    </ul>
   </div>
 <h2>Contact Information</h2>
 <div class="section">
