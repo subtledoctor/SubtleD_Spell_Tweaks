@@ -38,7 +38,7 @@
   <div class="section">
     <p>Some friendly spells have their power level set to 0, so that they can bypass Spell Deflection. I always get frustrated when a battle is over and I try to heal a party member, but the Cure Wounds spell fails because their Spell Deflection is still in effect. This fixes that. The spells changed in this way include:
   	<ul>
-  	  <li>All Cure/Regenerate Wounds spells and Heal</li><br />
+  	  <li>All Cure/Regenerate Wounds spells and Heal</li>
   	  <li>Cure Disease</li><br />
   	  <li>Cure Blindness and Deafness</li><br />
   	  <li>Slow Poison and Neutralize Poison</li><br />
