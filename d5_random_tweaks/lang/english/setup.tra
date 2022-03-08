@@ -304,7 +304,7 @@ Level: 3
 School: Abjuration
 Sphere: Protection
 Range: Visual range of the caster
-Duration: Instant
+Duration: 5 rounds
 Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: None
@@ -403,7 +403,7 @@ Saving Throw: n/a
 
 When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against <PRO_HIMHER>, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a Dispel Magic or Breach, all of the skins are removed by physical attacks, or the spell duration expires.
 
-Iron Skins will not protect the caster from any area-effect magical attacks, such as Fireball. However, they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
+Iron Skins will not protect the caster from any area-effect magical attacks, such as Fireball. However, they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. They will also protect the caster against nonmaagical weapons and most ranged weapons. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
 ~
 @27142 = ~Prismatic Spray
 Level: 7

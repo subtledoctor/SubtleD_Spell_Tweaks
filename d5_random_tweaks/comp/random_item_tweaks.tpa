@@ -48,8 +48,8 @@ COPY_EXISTING ~7eyes.2da~ ~override~
   END
 BUT_ONLY
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misbl.eff~) BEGIN
-  CREATE EFF ~d5misbl~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl.eff~) BEGIN
+  CREATE EFF ~d5misgl~
     WRITE_LONG 0x10 232
     WRITE_LONG 0x14 1
     WRITE_LONG 0x18 0
@@ -181,7 +181,7 @@ END
 
 COPY_EXISTING ~bdclck05.itm~ ~override~
   SAY IDENTIFIED_DESC @30602
-  LPF ALTER_ITEM_HEADER INT_VAR headcer_type = 3 charges = 2 END
+  LPF ALTER_ITEM_HEADER INT_VAR header_type = 3 charges = 2 END
   LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~boot12~ END
 IF_EXISTS BUT_ONLY
 

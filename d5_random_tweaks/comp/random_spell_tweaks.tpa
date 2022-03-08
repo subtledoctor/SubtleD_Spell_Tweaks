@@ -108,7 +108,7 @@ DEFINE_ACTION_FUNCTION tweak_color_spray BEGIN
 // color spray can blind for 1 round regardless of target level
 COPY_EXISTING ~spwi105.spl~ ~override~
 //  SAY UNIDENTIFIED_DESC @21052
-  LPF DELETE_EFFECT INT_VAR match_opcocde = 128 END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 128 END
   LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 74 opcode = 128 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 74 target = 2 power = 1 timing = 0 duration = 7 savingthrow = 1 END
 IF_EXISTS BUT_ONLY
@@ -208,7 +208,7 @@ BUT_ONLY
 COPY_EXISTING ~spwi108.spl~ ~override~
   SAY NAME1 @21081
   SAY UNIDENTIFIED_DESC @21083
-  LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = %gaze_evasion_state% END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = %gaze_evasion_state% special = 1 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -352,8 +352,16 @@ DEFINE_ACTION_FUNCTION tweak_luck BEGIN
 // Luck: AoE, 5-round duration
 COPY_EXISTING ~spwi209.spl~ ~override~
   SAY UNIDENTIFIED_DESC @22092
-	LPF ALTER_SPELL_HEADER INT_VAR target = 5 range = 30 projectile = 158 END
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_duration = 18 duration = 30 END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 range = 30 projectile = 158 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_duration = 18 duration = 30 END
+  READ_LONG 0x54 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+    READ_STRREF 0x54 "desc"
+    INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+      REPLACE_TEXTUALLY ~: 1 creature~ ~: 15-foot radius~
+    END
+    SAY_EVALUATED 0x54 ~%new_desc%~
+  END
 IF_EXISTS BUT_ONLY
 
 END
@@ -925,7 +933,7 @@ COPY_EXISTING ~spwi413a.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 13 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 185 opcode = 144 parameter1 = 0 parameter2 = 14 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 185 END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 2 parameter2 = 49 timing = 0 duration = 0 STR_VAR resource = ~%SOURCE_RES%~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 2 parameter2 = 49 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 176 opcode = 185 parameter1 = 0 parameter2 = 2 END
 IF_EXISTS BUT_ONLY
 
@@ -1414,13 +1422,14 @@ OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~CLERIC_SMASHING_WAVE~)
 ACTION_IF !(spell_ios = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_SMASHING_WAVE~ RET spell_res END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
+    LPF CLONE_EFFECT INT_VAR check_globals = 0 silent = 1 match_opcode = 318 match_parameter2 = 43 parameter2 = 49 power = 0 END
   IF_EXISTS BUT_ONLY
   ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%d.spl~) BEGIN
     COPY_EXISTING ~%spell_res%d.spl~ ~override~
       LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 power = 4 parameter2 = 43 STR_VAR resource = EVAL ~%spell_res%d~ END
       LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 power = 4 parameter2 = 49 STR_VAR resource = EVAL ~%spell_res%d~ END
   END
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/idpro302.pro~ ~override~
 END
 
 END
@@ -1456,11 +1465,12 @@ END
 DEFINE_ACTION_FUNCTION tweak_phantom_blade BEGIN
 // phantom blade: do 1d8 stunning +1d8 magic damage; casting failure on hit if SR
 COPY_EXISTING ~phanblad.itm~ ~override~
-  LPF DELETE_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = ~phanblad~ END
+  LPF DELETE_EFFECT INT_VAR check_globals = 0 match_opcode = 177 STR_VAR match_resource = ~phanblad~ END
 //  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~d5phanb~ END
   LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 dicenumber = 1 dicesize = 8 damage_type = 5 END
   LPF ADD_ITEM_EFFECT INT_VAR header_type = 1 opcode = 146 target = 2 parameter2 = 1 timing = 1 probability1 = 50 STR_VAR resource = ~d5phanb1~ END
-  LPF ALTER_EFFECT INT_VAR silent = 1 header_type = 1 match_opcode = 12 match_parameter2 = 64 dicesize = 8 END
+  LPF DELETE_EFFECT INT_VAR check_globals = 0 match_opcode = 12 match_parameter2 = 4194304 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 12 target = 2 parameter1 = 4 parameter2 = 4194304 timing = 1 dicenumber = 1 dicesize = 8 END
 IF_EXISTS BUT_ONLY
 
 /*
@@ -1719,7 +1729,7 @@ COPY_EXISTING ~spwi408.spl~ ~override/spwi708.spl~
 	LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 83 parameter1 = 0 parameter2 = %missile% END
   END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 120 parameter1 = 0 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 328 parameter1 = 0 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 328 parameter2 = 111 special = 1 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 328 parameter2 = 121 special = 1 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 233 parameter1 = 1 parameter2 = 128 END
   LPF CLONE_EFFECT INT_VAR multi_match = 1 silent = 1 match_opcode = 218 opcode = 206 parameter1 = 0 STR_VAR resource = ~spwi408~ END
