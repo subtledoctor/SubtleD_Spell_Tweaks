@@ -568,6 +568,7 @@ CREATE EFF ~d5bbark~
   WRITE_LONG 0x48 102
 
 COPY_EXISTING  ~sppr202.spl~ ~override~
+				~staf14.spl~ ~override~
 				~staf14a.spl~ ~override~
 				~d5bp202.spl~ ~override~
 				~qdfv_202.spl~ ~override~
@@ -612,7 +613,20 @@ COPY_EXISTING ~tomegol4.cre~ ~override~
 IF_EXISTS BUT_ONLY
 
 // remove awful sound
-COPY ~d5_random_tweaks/data/item_tweaks/blank.wav~ ~override/eff_e02.wav~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5eff02.wav~) BEGIN
+  COPY_EXISTING ~eff_e02.wav~ ~override/d5eff02.wav~
+  COPY ~d5_random_tweaks/data/item_tweaks/blank.wav~ ~override/eff_e02.wav~
+  COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 174 STR_VAR match_resource = ~eff_e02~ resource = ~d5eff02~ END
+    END
+  BUT_ONLY
+  COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 174 STR_VAR match_resource = ~eff_e02~ resource = ~d5eff02~ END
+    END
+  BUT_ONLY
+END
 
 END
 

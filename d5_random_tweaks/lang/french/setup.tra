@@ -572,3 +572,14 @@ Capacités d'équipement :
 
 Poids : 1
 ~
+@31001 = ~Robe of the Weave~
+@31002 = ~Crafted by some of the finest mages and weavers of the Realms, this robe is made from the fibers of plants specially cultivated during the Time of Troubles, and the weave of the robe is woven counter to the magical Weave of Faerun. The resulting robes grant the wearer significant resistance to all spells, and are a favored defensive tool of powerful spellcasters, but beyond just mere magical protection, a robe such as this is a symbol of prestige.
+
+STATISTICS:
+
+Equipped Abilities:
+ Contingency once per day
+ Minor Spell Sequencer once per day
+
+Weight: 6
+~
