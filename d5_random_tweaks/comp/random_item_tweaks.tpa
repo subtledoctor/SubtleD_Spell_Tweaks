@@ -292,7 +292,7 @@ END
 DEFINE_ACTION_FUNCTION tweak_cloak_of_the_weave BEGIN
 
 COPY ~d5_random_tweaks/data/item_tweaks/clck15.itm~ ~override~
-  SAY IDENTIFIED_NAME @31001
+  SAY NAME2 @31001
   SAY IDENTIFIED_DESC @31002
 
 END
