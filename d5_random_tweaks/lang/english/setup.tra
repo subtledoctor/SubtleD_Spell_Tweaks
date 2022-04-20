@@ -540,8 +540,10 @@ Charge abilities:
 
 Weight: 2
 ~
+// Azlaer's Harp, replace 30801 with 30802
 @30801 = ~Resist Fear (~
 @30802 = ~Resist Fear, Aid (~
+// Methild's Harp, replace @30811 with either @30812 or @30813
 @30811 = ~Remove Paralysis (~
 @30812 = ~Remove Paralysis/Remove Curse (~
 @30813 = ~Remove Paralysis/Break Enchantment~
