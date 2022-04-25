@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 1.4 </strong><br />
+  <p><strong> Version 1.5 </strong><br />
     <strong> Languages:</strong> English<br />
     <strong>Platforms: </strong>Windows, Mac OS X</p>
 </div>
@@ -162,6 +162,10 @@
   <h4 class="subheader">Component 2523: Tweak Sunfire</h4>
   <div class="section">
     <p>This spell becomes "Missile Storm." Put simply, it casts a maximum-strength Magic Missile at every enemy within 20' of the caster - twice.</p>
+  </div>
+  <h4 class="subheader">Component 2508: Tweak True Seeing (for SR or TnB)</h4>
+  <div class="section">
+    <p>This boosts the True Seeing spell from Spell revisions and/or Tome and Blood by granting the "see invisible" opcode to all party members, not just the caster.</p>
   </div>
   <h4 class="subheader">Component 1603: Tweak Blade Barrier (SR-only)</h4>
   <div class="section">
