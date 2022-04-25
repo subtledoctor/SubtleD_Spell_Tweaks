@@ -1546,7 +1546,7 @@ COPY_EXISTING ~spcl232.spl~ ~override~
   READ_LONG 0x08 its_name
 BUT_ONLY
 
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~sppr505.spl~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~override/sppr505.spl~
   WRITE_LONG 0x08 pts_name
   WRITE_LONG 0x50 pts_desc
   WRITE_SHORT 0x1c 2
@@ -1554,7 +1554,7 @@ COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~sppr505.spl~
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
   LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~sppr505d~ END
 
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spwi609.spl~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~override/spwi609.spl~
   WRITE_LONG 0x08 wts_name
   WRITE_LONG 0x50 wts_desc
   WRITE_SHORT 0x1c 1
@@ -1562,7 +1562,7 @@ COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spwi609.spl~
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
   LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spwi609d~ END
 
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl232.spl~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~override/spcl232.spl~
   WRITE_LONG 0x08 pts_name
   WRITE_LONG 0x50 pts_desc
   WRITE_SHORT 0x1c 4
@@ -1570,7 +1570,7 @@ COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl232.spl~
   LPF ALTER_SPELL_HEADER INT_VAR location = 4 speed = 1 STR_VAR icon = ~spwi609b~ END
   LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spcl232d~ END
 
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl732.spl~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~override/spcl732.spl~
   WRITE_LONG 0x08 pts_name
   WRITE_LONG 0x50 pts_desc
   WRITE_SHORT 0x1c 4
@@ -1578,15 +1578,15 @@ COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnew.spl~ ~spcl732.spl~
   LPF ALTER_SPELL_HEADER INT_VAR location = 4 speed = 3 STR_VAR icon = ~spwi609b~ END
   LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5tsnewd~ resource = ~spcl232d~ END
 
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/sppr505d~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/sppr505d.spl~
   WRITE_SHORT 0x1c 2
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
   
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spwi609d~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spwi609d.spl~
   WRITE_SHORT 0x1c 1
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
   
-COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spcl232d~
+COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tsnewd.spl~ ~override/spcl232d.spl~
   WRITE_SHORT 0x1c 4
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi609b~ END
   
