@@ -27,7 +27,7 @@ END
 // monster stats_________________________________________________________________________
 //
 DEFINE_ACTION_FUNCTION tweak_monster_stats BEGIN
-COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
 	READ_LONG 0x28 animation
 	PATCH_IF (animation = 57949) BEGIN 			// 	yeti
@@ -35,6 +35,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	  WRITE_BYTE 0x239 99
 	END
   END
+  BUT_ONLY
 END
 //__________________________________________________________________________________
 
