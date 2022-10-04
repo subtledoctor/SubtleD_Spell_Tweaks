@@ -74,8 +74,10 @@
 @3092 = ~Limit Bonus Slots to 7th Level Spells~
 @3093 = ~Only +1 Bonus Slots AND Limited to 7th Level~
 @3100 = ~Metamagic Instead of MR for Cloak of the Weave~
-@31002 = ~Crafted by some of the finest mages and weavers of the Realms, this robe is made from the fibers of plants specially cultivated during the Time of Troubles, and the weave of the robe is woven counter to the magical Weave of Faerun. The resulting robes grant the wearer the ability to raise a Minor Spell Deflection once per day, and can retain and later release a pair of spells just like a Minor Spell Sequencer. (Note: using these powers is indistinguishable from casting the magic spells of the same names. For good or ill, doing can be detected and identified as using arcane magic.)
-~
+@3110 = ~Change Rings of Wizardry~
+@3111 = ~Rings of Wizardry cast Spell Sequencers~
+@3112 = ~Only Evermemory + Kontik's Ring cast Spell Sequencer~
+@3113 = ~Replace Evermemory with a Ring of Acuity~
 @4010 = ~Add a Saving Throw Against Level Drain Effects~
 @4020 = ~Improve Monster Ability Scores~
 @4030 = ~Increase Dragons' Hit Points~
@@ -572,7 +574,51 @@ STATISTICS:
 
 Equipped Abilities:
  Contingency once per day
- Minor Spell Sequencer once per day
+ Minor Spell Deflection once per day
+
+(Note: using these powers is indistinguishable from casting the magic spells of the same names. For good or ill, doing can be detected and identified as using arcane magic.)
 
 Weight: 6
 ~
+@31111 = ~Ring of Wizardry: Evermemory~
+@31112 = ~Ring of Wizardry: Evermemory
+Long ago, a grand wizard from Amn was rumored to have defied Mystra's limitations on the magical arts. Legends spoke of this wizard being able to cast spells without the limitation of memorization. In the end, it was found that his powers stemmed from the several magical rings that he had made for himself. His proclaimed "everlasting memory" was a hoax, though his rings continue to be one of the most sought-after items in the realms.
+
+STATISTICS:
+
+Equipped abilities:
+– Cast Minor Spell Sequencer up to three times per day
+
+Weight: 0~
+@31113 = ~Ring of Acuity~
+@31114 = ~The origins of this ring are unclear, and while its enchantments share similarities with historical examples of Rings of Wizardry, there is something strange in how it feels, either in the weight of the metal or in the aura it projects, and it does not function the same. It was likely found on some distant plane and, as such, its maker will remain a mystery to you.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Sequencer once per day
+
+Weight: 0~
+@31115 = ~Ring of Wizardry: Reaching Ring~
+@31116 = ~Ring of Wizardry: Reaching Ring
+This ring is masterfully enchanted, allowing the wearer to cast more spells than normally possible. It was originally commissioned by spellcaster <CHARNAME>, apparently at great monetary and personal cost.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Trigger once per day
+
+Weight: 0~
+@31117 = ~Sorcerian Ring~
+@31118 = ~Sorcerian Ring:  'Grasping Power'
+This ring is undoubtedly the pinnacle of mnemonic lucubration. Crafted at <CHARNAME>'s request from rings of Wizardry, Acuity and Metaspell Influence Amulet it allows the bearer to memorize an extra spell each day for all spell levels from one to seven. In addition, a ring of protection has been melted into the band, providing minor physical and magical defenses.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Sequencer and Spell Trigger once per day
+– Can memorize one extra spell of spell levels 1 through 7
+– Armor Class: +1
+– Saving Throws: +1
+
+Weight: 0~

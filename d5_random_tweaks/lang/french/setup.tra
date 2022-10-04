@@ -74,8 +74,12 @@
 @3092 = ~Limiter les emplacements de sorts bonus aux sorts de niveau 7~
 @3093 = ~Un seul emplacement de sort bonus par niveau de sorts ET limiter au niveau 7~
 @3100 = ~Remplacer la résistance à la magie par de la métamagie pour la Robe de la toile~
-@31002 = ~Conçues par les meilleurs mages et tisserands des Royaumes, ces robes sont faites de fibres provenant de plantes spécialement cultivées durant le Temps des Troubles, et la structure de la robe est tissée pour contrer la Toile magique de Féérune. Les robes ainsi créées accordent au porteur la capacité de lever une Déviation de sorts mineure uen fois par jour, et peuvent conserver et plus tard relâcher deux sorts de la même façon qu'un Séquenceur de Sorts Mineur. (Note: L'utilisation de ces pouvoirs est impossible à distinguer du lancer des sorts du même nom. Que ce soit un bien ou un mal, les utiliser sera détecté et identifié comme le serait l'utilisation de magie profane).
-~
+// *****
+@3110 = ~Change Rings of Wizardry~
+@3111 = ~Rings of Wizardry cast Spell Sequencers~
+@3112 = ~Only Evermemory + Kontik's Ring cast Spell Sequencer~
+@3113 = ~Replace Evermemory with a Ring of Acuity~
+
 @4010 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
 @4020 = ~Améliorer les valeurs de caractéristiques des monstres~
 @4030 = ~Augmenter les points de vie des dragons~
@@ -525,13 +529,58 @@ Capacités d'équipement :
 Poids : 1
 ~
 @31001 = ~Robe de la Toile~
+// *****
 @31002 = ~Conçues par les meilleurs mages et tisserands des Royaumes, ces robes sont faites de fibres provenant de plantes spécialement cultivées durant le Temps des Troubles, et la structure de la robe est tissée pour contrer la Toile magique de Féérune. Les robes en résultant accordent au porteur une résistance significative aux sortilèges, et elles comptent parmi les moyens de défense privilégiés des lanceurs de sorts les plus puissants, d'autant plus qu'au-delà de la simple protection magique, une robe comme celle-ci est un véritable symbole de prestige.
 
 PARAMÈTRES :
 
 Capacités d'équipement :
 - Contingence une fois par jour
-- Séquenceur mineur une fois par jour
+- Déviation de Sorts Mineur une fois par jour
 
 Poids : 6
 ~
+// *****
+@31111 = ~Ring of Wizardry: Evermemory~
+@31112 = ~Ring of Wizardry: Evermemory
+Long ago, a grand wizard from Amn was rumored to have defied Mystra's limitations on the magical arts. Legends spoke of this wizard being able to cast spells without the limitation of memorization. In the end, it was found that his powers stemmed from the several magical rings that he had made for himself. His proclaimed "everlasting memory" was a hoax, though his rings continue to be one of the most sought-after items in the realms.
+
+STATISTICS:
+
+Equipped abilities:
+– Cast Minor Spell Sequencer up to three times per day
+
+Weight: 0~
+@31113 = ~Ring of Acuity~
+@31114 = ~The origins of this ring are unclear, and while its enchantments share similarities with historical examples of Rings of Wizardry, there is something strange in how it feels, either in the weight of the metal or in the aura it projects, and it does not function the same. It was likely found on some distant plane and, as such, its maker will remain a mystery to you.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Sequencer once per day
+
+Weight: 0~
+@31115 = ~Ring of Wizardry: Reaching Ring~
+@31116 = ~Ring of Wizardry: Reaching Ring
+This ring is masterfully enchanted, allowing the wearer to cast more spells than normally possible. It was originally commissioned by spellcaster <CHARNAME>, apparently at great monetary and personal cost.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Trigger once per day
+
+Weight: 0~
+@31117 = ~Sorcerian Ring~
+@31118 = ~Sorcerian Ring:  'Grasping Power'
+This ring is undoubtedly the pinnacle of mnemonic lucubration. Crafted at <CHARNAME>'s request from rings of Wizardry, Acuity and Metaspell Influence Amulet it allows the bearer to memorize an extra spell each day for all spell levels from one to seven. In addition, a ring of protection has been melted into the band, providing minor physical and magical defenses.
+
+STATISTICS:
+
+Equipped abilities:
+– The wearer can cast Spell Sequencer and Spell Trigger once per day
+– Can memorize one extra spell of spell levels 1 through 7
+– Armor Class: +1
+– Saving Throws: +1
+
+Weight: 0~
+

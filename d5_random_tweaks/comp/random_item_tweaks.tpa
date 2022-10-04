@@ -299,4 +299,114 @@ END
 //__________________________________________________________________________________
 
 
+// rings of wizardry-->sequencers___________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_rings_of_wizardry BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ring08.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ring08_.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08.itm~ ~override/ring08.itm~
+    SAY NAME2 @31115
+    SAY IDENTIFIED_DESC @31116
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~bdring08.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/bdring08.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ring40.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring40.itm~ ~override/ring40.itm~
+    SAY NAME2 @31113
+    SAY IDENTIFIED_DESC @31114
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~c2ring04.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/c2ring04.itm~ ~override/c2ring04.itm~
+    SAY NAME2 @31117
+    SAY IDENTIFIED_DESC @31118
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ringkon.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ringkon.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ringed.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ringed.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~mh#iwd11.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08.itm~ ~override/mh#iwd11.itm~
+    SAY NAME2 @31115
+    SAY IDENTIFIED_DESC @31116
+END
+
+END
+//__________________________________________________________________________________
+
+
+// only evermemory-->sequencer______________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_evermemory_sequencer BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ring08.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ring08_.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~bdring08.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/bdring08.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ringkon.itm~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/ring08_.itm~ ~override/ringkon.itm~
+    SAY NAME2 @31111
+    SAY IDENTIFIED_DESC @31112
+END
+
+END
+//__________________________________________________________________________________
+
+
+// evermemory-->acuity______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION tweak_evermemory_acuity BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY_EXISTING ~ring40.itm~ ~override/ring08.itm~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ring08_.itm~) BEGIN
+  COPY_EXISTING ~ring40.itm~ ~override/ring08_.itm~
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~bdring08.itm~) BEGIN
+  COPY_EXISTING ~ring40.itm~ ~override/bdring08.itm~
+END
+
+END
+//__________________________________________________________________________________
+
 

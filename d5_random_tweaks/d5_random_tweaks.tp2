@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.5.5~
+VERSION ~1.5.6~
 
 AUTO_EVAL_STRINGS
 
@@ -45,6 +45,15 @@ LANGUAGE
   ~d5_random_tweaks/lang/french/setup.tra~
 
 
+/*
+IDEAS:
+- make rings of wizardry just cast Spell Sequencers
+- make IR's Rod of Absorption cast a long-lasting trap
+- put shield-slot bard instruments in quickslots
+- allow movement (half?) with Circle of Bones
+- make Shout party-friendly
+- 
+*/
 
 //do stuff____________________________________________________________________________
 
@@ -584,6 +593,34 @@ DESIGNATED 3100
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~item_rev.tp2~ ~0~) @1
 
 LAF tweak_cloak_of_the_weave END
+
+/*
+//____________________________________________________________________________________
+
+BEGIN @3111
+DESIGNATED 3111
+SUBCOMPONENT @3110
+
+LAF tweak_rings_of_wizardry END
+
+//____________________________________________________________________________________
+
+BEGIN @3112
+DESIGNATED 3112
+SUBCOMPONENT @3110
+REQUIRE_PREDICATE (GAME_IS ~eet~ ~0~) @1
+
+LAF tweak_evermemory_sequencer END
+
+//____________________________________________________________________________________
+*/
+
+BEGIN @3113
+DESIGNATED 3113
+//SUBCOMPONENT @3110
+REQUIRE_PREDICATE (GAME_IS ~eet~ ~0~) @1
+
+LAF tweak_evermemory_acuity END
 
 //____________________________________________________________________________________
 
