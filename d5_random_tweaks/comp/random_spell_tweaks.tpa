@@ -484,7 +484,7 @@ COPY ~d5_random_tweaks/data/spell_tweaks/spwi112z.spl~ ~override/spwi217.spl~
 COPY_EXISTING ~scrl1b.itm~ ~override~
 	SAY NAME2 @22171
 	SAY IDENTIFIED_DESC @22172
-COPY_EXISTING ~spwi114.spl~ ~override~
+COPY_EXISTING ~spwi114.spl~ ~override~	//	***** apply to all spells?
   LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = ~spwi217~ END
 
 END
@@ -1510,24 +1510,42 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_sunfire BEGIN
 // sunfire: change to Missile Storm - cast MM at everybody two (or three!) times
-COPY_EXISTING ~spwi523.spl~ ~override~
-  SAY NAME1 @25231
-  LPF DELETE_EFFECT END
-  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 159 END
-  PATCH_IF !(MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
-	SAY UNIDENTIFIED_DESC @25232
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
-  END
-  PATCH_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~d5_random_tweaks.tp2~ ~2217~) BEGIN
+  COPY_EXISTING ~spwi217.spl~ ~override/d5rt217.spl~
+    WRITE_LONG 0x34 5
+  COPY_EXISTING ~spwi523.spl~ ~override~
+    SAY NAME1 @25231
+    LPF DELETE_EFFECT END
+    LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 159 END
 	SAY UNIDENTIFIED_DESC @25233
-//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI217~ END
-//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI217~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 2 STR_VAR resource = ~SPWI112~ END
-  END
-IF_EXISTS BUT_ONLY
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~d5rt217~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5rt217~ END
+  IF_EXISTS BUT_ONLY
+END
+
+ACTION_IF !(MOD_IS_INSTALLED ~d5_random_tweaks.tp2~ ~2217~) BEGIN
+  COPY_EXISTING ~spwi112.spl~ ~override/d5rt112.spl~
+    WRITE_LONG 0x34 5
+  COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = ~d5rt112~ END
+  BUT_ONLY
+
+  COPY_EXISTING ~spwi523.spl~ ~override~
+    SAY NAME1 @25231
+    SAY UNIDENTIFIED_DESC @25232
+    LPF DELETE_EFFECT END
+    LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 159 END
+    PATCH_IF !(MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
+    END
+    PATCH_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~SPWI112~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~SPWI112~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 4 duration = 2 STR_VAR resource = ~SPWI112~ END
+    END
+  IF_EXISTS BUT_ONLY
+END
 	
 END
 
