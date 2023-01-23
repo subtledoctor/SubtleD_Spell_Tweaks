@@ -31,19 +31,19 @@ DEFINE_ACTION_FUNCTION tweak_gloves_missile_snaring BEGIN
 
 LAF d5_resolve_state STR_VAR new_state_id = ~D5_SNAREARROW~ RET new_state_ind END
 OUTER_SET missile_snaring_state = %new_state_ind%
-OUTER_SET nada = RESOLVE_STR_REF (~ ~)
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~7eyes.2da~ BEGIN
-	COPY ~d5_random_tweaks/data/item_tweaks/7eyes.2da~ ~override~
+OUTER_SET snare_string = RESOLVE_STR_REF (~Deflect~)
+ACTION_IF !(FILE_EXISTS_IN_GAME ~7eyes.2da~) BEGIN
+  COPY ~d5_random_tweaks/data/item_tweaks/7eyes.2da~ ~override~
 END
 
-APPEND ~7eyes.2da~ ~SNARE_ARROW  %missile_snaring_state%         %nada%         12*0x800000 *           *           *            *            *          *          *          * ~ UNLESS ~SNARE_ARROW~
+APPEND ~7eyes.2da~ ~SNARE_ARROW  %missile_snaring_state%      %snare_string%      12*0x800000 *           *           *            *            *          *          *          * ~ UNLESS ~SNARE_ARROW~
 
 COPY_EXISTING ~7eyes.2da~ ~override~
   COUNT_2DA_ROWS 1 rows
   FOR (row = 1; row < rows; ++row) BEGIN
 	READ_2DA_ENTRY row 0 1 tag
 	PATCH_IF (~%tag%~ STRING_EQUAL_CASE ~SNARE_ARROW~) BEGIN
-	  SET 7eyes_row = row
+	  SET snare_row = row
 	END
   END
 BUT_ONLY
@@ -55,17 +55,17 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl.eff~) BEGIN
     WRITE_LONG 0x18 0
     WRITE_LONG 0x1c 0
     WRITE_LONG 0x20 20
-    WRITE_LONG 0x24 0
-    WRITE_LONG 0x28 300
+    WRITE_LONG 0x24 2
+    WRITE_LONG 0x28 0
     WRITE_SHORT 0x2c 100
-    WRITE_ASCII 0x30 ~d5misgl1~ #8
-    WRITE_LONG 0x28 102
+    WRITE_ASCII 0x30 ~D5MISGL1~ #8
+    WRITE_LONG 0x48 102
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5misgl1.spl~) BEGIN
   COPY ~d5_random_tweaks/misc/d5_base.spl~ ~override/d5misgl1.spl~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5misgl1~ END
-    LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 335 target = 1 power = 0 parameter1 = %missile_snaring_state% parameter2 = %7eyes_row% timing = 0 duration = 7 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 335 target = 1 power = 0 parameter1 = %missile_snaring_state% parameter2 = %snare_row% timing = 0 duration = 7 END
+    LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5misgl1~ END
 END
 
 COPY_EXISTING ~brac18.itm~ ~override~
@@ -75,7 +75,7 @@ COPY_EXISTING ~brac18.itm~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 305 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spra303~ END
   LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi311~ END
-  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 328 target = 1 parameter2 = %missile_snaring_state% timing = 2 END
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 335 target = 1 parameter1 = %missile_snaring_state% parameter2 = %snare_row% timing = 0 duration = 7 END
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 2 STR_VAR resource = ~d5misgl~ END
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 3 parameter2 = 2 timing = 2 END
 IF_EXISTS BUT_ONLY

@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.5.7~
+VERSION ~1.6~
 
 AUTO_EVAL_STRINGS
 
@@ -361,10 +361,18 @@ LAF tweak_phantom_blade END
 
 //____________________________________________________________________________________
 
-BEGIN @2523
-DESIGNATED 2523
+BEGIN @25231
+DESIGNATED 25231
+SUBCOMPONENT @2523
 
-LAF tweak_sunfire END
+LAF tweak_sunfire_missiles END
+
+
+BEGIN @25232
+DESIGNATED 25232
+SUBCOMPONENT @2523
+
+LAF tweak_sunfire_scorcher END
 
 //____________________________________________________________________________________
 

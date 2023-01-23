@@ -42,7 +42,9 @@
 @1451  = ~Make Smashing Wave Party-Friendly~
 @2508  = ~Improve Function of SR's Waves of Fatigue~
 @2518  = ~Change Damage Type and School of Phantom Blade~
-@2523  = ~Change Sunfire into 'Missile Storm'~
+@2523  = ~Change Sunfire~
+@25231  = ~Change Sunfire into 'Missile Storm'~
+@25232  = ~Change Sunfire into 'Scorcher Storm'~
 @1505  = ~Make True Seeing Party-Wide~
 @1603  = ~Set Blade Barrier to be Breachable~
 @1609  = ~Make False Dawn Bypass Magic Resistance~
@@ -352,8 +354,8 @@ This spell creates a translucent, shadow-like, weightless area of magical force 
 
 The phantom blade acts as a +3 magical sword in terms of to-hit and damage bonuses as well as the type of creatures it can hit. Due to its etheric nature, it causes spellcasters struck to be unable to use magic for one round. This sword can only be used by the caster and remains in <PRO_HISHER> hand for the duration of the spell or until dispelled.
 ~
-@25231 = ~Missile Storm~
-@25232 = ~Missile Storm
+@25233 = ~Missile Storm~
+@25234 = ~Missile Storm
 
 Level: 5
 School: Invocation
@@ -365,7 +367,7 @@ Saving Throw: None
 
 The air around the caster crackles with energy as up to ten Magic Missiles race toward each enemy within the area of effect. These are identical to Magic Missiles created by the 1st-level spell, in every respect: each one does 1d6+1 damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
 ~
-@25233 = ~Missile Storm
+@25235 = ~Missile Storm
 
 Level: 5
 School: Invocation
@@ -375,7 +377,20 @@ Casting Time: 3
 Area of Effect: Enemies within range
 Saving Throw: None
 
-The air around the caster crackles with energy as up to ten Fiery Missiles race toward each enemy within the area of effect. These are identical to the flaiming Magic Missiles created by the 2nd-level spell, in every respect: each one does 1d4 base damage plus 1d4 fire damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
+The air around the caster crackles with energy as up to ten Fiery Missiles race toward each enemy within the area of effect. These are identical to the flaming Magic Missiles created by the 2nd-level spell "Melf's Fiery Missiles," in every respect: each one does 1d4 base damage plus 1d4 fire damage, and they are blocked by the Shield spell as well as anything else that would block the Fiery Missiles spell (including Globes of Invulnerability).
+~
+@25236 = ~Scorcher Storm~
+@25237 = ~Scorcher Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as a ray of fire hits each enemy within the area of effect. These are identical to the 2nd-level spell "Agannazar's Scorcher."
 ~
 @16112 = ~Wondrous Recall
 

@@ -42,7 +42,9 @@
 @1451  = ~Modifier Vague destructrice pour ne pas affecter le groupe~
 @2508  = ~Améliorer Vagues de fatigue de Spell Revisions~
 @2518  = ~Changer le type de dégâts et l'école de Lame fantomatique~
-@2523  = ~Remplacer Feu du soleil par « Tempête de projectiles »~
+@2523  = ~Remplacer Feu du Soleil~
+@25231  = ~Remplacer Feu du Soleil par « Tempête de Projectiles »~
+@25232  = ~Remplacer Feu du Soleil par « Tempête de Incinérateur »~
 @1505  = ~Modifier Vision Véritable pour affecter le groupe~
 @1603  = ~Rendre Barrière de lames dissipable par Brèche~
 @1609  = ~Modifier Aube illusoire pour ignorer la résistance à la magie~
@@ -79,7 +81,7 @@
 @3111 = ~Rings of Wizardry cast Spell Sequencers~
 @3112 = ~Only Evermemory + Kontik's Ring cast Spell Sequencer~
 @3113 = ~Replace Evermemory with a Ring of Acuity~
-
+// *****
 @4010 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
 @4020 = ~Améliorer les valeurs de caractéristiques des monstres~
 @4030 = ~Augmenter les points de vie des dragons~
@@ -315,8 +317,8 @@ Ce sort fait apparaître une épée silencieuse entièrement constituée de clar
 
 La lame de lune absorbe l'énergie de la cible, ce qui se traduit par un total de 1d12, +4 points de dégâts magiques à chaque coup. Une victime touchée par la lame de lune a 50 % de chance d'être affectée par un effet de Lueur féerique si elle échoue à un jet de sauvegarde contre les sorts, ce qui lui donne un malus de 2 points à la CA et lui interdit de devenir invisible. Les morts-vivants, qui sont particulièrement vulnérables à l'énergie qui irradie de la lame, subissent 1d12 points de dégâts supplémentaires et doivent réussir un jet de sauvegarde pour ne pas être sous l'effet de Lenteur pendant 3 rounds.
 ~
-@25231 = ~Tempête de projectiles~
-@25232 = ~Tempête de projectiles
+@25233 = ~Tempête de projectiles~
+@25234 = ~Tempête de projectiles
 
 Niveau : 5
 École : Invocation
@@ -328,7 +330,7 @@ Jet de sauvegarde : aucun
 
 L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles magiques fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles magiques générés par le sort du premier niveau à tout point de vue : chacun d'entre eux inflige 1d6+1 points de dégâts. Les projectiles sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles magiques.
 ~
-@25233 = ~Tempête de projectiles
+@25235 = ~Tempête de projectiles
 
 Niveau : 5
 École : Invocation
@@ -340,6 +342,19 @@ Jet de sauvegarde : aucun
 
 L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles ardents fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles Ardents générés par le sort de niveau 2 à tout point de vue : chacun d'entre eux cause 1d4 points de dégâts de base plus 1d4 dégâts de feu, et sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles magiques.
 ~
+@25236 = ~Tempête Incinérateur~
+@25237 = ~Tempête Incinérateur
+
+Niveau : 5
+École : Invocation
+Portée : 9m
+Durée : Instantanée
+Temps d'incantation : 3
+Zone d'effet : Les ennemis à portée
+Jet de sauvegarde : aucun
+
+L'air autour du lanceur crépite d'énergie alors que feu d'incinerateur fuse vers chacun des ennemis dans la zone d'effet. Chacun projectile est identique au « Incinérateur d'Agannazar. »
+~ 
 @16112 = ~Souvenir merveilleux
 
 Niveau :6
