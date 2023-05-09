@@ -456,6 +456,8 @@ COPY ~d5_random_tweaks/data/spell_tweaks/d5_webf.vvc~ ~override~
 
 COPY_EXISTING  ~spwi215.spl~ ~override~
 				~spwi215d.spl~ ~override~
+				~spdr201.spl~ ~override~  // avenger web spell
+				~spdr201d.spl~ ~override~ // avenger web spell
   SAY UNIDENTIFIED_DESC @22152
   LPF DELETE_EFFECT INT_VAR match_opcode = 126 END
   LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 157 opcode = 126 /*target = 2*/ parameter1 = 30 parameter2 = 2 savingthrow = 0 END
