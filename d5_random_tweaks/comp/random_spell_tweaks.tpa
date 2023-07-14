@@ -823,6 +823,7 @@ ACTION_IF !(spell_ios = 0 - 1) BEGIN
   COPY_EXISTING ~%spell_res%.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @13232
 	LPF ALTER_SPELL_HEADER INT_VAR speed = 4 END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 324 match_parameter2 = 43 END
   IF_EXISTS BUT_ONLY
   COPY_EXISTING ~%spell_res%.spl~ ~override/sppr350.spl~
 	SAY NAME1 @13501
@@ -1201,14 +1202,15 @@ COPY_EXISTING ~ss3umb8.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode=248 target=1 timing=1 STR_VAR resource=~d5sswp3~ END
 IF_EXISTS
 
-OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_SHADOW_MONSTERS~)
-ACTION_IF !(spell_ios = 0 - 1) BEGIN
+OUTER_SET spell_ids = IDS_OF_SYMBOL (~spell~ ~WIZARD_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ids = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_SHADOW_MONSTERS~
 	RET spell_res
   END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-    ADD_SPELL ~override/%spell_res%.spl~ 2 3 WIZARD_SHADOW_MONSTERS_D5
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 331 parameter1 = 3 special = 0 END
+  ADD_SPELL ~override/%spell_res%.spl~ 2 3 WIZARD_SHADOW_MONSTERS_D5
     WRITE_LONG 0x34 3
     READ_LONG 0x50 "valid"
     PATCH_IF (%valid% >= 0) BEGIN
@@ -1257,14 +1259,15 @@ ACTION_IF !(spell_ios = 0 - 1) BEGIN
   END
 END
 
-OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
-ACTION_IF !(spell_ios = 0 - 1) BEGIN
+OUTER_SET spell_ids = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ids = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_DEMI_SHADOW_MONSTERS~
 	RET spell_res
   END
- COPY_EXISTING ~%spell_res%.spl~ ~override~
-    ADD_SPELL ~override/%spell_res%.spl~ 2 4 WIZARD_DEMI_SHADOW_MONSTERS_D5
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 331 parameter1 = 3 special = 0 END
+  ADD_SPELL ~override/%spell_res%.spl~ 2 4 WIZARD_DEMI_SHADOW_MONSTERS_D5
     WRITE_LONG 0x34 4
     READ_LONG 0x50 "valid"
     PATCH_IF (%valid% >= 0) BEGIN
@@ -1313,14 +1316,15 @@ ACTION_IF !(spell_ios = 0 - 1) BEGIN
   END
 END
 
-OUTER_SET spell_ios = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
-ACTION_IF !(spell_ios = 0 - 1) BEGIN
+OUTER_SET spell_ids = IDS_OF_SYMBOL (~spell~ ~WIZARD_DEMI_SHADOW_MONSTERS~)
+ACTION_IF !(spell_ids = 0 - 1) BEGIN
   LAF RES_NUM_OF_SPELL_NAME
 	STR_VAR spell_name = ~WIZARD_SHADES~
 	RET spell_res
   END
   COPY_EXISTING ~%spell_res%.spl~ ~override~
-    ADD_SPELL ~override/%spell_res%.spl~ 2 5 WIZARD_SHADES_D5
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 331 parameter1 = 4 special = 0 END
+  ADD_SPELL ~override/%spell_res%.spl~ 2 5 WIZARD_SHADES_D5
     WRITE_LONG 0x34 5
     READ_LONG 0x50 "valid"
     PATCH_IF (%valid% >= 0) BEGIN
