@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.6~
+VERSION ~1.7~
 
 AUTO_EVAL_STRINGS
 
@@ -150,6 +150,7 @@ LAF tweak_mirror_image END
 
 BEGIN @2213
 DESIGNATED 2213
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
 
 LAF tweak_stinking_cloud END
@@ -270,6 +271,7 @@ LAF tweak_exaltation_spiritual_clarity END
 
 BEGIN @1351
 DESIGNATED 1351
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_MOONBLADE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
 
 LAF tweak_moonblade END
@@ -378,6 +380,7 @@ LAF tweak_sunfire_scorcher END
 
 BEGIN @1505
 DESIGNATED 1505
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) OR (FILE_EXISTS_IN_GAME ~qdtnb_spelltweaks_invis.qd~) @1
 
 LAF tweak_true_seeing END
@@ -401,6 +404,7 @@ LAF tweak_false_dawn END
 
 BEGIN @1611
 DESIGNATED 1611
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_wondrous_recall END
 

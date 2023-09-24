@@ -1681,22 +1681,26 @@ COPY_EXISTING ~sppr611.spl~ ~override~
   FOR (spls = 1; spls < 15; ++spls) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 2 parameter2 = 1 timing = 1 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 parameter2 = 1 timing = 1 END
+  END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-1~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-2~ END
-  END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-1~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-2~ END
 IF_EXISTS BUT_ONLY
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~potn43.spl~) BEGIN
+//	COPY_EXISTING ~sppr611.spl~ ~override/potn43.spl~
 	COPY_EXISTING ~sppr611.spl~ ~override/potn43.spl~
+      LPF DELETE_EFFECT INT_VAR match_opcode = 261 END
 	  FOR (spls = 1; spls < 15; ++spls) BEGIN
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 2 parameter2 = 0 timing = 1 END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 parameter2 = 0 timing = 1 END
+	  END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-1~ END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shm-2~ END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-1~ END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5src-2~ END
-	  END
 	IF_EXISTS BUT_ONLY
     COPY_EXISTING ~potn43.itm~ ~override~
 	  SAY IDENTIFIED_DESC @16113
