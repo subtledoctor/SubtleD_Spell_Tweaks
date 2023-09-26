@@ -1,7 +1,7 @@
 BACKUP ~weidu_external/backup/d5_random_tweaks~
 AUTHOR ~SubtleD~
 
-VERSION ~1.7.1~
+VERSION ~1.7.2~
 
 AUTO_EVAL_STRINGS
 
@@ -404,7 +404,6 @@ LAF tweak_false_dawn END
 
 BEGIN @1611
 DESIGNATED 1611
-REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 
 LAF tweak_wondrous_recall END
 
