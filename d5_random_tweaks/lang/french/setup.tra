@@ -6,98 +6,99 @@
 @6   = ~...~
 @7   = ~ ~
 //
-@2105  = ~Ajouter un effet d'aveuglement pour 1 round à Vapeur colorée~
-@2104  = ~Ajuster Charme personne et Charme néfaste~
-@2108  = ~Changer Protection contre la pétrification en 'Rétrovision'~
-@2112  = ~Ajuster Projectiles magiques~
-@2116  = ~Autoriser les cibles de Sommeil à se réveiller quand elles sont frappées~
-@1151  = ~Réduire les dégâts mais améliorer la Cécité pour le Soleil ardent de Spell Revisions~
-@1152  = ~Améliorer Lueur féerique~
-@2201  = ~Ajouter un évitement des projectiles à Flou~
-@2209  = ~Modifier Chance pour affecter tout le groupe~
-@2212  = ~Déplacer Image miroir au niveau 3~
-@2213  = ~Ajouter des effets persistants au Nuage puant de Spell Revisions~
-@2215  = ~Modifier Toile d'araignée pour ralentir au lieu d'immobiliser~
-@2217  = ~Changer Incinérateur d'Agannazar en Projectiles ardents de Melf~
-@2224  = ~Améliorer Poussière scintillante~
-@2251  = ~Ajouter un effet de Surdité au toucher à Bâton décuplé~
-@1202  = ~Modifier Peau d'écorce pour bloquer une attaque par round~
-@1205  = ~Ajuster Détection des pièges~
-@1207  = ~Modifier Baies magiques pour en faire une régénération hors combat~
-@1212  = ~Ajuster Ralentissement du Poison~
-@1251  = ~Améliorer les dégâts et modifier le type de dégâts pour Lance d'alicorne~
-@2305  = ~Modifier Rapidité et Lenteur pour qu'ils s'annulent l'un l'autre~
-@2316  = ~Ajuster Charme néfaste~
-@2321  = ~Permettre à Annulation des protections de cibler les "acteurs"~
-@2324  = ~Modifier Immobilisation des morts-vivants et Contrôle des morts-vivants pour ignorer la résistance à la magie~
-@1323  = ~Améliorer le temps d'incantation pour Exaltation et Clarté spirituelle~
-@1351  = ~Ajouter des effets de Lueur féerique et Lenteur au toucher de la Lame de lune~
-@1352  = ~Augmenter la portée de Lance de glace~
-@2413  = ~Autoriser la cible de Sphère résistante d'Otiluke à utiliser son inventaire~
-@2418  = ~Rendre Bouclier de feu et Gaine acide de Mestil dissipable par Brèche~
-@2451  = ~Modifier les monstres de Convocation d'ombre plus illusoires~
-@1404  = ~Remplacer Neutralisation du poison par Suppression des afflictions~
-@1409  = ~Ajuster Protection contre la mort~
-@1413  = ~Ajuster Protection contre le plan négatif~
-@1451  = ~Modifier Vague destructrice pour ne pas affecter le groupe~
-@2508  = ~Améliorer Vagues de fatigue de Spell Revisions~
-@2518  = ~Changer le type de dégâts et l'école de Lame fantomatique~
-@2523  = ~Remplacer Feu du Soleil~
-@25231  = ~Remplacer Feu du Soleil par « Tempête de Projectiles »~
-@25232  = ~Remplacer Feu du Soleil par « Tempête de Incinérateur »~
-@1505  = ~Modifier Vision Véritable pour affecter le groupe~
-@1603  = ~Rendre Barrière de lames dissipable par Brèche~
-@1609  = ~Modifier Aube illusoire pour ignorer la résistance à la magie~
-@1611  = ~Modifier Souvenir merveilleux pour restaurer tous les sorts de niveau 1 et 2~
-@1613  = ~Modifier Miroir physique pour bloquer une attaque toutes les 3 secondes~
-@1614  = ~Rendre Orbe desséchant de Sol plus facile à lancer~
-@2708  = ~Remplacer Manteau par 'Peau de fer'~
-@2711  = ~Ajuster les effets de Chaos~
-@2714  = ~Modifier les effets de Vaporisation Prismatique~
-@1707  = ~Modifier Rayon de soleil pour ignorer la résistance à la magie~
-@1710  = ~Ajouter un effet de Lenteur à Parole sacrée~
-@2808  = ~Rendre Moment de prescience dissipable par Brèche~
-@2811  = ~Déplacer Symbole, terreur au niveau 7~
-@2916  = ~Déplacer Changement de forme au niveau 8~
-@2915  = ~Déplacer Lame noire du désastre au niveau 8~
-@2914  = ~Ajouter un effet de mort instantanée à Absorption d'énergie~
-@2923  = ~Remplacer Convocation de planétaire en Convocation de djinn noble~
-@3000  = ~Donner aux armes créées par les sorts 2 attaques par round (APR)~
-@3010 = ~Ajouter une immunité aux attaques sournoises à l'Anneau de perception du danger~
-@3020 = ~Donner une vraie déviation des projectiles aux Bracelets antiprojectiles~
-@3030 = ~Améliorer les armes avec effet de détonation~
-@3040 = ~Ajouter un effet de Peau d'écorce 'révisé' à l'Armure de la foi +3~
-@3050 = ~Rendre le Bâton d'absorption d'Item Revisions réellement instantané~
-@3060 = ~Modifier la Cape de gargouille pour appliquer un effet de Peau de pierre au lieu d'un bonus à la classe d’armure~
+// weidu prompts, should not use characters outside ascii (32-127)
+@2105  = ~Ajouter un effet d'aveuglement pour 1 round a 'Vapeur coloree'~
+@2104  = ~Ajuster 'Charme personne' et 'Charme nefaste'~
+@2108  = ~Changer 'Protection contre la petrification' en 'Retrovision'~
+@2112  = ~Ajuster 'Projectiles magiques'~
+@2116  = ~Autoriser les cibles de 'Sommeil' a se reveiller quand elles sont frappees~
+@1151  = ~Reduire les degats mais ameliorer la cecite pour le 'Soleil ardent' de Spell Revisions~
+@1152  = ~Ameliorer 'Lueur feerique'~
+@2201  = ~Ajouter un evitement des projectiles a 'Flou'~
+@2209  = ~Modifier 'Chance' pour affecter tout le groupe~
+@2212  = ~Deplacer 'Image miroir' au niveau 3~
+@2213  = ~Ajouter des effets persistants au 'Nuage puant' de Spell Revisions~
+@2215  = ~Modifier 'Toile d'araignee' pour ralentir au lieu d'immobiliser~
+@2217  = ~Changer 'Incinerateur d'Agannazar' en 'Projectiles ardents de Melf'~
+@2224  = ~Ameliorer 'Poussiere scintillante'~
+@2251  = ~Ajouter un effet de 'Surdite' au toucher a 'Baton decuple'~
+@1202  = ~Modifier 'Peau d'ecorce' pour bloquer une attaque par round~
+@1205  = ~Ajuster 'Detection des pieges'~
+@1207  = ~Modifier 'Baies magiques' pour en faire une regeneration hors combat~
+@1212  = ~Ajuster 'Ralentissement du poison'~
+@1251  = ~Ameliorer les degats et modifier le type de degats pour 'Lance d'alicorne'~
+@2305  = ~Modifier 'Rapidite' et 'Lenteur' pour qu'ils s'annulent l'un l'autre~
+@2316  = ~Ajuster 'Charme nefaste'~
+@2321  = ~Permettre a 'Annulation des protections' de cibler les "acteurs"~
+@2324  = ~Modifier 'Immobilisation des morts-vivants' et 'Controle des morts-vivants' pour ignorer la resistance a la magie~
+@1323  = ~Ameliorer le temps d'incantation pour 'Exaltation' et 'Clarte spirituelle'~
+@1351  = ~Ajouter des effets de 'Lueur feerique' et 'Lenteur' au toucher de la Lame de lune~
+@1352  = ~Augmenter la portee de 'Lance de glace'~
+@2413  = ~Autoriser la cible de 'Sphere resistante d'Otiluke' a utiliser son inventaire~
+@2418  = ~Rendre 'Bouclier de feu' et 'Gaine acide de Mestil' dissipable par 'Breche'~
+@2451  = ~Rendre les monstres de 'Convocation d'ombre' plus illusoires~
+@1404  = ~Remplacer 'Neutralisation du poison' par 'Suppression des afflictions'~
+@1409  = ~Ajuster 'Protection contre la mort'~
+@1413  = ~Ajuster 'Protection contre le plan negatif'~
+@1451  = ~Modifier 'Vague destructrice' pour ne pas affecter le groupe~
+@2508  = ~Ameliorer 'Vagues de fatigue' de Spell Revisions~
+@2518  = ~Changer le type de degats et l'ecole de 'Lame fantomatique'~
+@2523  = ~Remplacer 'Feu du Soleil'~
+@25231  = ~Remplacer 'Feu du Soleil' par 'Tempete de Projectiles'~
+@25232  = ~Remplacer 'Feu du Soleil' par 'Tempete d'Incinerateurs'~
+@1505  = ~Modifier 'Vision Veritable' pour affecter le groupe~
+@1603  = ~Rendre 'Barriere de lames' dissipable par Breche~
+@1609  = ~Modifier 'Aube illusoire' pour ignorer la resistance a la magie~
+@1611  = ~Modifier 'Souvenir merveilleux' pour restaurer tous les sorts de niveau 1 et 2~
+@1613  = ~Modifier 'Miroir physique' pour bloquer une attaque toutes les 3 secondes~
+@1614  = ~Rendre 'Orbe dessechant de Sol' plus facile a lancer~
+@2708  = ~Remplacer 'Manteau' par 'Peau de fer'~
+@2711  = ~Ajuster les effets de 'Chaos'~
+@2714  = ~Modifier les effets de 'Vaporisation Prismatique'~
+@1707  = ~Modifier 'Rayon de soleil' pour ignorer la resistance a la magie~
+@1710  = ~Ajouter un effet de Lenteur a 'Parole sacree'~
+@2808  = ~Rendre 'Moment de prescience' dissipable par Breche~
+@2811  = ~Deplacer 'Symbole, terreur' au niveau 7~
+@2916  = ~Deplacer 'Changement de forme' au niveau 8~
+@2915  = ~Deplacer 'Lame noire du desastre' au niveau 8~
+@2914  = ~Ajouter un effet de mort instantanee a 'Absorption d'energie'~
+@2923  = ~Remplacer 'Convocation de planetaire' par 'Convocation de djinn noble'~
+@3000  = ~Donner aux armes creees par les sorts 2 attaques par round (APR)~
+@3010 = ~Ajouter une immunite aux attaques sournoises a l'Anneau de perception du danger~
+@3020 = ~Donner une vraie deviation des projectiles aux Bracelets antiprojectiles~
+@3030 = ~Ameliorer les armes avec effet de detonation~
+@3040 = ~Ajouter un effet de Peau d'ecorce 'revise' a l'Armure de la foi +3~
+@3050 = ~Rendre le Baton d'absorption d'Item Revisions reellement instantane~
+@3060 = ~Modifier la Cape de gargouille pour appliquer un effet de Peau de pierre au lieu d'un bonus a la classe d’armure~
 @3070 = ~Rendre les marteaux de jet nains utilisables par les non-nains~
-@3080 = ~Améliorer la Harpe d'Azlaer et la Harpe de Methild~
-@3090 = ~Dégrader l'amulette d'Edwin~
+@3080 = ~Ameliorer la Harpe d'Azlaer et la Harpe de Methild~
+@3090 = ~Degrader l'amulette d'Edwin~
 @3091 = ~Un seul emplacement de sort bonus par niveau de sorts~
-@3092 = ~Limiter les emplacements de sorts bonus aux sorts de niveau 7~
-@3093 = ~Un seul emplacement de sort bonus par niveau de sorts ET limiter au niveau 7~
-@3100 = ~Remplacer la résistance à la magie par de la métamagie pour la Robe de la toile~
+@3092 = ~Limiter les emplacements de sorts bonus aux sorts de niveau 7~
+@3093 = ~Un seul emplacement de sort bonus par niveau de sorts ET limiter au niveau 7~
+@3100 = ~Remplacer la resistance a la magie par de la metamagie pour la Robe de la toile~
 // *****
-@3110 = ~Change Rings of Wizardry~
-@3111 = ~Rings of Wizardry cast Spell Sequencers~
-@3112 = ~Only Evermemory + Kontik's Ring cast Spell Sequencer~
-@3113 = ~Replace Evermemory with a Ring of Acuity~
+@3110 = ~Modifier les anneaux de magie arcane~
+@3111 = ~Les anneaux de magie arcane lancent des sequenceurs de sorts~
+@3112 = ~Seuls la Memoire eternelle et l'anneau de Kontik lancent des sequenceurs de sorts~
+@3113 = ~Remplacer la Memoire eternelle par un anneau de precision~
 // *****
 @4010 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
-@4020 = ~Améliorer les valeurs de caractéristiques des monstres~
+@4020 = ~Ameliorer les valeurs de caracteristiques des monstres~
 @4030 = ~Augmenter les points de vie des dragons~
-@4031 = ~50 % de points de vie en plus~
-@4032 = ~100 % de points de vie en plus~
-@4033 = ~200 % de points de vie en plus~
-@4100 = ~Supprimer les planétaires et changer les capacités de haut niveau (HLA) de convocation~
+@4031 = ~50% de points de vie en plus~
+@4032 = ~100% de points de vie en plus~
+@4033 = ~200% de points de vie en plus~
+@4100 = ~Supprimer les planetaires et changer les capacites de haut niveau (HLA) de convocation~
 @5010 = ~Modifier les sorts de soin et similaires pour ignorer les protections contre les sorts~
 //
-@21081 = ~Rétrovision~ // for translation, I choose to use the name of the matching potion
+@21081 = ~Rétrovision~ // for translation, I chose to use the name of the matching potion
 @21083 = ~Rétrovision
 
 Niveau : 1
 École : Altération
 Portée : toucher
-Durée : 1 heure
+Durée : 1 heure
 Temps d'incantation : 1
 Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
@@ -124,9 +125,9 @@ Niveau : 1
 École : Enchantement
 Portée : 9 m
 Durée : 5 tours
-Temps d'incantation : 2 
+Temps d'incantation : 2
 Zone d'effet : 1 créature
-Jet de sauvegarde : aucun 
+Jet de sauvegarde : aucun
 
 Le bénéficiaire de ce sort est chanceux dans tout ce qu'il entreprend. Il reçoit 5 % ou 1 point de bonus pour chacun de ses actes, y compris les jets de sauvegarde, les chances d'atteindre une cible, les jets de dés pour les dégâts causés, les talents de voleur, etc.
 ~
@@ -156,14 +157,14 @@ Le sort de Toile d'araignée crée une masse à plusieurs couches de fils épais
 @22172 = ~Projectiles ardents de Melf
 
 Niveau : 2
-École: Invocation
-Portée: champ visuel du lanceur
-Durée: Instantanée
+École : Invocation
+Portée : champ visuel du lanceur
+Durée : Instantanée
 Temps d'incantation : 1
 Zone d'effet : 1 créature
 Jet de sauvegarde : souffles
 
-De la même façon que la variante 'Projectiles de Force de Mordenkainen', ce sort est une tentative d'amélioration du sort de base Projectiles magiques. Cette version créer deux projectiles de magie crépitante qui se dirigent et frappent sans faillir leur cible, qui doit être une créature quelle qu'elle soit. Chaque projectile inflige 1d4 points de dégâts magiques, plus 1d4 points de dégâts de feu (la cible peut réussir un jet de sauvegarde contre les souffles pour éviter les dégâts de feu). Ce sort crée trois projectiles au niveau 4, quatre projectiles au niveau 6, cinq projectiles au niveau 8 et six au niveau 10.
+De la même façon que la variante « Projectiles de Force de Mordenkainen », ce sort est une tentative d'amélioration du sort de base Projectiles magiques. Cette version créer deux projectiles de magie crépitante qui se dirigent et frappent sans faillir leur cible, qui doit être une créature quelle qu'elle soit. Chaque projectile inflige 1d4 points de dégâts magiques, plus 1d4 points de dégâts de feu (la cible peut réussir un jet de sauvegarde contre les souffles pour éviter les dégâts de feu). Ce sort crée trois projectiles au niveau 4, quatre projectiles au niveau 6, cinq projectiles au niveau 8 et six au niveau 10.
 
 Le sort Bouclier bloque Projectiles ardents de Melf, de la même manière qu'il bloque le sort de base, Projectiles magiques.
 ~
@@ -203,7 +204,7 @@ Durée : 1 round par niveau
 Temps d'incantation : 5
 Durée : 1 round par niveau
 Zone d'effet : le groupe
-Jet de sauvegarde : aucun 
+Jet de sauvegarde : aucun
 
 Quand il lance ce sort, le lanceur amène une poignée de baies enchantée à grossir jusqu'à une taille surnaturelle et les distribue à ses alliés. Chaque part est aussi nourrissant qu'un repas ordinaire et l'enchantement les rend anormalement réparatrices : consommer les baies supprime l'ivresse, réduit la fatigue et le bénéficiaire régénère 2 points de vie par round, pendant un nombre de rounds égal au niveau du lanceur de sorts (jusqu'à un maximum de 20 points de vies soignés en 10 rounds).
 
@@ -226,7 +227,7 @@ Lorsque ce sort est jeté sur un individu empoisonné, il ralentit fortement l'e
 
 Niveau : 2
 École : Divination
-Sphère : Divination 
+Sphère : Divination
 Portée : jeteur du sort
 Durée : 4 heures
 Temps d'incantation : 5
@@ -297,7 +298,7 @@ Sphère : Protection
 Portée : Champ de vision du lanceur de sort
 Durée : Instantanée
 Temps d'incantation : 9
-Zone d'effet: 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : Aucun
 
 Avec ce sort, le lanceur de sorts renforce la détermination spirituelle d'une créature et purge l'esprit de la créature des influences négatives. Le sort supprime les effets de peur, de sommeil, de débilité, l'inconscience et l'ivresse, ainsi que les états de rage et de confusion sur une seule créature. De plus, le bénéficiaire est protégé contre les sorts et attaques qui provoquent ces effets pour toute la durée du sort.
@@ -322,7 +323,7 @@ La lame de lune absorbe l'énergie de la cible, ce qui se traduit par un total d
 
 Niveau : 5
 École : Invocation
-Portée : 9m
+Portée : 9 m
 Durée : Instantanée
 Temps d'incantation : 3
 Zone d'effet : Les ennemis à portée
@@ -340,26 +341,26 @@ Temps d'incantation : 3
 Zone d'effet : Les ennemis à portée
 Jet de sauvegarde : aucun
 
-L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles ardents fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles Ardents générés par le sort de niveau 2 à tout point de vue : chacun d'entre eux cause 1d4 points de dégâts de base plus 1d4 dégâts de feu, et sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles magiques.
+L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles ardents fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles Ardents générés par le sort de niveau 2 à tout point de vue : chacun d'entre eux cause 1d4 points de dégâts de base plus 1d4 dégâts de feu, et sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles Ardents.
 ~
-@25236 = ~Tempête Incinérateur~
-@25237 = ~Tempête Incinérateur
+@25236 = ~Tempête d'Incinérateurs~
+@25237 = ~Tempête d'Incinérateurs
 
 Niveau : 5
 École : Invocation
-Portée : 9m
+Portée : 9 m
 Durée : Instantanée
 Temps d'incantation : 3
 Zone d'effet : Les ennemis à portée
 Jet de sauvegarde : aucun
 
-L'air autour du lanceur crépite d'énergie alors que feu d'incinerateur fuse vers chacun des ennemis dans la zone d'effet. Chacun projectile est identique au « Incinérateur d'Agannazar. »
-~ 
+L'air autour du lanceur crépite d'énergie alors que les flammes de l'incinérateur fusent vers chacun des ennemis dans la zone d'effet. Chaque projectile est identique à l'« Incinérateur d'Agannazar ».
+~
 @16112 = ~Souvenir merveilleux
 
 Niveau :6
 École : Transmutation
-Sphère: Universel, Pensée
+Sphère : Universel, Pensée
 Portée : Personnelle
 Durée : Instantanée
 Temps d'incantation : 1 round
@@ -387,7 +388,7 @@ Les peaux de fer ne protégeront pas le lanceur contre des attaques magiques de 
 ~
 @27142 = ~Vaporisation Prismatique
 Niveau : 7
-Ecole : Altération
+École : Altération
 Portée : spéciale
 Durée : spéciale
 Temps d'incantation : 1
@@ -551,51 +552,60 @@ PARAMÈTRES :
 
 Capacités d'équipement :
 - Contingence une fois par jour
-- Déviation de Sorts Mineur une fois par jour
+- Déviation de Sorts Mineure une fois par jour
+
+(Note : l'utilisation de ces sorts est en tout point semblable au fait de lancer les sorts de même nom. Les utiliser pourra être détecté et identifié comme une utilisation de magie arcane, que ce soit pour le meilleur ou pour le pire)
 
 Poids : 6
 ~
 // *****
-@31111 = ~Ring of Wizardry: Evermemory~
-@31112 = ~Ring of Wizardry: Evermemory
-Long ago, a grand wizard from Amn was rumored to have defied Mystra's limitations on the magical arts. Legends spoke of this wizard being able to cast spells without the limitation of memorization. In the end, it was found that his powers stemmed from the several magical rings that he had made for himself. His proclaimed "everlasting memory" was a hoax, though his rings continue to be one of the most sought-after items in the realms.
+// 6644
+@31111 = ~La Mémoire éternelle~
+// modified 7366
+@31112 = ~Anneau des Arcanes : La Mémoire Éternelle
+On raconte que jadis, un grand magicien amnien défia les pouvoirs magiques de Mystra. Des légendes racontent que ce magicien était doué d'une capacité de mémorisation illimitée pour lancer des sorts. Il s'avéra finalement que son pouvoir provenait de plusieurs anneaux magiques qu'il s'était fabriqué. Sa prétendue « mémoire infinie » n'était qu'une plaisanterie, mais ses anneaux continuent de figurer parmi les objets les plus recherchés des Royaumes.
 
-STATISTICS:
+PARAMÈTRES :
 
-Equipped abilities:
-– Cast Minor Spell Sequencer up to three times per day
+Capacités d'équipement :
+– permet de lancer Séquenceur mineur trois fois par jour
 
-Weight: 0~
-@31113 = ~Ring of Acuity~
-@31114 = ~The origins of this ring are unclear, and while its enchantments share similarities with historical examples of Rings of Wizardry, there is something strange in how it feels, either in the weight of the metal or in the aura it projects, and it does not function the same. It was likely found on some distant plane and, as such, its maker will remain a mystery to you.
+Poids : 0~
+// 31213
+@31113 = ~Anneau de précision~
+// modified 31214
+@31114 = ~L'Anneau de Précision
+Les origines de cet anneau sont entourées de mystère et, même si ses enchantements sont similaires à ceux d'autres Anneaux des Arcanes, il y a quelque chose d'étrange dans la sensation procurée, que cela soit au niveau du poids, du métal ou de son aura. Le fonctionnement semble également différent. Comme il a été certainement trouvé dans un plan éloigné, son créateur restera sans doute inconnu.
 
-STATISTICS:
+PARAMÈTRES :
 
-Equipped abilities:
-– The wearer can cast Spell Sequencer once per day
+Capacités d'équipement :
+– permet de lancer Séquenceur de sorts une fois par jour
 
-Weight: 0~
-@31115 = ~Ring of Wizardry: Reaching Ring~
-@31116 = ~Ring of Wizardry: Reaching Ring
-This ring is masterfully enchanted, allowing the wearer to cast more spells than normally possible. It was originally commissioned by spellcaster <CHARNAME>, apparently at great monetary and personal cost.
+Poids : 0~
+@31115 = ~Anneau des arcanes~
+@31116 = ~Anneau des arcanes
+Cet anneau a été enchanté par un maître, il permet à son porteur de mémoriser plus de sorts que la normale. Il fut commandé par <CHARNAME>, visiblement à grands frais.
 
-STATISTICS:
+PARAMÈTRES :
 
-Equipped abilities:
-– The wearer can cast Spell Trigger once per day
+Capacités d'équipement :
+– permet de lancer Déclencheur de sort une fois par jour
 
-Weight: 0~
-@31117 = ~Sorcerian Ring~
-@31118 = ~Sorcerian Ring:  'Grasping Power'
-This ring is undoubtedly the pinnacle of mnemonic lucubration. Crafted at <CHARNAME>'s request from rings of Wizardry, Acuity and Metaspell Influence Amulet it allows the bearer to memorize an extra spell each day for all spell levels from one to seven. In addition, a ring of protection has been melted into the band, providing minor physical and magical defenses.
+Poids : 0~
+// item_upgrades @186
+@31117 = ~Anneau Ensorceleur~
+// item_upgrades @187
+@31118 = ~Anneau Ensorceleur : « Saisir le pouvoir »
+Cet anneau est sans aucun doute le sommet de l'aide à la mémorisation. Forgé à la requête de <CHARNAME> à partir d'Anneaux des arcanes et de précision, ainsi que de l'Amulette d'influence sur les méta-sorts, il permet au porteur de mémoriser un sort de plus chaque jour pour tous les niveaux de sorts de un à sept. De plus, un Anneau de protection y a été fondu, apportant des défenses physiques et magiques mineures.
 
-STATISTICS:
+PARAMÈTRES :
 
-Equipped abilities:
-– The wearer can cast Spell Sequencer and Spell Trigger once per day
-– Can memorize one extra spell of spell levels 1 through 7
-– Armor Class: +1
-– Saving Throws: +1
+Capacités d'équipement :
+– permet de lancer Séquenceur de sorts et Déclencheur de sort une fois par jour
+– mémorisation d'un sort profane supplémentaire pour les niveaux un à sept
+– classe d'armure : bonus de 1
+– jets de sauvegarde : bonus de 1
 
-Weight: 0~
+Poids : 0~
 
