@@ -1,0 +1,964 @@
+BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
+AUTHOR ~subtledoctor~
+VERSION ~1.0~ 
+
+ALWAYS
+
+	INCLUDE ~SubtleD_Spell_Tweaks/lib/misc_functions.tpa~
+
+	INCLUDE ~SubtleD_Spell_Tweaks/comp/random_spell_tweaks.tpa~
+	
+	ACTION_FOR_EACH kitclab IN ~CLABMA01~ ~CLABMA02~ ~CLABMA03~ ~CLABMA04~ ~CLABMA05~ ~CLABMA06~ ~CLABMA07~ ~CLABMA08~ ~CLABMA09~ BEGIN 
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~%kitclab%.2DA~) THEN BEGIN
+	    COPY ~%MOD_FOLDER%/data/core/BLANKCLAB.2da~ ~override/%kitclab%.2da~ //generate undefined clab files
+	  END 
+	END  
+
+END
+
+/* Language Settings 
+AUTO_TRA ~SubtleD_Spell_Tweaks/lang/%s~
+*/
+
+AUTO_TRA "weidu_external/lang/%MOD_FOLDER%/%s"
+
+LANGUAGE
+  ~English~
+  ~english~
+  ~SubtleD_Spell_Tweaks/lang/english/setup.tra~
+
+LANGUAGE
+  ~Français~
+  ~french~
+  ~SubtleD_Spell_Tweaks/lang/french/setup.tra~
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+BEGIN @1
+DESIGNATED 1
+
+COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5__sdst.d5~
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+// -----------------------------
+// 10: CHANGE ARCANE OPPOSITION SCHOOLS (Subtledoctor)
+// 11: no opposition schools
+// 12: iwd opposition schools
+// 13: iwd opposition schools, low-level spells universal
+// 14: bg2 opposition schools
+// 15: bg2 opposition schools, low-level spells universal
+// 16: PnP opposition schools
+// 17: PnP opposition schools, low-level spells universal
+// -----------------------------
+
+//no wizard opposition schools______________________________________________________
+//
+BEGIN @11
+DESIGNATED 11
+SUBCOMPONENT @10
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+LAF change_opposition_schools STR_VAR mode = ~none~ END
+
+//iwd opposition schools____________________________________________________________
+//
+BEGIN @12
+DESIGNATED 12
+SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~iwd~ END
+
+//iwd opposition schools > level 4__________________________________________________
+//
+BEGIN @13
+DESIGNATED 13
+SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+INCLUDE ~%MOD_FOLDER%/sdst_settings.ini~
+
+LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_spell_level% STR_VAR mode = ~iwd~ END
+
+//bg2 opposition schools____________________________________________________________
+//
+BEGIN @14
+DESIGNATED 14
+SUBCOMPONENT @10 (GAME_IS ~iwd iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~bg2~ END
+
+//bg2 opposition schools > level 4__________________________________________________
+//
+BEGIN @15
+DESIGNATED 15
+SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+INCLUDE ~%MOD_FOLDER%/sdst_settings.ini~
+
+LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_spell_level% STR_VAR mode = ~bg2~ END
+
+//pnp opposition schools____________________________________________________________
+//
+BEGIN @16
+DESIGNATED 16
+SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~pnp~ END
+
+//pnp opposition schools > level 4__________________________________________________
+//
+BEGIN @17
+DESIGNATED 17
+SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+INCLUDE ~%MOD_FOLDER%/sdst_settings.ini~
+
+LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_spell_level% STR_VAR mode = ~pnp~ END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 20: REBALANCED SPELL SCHOOLS (Subtledoctor)
+// -----------------------------
+BEGIN @20
+DESIGNATED 20
+REQUIRE_PREDICATE (ENGINE_IS ~soa tob iwd bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_schools.qd~ //detection for this component 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+LAF spell_schools END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 30: SPELL TWEAKS: MR PENETRATION (Subtledoctor)
+// -----------------------------
+BEGIN @30
+DESIGNATED 30
+//REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+//DEPRECATED @4
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF tweak_magic_resistance END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 35: SPELL TWEAKS: LEVEL DRAIN (Subtledoctor)
+// -----------------------------
+BEGIN @35
+DESIGNATED 35
+//GROUP @5
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF tweak_level_drain END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 40: SPELL TWEAKS: REVISED CLONES (Subtledoctor)
+// -----------------------------
+BEGIN @40
+DESIGNATED 40
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_spelltweaks_clone.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF illusion_clone_tweaks END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 45: SPELL TWEAKS: REVISED INVISIBILITY (Subtledoctor)
+// -----------------------------
+BEGIN @45
+DESIGNATED 45
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_spelltweaks_invis.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF invisibility_tweaks END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 50: SPELL TWEAKS: HASTE/SLOW CHANGES (Subtledoctor)
+// -----------------------------
+BEGIN @50
+DESIGNATED 50
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+//GROUP @5
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF tweak_haste_slow END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 55: SPELL TWEAKS: CURE SPELLS BYPASS DEFLECTION (Subtledoctor)
+// -----------------------------
+BEGIN @55
+DESIGNATED 55
+//GROUP @5
+
+INCLUDE ~%MOD_FOLDER%/sdst_settings.ini~
+
+LAF cure_power INT_VAR power_level = %cure_power_level% END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 60: CANTRIPS (Subtledoctor)
+// 61: Cantrips, Innate 
+// 62: Cantrips, Level One
+// 63: Cantrips, via Wand
+// -----------------------------
+
+BEGIN @61
+DESIGNATED 61
+SUBCOMPONENT @60 
+//REQUIRE_PREDICATE (ENGINE_IS ~soa tob iwd bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_cantrips.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/cantrips.tpa~
+
+LAF innate_cantrips END
+
+// -----------------------------
+
+BEGIN @62
+DESIGNATED 62
+SUBCOMPONENT @60 (GAME_IS ~bgee bg2ee eet iwdee~)
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_l1cantrips.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/cantrips.tpa~
+
+LAF level_1_cantrips END
+
+// -----------------------------
+
+BEGIN @63
+DESIGNATED 63
+SUBCOMPONENT @60
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_cantwand.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/cantrips.tpa~
+
+LAF cantrip_wands END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 81: CHOOSE-YOUR-OWN FAMILIAR
+// -----------------------------
+BEGIN @81
+DESIGNATED 81
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_familiar_choice.qd~ //detection for this component 
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_familiar_changes.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/familiars.tpa~
+
+LAF familiar_choice END
+LAF familiar_changes END
+LAF indelible_familiars END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 82: POOKY'S MOD: IMBUE FAMILIARS
+// -----------------------------
+BEGIN @82
+DESIGNATED 82
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_imbue_familiars.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/familiars.tpa~
+
+LAF imbue_familiars END
+
+//____________________________________________________________________________________
+
+ 
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+//random tweaks_______________________________________________________________________
+
+BEGIN @1152
+DESIGNATED 1152
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_FAERIE_FIRE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_faerie_fire END
+
+//____________________________________________________________________________________
+
+BEGIN @1151
+DESIGNATED 1151
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sunscorch END
+
+//____________________________________________________________________________________
+
+BEGIN @1202
+DESIGNATED 1202
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_barkskin END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1205
+DESIGNATED 1205
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_find_traps END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @1207
+DESIGNATED 1207
+//REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_good_berry END
+
+//____________________________________________________________________________________
+
+BEGIN @1212
+DESIGNATED 1212
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_slow_poison END
+
+//____________________________________________________________________________________
+
+BEGIN @1251
+DESIGNATED 1251
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_ALICORN_LANCE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_alicorn_lance END
+
+//____________________________________________________________________________________
+
+BEGIN @1323
+DESIGNATED 1323
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_exaltation_spiritual_clarity END
+
+//____________________________________________________________________________________
+
+BEGIN @1351
+DESIGNATED 1351
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_MOONBLADE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_moonblade END
+
+//____________________________________________________________________________________
+
+BEGIN @1404
+DESIGNATED 1404
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_neutralize_poison END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1409
+DESIGNATED 1409
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_death_ward END
+*/
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @1413
+DESIGNATED 1413
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_negative_plane_protection END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @1451
+DESIGNATED 1451
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]CLERIC_SMASHING_WAVE[ %TAB%%LNL%%MNL%%WNL%]~)) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_smashing_wave END
+
+//____________________________________________________________________________________
+
+BEGIN @1505
+DESIGNATED 1505
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) OR (FILE_EXISTS_IN_GAME ~qdtnb_spelltweaks_invis.qd~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_true_seeing END
+
+//____________________________________________________________________________________
+
+BEGIN @1603
+DESIGNATED 1603
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_blade_barrier END
+
+//____________________________________________________________________________________
+
+BEGIN @1609
+DESIGNATED 1609
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_false_dawn END
+
+//____________________________________________________________________________________
+
+BEGIN @1611
+DESIGNATED 1611
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_wondrous_recall END
+
+//____________________________________________________________________________________
+
+BEGIN @1613
+DESIGNATED 1613
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_physical_mirror END
+
+//____________________________________________________________________________________
+
+BEGIN @1614
+DESIGNATED 1614
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sols_orb END
+
+//____________________________________________________________________________________
+
+BEGIN @1707
+DESIGNATED 1707
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sunray END
+
+//____________________________________________________________________________________
+
+BEGIN @1710
+DESIGNATED 1710
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_holy_word END
+
+//____________________________________________________________________________________
+
+BEGIN @2105
+DESIGNATED 2105
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_color_spray END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2104
+DESIGNATED 2104
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_charm_person END
+LAF tweak_dire_charm END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2108
+DESIGNATED 2108
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_pro_petrification END
+
+//____________________________________________________________________________________
+
+BEGIN @2110
+DESIGNATED 2110
+REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~qdtnb_identify.qd~) @4
+REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~d5__new_identify.d5~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+INCLUDE ~%MOD_FOLDER%/lib/semi_spont/semi_misc_functions.tpa~ 
+
+LAF semi_spont_identify END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2112
+DESIGNATED 2112
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_magic_missile END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2116
+DESIGNATED 2116
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sleep END
+
+//____________________________________________________________________________________
+
+BEGIN @2151
+DESIGNATED 2151
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_retreat END
+
+//____________________________________________________________________________________
+
+BEGIN @2201
+DESIGNATED 2201
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_blur END
+
+//____________________________________________________________________________________
+
+BEGIN @2209
+DESIGNATED 2209
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_luck END
+
+//____________________________________________________________________________________
+
+BEGIN @2212
+DESIGNATED 2212
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_mirror_image END
+
+//____________________________________________________________________________________
+
+BEGIN @2213
+DESIGNATED 2213
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_stinking_cloud END
+
+//____________________________________________________________________________________
+
+BEGIN @2215
+DESIGNATED 2215
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_web END
+
+//____________________________________________________________________________________
+
+BEGIN @2217
+DESIGNATED 2217
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_scorcher END
+
+//____________________________________________________________________________________
+
+BEGIN @2224
+DESIGNATED 2224
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_glitterdust END
+
+//____________________________________________________________________________________
+
+BEGIN @2251
+DESIGNATED 2251
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DECASTAVE[ %TAB%%LNL%%MNL%%WNL%]~)) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_decastave END
+
+//____________________________________________________________________________________
+
+/*
+BEGIN @2316
+DESIGNATED 2316
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_dire_charm END
+*/
+
+//____________________________________________________________________________________
+
+BEGIN @2321
+DESIGNATED 2321
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_spell_thrust END
+
+//____________________________________________________________________________________
+
+BEGIN @2324
+DESIGNATED 2324
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_hold_control_undead END
+
+//____________________________________________________________________________________
+
+BEGIN @2352
+DESIGNATED 2352
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_ICELANCE[ %TAB%%LNL%%MNL%%WNL%]~)) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_icelance END
+
+//____________________________________________________________________________________
+
+BEGIN @2413
+DESIGNATED 2413
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_otilukes_sphere END
+
+//____________________________________________________________________________________
+
+BEGIN @2418
+DESIGNATED 2418
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_fire_shields END
+
+//____________________________________________________________________________________
+
+BEGIN @2451
+DESIGNATED 2451
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_SHADES[ %TAB%%LNL%%MNL%%WNL%]~)) @4 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_shadow_monsters END
+
+//____________________________________________________________________________________
+
+BEGIN @2508
+DESIGNATED 2508
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_waves_of_fatigue END
+
+//____________________________________________________________________________________
+
+BEGIN @2514
+DESIGNATED 2514
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_lower_resistance END
+
+//____________________________________________________________________________________
+
+BEGIN @2518
+DESIGNATED 2518
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_phantom_blade END
+
+//____________________________________________________________________________________
+
+BEGIN @25231
+DESIGNATED 25231
+SUBCOMPONENT @2523
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sunfire_missiles END
+
+
+BEGIN @25232
+DESIGNATED 25232
+SUBCOMPONENT @2523
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_sunfire_scorcher END
+
+//____________________________________________________________________________________
+
+BEGIN @2708
+DESIGNATED 2708
+REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_mantle END
+
+//____________________________________________________________________________________
+
+BEGIN @2711
+DESIGNATED 2711
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_chaos END
+
+//____________________________________________________________________________________
+
+BEGIN @2714
+DESIGNATED 2714
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_prismatic_spray END
+
+//____________________________________________________________________________________
+
+BEGIN @2808
+DESIGNATED 2808
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_moment_of_prescience END
+
+//____________________________________________________________________________________
+
+BEGIN @2811
+DESIGNATED 2811
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_symbol_fear END
+
+//____________________________________________________________________________________
+
+BEGIN @2916
+DESIGNATED 2916
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_shapechange END
+
+//____________________________________________________________________________________
+
+BEGIN @2915
+DESIGNATED 2915
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_black_blade END
+
+//____________________________________________________________________________________
+
+BEGIN @2914
+DESIGNATED 2914
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_energy_drain END
+
+//____________________________________________________________________________________
+
+BEGIN @2923
+DESIGNATED 2923
+REQUIRE_PREDICATE (GAME_IS ~bg2ee eet~) @1 
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
+//GROUP @6
+
+LAF tweak_planetars END
+
+//____________________________________________________________________________________
+
+
+/*
+BEGIN ~dummy GROUP component~
+DEPRECATED ~magic tweaks~
+//GROUP @5
+
+BEGIN ~dummy GROUP component~
+DEPRECATED ~individual spell tweaks~
+GROUP @6
+*/
+

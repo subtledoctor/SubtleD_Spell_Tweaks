@@ -1,0 +1,1843 @@
+// -----------------------------
+// CANTRIPS by SUBTLEDOCTOR 
+// -----------------------------
+
+DEFINE_ACTION_FUNCTION innate_cantrips BEGIN 
+
+/*
+PLAN:
+/ - make each spell
+/  -- CREATE directly in weidu
+/ - tra references
+/ - make icons for them
+/  -- ...purple?
+/  -- apply in spell headers
+/ - make slots table with 1 slot
+/ - set up semi_innate
+/ - remove -1 slot from all spells
+ - read in opposition schools...? nah!
+/ - build .BAF (with opp exclusions...? nah!)
+/  -- with GV to run the DLG three times
+/ - build .DLG for all cantrips
+/  -- DLG choices apply learn spell
+/ - make SPL to trigger DLG (& EFF & CRE)
+/  -- innate, but in spells button?
+/  -- cancels all learn spells; removes all cantrips; applies all block spells; triggers DLG
+/ - give cantrip choice abil to all arcane casters (?)
+*/
+
+// cantrip spells
+/*
+// - Drowse (sleep for 3 rounds; can only be affected once)
+// - Vicious Mockery (stun for 2 second, berserk for 3 rounds on failed save)
+// - Thorn Grasp (exempt size L targets) pin for 3 rounds on failed save
+// - Gust (small buffet, bigger on failed save, knockdown if fail save at +2)
+// - Dazzle (thac0 penalty for 3 rounds, blind for 1 on failed save)
+// - Minor Illusion/Dancing Lights (...ogre? summon with 1 hp)
+// - Reflected image (just cast spwi120 - only if no SR)
+// - Deflective Shell (block one spell)
+// - Spell Thrust (just cast spwi321, and add it to hidespl)
+// - Rigor Mortis (slow for 3 rounds on failed save)
+// - "Wisplight" (single Faerie Fire)
+// - Conjure Rabbit (conjure rabbit)
+// - Armor (just cast spwi102, and add it to hidespl)
+// - Magic Bolt (but make it a weapon (but make it blocked by Defl/GOI))
+// - Glimpse (2-second look)
+// - "Diviner's Eyes" (+2 thac0 for ally, 3 rounds)
+// - Chaotic Orb (L1Cantrips chromatic orb)
+ - Burning Hands...?
+ - Shocking Grasp...?
+*/
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpdr.bam~ ~override~
+CREATE SPL ~d5ctpdr~	//	drowse
+  SAY NAME1 @6013
+  SAY UNIDENTIFIED_DESC @6014
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctpdr~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 power = 1 target = 2 parameter2 = (0 - 1) timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 14 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 power = 1 target = 2 parameter1 = 0 timing = 1 duration = 0 savingthrow = 1 STR_VAR resource = ~SPCOMEND~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 232 power = 1 target = 2 parameter2 = 11 timing = 0 duration = 18 savingthrow = 1 STR_VAR resource = ~d5wakeup~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 120 savingthrow = 1 STR_VAR resource = ~d5ctpdr~ END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5wakeup.spl~) BEGIN
+  CREATE SPL ~d5wakeup~
+    SAY NAME1 ~~
+    SAY UNIDENTIFIED_DESC ~~
+    WRITE_SHORT 0x1c 4
+    WRITE_LONG 0x34 1
+    LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 4 target = 1 required_level = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 40 power = 0 target = 2 parameter1 = 0 timing = 0 duration = 3 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 STR_VAR resource = ~d5ctpdr~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 2 power = 0 target = 2 parameter1 = 0 timing = 0 duration = 1 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 240 power = 1 target = 2 parameter2 = 14 timing = 1 duration = 1 END
+END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpvm.bam~ ~override~
+CREATE SPL ~d5ctpvm~	//	vicious mockery
+  SAY NAME1 @6015
+  SAY UNIDENTIFIED_DESC @6016
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctpvm~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 165 power = 1 target = 2 timing = 0 duration = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 5 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 0 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 43 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 296 power = 1 target = 2 timing = 0 duration = 18 savingthrow = 1 STR_VAR resource = ~SPNWCHRM~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 24 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 23 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 106 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 36 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 240 power = 1 target = 2 parameter2 = 36 timing = 1 duration = 1 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 39 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 217 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 14 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 130 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 128 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 2 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 3 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 power = 1 target = 2 parameter2 = 47 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 3 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 4 timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 power = 1 target = 2 parameter1 = 0 timing = 1 duration = 0 savingthrow = 1 STR_VAR resource = ~SPCOMEND~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 120 savingthrow = 1 STR_VAR resource = ~d5ctpvm~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctptg.bam~ ~override~
+CREATE SPL ~d5ctptg~	//	thorn grasp
+  SAY NAME1 @6017
+  SAY UNIDENTIFIED_DESC @6018
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 power = 1 target = 2 parameter2 = 0 timing = 0 duration = 0 STR_VAR resource = ~CRE_P01~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 176 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 3 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 154 power = 1 target = 2 parameter2 = 0 timing = 0 duration = 3 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 176 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 12 savingthrow = 16 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 154 power = 1 target = 2 parameter2 = 0 timing = 0 duration = 12 savingthrow = 16 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 144 timing = 0 duration = 12 savingthrow = 16 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 0 parameter2 = 13 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 123 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 155 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 146 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 142 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 151 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 132 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 119 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 175 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 133 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 134 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 145 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 141 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 139 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = 118 parameter2 = 104 timing = 0 duration = 1 STR_VAR resource = ~d5ctptg~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpgu.bam~ ~override~
+CREATE SPL ~d5ctpgu~	//	gust
+  SAY NAME1 @6019
+  SAY UNIDENTIFIED_DESC @6020
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 20 required_level = 1 STR_VAR icon = ~d5ctpgu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 235 power = 1 target = 2 parameter1 = 6 parameter2 = 2 timing = 0 duration = 1 savingthrow = 2 savebonus = (0 - 2) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 39 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 1 savingthrow = 2 savebonus = 2 END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpdz.bam~ ~override~
+CREATE SPL ~d5ctpdz~	//	dazzle
+  SAY NAME1 @6021
+  SAY UNIDENTIFIED_DESC @6022
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 10 required_level = 1 STR_VAR icon = ~d5ctpdz~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 power = 1 target = 2 parameter1 = (0 - 2) timing = 0 duration = 18 STR_VAR resource = ~d5bsfo1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 74 power = 1 target = 2 parameter1 = 0 timing = 0 duration = 12 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 savingthrow = 1 STR_VAR resource = ~d5ctpdz~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmi.bam~ ~override~
+CREATE SPL ~d5ctpmi~	//	minor illusion
+  SAY NAME1 @6023
+  SAY UNIDENTIFIED_DESC @6024
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 4 range = 20 required_level = 1 STR_VAR icon = ~d5ctpmi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 18 STR_VAR resource = ~d5_ogrmi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 0 STR_VAR resource = ~EFF_M13~ END
+COPY ~%MOD_FOLDER%/data/cantrips/d5_ogrmi.cre~ ~override~
+	SAY NAME1 @6007
+	WRITE_BYTE 0x270 5
+COPY ~%MOD_FOLDER%/data/cantrips/d5_ogrmi.itm~ ~override~
+CREATE SPL ~d5ctpmix~	//	protect the minor illusion
+  SAY NAME1 ~~
+  SAY UNIDENTIFIED_DESC ~~
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 0 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpmi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 0 target = 1 parameter2 = 12 timing = 0 duration = 6 END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpri.bam~ ~override~
+/*
+CREATE SPL ~d5ctpri~	//	reflected image
+    SAY NAME1 @6025
+    SAY UNIDENTIFIED_DESC @6026
+    WRITE_SHORT 0x1c 4
+    WRITE_LONG 0x34 1
+    LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpri~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi120~ END
+*/
+COPY_EXISTING ~spwi120.spl~ ~override/d5ctpri.spl~
+    SAY NAME1 @6025
+    SAY UNIDENTIFIED_DESC @6026
+    WRITE_SHORT 0x1c 4
+    WRITE_LONG 0x34 1
+    LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpri~ END
+    LPF DELETE_EFFECT END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi120~ END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI120	1		0~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI120	1		0		0~
+  END
+END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpds.bam~ ~override~
+CREATE SPL ~d5ctpds~	//	deflective shell
+  SAY NAME1 @6027
+  SAY UNIDENTIFIED_DESC @6028
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpds~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 201 power = 1 target = 1 parameter1 = 1 parameter2 = 1 timing = 0 duration = 30 STR_VAR resource = ~d5ctpdsb~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 201 power = 1 target = 1 parameter1 = 1 parameter2 = 2 timing = 0 duration = 30 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 201 power = 1 target = 1 parameter1 = 1 parameter2 = 3 timing = 0 duration = 30 END
+CREATE SPL ~d5ctpdsb~	//	deflective shell
+  SAY NAME1 ~~
+  SAY UNIDENTIFIED_DESC ~~
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 power = 0 target = 1 parameter2 = 0 timing = 1 STR_VAR resource = ~d5ctpds~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpst.bam~ ~override~
+/*
+CREATE SPL ~d5ctpst~	//	spell thrust
+  SAY NAME1 @6029
+  SAY UNIDENTIFIED_DESC @6030
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 27 required_level = 1 STR_VAR icon = ~d5ctpst~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 2 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+*/
+COPY_EXISTING ~spwi321.spl~ ~override/d5ctpst.spl~
+  SAY NAME1 @6029
+  SAY UNIDENTIFIED_DESC @6030
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpst~ END
+  LPF DELETE_EFFECT END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI321	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI321	1		0		0~
+END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctprm.bam~ ~override~
+CREATE SPL ~d5ctprm~	//	rigor mortis
+  SAY NAME1 @6031
+  SAY UNIDENTIFIED_DESC @6032
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctprm~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 40 power = 1 target = 2 parameter1 = 0 timing = 0 duration = 6 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 power = 1 target = 2 parameter1 = (0 - 3) timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 73 power = 1 target = 2 parameter1 = (0 - 3) timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 0 power = 1 target = 2 parameter1 = (0 - 3) timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 22 power = 1 target = 2 parameter1 = (0 - 2) timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 savingthrow = 1 savebonus = 2 STR_VAR resource = ~d5ctprm~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpwl.bam~ ~override~
+CREATE SPL ~d5ctpwl~	//	wisplight
+  SAY NAME1 @6033
+  SAY UNIDENTIFIED_DESC @6034
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctpwl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 47 power = 1 target = 2 parameter2 = 0 timing = 1 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 0 power = 1 target = 2 parameter1 = (0 - 2) timing = 0 duration = 24 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 24 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 power = 1 target = 2 parameter2 = 20 timing = 0 duration = 24 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 STR_VAR resource = ~d5ctpwl~ END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_ffire.vvc~) BEGIN
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/d5_ffire.vvc~ ~override~
+END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpcr.bam~ ~override~
+CREATE SPL ~d5ctpcr~	//	conjure rabbit
+  SAY NAME1 @6035
+  SAY UNIDENTIFIED_DESC @6036
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 4 range = 20 required_level = 1 STR_VAR icon = ~d5ctpcr~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 18 STR_VAR resource = ~d5_rabb~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 0 STR_VAR resource = ~EFF_M13~ END
+COPY ~%MOD_FOLDER%/data/cantrips/d5_rabb.cre~ ~override~
+	SAY NAME1 @6006
+	WRITE_BYTE 0x270 5
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpar.bam~ ~override~
+/*
+CREATE SPL ~d5ctpar~	//	armor
+  SAY NAME1 @6037
+  SAY UNIDENTIFIED_DESC @6038
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpar~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
+*/
+COPY_EXISTING ~spwi102.spl~ ~override/d5ctpar.spl~
+  SAY NAME1 @6037
+  SAY UNIDENTIFIED_DESC @6038
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpar~ END
+  LPF DELETE_EFFECT END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI102	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+    APPEND ~hidespl.2da~ ~SPWI102	1		0		0~
+END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmb.bam~ ~override~
+ADD_PROJECTILE ~%MOD_FOLDER%/data/cantrips/d5_msred.pro~
+CREATE SPL ~d5ctpmb~	//	magic bolt
+  SAY NAME1 @6039
+  SAY UNIDENTIFIED_DESC @6040
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpmb~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 111 power = 1 target = 1 parameter1 = 1 timing = 0 duration = 600 STR_VAR resource = ~d5ctpmbm~ END
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmb.bam~ ~override~
+CREATE SPL ~d5ctpmx~	//	cancel magic bolt
+  SAY NAME1 @6091
+  SAY UNIDENTIFIED_DESC @6091
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 0 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpmx~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 power = 1 target = 1 parameter1 = 1 timing = 0 duration = 600 STR_VAR resource = ~d5ctpmbm~ END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = ~d5ct172~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5ct14g~ END
+/*
+ADD_PROJECTILE ~%MOD_FOLDER%/data/cantrips/d5_msblu.pro~
+ADD_PROJECTILE ~%MOD_FOLDER%/data/cantrips/d5_msorn.pro~
+ADD_PROJECTILE ~%MOD_FOLDER%/data/cantrips/d5_mswhi.pro~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm02.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm03.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm04.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm05.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm06.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/spmagm07.bam~ ~override~
+*/
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmbm.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmbm.itm~ ~override~
+  SAY NAME2 @6039
+  SAY IDENTIFIED_DESC @6040
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter2 = (0 - 1) timing = 2 STR_VAR resource = ~d5ct14g~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = ~d5ctpmx~ END
+//  LPF ALTER_ITEM_HEADER INT_VAR projectile = %d5_msred% END
+CREATE SPL ~d5ctpmb1~	//	magic bolt
+  SAY NAME1 @6039
+  SAY UNIDENTIFIED_DESC @6040
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 1 parameter1 = 2 parameter2 = (64<<16) timing = 1 duration = 0 dicenumber = 1 dicesize = 3 END
+// ***** make variants for fire, cold, & lightning...?
+// apply 206 vs this to Shield and all magic protections
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  SET clone_this = 0
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_type
+	  READ_BYTE (fx_off + 0x0c) fx_timing
+	  READ_ASCII (fx_off + 0x14) fx_resource
+	  PATCH_IF (fx_type = 206) AND !(fx_timing = 9) BEGIN
+	    PATCH_IF (~%fx_resource%~ STRING_EQUAL_CASE ~spwi112~) BEGIN
+	      SET clone_this = 1
+	    END
+	  END
+	END
+  END
+  PATCH_IF (clone_this = 1) BEGIN
+    LPF CLONE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = ~d5ctpmbm~ END
+  END
+BUT_ONLY
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpgl.bam~ ~override~
+CREATE SPL ~d5ctpgl~	//	glimpse
+  SAY NAME1 @6041
+  SAY UNIDENTIFIED_DESC @6042
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpgl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 239 power = 1 target = 1 parameter2 = 1 timing = 0 duration = 2 END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpde.bam~ ~override~
+CREATE SPL ~d5ctpde~	//	diviner's eyes
+  SAY NAME1 @6043
+  SAY UNIDENTIFIED_DESC @6044
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 20 required_level = 1 STR_VAR icon = ~d5ctpde~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 power = 1 target = 2 parameter1 = 2 timing = 0 duration = 30 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 STR_VAR resource = ~d5ctpaa~ END
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctpco.bam~ ~override~
+/*
+CREATE SPL ~d5ctpco~	//	chaos orb
+  SAY NAME1 @6045
+  SAY UNIDENTIFIED_DESC @6046
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 2 location = 4 target = 1 required_level = 1 STR_VAR icon = ~d5ctpco~ END
+*/
+COPY_EXISTING ~spwi118.spl~ ~override/d5ctpco.spl~
+  SAY NAME1 @6045
+  SAY UNIDENTIFIED_DESC @6046
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpst~ END
+  LPF DELETE_EFFECT END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 0 STR_VAR resource = ~EFF_M83~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 141 power = 1 target = 2 parameter2 = 25 timing = 1 duration = 0 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (64<<16) timing = 1 duration = 0 probability1 = 100 probability2 = 81 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 74 power = 1 target = 2 parameter1 = 0 timing = 0 duration = 12 probability1 = 100 probability2 = 81 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 8 timing = 0 duration = 6 probability1 = 100 probability2 = 81 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (1<<16) timing = 1 duration = 0 probability1 = 80 probability2 = 61 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 0 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 18 probability1 = 80 probability2 = 61 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 18 probability1 = 80 probability2 = 61 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 44 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 18 probability1 = 80 probability2 = 61 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 15 power = 1 target = 2 parameter1 = (0 - 1) timing = 0 duration = 18 probability1 = 80 probability2 = 61 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (4<<16) timing = 1 duration = 0 probability1 = 60 probability2 = 41 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 45 power = 1 target = 2 parameter1 = 0 timing = 0 duration = 6 probability1 = 60 probability2 = 41 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 55 timing = 0 duration = 6 probability1 = 60 probability2 = 41 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (2<<16) timing = 1 duration = 0 probability1 = 40 probability2 = 21 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 power = 1 target = 2 parameter1 = (0 - 4) timing = 0 duration = 18 probability1 = 40 probability2 = 21 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (8<<16) timing = 1 duration = 0 probability1 = 20 probability2 = 0 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 24 power = 1 target = 2 parameter1 = 0 timing = 0 duration = 12 probability1 = 20 probability2 = 0 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 36 timing = 0 duration = 12 probability1 = 20 probability2 = 0 savingthrow = 1 savebonus = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 power = 0 target = 2 parameter2 = 0 timing = 1 savingthrow = 1 savebonus = 2 STR_VAR resource = ~d5ctpco~ END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY semi_innate_cantrips BEGIN
+  d5ct1 => d5ctpdr
+  d5ct2 => d5ctpvm
+  d5ct3 => d5ctptg
+  d5ct4 => d5ctpgu
+  d5ct5 => d5ctpdz
+  d5ct6 => d5ctpmi
+  d5ct7 => d5ctpri
+  d5ct8 => d5ctpds
+  d5ct9 => d5ctpst
+  d5ct10 => d5ctprm
+  d5ct11 => d5ctpwl
+  d5ct12 => d5ctpcr
+  d5ct13 => d5ctpar
+  d5ct14 => d5ctpmb
+  d5ct15 => d5ctpgl
+  d5ct16 => d5ctpde
+  d5ct17 => d5ctpco
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY semi_cantrips_assoc BEGIN
+  1 => pdr
+  2 => pvm
+  3 => ptg
+  4 => pgu
+  5 => pdz
+  6 => pmi
+  7 => pri
+  8 => pds
+  9 => pst
+  10 => prm
+  11 => pwl
+  12 => pcr
+  13 => par
+  14 => pmb
+  15 => pgl
+  16 => pde
+  17 => pco
+END
+
+<<<<<<<< d5/d5ctpts.2da
+2DA V1.0
+0
+        1 
+1       0 
+2       0 
+3       0
+4       0 
+5       0 
+6       0 
+7       0 
+8       0 
+9       0 
+10      0 
+11      0 
+12      0 
+13      0 
+14      0 
+15      0 
+16      0 
+17      0 
+18      0 
+19      0 
+20      0 
+21      0 
+22      0 
+23      0 
+24      0 
+25      0 
+26      0 
+27      0 
+28      0 
+29      0 
+30      0 
+31      0 
+32      0 
+33      0 
+34      0 
+35      0 
+36      0 
+37      0 
+38      0 
+39      0 
+40      0 
+>>>>>>>>
+COPY ~d5/d5ctpts.2da~ ~override/d5ctpts.2da~
+
+INCLUDE ~%MOD_FOLDER%/lib/semi_innate.tpa~
+
+LAF semi_innate_casting INT_VAR semi_innate_stat = 109 semi_innate_shift = 12 STR_VAR semi_innate_prefix = ~d5ct~ semi_innate_array = ~semi_innate_cantrips~ points_table = ~d5ctpts~ table_spl = ~d5ctpts~ END
+
+//ACTION_FOR_EACH cantrip_spl IN ~dr~ ~vm~ ~tg~ ~gu~ ~dz~ ~ri~ ~mi~ ~ds~ ~st~ ~rm~ ~wl~ ~cr~ ~ar~ ~mb~ ~gl~ ~de~ ~co~ BEGIN
+OUTER_FOR (num=1; num<18; ++num) BEGIN
+  COPY_EXISTING ~d5ct%num%i.spl~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctx-1~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5xxfat~ END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~d5ct%num%l.spl~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 146 END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 END
+  IF_EXISTS BUT_ONLY
+END
+
+// remove reference to stat 109 and change all relevant D5__PLS.SPL to just give 1
+COPY_EXISTING ~d5ctpls.spl~ ~override~
+  PATCH_FOR_EACH let IN ~b~ ~c~ ~d~ BEGIN
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = EVAL ~d5ctlot%let%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctlota~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 318 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~d5ctfsh.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctpls~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5zrest~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 321 END
+
+/* eh, not worth the added complexity. just use the wrapper spells
+ACTION_PHP_EACH semi_cantrips_assoc AS num => let BEGIN
+  COPY_EXISTING ~d5ct%num%g.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+  IF_EXISTS
+  COPY_EXISTING ~d5ct%let%.spl~ ~override~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct172~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = EVAL ~d5ctpls~ END
+  IF_EXISTS
+END
+
+COPY_EXISTING ~d5ct172.spl~ ~override~
+  PHP_EACH semi_cantrips_assoc AS num => let BEGIN
+    LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+  END
+IF_EXISTS BUT_ONLY
+*/
+
+<<<<<<<< d5/d5cntrp.d
+BEGIN ~D5CNTRP~
+
+IF ~Global("D5CNTPR","GLOBAL",1)~ THEN BEGIN d5cntrp
+ SAY @6008
+ IF ~Global("D5CNTRP_1","GLOBAL",0)~ THEN REPLY @6013 GOTO d5cntrp_1			//	
+ IF ~Global("D5CNTRP_2","GLOBAL",0)~ THEN REPLY @6015 GOTO d5cntrp_2			//	
+ IF ~Global("D5CNTRP_3","GLOBAL",0)~ THEN REPLY @6017 GOTO d5cntrp_3			//	
+ IF ~Global("D5CNTRP_4","GLOBAL",0)~ THEN REPLY @6019 GOTO d5cntrp_4			//	
+ IF ~Global("D5CNTRP_5","GLOBAL",0)~ THEN REPLY @6021 GOTO d5cntrp_5			//	
+ IF ~Global("D5CNTRP_6","GLOBAL",0)~ THEN REPLY @6023 GOTO d5cntrp_6			//	
+ IF ~Global("D5CNTRP_7","GLOBAL",0)~ THEN REPLY @6025 GOTO d5cntrp_7			//	
+ IF ~Global("D5CNTRP_8","GLOBAL",0)~ THEN REPLY @6027 GOTO d5cntrp_8			//	
+ IF ~Global("D5CNTRP_9","GLOBAL",0)~ THEN REPLY @6029 GOTO d5cntrp_9			//	
+ IF ~Global("D5CNTRP_10","GLOBAL",0)~ THEN REPLY @6031 GOTO d5cntrp_10 		//	
+ IF ~Global("D5CNTRP_11","GLOBAL",0)~ THEN REPLY @6033 GOTO d5cntrp_11 		//	
+ IF ~Global("D5CNTRP_12","GLOBAL",0)~ THEN REPLY @6035 GOTO d5cntrp_12 		//	
+ IF ~Global("D5CNTRP_13","GLOBAL",0)~ THEN REPLY @6037 GOTO d5cntrp_13 		//	
+ IF ~Global("D5CNTRP_14","GLOBAL",0)~ THEN REPLY @6039 GOTO d5cntrp_14 		//	
+ IF ~Global("D5CNTRP_15","GLOBAL",0)~ THEN REPLY @6041 GOTO d5cntrp_15 		//	
+ IF ~Global("D5CNTRP_16","GLOBAL",0)~ THEN REPLY @6043 GOTO d5cntrp_16 		//	
+ IF ~Global("D5CNTRP_17","GLOBAL",0)~ THEN REPLY @6045 GOTO d5cntrp_17 		//	
+END
+
+IF ~~ THEN BEGIN d5cntrp_1 											// 
+ SAY @6014
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_1","GLOBAL",1)~ DO ~ApplySpellRES("D5CT1L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_2												// 
+ SAY @6016
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_2","GLOBAL",1)~ DO ~ApplySpellRES("D5CT2L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_3 											// 
+ SAY @6018
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_3","GLOBAL",1)~ DO ~ApplySpellRES("D5CT3L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_4 											// 
+ SAY @6020
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_4","GLOBAL",1)~ DO ~ApplySpellRES("D5CT4L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_5 											// 
+ SAY @6022
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_5","GLOBAL",1)~ DO ~ApplySpellRES("D5CT5L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_6 											// 
+ SAY @6024
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_6","GLOBAL",1)~ DO ~ApplySpellRES("D5CT6L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_7 											// 
+ SAY @6026
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_7","GLOBAL",1)~ DO ~ApplySpellRES("D5CT7L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_8 											// 
+ SAY @6028
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_8","GLOBAL",1)~ DO ~ApplySpellRES("D5CT8L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_9 											// 
+ SAY @6030
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_9","GLOBAL",1)~ DO ~ApplySpellRES("D5CT9L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_10 											// 
+ SAY @6032
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_10","GLOBAL",1)~ DO ~ApplySpellRES("D5CT10L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_11 											// 
+ SAY @6034
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_11","GLOBAL",1)~ DO ~ApplySpellRES("D5CT11L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_12											// 
+ SAY @6036
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_12","GLOBAL",1)~ DO ~ApplySpellRES("D5CT12L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_13 											// 
+ SAY @6038
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_13","GLOBAL",1)~ DO ~ApplySpellRES("D5CT13L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_14 											// 
+ SAY @6040
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_14","GLOBAL",1)~ DO ~ApplySpellRES("D5CT14L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_15 											// 
+ SAY @6042
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_15","GLOBAL",1)~ DO ~ApplySpellRES("D5CT15L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_16 											// 
+ SAY @6044
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_16","GLOBAL",1)~ DO ~ApplySpellRES("D5CT16L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+IF ~~ THEN BEGIN d5cntrp_17 											// 
+ SAY @6046
+ IF ~~ THEN REPLY @6004 DO ~IncrementGlobal("D5CNTRP","GLOBAL",1)~ DO ~SetGlobal("D5CNTRP_17","GLOBAL",1)~ DO ~ApplySpellRES("D5CT17L",Myself)~ EXIT 
+ IF ~~ THEN REPLY @6005 GOTO d5cntrp 
+END
+>>>>>>>>
+
+COPY ~d5/d5cntrp.d~ ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.d~
+
+COMPILE ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.d~
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+
+<<<<<<<< d5/d5cntrp.baf
+IF
+	GlobalLT("D5CNTRP","GLOBAL",3)
+	Class(LastSummonerOf(Myself),MAGE_ALL)
+	!Class(LastSummonerOf(Myself),SORCERER)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	GlobalLT("D5CNTRP","GLOBAL",2)
+	Class(LastSummonerOf(Myself),BARD)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	GlobalLT("D5CNTRP","GLOBAL",2)
+	Class(LastSummonerOf(Myself),SORCERER)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTRP","GLOBAL",0)
+	SetGlobal("D5CNTPR","GLOBAL",0)
+	SetGlobal("D5CNTRP_1","GLOBAL",0)
+	SetGlobal("D5CNTRP_2","GLOBAL",0)
+	SetGlobal("D5CNTRP_3","GLOBAL",0)
+	SetGlobal("D5CNTRP_4","GLOBAL",0)
+	SetGlobal("D5CNTRP_5","GLOBAL",0)
+	SetGlobal("D5CNTRP_6","GLOBAL",0)
+	SetGlobal("D5CNTRP_7","GLOBAL",0)
+	SetGlobal("D5CNTRP_8","GLOBAL",0)
+	SetGlobal("D5CNTRP_9","GLOBAL",0)
+	SetGlobal("D5CNTRP_10","GLOBAL",0)
+	SetGlobal("D5CNTRP_11","GLOBAL",0)
+	SetGlobal("D5CNTRP_12","GLOBAL",0)
+	SetGlobal("D5CNTRP_13","GLOBAL",0)
+	SetGlobal("D5CNTRP_14","GLOBAL",0)
+	SetGlobal("D5CNTRP_15","GLOBAL",0)
+	SetGlobal("D5CNTRP_16","GLOBAL",0)
+	SetGlobal("D5CNTRP_17","GLOBAL",0)
+	ActionOverride(LastSummonerOf(Myself),ApplySpellRES("D5CTFSH",Myself))
+	DestroySelf() 
+END
+
+>>>>>>>>
+COPY ~d5/d5cntrp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.baf~
+
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+
+<<<<<<<< d5/d5cntrp.baf
+IF
+	GlobalLT("D5CNTRP","GLOBAL",3)
+	Class(LastSummonerOf(Myself),MAGE_ALL)
+	!Class(LastSummonerOf(Myself),SORCERER)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	SetGlobal("D5CNTRP_7","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	GlobalLT("D5CNTRP","GLOBAL",2)
+	Class(LastSummonerOf(Myself),BARD)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	SetGlobal("D5CNTRP_7","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	GlobalLT("D5CNTRP","GLOBAL",2)
+	Class(LastSummonerOf(Myself),SORCERER)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	SetGlobal("D5CNTRP_7","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTRP","GLOBAL",0)
+	SetGlobal("D5CNTPR","GLOBAL",0)
+	SetGlobal("D5CNTRP_1","GLOBAL",0)
+	SetGlobal("D5CNTRP_2","GLOBAL",0)
+	SetGlobal("D5CNTRP_3","GLOBAL",0)
+	SetGlobal("D5CNTRP_4","GLOBAL",0)
+	SetGlobal("D5CNTRP_5","GLOBAL",0)
+	SetGlobal("D5CNTRP_6","GLOBAL",0)
+	SetGlobal("D5CNTRP_7","GLOBAL",1)
+	SetGlobal("D5CNTRP_8","GLOBAL",0)
+	SetGlobal("D5CNTRP_9","GLOBAL",0)
+	SetGlobal("D5CNTRP_10","GLOBAL",0)
+	SetGlobal("D5CNTRP_11","GLOBAL",0)
+	SetGlobal("D5CNTRP_12","GLOBAL",0)
+	SetGlobal("D5CNTRP_13","GLOBAL",0)
+	SetGlobal("D5CNTRP_14","GLOBAL",0)
+	SetGlobal("D5CNTRP_15","GLOBAL",0)
+	SetGlobal("D5CNTRP_16","GLOBAL",0)
+	SetGlobal("D5CNTRP_17","GLOBAL",0)
+	ActionOverride(LastSummonerOf(Myself),ApplySpellRES("D5CTFSH",Myself))
+	DestroySelf() 
+END
+
+>>>>>>>>
+COPY ~d5/d5cntrp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.baf~
+
+END
+
+COMPILE ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.baf~
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctp00.bam~ ~override~
+CREATE SPL ~d5ctp00~	//	cantrip choice spell
+  SAY NAME1 @6008
+  SAY UNIDENTIFIED_DESC @6009
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG 0x34 1
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 2 target = 5 required_level = 1 STR_VAR icon = ~d5ctp00~ END
+  FOR (num=1; num<18; ++num) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 timing = 1 STR_VAR resource = EVAL ~d5ct%num%l~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 timing = 1 STR_VAR resource = EVAL ~d5ct%num%i~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct%num%b~ END
+  END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 12 STR_VAR resource = ~d5ctp00~ END
+
+CREATE EFF ~d5ctp00~
+  WRITE_LONG 0x10 67
+  WRITE_LONG 0x14 1
+  WRITE_LONG 0x28 12
+  WRITE_SHORT 0x2c 100
+  WRITE_ASCII 0x30 ~d5ctp00~ #8
+  WRITE_ASCII 0x70 ~shskull~ #8
+
+COPY ~%MOD_FOLDER%/data/core/d5_dlg.cre~ ~override/d5ctp00.cre~
+  WRITE_EVALUATED_ASCII 0x248 ~d5cntrp~ #8
+
+ACTION_FOR_EACH kitclab IN ~CLABMA01~ ~CLABMA02~ ~CLABMA03~ ~CLABMA04~ ~CLABMA05~ ~CLABMA06~ ~CLABMA07~ ~CLABMA08~ ~CLABMA09~ BEGIN 
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~%kitclab%.2DA~) THEN BEGIN
+    COPY ~%MOD_FOLDER%/data/core/BLANKCLAB.2da~ ~override/%kitclab%.2da~ //generate undefined clab files
+  END 
+END  
+
+APPEND ~clabma01.2da~ ~CANTRIPS    GA_D5CTP00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~CANTRIPS~
+APPEND ~clabba01.2da~ ~CANTRIPS    GA_D5CTP00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~CANTRIPS~
+
+COPY_EXISTING ~kitlist.2da~ ~override~
+  COUNT_2DA_ROWS 9 rows
+  FOR (row = 2 ; row < rows ; ++row ) BEGIN
+    READ_2DA_ENTRY row 5 9 modclab
+    READ_2DA_ENTRY row 8 9 modclass
+    PATCH_IF (modclass = 1) OR (modclass = 5) OR (modclass = 19) BEGIN
+      INNER_ACTION BEGIN
+        APPEND ~%modclab%.2da~ ~CANTRIPS    GA_D5CTP00  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~CANTRIPS~
+      END
+    END
+  END
+BUT_ONLY
+		 	
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+
+//____________________________________________________________________________________
+//____________________________________________________________________________________
+
+
+
+// -----------------------------
+// LEVEL ONE CANTRIPS by SUBTLEDOCTOR 
+// -----------------------------
+
+DEFINE_ACTION_FUNCTION level_1_cantrips BEGIN 
+
+INCLUDE ~%MOD_FOLDER%/data/core/tnb_kit_list.tpa~ 
+
+/*
+////////////////////////////////////////////////////////////////////////////////////
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/mxsplbrd.2da~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/mxsplwiz.2da~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/mxsplsrc.2da~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/mxspldd.2da~ ~override~
+
+// ***** do this programmatically! 
+*/
+
+COPY_EXISTING ~mxsplwiz.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1 ; row < rows ; ++row ) BEGIN
+	READ_2DA_ENTRY row 1 cols 1_splz
+	READ_2DA_ENTRY row 2 cols 2_splz
+	PATCH_IF (1_splz > 4) BEGIN
+	  SET_2DA_ENTRY row 1 cols 4
+	END
+	PATCH_IF (2_splz > 0) BEGIN
+	  SET_2DA_ENTRY row 2 cols (2_splz + 1)
+	END
+  END
+IF_EXISTS BUT_ONLY 
+COPY_EXISTING ~mxsplwiz.2da~ ~override~
+  COUNT_2DA_COLS cols
+  SET_2DA_ENTRY 1 2 cols 1
+IF_EXISTS BUT_ONLY 
+
+COPY_EXISTING ~mxsplbrd.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1 ; row < rows ; ++row ) BEGIN
+	READ_2DA_ENTRY row 1 cols 1_splz
+	READ_2DA_ENTRY row 2 cols 2_splz
+	PATCH_IF (1_splz > 3) BEGIN
+	  SET_2DA_ENTRY row 1 cols 3
+	END
+	PATCH_IF (2_splz > 0) BEGIN
+	  SET_2DA_ENTRY row 2 cols (2_splz + 1)
+	END
+  END
+IF_EXISTS BUT_ONLY 
+COPY_EXISTING ~mxsplbrd.2da~ ~override~
+  COUNT_2DA_COLS cols
+  SET_2DA_ENTRY 1 2 cols 1
+IF_EXISTS BUT_ONLY 
+
+COPY_EXISTING ~mxsplsrc.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1 ; row < rows ; ++row ) BEGIN
+	READ_2DA_ENTRY row 1 cols 1_splz
+	READ_2DA_ENTRY row 2 cols 2_splz
+	PATCH_IF (1_splz > 4) BEGIN
+	  SET_2DA_ENTRY row 1 cols 4
+	END
+	PATCH_IF (2_splz > 0) BEGIN
+	  SET_2DA_ENTRY row 2 cols (2_splz + 1)
+	END
+  END
+IF_EXISTS BUT_ONLY 
+COPY_EXISTING ~mxsplsrc.2da~ ~override~
+  COUNT_2DA_COLS cols
+  SET_2DA_ENTRY 2 2 cols 2
+IF_EXISTS BUT_ONLY 
+
+COPY_EXISTING ~mxspldd.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1 ; row < rows ; ++row ) BEGIN
+	READ_2DA_ENTRY row 1 cols 1_splz
+	READ_2DA_ENTRY row 2 cols 2_splz
+	PATCH_IF (1_splz > 2) BEGIN
+	  SET_2DA_ENTRY row 1 cols 2
+	END
+	PATCH_IF (2_splz > 0) BEGIN
+	  SET_2DA_ENTRY row 2 cols (2_splz + 1)
+	END
+  END
+IF_EXISTS BUT_ONLY 
+COPY_EXISTING ~mxspldd.2da~ ~override~
+  COUNT_2DA_COLS cols
+  SET_2DA_ENTRY 2 2 cols 1
+IF_EXISTS BUT_ONLY 
+////////////////////////////////////////////////////////////////////////////////////
+
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wakeup.spl~ ~override~
+
+//Grease: no stacking with itself
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi101.spl~ ~override~
+  SAY NAME1 @7011
+  SAY UNIDENTIFIED_DESC @7012
+
+//Burning Hands: reduced damage
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi103.spl~ ~override~
+  SAY NAME1 @7031
+  SAY UNIDENTIFIED_DESC @7032
+
+//Charm Person: one try only, victim cannot attack
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi104.spl~ ~override~
+  SAY NAME1 @7041
+  SAY UNIDENTIFIED_DESC @7042
+
+//Color Spray: replace Sleep w/ Slow
+//
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi105.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @7052
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 39 opcode = 40 duration = 12 END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_dicenumber = 4 dicenumber = 0 END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 139 END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi105.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_duration = 18 duration = 12 END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_duration = 30 duration = 18 END
+END
+
+//Blindness: change to Dazzle (very short duration)
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi106.spl~ ~override~
+  SAY NAME1 @7061
+  SAY UNIDENTIFIED_DESC @7062
+
+//Friends / Monster Summoning: move to 2nd level if no SR, change to rabbit if SR
+//
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi107.spl~ ~override~
+  ADD_SPELL ~override/spwi107.spl~ 2 2 WIZARD_FRIENDS
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+  LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_FRIENDS~
+	RET spell_res
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~scrl72.itm~) BEGIN
+	COPY_EXISTING ~scrl72.itm~ ~override~
+		WRITE_LONG 0x34 200
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+		READ_LONG 0x54 "valid"
+		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+			READ_STRREF 0x54 "desc"
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			END
+			SAY_EVALUATED 0x54 ~%new_desc%~
+		END
+	BUT_ONLY
+  END
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi107	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi107	1		0~
+  END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi107.spl~ ~override~
+	SAY NAME1 @7073
+	SAY UNIDENTIFIED_DESC @7074
+	WRITE_ASCII 0x3a ~d5_rabb~ #8
+	WRITE_ASCII 0x76 ~d5_rabb~ #8
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5_rabb.cre~ ~override~
+	SAY NAME1 @7075
+	WRITE_BYTE 0x275 20
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5_rabb.bam~ ~override~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~scrl72.itm~) BEGIN
+	COPY_EXISTING ~scrl72.itm~ ~override~
+		SAY NAME2 @7073
+		SAY IDENTIFIED_DESC @7074
+	BUT_ONLY
+  END
+END
+
+//Pro. Petrification: move to 2nd level
+//
+COPY_EXISTING ~spwi108.spl~ ~override~
+ADD_SPELL ~override/spwi108.spl~ 2 2 WIZARD_PROTECTION_FROM_PETRIFICATION
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_PROTECTION_FROM_PETRIFICATION~
+	RET spell_res
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~scrl73.itm~) BEGIN
+	COPY_EXISTING ~scrl73.itm~ ~override~
+		WRITE_LONG 0x34 200
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+		READ_LONG 0x54 "valid"
+		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+			READ_STRREF 0x54 "desc"
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			END
+			SAY_EVALUATED 0x54 ~%new_desc%~
+		END
+	BUT_ONLY
+END
+ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi108	1		0		0~
+END
+ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi108	1		0~
+END
+
+//SR Dimension Jump: move to 2nd level
+//
+ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DIMENSION_JUMP[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+/*
+  LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_DIMENSION_JUMP~
+	RET spell_res
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
+   COPY_EXISTING ~%spell_res%.spl~ ~override~
+   ADD_SPELL ~override/%spell_res%.spl~ 2 2 WIZARD_DIMENSION_JUMP
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~scrl1v.itm~) BEGIN
+	COPY_EXISTING ~scrl1v.itm~ ~override~
+		WRITE_LONG 0x34 200
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+		READ_LONG 0x54 "valid"
+		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+			READ_STRREF 0x54 "desc"
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			END
+			SAY_EVALUATED 0x54 ~%new_desc%~
+		END
+	BUT_ONLY
+  END
+*/
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi109	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi109	1		0~
+  END
+END
+
+//Identify: make this a 2nd-level spell and use Bubb's new method to scale with levels
+//  (if not already done earlier)
+
+INCLUDE ~%MOD_FOLDER%/lib/semi_identify.tpa~ 
+
+LAF semi_spont_identify END
+
+/* NO (to level change) - if someone wants to waste a cantrip slot on this, let them
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdtnb_identify.qd~) BEGIN
+
+  INCLUDE ~%MOD_FOLDER%/lib/semi_spont/b3identify.tph~
+  LAF B3_IDENTIFY_INSTALL END
+
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi110	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi110	1		0~
+  END
+  COPY_EXISTING ~spell.ids~ ~override~
+	REPLACE_TEXTUALLY ~WIZARD_IDENTIFY~ ~WIZARD_IDENTIFY_OLD~
+
+//COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tb110.spl~ ~override~
+  ADD_SPELL ~%MOD_FOLDER%/data/spell_tweaks/d5tb110.spl~ 2 2 WIZARD_IDENTIFY
+//COPY_EXISTING ~spell.ids~ ~override~
+//	REPLACE_TEXTUALLY ~WIZARD_IDENTIFY_TNB~ ~WIZARD_IDENTIFY~
+  LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_IDENTIFY~
+	RET spell_res
+  END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+	SAY NAME1 @7103
+	SAY UNIDENTIFIED_DESC @7104
+
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tb110a.spl~ ~override~
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tb110b.spl~ ~override~
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tb110c.spl~ ~override~
+  COPY ~%MOD_FOLDER%/data/spell_tweaks/d5tb110d.spl~ ~override~
+
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 1 STR_VAR resref = ~d5tb110a~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 2 STR_VAR resref = ~d5tb110b~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 3 STR_VAR resref = ~d5tb110c~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 4 STR_VAR resref = ~d5tb110d~ END
+
+  ACTION_IF FILE_EXISTS_IN_GAME ~scrl75.itm~ THEN BEGIN
+	COPY_EXISTING ~scrl75.itm~ ~override~
+		LPF ALTER_ITEM_HEADER INT_VAR target = 5 END
+		SAY NAME2 @7103
+		SAY IDENTIFIED_DESC @7104
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+	BUT_ONLY
+  END
+
+  COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
+	PATCH_IF (%SOURCE_SIZE% > 0x2d3) BEGIN
+	  READ_BYTE 0x273 class
+	  PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
+		REMOVE_KNOWN_SPELL ~spwi110~
+		REMOVE_MEMORIZED_SPELL ~spwi110~
+		ADD_KNOWN_SPELL ~%spell_res%~ #1 ~wizard~
+	  END
+	END
+  BUT_ONLY
+
+  COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_identify.qd~ //detection for this component
+
+END
+*/
+
+//Infravision/True Strike: move to 2nd level if SR installed
+//
+// ... or maybe just set casting time = 9?
+//
+/*
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi111.spl~ ~override~
+  ADD_SPELL ~override/spwi111.spl~ 2 2 WIZARD_INFRAVISION
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+  LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_INFRAVISION~
+	RET spell_res
+  END
+  ACTION_IF FILE_EXISTS_IN_GAME ~scrl76.itm~ THEN BEGIN
+	COPY_EXISTING ~scrl76.itm~ ~override~
+		WRITE_LONG 0x34 200
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+		READ_LONG 0x54 "valid"
+		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+			READ_STRREF 0x54 "desc"
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			END
+			SAY_EVALUATED 0x54 ~%new_desc%~
+		END
+	BUT_ONLY
+  END
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi111	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi111	1		0~
+  END
+END
+*/
+COPY_EXISTING ~spwi111.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 9 END
+
+//Magic Missile: improved MM at 2nd level; reduced version at 1st
+//
+// EDIT - forget the fiery missiles thing, just nerf MM a bit.
+/*
+COPY_EXISTING ~spwi217.spl~ ~override~
+ADD_SPELL ~override/spwi217.spl~ 2 2 WIZARD_AGANNAZAR_SCORCHER_TNB
+LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_AGANNAZAR_SCORCHER_TNB~
+	RET spell_res
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~scrl1b.itm~ THEN BEGIN
+  COPY_EXISTING ~scrl1b.itm~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+  BUT_ONLY
+END
+
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spmagmis.bam~ ~override~
+//COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi217a.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi217b.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi217c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi217a.bam~ ~override/iscrl77.bam~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi112z.spl~ ~override/spwi217.spl~
+	SAY NAME1 @7123
+	SAY UNIDENTIFIED_DESC @7124
+	WRITE_ASCII 0x3a ~d5wi217c~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5wi217b~ END
+COPY_EXISTING ~scrl77.itm~ ~override~
+	SAY NAME2 @7123
+	SAY IDENTIFIED_DESC @7124	
+	WRITE_LONG 0x34 200
+	LPF ALTER_ITEM_HEADER STR_VAR icon = ~d5wi217b~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = ~SPWI217~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = ~SPWI217~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = ~SPWI217~ END
+BUT_ONLY
+*/
+
+COPY_EXISTING ~spwi112.spl~ ~override~
+	SAY NAME1 @7121
+	SAY UNIDENTIFIED_DESC @7122
+	LPF DELETE_SPELL_HEADER INT_VAR header_type = 2 min_level = 7 END
+	LPF DELETE_SPELL_HEADER INT_VAR header_type = 2 min_level = 9 END
+	LPF ALTER_SPELL_HEADER INT_VAR header = 3 min_level = 9 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
+	PATCH_IF (%SOURCE_SIZE% > 0x2d3) BEGIN
+	  READ_BYTE 0x273 class
+	  PATCH_IF (class == 1 || class == 13 || class == 14 || class == 7 || class == 10 || class == 17 || class == 19 || class == 5) BEGIN // wizard casters
+		ADD_KNOWN_SPELL ~spwi112~ #0 ~wizard~
+	  END
+	END
+BUT_ONLY
+
+
+//Pro. Evil: self-targeting only
+//
+COPY_EXISTING ~spwi113.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+
+//Shield: move to 2nd level if no SR
+//
+COPY_EXISTING ~spwi114.spl~ ~override~
+//  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 multi_match = 1 STR_VAR resource = ~SPWI118~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 multi_match = 1 STR_VAR resource = ~SPWI217~ END
+BUT_ONLY
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  ADD_SPELL ~override/spwi114.spl~ 2 2 WIZARD_SHIELD_TNB
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+  LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_SHIELD_TNB~
+	RET spell_res
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~scrl79.itm~) THEN BEGIN
+	COPY_EXISTING ~scrl79.itm~ ~override~
+		WRITE_LONG 0x34 200
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+		LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+		READ_LONG 0x54 "valid"
+		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+			READ_STRREF 0x54 "desc"
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			END
+			SAY_EVALUATED 0x54 ~%new_desc%~
+		END
+	BUT_ONLY
+  END
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi114	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi114	1		0~
+  END
+END
+
+//Shocking Grasp
+//
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) THEN BEGIN
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi115.spl~ ~override~
+	SAY NAME1 @7151
+	SAY UNIDENTIFIED_DESC @7152
+  ACTION_IF FILE_EXISTS_IN_GAME ~scrl79.itm~ THEN BEGIN
+	COPY_EXISTING ~scrl79.itm~ ~override~
+	  SAY IDENTIFIED_DESC @7152
+	BUT_ONLY
+  END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi115.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @7154
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi115d.spl~ ~override~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~scrl79.itm~) BEGIN
+	COPY_EXISTING ~scrl79.itm~ ~override~
+	  SAY IDENTIFIED_DESC @7154
+	BUT_ONLY
+  END
+END
+
+//Sleep: add Drowse at 1st level, replace PW Sleep with Sleep at 2nd level
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wakeup.spl~ ~override~
+
+ADD_SPELL ~%MOD_FOLDER%/data/level_one_cantrips/d5drowse.spl~ 2 1 WIZARD_DROWSE_TNB
+  SAY NAME1 @7161
+  SAY UNIDENTIFIED_DESC @7162
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  ADD_SPELL ~%MOD_FOLDER%/data/level_one_cantrips/spwi116.spl~ 2 2 WIZARD_SLEEP_TNB
+	WRITE_LONG 0x34 2
+	SAY NAME1 @7163
+	SAY UNIDENTIFIED_DESC @7164
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  COPY_EXISTING ~spwi116.spl~ ~override~
+  ADD_SPELL ~override/spwi116.spl~ 2 2 WIZARD_SLEEP_TNB
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+  COPY_EXISTING ~spwi116d.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 40 target = 2 timing = 0 duration = 6 resist_dispel = 0 END
+END
+
+LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_DROWSE_TNB~
+	RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 multi_match = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+COPY_EXISTING ~%spell_res%.spl~ ~override/spwi116.spl~
+COPY_EXISTING ~d5wakeup.spl~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+ACTION_IF (FILE_EXISTS_IN_GAME ~scrl81.itm~) BEGIN
+  COPY_EXISTING ~scrl81.itm~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+	SAY NAME2 @7161
+	SAY IDENTIFIED_DESC @7162
+  BUT_ONLY
+END
+
+LAF RES_NUM_OF_SPELL_NAME
+	STR_VAR spell_name = ~WIZARD_SLEEP_TNB~
+	RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 multi_match = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+COPY_EXISTING ~%spell_res%.spl~ ~override/spwi220.spl~
+COPY_EXISTING ~d5wakeup.spl~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+ACTION_IF (FILE_EXISTS_IN_GAME ~scrl6e.itm~) BEGIN
+  COPY_EXISTING ~scrl6e.itm~ ~override~
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 147 STR_VAR resource = EVAL ~%spell_res%~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 148 STR_VAR resource = EVAL ~%spell_res%~ END
+	SAY NAME2 @7163
+	SAY IDENTIFIED_DESC @7164
+  BUT_ONLY
+END
+
+ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi116	1		0		0~
+	APPEND ~hidespl.2da~ ~spwi220	1		0		0~
+END
+ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi116	1		0~
+	APPEND ~hidespl.2da~ ~spwi220	1		0~
+END
+
+/*
+//Chill Touch: replace with Frost Fingers
+//
+ADD_PROJECTILE ~%MOD_FOLDER%/data/level_one_cantrips/b_c103.pro~
+//COPY ~%MOD_FOLDER%/data/level_one_cantrips/b_c103b.bam~ ~override~
+//COPY ~%MOD_FOLDER%/data/level_one_cantrips/b_c103c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi117.spl~ ~override~
+  SAY NAME1 @7171
+  SAY UNIDENTIFIED_DESC @7172
+  WRITE_SHORT 0x98 ~%b_c103%~
+  WRITE_ASCII 0x3a ~SPWI117C~
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~SPWI117B~ END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~scrl82.itm~ THEN BEGIN
+  COPY_EXISTING ~scrl82.itm~ ~override~
+	SAY NAME2 @7171
+	SAY IDENTIFIED_DESC @7172
+  BUT_ONLY
+END
+*/
+
+//Chromatic Orb: reduce power, randomize effects, /*replace MM*/
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi118.spl~ ~override~
+  SAY NAME1 @7181
+  SAY UNIDENTIFIED_DESC @7182
+
+/*
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi118.spl~ ~override/spwi112.spl~
+  SAY NAME1 @7181
+  SAY UNIDENTIFIED_DESC @7182
+
+ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi112	1		0		0~
+END
+ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi112	1		0~
+END
+*/
+
+//LMD: no spamming extra hp
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi119.spl~ ~override~
+  SAY NAME1 @7191
+  SAY UNIDENTIFIED_DESC @7192
+
+//Spook: one try per victim
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/spwi125.spl~ ~override~
+  SAY NAME1 @7251
+  SAY UNIDENTIFIED_DESC @7252
+
+//Wraithform: remove from menus
+//
+ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi315	1		0		0~
+END
+ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi315	1		0~
+END
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//NRD: move to 2nd level
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~spwi124.spl~) BEGIN
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi124c.bam~ ~override~
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5wi124b.bam~ ~override~
+
+  COPY_EXISTING ~spwi124.spl~ ~override/d5nahal.spl~  
+	WRITE_LONG 0x34 2
+	READ_LONG 0x50 "valid"
+	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+		READ_STRREF 0x50 "desc"
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+		END
+		SAY_EVALUATED 0x50 ~%new_desc%~
+	END
+
+  COPY_EXISTING ~spwi124.spl~ ~override~  
+	SAY NAME1 @7241
+	SAY UNIDENTIFIED_DESC @7242
+	WRITE_ASCII 0x3a ~d5wi124c~
+	WRITE_ASCII 0x76 ~d5wi124b~
+//	READ_BYTE 0x19 wild_magic
+//	WRITE_BYTE 0x19 (THIS BOR 01000000)
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 214 opcode = 45 timing = 0 duration = 3 END
+
+  ACTION_IF (GAME_IS ~bgee bg2ee eet~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi124	1		0		0~
+  END
+  ACTION_IF (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~spwi124	1		0~
+  END
+
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5_nahal.spl~ ~override~
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/d5_nahal.eff~ ~override~
+
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~clabma01.2da~) BEGIN
+	COPY ~%MOD_FOLDER%/data/level_one_cantrips/clabma01.2da~ ~override~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~clabma01.2da~) BEGIN
+	COPY_EXISTING ~clabma01.2da~ ~override~
+	APPEND_FILE ~%MOD_FOLDER%/data/level_one_cantrips/nahals.txt~
+  END
+END
+	
+////////////////////////////////////////////////////////////////////////////////////
+
+//Wondrous Recall for all
+//
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ 
+  READ_SHORT 0x1c spell_type
+  PATCH_IF (spell_type = 1) BEGIN
+	READ_LONG 0x34 spell_level
+	PATCH_IF (spell_level = 1) BEGIN
+	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 144 target = 1 paramater2 = 2 timing = 0 duration = 1 resist_dispel = 0 insert_point = 0 END
+	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 144 target = 1 paramater2 = 3 timing = 0 duration = 1 resist_dispel = 0 insert_point = 0 END
+	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 144 target = 1 paramater2 = 4 timing = 0 duration = 1 resist_dispel = 0 insert_point = 0 END
+	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 144 target = 1 paramater2 = 5 timing = 0 duration = 1 resist_dispel = 0 insert_point = 0 END
+	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 paramater2 = 0 timing = 1 resist_dispel = 0 insert_point = 0 END
+//	  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 261 target = 1 parameter1 = 1 paramater2 = 0 timing = 1 resist_dispel = 0 insert_point = 0 END
+	END
+  END
+BUT_ONLY
+
+////////////////////////////////////////////////////////////////////////////////////
+
+/*
+//Find Familiar
+//
+ACTION_IF FILE_EXISTS_IN_GAME ~spwi123.spl~ BEGIN
+  COPY_EXISTING ~spwi123.spl~ ~override~
+	LPF DELETE_EFFECT INT_VAR match_opcode = 261
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 resist_dispel = 0 STR_VAR resource = ~spwi123~ END
+END
+*/
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//Ring of Wizardry: replace with Ring of Acuity
+//
+ACTION_IF GAME_IS ~bgee eet~ BEGIN
+  COPY ~%MOD_FOLDER%/data/level_one_cantrips/ring40.itm~ ~override/ring08.itm~
+END
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//Wand of Magic Missiles: fire 2 missiles each charge
+//
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/wand03.itm~ ~override~
+  SAY NAME2 @7125
+  SAY IDENTIFIED_DESC @7126
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//Wand of Sleep: wake on hit
+//
+COPY_EXISTING ~wand08.itm~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 39 parameter2 = 0 END  
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 39 opcode = 232 parameter1 = 0 parameter2 = 11 STR_VAR resource = ~D5WAKEUP~ END
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//COMPATIBILITY WITH SPECIALISTS REVISIONS 
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb_specialists.qd~) BEGIN 
+	ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN //SR
+		ACTION_FOR_EACH bonusspl IN ~QDMG+ABJ~ ~QDMG+ALT~ ~QDMG+CON~ ~QDMG+EVO~ ~QDMG+ENC~ ~QDMG+ILL~ ~QDMG+NEC~ ~QDMG+DIV~ BEGIN 
+			COPY_EXISTING ~%bonusspl%.spl~ ~override~ 
+				PATCH_FOR_EACH spl IN ~spwi109~ ~spwi110~ ~spwi111~ ~spwi116~ ~spwi220~ ~spwi118~ ~spwi315~ BEGIN 
+					LPF ADD_SPELL_EFFECT INT_VAR opcode=172 target=1 timing=9 insert_point = 0 STR_VAR resource= EVAL ~%spl%~ END  
+				END 
+		END 
+		ACTION_FOR_EACH newspl IN ~WIZARD_HOLD_PORTAL~ ~WIZARD_IDENTIFY~ ~WIZARD_INFRAVISION~ ~WIZARD_AGANNAZAR_SCORCHER_TNB~ ~WIZARD_DROWSE_TNB~ ~WIZARD_SLEEP_TNB~ BEGIN 
+		  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%newspl%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+			LAF RES_NUM_OF_SPELL_NAME
+				STR_VAR spell_name = EVAL ~%newspl%~
+				RET spell_res
+			END
+			ACTION_IF (VARIABLE_IS_SET %spell_res%) BEGIN
+			 ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
+			  COPY_EXISTING ~%spell_res%.spl~ ~override~ 
+				READ_BYTE  0x25 school
+			  ACTION_IF (school = 1) BEGIN //abjuration
+				COPY_EXISTING ~QDMG+ABJ.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 8) BEGIN //alteration
+				COPY_EXISTING ~QDMG+ALT.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 2) BEGIN //conjuration
+				COPY_EXISTING ~QDMG+CON.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 3) BEGIN //divination
+				COPY_EXISTING ~QDMG+DIV.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 4) BEGIN //enchantment
+				COPY_EXISTING ~QDMG+ENC.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 6) BEGIN //evocation
+				COPY_EXISTING ~QDMG+EVO.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 5) BEGIN //illusion
+				COPY_EXISTING ~QDMG+ILL.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 7) BEGIN //necromancy
+				COPY_EXISTING ~QDMG+NEC.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END
+			  END
+			 END
+			END
+		  END
+		END 
+	END 
+	ELSE BEGIN //no SR
+		ACTION_FOR_EACH bonusspl IN ~QDMG+ABJ~ ~QDMG+ALT~ ~QDMG+CON~ ~QDMG+EVO~ ~QDMG+ENC~ ~QDMG+ILL~ ~QDMG+NEC~ ~QDMG+DIV~ BEGIN 
+			COPY_EXISTING ~%bonusspl%.spl~ ~override~ 
+				PATCH_FOR_EACH spl IN ~spwi107~ ~spwi108~ ~spwi110~ ~spwi114~ ~spwi116~ ~spwi220~ ~spwi118~ ~spwi315~  BEGIN 
+					LPF ADD_SPELL_EFFECT INT_VAR opcode=172 target=1 timing=9 insert_point = 0 STR_VAR resource= EVAL ~%spl%~ END  
+				END 
+ 
+		END
+		ACTION_FOR_EACH newspl IN ~WIZARD_FRIENDS~ ~WIZARD_PROTECTION_FROM_PETRIFICATION~ ~WIZARD_IDENTIFY~  ~WIZARD_AGANNAZAR_SCORCHER_TNB~ ~WIZARD_DROWSE_TNB~ ~WIZARD_SLEEP_TNB~ ~WIZARD_SHIELD_TNB~ BEGIN 
+		  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%newspl%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+			LAF RES_NUM_OF_SPELL_NAME
+				STR_VAR spell_name = EVAL ~%newspl%~
+				RET spell_res
+			END
+			ACTION_IF (VARIABLE_IS_SET %spell_res%) BEGIN
+			 ACTION_IF (FILE_EXISTS_IN_GAME ~%spell_res%.spl~) BEGIN
+			  COPY_EXISTING ~%spell_res%.spl~ ~override~ 
+				READ_BYTE  0x25 school
+			  ACTION_IF (school = 1) BEGIN //abjuration
+				COPY_EXISTING ~QDMG+ABJ.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 8) BEGIN //alteration
+				COPY_EXISTING ~QDMG+ALT.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 2) BEGIN //conjuration
+				COPY_EXISTING ~QDMG+CON.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 3) BEGIN //divination
+				COPY_EXISTING ~QDMG+DIV.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 4) BEGIN //enchantment
+				COPY_EXISTING ~QDMG+ENC.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 6) BEGIN //evocation
+				COPY_EXISTING ~QDMG+EVO.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 5) BEGIN //illusion
+				COPY_EXISTING ~QDMG+ILL.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			  ACTION_IF (school = 7) BEGIN //necromancy
+				COPY_EXISTING ~QDMG+NEC.SPL~ ~override~ 
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode=171 target=1 timing=9 STR_VAR resource= EVAL ~%spell_res%~ END 
+			  END
+			 END
+			END
+		  END
+		END
+	END 
+END 
+
+//COMPATIBILITY WITH FAVOURED SOUL 
+COPY ~%MOD_FOLDER%/data/level_one_cantrips/QDFVSLB1.spl~ ~override/QDFVSLB.spl~
+	 ~%MOD_FOLDER%/data/level_one_cantrips/QDFVSLD1.spl~ ~override/QDFVSLD.spl~
+	 ~%MOD_FOLDER%/data/level_one_cantrips/QDFVSLL1.spl~ ~override/QDFVSLL.spl~
+	 ~%MOD_FOLDER%/data/level_one_cantrips/QDFVSLN1.spl~ ~override/QDFVSLN.spl~
+	 ~%MOD_FOLDER%/data/level_one_cantrips/QDFVSLP1.spl~ ~override/QDFVSLP.spl~
+	 
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+
+//____________________________________________________________________________________
+//____________________________________________________________________________________
+
+
+
+// -----------------------------
+// CANTRIPS VIA WAND by SUBTLEDOCTOR 
+// -----------------------------
+
+DEFINE_ACTION_FUNCTION cantrip_wands BEGIN 
+
+INCLUDE ~%MOD_FOLDER%/data/core/tnb_kit_list.tpa~ 
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantw.itm~ ~override~
+	SAY NAME1 @6010
+	SAY IDENTIFIED_DESC @6011
+	WRITE_BYTE 0x1e (THIS BOR 0b10000000)
+	WRITE_BYTE 0x1f (THIS BOR 0b01010001)
+	WRITE_BYTE 0x20 (THIS BOR 0b01110010)
+	WRITE_BYTE 0x21 (THIS BOR 0b01100000)
+
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantab.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantco.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantdi.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5canten.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantil.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5cantne.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5canttr.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5_rabb.cre~ ~override~
+	SAY NAME1 @6006
+	WRITE_BYTE 0x270 5
+
+//shield spell protects against cantrip wand
+COPY_EXISTING ~spwi114.spl~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 206 STR_VAR resource = ~d5cantw~ END
+BUT_ONLY
+
+COPY ~%MOD_FOLDER%/data/core/d5_base.spl~ ~override/d5cantw1.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 122 target = 1 parameter1 = 1 timing = 9 STR_VAR resource = ~d5cantw~ END
+
+
+//adding cantrips to appropriate mages
+ACTION_PHP_EACH tnb_kit_list AS kitinfo => kitclab BEGIN 
+	ACTION_IF (FILE_EXISTS_IN_GAME ~%kitclab%.2da~) BEGIN 
+		APPEND ~%kitclab%.2da~ ~CANTRIPS	AP_D5CANTW1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	END 
+END 
+
+COPY_EXISTING ~kitlist.2da~ ~override~
+  COUNT_2DA_ROWS 9 rows
+  FOR (row = 2 ; row < rows ; ++row ) BEGIN
+	READ_2DA_ENTRY row 1 9 modname
+	READ_2DA_ENTRY row 5 9 modclab
+	READ_2DA_ENTRY row 8 9 modclass
+	PATCH_IF (modclass = 1) OR (modclass = 19) BEGIN
+//	  PATCH_IF !(%modname% STRING_MATCHES_REGEXP ~C0SA+~ = 0) BEGIN
+		INNER_ACTION BEGIN
+		  APPEND ~%modclab%.2da~ ~CANTRIPS 	AP_D5CANTW1 ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~CANTRIPS~
+		END
+//	  END
+	END
+  END
+BUT_ONLY
+
+END 	//	end define function
+//____________________________________________________________________________________

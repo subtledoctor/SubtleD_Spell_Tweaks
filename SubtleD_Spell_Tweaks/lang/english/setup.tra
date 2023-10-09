@@ -1,0 +1,1792 @@
+@1 = ~This component is not available for Baldur's Gate, Icewind Dale or Icewind Dale 2.~ 
+@2 = ~This component is only available for the Enhanced Editions.~ 
+@3 = ~This component requires the Enhanced Engine v2.0 or later.~ 
+@4 = ~skipping, for reasons~
+@5 = ~Broad Magic System Tweaks~
+@6 = ~Individual Spell Tweaks~
+@7 = ~~
+//
+//
+@1  = ~Would you like to display components from random individual spell tweaks?~
+@10 = ~Revised Arcane Opposition Schools~
+@11 = ~No Opposition Schools~
+@12 = ~IWD-style Opposition Schools~
+@13 = ~IWD-style Opposition Schools, Low-Level Spells Allowed~
+@14 = ~BG2-style Opposition Schools~
+@15 = ~BG2-style Opposition Schools, Low-Level Spells Allowed~
+@16 = ~PnP Opposition Schools~
+@17 = ~PnP Opposition Schools, Low-Level Spells Allowed~
+@20 = ~Rebalanced Spell Schools~
+@30 = ~High-Level Spells Penetrate Magic Resistance~
+@35 = ~Add a Saving Throw Against Level Drain Effects~
+@40 = ~Revised Illusionary Clones~
+@45 = ~Revised Invisibility and True Seeing~
+@50 = ~Make Haste and Slow Properly Cancel Each Other~
+@55 = ~Cure Spells Bypass Spell Deflection~
+@60 = ~Cantrips~
+@61 = ~Innate Cantrips~
+@62 = ~Level One Cantrips~
+@63 = ~Cantrip Wands~
+@81 = ~Choose-Your-Own Familiar~
+@82 = ~Pooky's Mod: Imbue Familiars~
+@1010 = ~Cure and Similar Spells Bypass Spell Protections~
+@1151  = ~Reduce Damage but Improve Blindness in SR's Sunscorch~
+@1152  = ~Improve Faerie Fire~
+@1202  = ~Make Barkskin Block One Attack Each Round~
+@1205  = ~Tweak Find Traps~
+@1207  = ~Make Goodberry an Out-of-Combat Mass Regeneration~
+@1212  = ~Tweak Slow Poison~
+@1251  = ~Improve Damage and Damage Type of Alicorn Lance~
+@1323  = ~Improve Casting Time of Exaltation and Spiritual Clarity~
+@1351  = ~Add Faerie Fire and Slow On Hit to Moonblade~
+@1404  = ~Change Neutralize Poison into 'Remove Afflictions'~
+@1409  = ~Tweak Death Ward~
+@1413  = ~Tweak Negative Plane Protection~
+@1451  = ~Make Smashing Wave Party-Friendly~
+@1505  = ~Make True Seeing Party-Wide~
+@1603  = ~Set Blade Barrier to be Breachable~
+@1609  = ~Make False Dawn Bypass Magic Resistance~
+@1611  = ~Make Wondrous Recall Restore all 1st- and 2nd-level Spells~
+@1613  = ~Make Physical Mirror Block 1 Attack Per Three Seconds~
+@1614  = ~Make Sol's Searing Orb Easier to Throw~
+@1707  = ~Make Sunray Bypass Magic Resistance~
+@1710  = ~Add Slow Effect to Holy Word~
+@2104  = ~Tweak Charm Person & Dire Charm~
+@2105  = ~Add 1-Round Blindness Effect to Color Spray~
+@2108  = ~Change Protection from Petrification into 'Mirrored Eyes'~
+@2110  = ~Make Identify Scale with Level~
+@2116  = ~Allow Targets of Sleep to Wake on Hit~
+@2151  = ~Change SR Expeditious Retreat into Chameleon~
+@2201  = ~Add Missile Avoidance to Blur~
+@2209  = ~Make Luck Affect Whole Party~
+@2212  = ~Move Mirror Image to 3rd Level~
+@2213  = ~Add Lingering Effects to SR's Stinking Cloud~
+@2215  = ~Make Web Slow Instead of Hold~
+@2217  = ~Change Agannazar's Scorcher to Melf's Fiery Missiles~
+@2224  = ~Improve Glitterdust~
+@2251  = ~Add Deafening Effect On Hit to Decastave~
+@2316  = ~Tweak Dire Charm~
+@2321  = ~Move Spell Thrust to 1st Level~
+@2324  = ~Make Hold Undead and Control Undead Bypass MR~
+@2352  = ~Increase Range of Icelance~
+@2413  = ~Allow Target of Otiluke's Sphere to Use Inventory Screen~
+@2418  = ~Set Fire Shield and Acid Sheath Spells to be Breachable~
+@2451  = ~Make Shadow Monster Summons More Illusionary~
+@2508  = ~Improve Function of SR's Waves of Fatigue~
+@2514  = ~Give Lower Resistance an Area of Effect~
+@2518  = ~Change Damage Type and School of Phantom Blade~
+@2523  = ~Change Sunfire~
+@25231  = ~Change Sunfire into 'Missile Storm'~
+@25232  = ~Change Sunfire into 'Scorcher Storm'~
+@2708  = ~Change Mantle into 'Iron Skin'~
+@2711  = ~Adjust the Effects of Chaos~
+@2714  = ~Change the Effects of Prismatic Spray~
+@2808  = ~Set Moment of Prescience to Not Breachable~
+@2811  = ~Move Symbol: Fear to 7th Level~
+@2916  = ~Move Shapechange to 8th Level~
+@2915  = ~Move Black Blade of Disaster to 8th level~
+@2914  = ~Add Instant Death Effect to Energy Drain~
+@2923  = ~Change Summon Planetar into Summon Noble Genie~
+//
+//
+@5501 = ~May cast arcane spells.~
+@5502 = ~May cast arcane spells.
+– May select one cantrip.~
+@5503 = ~May cast one additional spell per level.~
+@5504 = ~May cast one additional spell per level.
+– May use the Protective Shell cantrip.~ 
+@5505 = ~May cast one additional spell per level.
+– May use the Conjure Rabbit cantrip.~
+@5506 = ~May cast one additional spell per level.
+– May use the Anticipation cantrip.~
+@5507 = ~May cast one additional spell per level.
+– May use the Drowse cantrip.~
+@5508 = ~May cast one additional spell per level.
+– May use the Bedazzle cantrip.~
+@5509 = ~May cast one additional spell per level.
+– May use the Magic Bolt cantrip.~
+@5510 = ~May cast one additional spell per level.
+– May use the Stiffen Bones cantrip.~
+@5511 = ~May cast one additional spell per level.
+– May use the Earthen Grasp cantrip.~
+@5512 = ~Advantages:~ 
+@5513 = ~Advantages:
+– May use the Fire Bolt cantrip.~
+@5514 = ~Advantages:
+– May use the Protective Shell cantrip.~
+@5515 = ~Advantages:
+– May use the Acid Bolt cantrip.~
+@5516 = ~Advantages:
+– May use the Ice Bolt cantrip.~
+@5517 = ~Advantages:
+– May use the Electric Bolt cantrip.~
+@5518 = ~Advantages:
+– May use the Anticipation cantrip.~
+@5519 = ~Advantages:
+– May use the Drowse cantrip.~
+@5520 = ~Advantages:
+– May use the Stiffen Bones cantrip.~
+@5521 = ~Advantages:
+– May use the Earthen Grasp cantrip.~
+//
+//
+@6004   = ~Prepare this cantrip~
+@6005   = ~Choose a different cantrip~
+@6006   = ~Rabbit~
+@6007   = ~Scary Ogre Berserker!~
+@6008   = ~Prepare Cantrips~
+@6009   = ~Cantrips represent a wizard's smallest and most basic spellcasting ability. This allows a spellcaster to prepare several of the following cantrips:
+- Drowse
+- Vicious Mockery
+- Thorn Grasp
+- Gust
+- Dazzle
+- Minor Illusion
+- Deflective Shell
+- Spell Thrust
+- Rigor Mortis
+- Wisplight
+- Conjure Rabbit
+- Armor
+- Magic Bolt
+- Glimpse
+- Diviner's Eyes
+- Chaotic Orb
+~
+@6010   = ~Cantrip Wand~
+@6011   = ~When wizards first learn to use magic, before deciding whether to specialize, they are taught some of the most basic and minor effects from each school. Unable as yet to cast proper spells, they channel these cantrips through a wand. A crutch, to be sure, but it has the benefit of not requiring memorization and not running out of charges.
+
+A wizard may use a Cantrip Wand as a ranged weapon, casting a Magic Bolt at an enemy once per round, which does 1d4+1 magic damage. (Note, while doing so the wizard will be at a tactical disadvantage against nearby attackers using melee weapons.) Alternatively, the wizard can use the wand to cast one of the following cantrips:
+- Deflective Shell: blocks one 1st- through 3rd level spell targeting the wizard. The Shell last 3 rounds.
+- Conjure Rabbit: conjures a small rodent near the wizard, which lasts for 3 rounds.
+- Glimpse: gives the wizard a brief (2-second) look at another area of the map.
+- Drowse: the target will fall asleep for 1 round on a failed save vs. Spells.
+- Bedazzle: the target suffers a -1 penalty to thac0 and AC for 1 round; on a failed save vs. Breath, the penalties are doubled and last for 2 rounds, and the target is blinded for the first round.
+- Stiffen Bones: the target suffers from painful stiffness, suffering a -1 penalty to thac0 and damage for 1 round; on a failed save vs. Death, the penalties are doubled and last for 2 rounds, and the target is Slowed for the first round.
+- Earthen Grasp: the target will be entangled, unable to move, for 2 rounds on a failed save vs. Petrification.~
+@6013   = ~Drowse~
+@6014   = ~Drowse
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: Target
+Saving Throw: vs. Spells
+
+This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 3 rounds before regaining full consciousness.
+~
+@6015   = ~Vicious Mockery~
+@6016   = ~Vicious Mockery
+
+Level: 0
+Range: 30 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: vs Spells
+
+This cantrip sends intrusive and maddening thoughts into the target's mind. The target will pause for 2 seconds to try and resist the spell's wild urges; then, if they fail a saving throw vs. Spells, the target will go berserk for 3 rounds, wildly attacking the nearest creature whether it be friend or foe.
+~
+@6017   = ~Thorn Grasp~
+@6018   = ~Thorn Grasp
+
+Level: 0
+Range: 30 feet
+Duration: 2 rounds
+Area of Effect: Target
+Saving Throw: vs. Breath
+
+This cantrip causes tendrils to rise up from the ground and grab at the target's legs and body, preventing movement for a few seconds. On a failed saving throw vs. Breath Weapon, the target will be held in place for 2 rounds.
+~
+@6019   = ~Gust~
+@6020   = ~Gust
+
+Level: 0
+Range: 30 feet
+Duration: 1 round
+Area of Effect: one target
+Saving Throw: vs. Breath
+
+This cantrip creates a sudden strong breeze that blows the target 10 feet away from the caster if they fail a saving throw vs. Breath Weapon with a 2-point penalty. Further, if they fail the saving throw with a 2-point bonus, the target will lose their footing and fall down.
+~
+@6021   = ~Dazzle~
+@6022   = ~Dazzle
+
+Level: 0
+Range: 10 feet
+Duration: 2 rounds
+Area of Effect: Target
+Saving Throw: vs. Spells
+
+This cantrip creates intense sparkling light that flash in front of the target's eyes, causing a 2-point penalties to attack rolls for 3 rounds. Further, if the target fails a saving throw vs. spells, they are also blinded for two rounds.
+~
+@6023   = ~Minor Illusion~
+@6024   = ~Minor Illusion
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: special
+Saving Throw: none
+
+This cantrip creates the image of a fearsome ogre at the location of the caster's choosing. This ogre cannot actually harm anyone, and contact with it will dispel the illusion. In the right situation, this can be very valuable as a momentary distraction.
+~
+@6025   = ~Reflected Image~
+@6026   = ~Reflected Image
+
+Level: 0
+Range: 0
+Duration: 4 rounds
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip creates an image of <PRO_HIMHER>self that travels alongside <PRO_HIMHER>. A successful attacker has a 50% chance to strike the image (which then disappears) and a 50% chance to strike the caster.
+~
+@6027   = ~Deflective shell~
+@6028   = ~Deflective shell
+
+Level: 0
+Range: 0
+Duration: 5 rounds
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip raises a fragile magical barrier around the caster. This thin shell of energy will absorb the effects of a single spell of up to 3rd level that is directed at the caster.
+~
+@6029   = ~Spell Thrust~
+@6030   = ~Spell Thrust
+
+Level: 0
+Range: 30 ft.
+Duration: instant
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip will dispel spell protections of 5th level and lower. This includes: Minor Spell Deflection, Minor Globe of Invulnerability, Spell Immunity, and Minor Spell Turning.
+~
+@6031   = ~Rigor  Mortis~
+@6032   = ~Rigor  Mortis
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: vs. Death
+
+This cantrip the target's body to ache and stiffen, Slowing the target for 1 round and, on a failed saving throw vs Death, also causing 3-point penalties to Strength, Dexterity, thac0, and AC for 3 rounds.
+~
+@6033   = ~Wisplight~
+@6034   = ~Wisplight
+
+Level: 0
+Range: 30 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip causes tiny motes of light to coalesce and swirl around the target. This makes <PRO_HIMHER> easier to strike (2-point penalty to AC) and prevents <PRO_HIMHER> from turning invisible for 3 rounds.
+~
+@6035   = ~Conjure Rabbit~
+@6036   = ~Conjure Rabbit
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: The caster
+Saving Throw: None
+
+This cantrip conjures a medium-sized bunny in the location of the caster's choosing.
+~
+@6037   = ~Armor~
+@6038   = ~Armor
+
+Level: 0
+Range: 0
+Duration: 9 hours
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip creates a magical protection that is something like scale mail armor (AC 6). The magical Armor does not hinder movement, adds no weight or encumbrance, and doesn't prevent spellcasting.
+~
+@6039   = ~Magic Bolt~
+@6040   = ~Magic Bolt
+
+Level: 0
+Range: 30 feet
+Duration: n/a
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip allows the caster to direct a small ball of magical energy at a target, functioning as a once-per round ranged attack that almost never misses. The energy will cause 1d4+1 damage each time it strikes someone. However, it is completely blocked the Shield spell as well as by any magical protection such as Globe of Invulnerability or Spell Deflection.
+~
+@6041   = ~Glimpse~
+@6042   = ~Glimpse
+
+Level: 0
+Range: map
+Duration: 2 seconds
+Area of Effect: special
+Saving Throw: none
+
+This cantrip gives the caster a brief (2-second) look at what is happening in another area of the local map.
+~
+@6043   = ~Diviner's Eyes~
+@6044   = ~Diviner's Eyes
+
+Level: 0
+Range: 20 feet
+Duration: 5 rounds
+Area of Effect: one ally
+Saving Throw: none
+
+This cantrip allows the caster to share <PRO_HISHER> perspective with an ally - literally. Able to evaluate and process the battlefield from both the caster's perspective and their own, the recipient of this cantrip gains a 2-point bonus on to-hit rolls for 5 rounds.
+~
+@6045   = ~Chaos Orb~
+@6046   = ~Chaos Orb
+
+Level: 0
+Range: 30 ft.
+Duration: Special
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell causes a colorful sphere to speed unerringly to its target. The color and effect as it flies through the air; the effects on the target are unpredictable and include damage as well as a secondary effect which occurs on a failed save vs. Spella with a +2 bonus
+ 20% chance: 1d4 magic damage and blinds the target for 1 round.
+ 20% chance: 1d4 acid damage and inflicts pain (-1 penalty to Strength, Dexterity, AC, and THAC0) upon the target for 3 rounds.
+ 20% chance: 1d4 lightning damage and stuns the target for 1 round.
+ 20% chance: 1d4 cold damage and causes weakness (-4 penalty to THAC0) in the target for 3 rounds.
+ 20% chance: 1d4 fire damage and causes the target to panic for 2 rounds.
+~
+@6091   = ~Cancel Magic Bolt~
+//
+//
+@6111  = ~Grease
+(Alteration)
+
+Level: 1
+Range: 30 ft.
+Duration: 3 rounds + 1 round/level
+Casting Time: 1
+Area of Effect: 30-ft. radius
+Saving Throw: Special
+
+A Grease spell causes the surface of the ground to take on a slippery, greasy nature. Any creature entering the area or caught in it when the spell is cast must save vs. Spell at +2 or slip and slide, unable to move effectively. Those who successfully save can move, albeit slowly, for the rest of the round (but will need to save vs. Spell again the following round). Those who remain in the area are allowed a Saving Throw each round until they escape the area.~
+@6112  = ~Protection From Evil
+(Divination)
+
+Level: 2
+Range: Touch
+Duration: 2 rounds/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spell is cast, it gives the protected creature a magical insight into the minds of any nearby creatures with evil intent. The slight foreknowledge that results causes all attacks made by evil or evilly enchanted creatures to receive a penalty of -2 to each attack roll. Summoned demons and fiends are acutely affected by this spell; evil is woven into their very beings. Therefore, they are completely unable to target the protected creature.~
+@6113  = ~Mirror Image (Illusion/Phantasm) 
+Level: 3
+Range: 0 
+Duration: 3 rounds + 1 round/level 
+Casting Time: 1
+Area of Effect: Special
+Saving Throw: None 
+
+When a mirror image spell is invoked, the spellcaster causes from two to eight exact duplicates of himself to come into being around him. These images do exactly what the wizard does. Since the spell causes a blurring and slight distortion when it is cast, it is impossible for opponents to be certain which are the illusions and which is the actual wizard. When an image is struck by a melee or missile attack, magical or otherwise, it disappears, but any other existing images remain intact until they are struck.  However, it is important to note that this will not protect the caster against every attack as it is possible for an enemy to choose the real caster amongst all the images.~
+@6114  = ~Glitterdust
+(Illusion)
+
+Level: 2
+Range: 30 ft.
+Duration: 4 rounds
+Casting Time: 2
+Area of Effect: 30 ft.
+Saving Throw: Neg.
+
+This spell was created by a Conjurer who was convinced that he was being stalked by assassins with the ability to become invisible. Unfortunately, he had no skill with Divination spells. This spell showers glittering golden particles in the area of effect. Enemies must roll a successful Saving Throw vs. Spell or be blinded (-4 penalty to attack rolls and Armor Class) for 4 rounds. In addition, all enemies who fail their Saving Throw are covered by the dust, which cannot be removed and continues to sparkle until it fades, thus revealing invisible creatures. The dust fades in 4 rounds.~
+@6115  = ~Luck
+(Divination)
+
+Level: 1
+Range: 30 ft.
+Duration: 3 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+The recipient of this gains a very slight, instinctive insight into the immediate future. The result is that the subject appears to be lucky in every regard for the next 3 rounds, receiving a 5% bonus to all actions. This includes Saving Throws, to-hit rolls, damage, thieving skills, etc.~
+@6116  = ~Flame Arrow
+(Alteration)
+
+Level: 3
+Range: 60 ft.
+Duration: 1 round
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+This spell begins with one or more common arrows or bolts, superheats them, and then hurls fiery bolts at opponents at very high speed. Each bolt inflicts 1d6 points of piercing damage plus 4d6 points of fire damage. Only half of the fire damage is inflicted if the creature struck saves vs. Spell. The caster receives one bolt every 5 levels beyond the 5th (2 bolts at 10th level, 3 at 15th level, etc.). All of the bolts will streak toward the target of the spell.~
+@6117  = ~Greater Malison
+(Enchantment/Charm)
+
+Level: 4
+Range: 50 ft.
+Duration: 2 rounds/level
+Casting Time: 4
+Area of Effect: 30-ft. radius
+Saving Throw: None
+
+The spell grants the caster the ability to understand and subtly manipulate the flow of time, making any following spells more likely to be successful and effective. The practical result is to adversely affect all enemy Saving Throws. The effect is applied to all hostile creatures within the area of effect, who make all saving throws at a penalty of -4.~
+@6118  = ~Shadow Stalker
+(Illusion/Phamtasm)
+
+Level: 6
+Range: 120 ft.
+Duration: 9 hours
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell creates a double of the caster formed from pure shadow, and imparts upon it some degree of form and autonomy. Blurry and shapeless, this entity will fight on the caster's behalf and remain in relatively stable form for up to 9 hours (unless it meets a violent demise).~
+@6119  = ~Mordenkainen's Sword
+(Enchantment/Charm)
+
+Level: 7
+Range: 0
+Duration: 1 round/level
+Casting Time: 7
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell, the wizard temporarily imbues a normal blade with magical power and a will of its own. The sword will float in the air completely under the caster's control. (This does not prevent the caster from doing any other actions during the spell's duration.) The sword acts as a +4 weapon in all respects and deals 5d4 points of damage upon hitting a target.~
+@6120  = ~Abi-Dalzim's Horrid Wilting
+(Necromancy) 
+
+Level: 8
+Range: Visual range of the caster 
+Duration: Instant
+Casting Time: 8
+Area of Effect: 30-ft. radius
+Saving Throw: 1/2
+
+This spell creates violent whorls of magical energy within the area of effect which do grievous harm to all enemies, inflicting 1d8 damage per level of the caster. Affected creatures are allowed a Saving Throw vs. Spell for half damage. This spell is especially devastating to water elementals and plant creatures, who receive a penalty of -2 to their Saving Throws.~
+@6121  = ~Black Blade of Disaster
+(Enchantment/Charm) 
+
+Level: 8
+Range: 0
+Duration: 18 rounds
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None 
+
+This spell imposes a black, magical planar rift over the blade of a normal weapon. The caster becomes a Grand Master in the use of the weapon. It acts as a +5 weapon and deals 2-24 damage to its victims. Every time it hits a target, the victim must make a Save vs. Death at +4 or be disintegrated. There is also a 10% chance with every hit that the sword drains 4 levels from the target and heals the wielder 20 Hit Points.~
+@6122  = ~Weird
+(Illusion/Phantasm) 
+
+Level: 9
+Range: Visual range of the caster 
+Duration: Instant
+Casting Time: 9
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+This spell creates phantasmal visions of unimaginable horror in the mind of all enemies in the area of effect. The spell is risky because such intense and unreal illusions may be disbelieved (subjects may avoid the effects if they make a saving throw vs. death). But affected creatures who fail their save are so drastically affected that they die instantly.~
+@6123  = ~Wizard Eye
+(Necromancy)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell is the result of a Necromancer dipping his toes into the Diviner's sphere of influence. With it, an actual eyeball is enchanted to float around and send visual information to the caster's mind. The Wizard Eye can see with normal vision up to 60 ft. away in brightly lit areas, and can travel in any direction as long as the spell lasts. Solid barriers prevent the passage of a Wizard Eye. The powers of the eye cannot be enhanced by other spells or items. The caster is subject to any gaze attack met by the eye. A successful Dispel Magic spell cast on the wizard or the eye ends the spell.~
+@6124   = ~Discorporate~
+@6125   = ~Discorporate
+(Necromancy)
+
+Level: 6
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 6
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+When this spell is cast at another being, a greenish burst of negative energy shoots toward the target, disrupting the very energy that keeps the target whole.  The target creature must make a Saving Throw vs. Spell or burst into a million small particles, resembling dust. This effect is instantaneous and irreversible.~
+@6126   = ~Energy Drain~
+@6127   = ~Energy Drain
+(Necromancy) 
+
+Level: 8
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane.  This has the  practical effect of draining the victim of 4 levels of experience. The target loses levels, Hit Dice, Hit Points, and abilities permanently - they can only be restored by a priest's Restoration spell.  There is no saving throw to resist the effect.  What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.~
+@6128  = ~Protection From Evil
+Level: 2
+School: Divination
+Range: Touch
+Duration: 2 rounds/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spell is cast, it gives the protected creature a magical insight into the minds of any nearby creatures with evil intent. The slight foreknowledge that results causes all attacks made by evil or evilly enchanted creatures to receive a penalty of -2 to each attack roll. Summoned demons and fiends are acutely affected by this spell; evil is woven into their very beings. Therefore, they are completely unable to target the protected creature.~
+@6129  = ~Glitterdust
+Level: 2
+School: Illusion
+Range: Medium
+Duration: 4 rounds
+Casting Time: 2
+Area of Effect: 10' radius
+Saving Throw: Special
+
+This spell was created by an Invoker wizard who was convinced that he was being stalked by assassins with the ability to become invisible. Unfortunately, he had no skill with Divination spells. It sprays a cloud of glittering golden particles within the area of effect. The sparkling dust dazzles all opponents in the area (-2 penalty to attack rolls) for 4 rounds and reveals any opponents who are invisible. Those affected must also save vs. breath to avoid becoming completely covered by the dust, which cannot be removed and continues to sparkle for 4 rounds. Those failing the save remain unable to successfully hide themselves until the dust fades.~
+@6130  = ~Mirror Image
+Level: 3
+School: Illusion
+Range: Personal
+Duration: 5 turns
+Casting Time: 2
+Area of Effect: Caster
+Saving Throw: None
+
+When a Mirror Image spell is invoked, the spellcaster causes a number of illusory duplicates of himself to come into being around him. The spell creates two images plus one for every 3 levels of the caster (up to a maximum of eight images at 18th level). These images do exactly what the wizard does, and since the spell causes a blurring and slight distortion when it is cast, it is impossible for opponents to be certain which are the illusions and which is the actual wizard. When an image is directly struck by a melee or missile attack, magical or otherwise, it disappears, while other existing images remain intact. It is important to note that this will not protect the caster against all attacks, as it is possible for an enemy to choose the real caster amongst all the images. This spell cannot be cast on anyone who is under the effects of a Reflected Image spell, and casting the spell multiple times will not multiply the number of images created.~
+@6131  = ~Luck
+Level: 1
+School: Divination
+Range: 30 ft.
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+The recipient of this gains a very slight, instinctive insight into the immediate future. The result is that the subject appears to be lucky in every regard for the next 3 rounds, receiving a 5% bonus to all actions. This includes Saving Throws, to-hit rolls, damage, thieving skills, etc.~
+@6132  = ~Flame Arrow
+Level: 3
+School: Alteration
+Range: Long
+Duration: Instant
+Casting Time: 3
+Area of Effect: Special
+Saving Throw: Breath half
+
+This spell begins with one or more common arrows or bolts (one for every two experience levels, up to a maximum of five arrows at level 10), superheats them, and then hurls them at opponents at very high speed. Each arrow inflicts 1d6 points of missile damage plus 2d6 points of fire damage. Only half of the fire damage is inflicted if the creature struck saves vs. breath at -2. Upon completion of the spell, the first arrow will streak towards the creature targeted by the wizard, while additional arrows will randomly target opponents within range.~
+@6133  = ~Greater Malison
+Level: 4
+School: Enchantment
+Range: 50 ft.
+Duration: 2 rounds/level
+Casting Time: 4
+Area of Effect: 30-ft. radius
+Saving Throw: None
+
+The spell grants the caster the ability to understand and subtly manipulate the flow of time, making any following spells more likely to be successful and effective. The practical result is to adversely affect all enemy Saving Throws. The effect is applied to all hostile creatures within the area of effect, who make all saving throws at a penalty of -2.~
+@6134  = ~Wizard Eye
+Level: 4
+School: Necromancy
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell is the result of a Necromancer dipping his toes into the Diviner's sphere of influence. With it, an actual eyeball is enchanted to float around and send visual information to the caster's mind. The Wizard Eye can see with normal vision up to 60 ft. away in brightly lit areas, and can travel in any direction as long as the spell lasts. Solid barriers prevent the passage of a Wizard Eye. The powers of the eye cannot be enhanced by other spells or items. The caster is subject to any gaze attack met by the eye. A successful Dispel Magic spell cast on the wizard or the eye ends the spell.
+~
+@6135  = ~Invisible Stalker
+Level: 6
+School: Illusion
+Range: 120 ft.
+Duration: 9 hours
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This spell creates an illusionary assassin that is nearly invisible to normal vision. This figure will pursue targets relentlessly, attacking with shadowy blades. It will remain in relatively stable form and serve the caster for up to 9 hours (unless it meets a violent demise).
+~
+@6136   = ~Discorporate
+Level: 6
+School: Necromancy
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 6
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+When this spell is cast at another being, a greenish burst of negative energy shoots toward the target, disrupting the very energy that keeps the target whole. Upon contact, the target must make a saving throw vs. breath at -2 or suffer 2d6 points of magic damage per caster level (to a maximum of 40d6). A creature that makes a successful save is partially affected, taking only 5d6 points of damage. The ray affects even objects constructed entirely of force, such as a Mordenkainen's Sword, which is automatically destroyed when struck. This spell has no affect on clothing or equipment carried by the target.~
+@6137  = ~Mordenkainen's Sword
+Level: 7
+School: Enchantment
+Range: 0
+Duration: 1 round/level
+Casting Time: 7
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell, the wizard temporarily imbues a normal blade with magical power and a will of its own. Once the spell is cast, the sword will float in the air completely under the control of the caster, until the spell duration expires or the sword is dispelled. The sword acts as a +4 weapon in all respects and attacks on its own once each round, inflicting 5d4 damage when it hits a target. It has 100% resistance to almost all forms of damage (acid, cold, fire, electricity, poison, etc.), and 95% resistance to physical damage, but it is vulnerable to pure magic damage. The sword is immune to mind affecting spells, has 36 hit points, AC 5, and THAC0 2. Note that this spell does not prevent the caster from performing any other actions while the spell is in effect.~
+@6138  = ~Abi-Dalzim's Horrid Wilting
+Level: 8
+School: Necromancy
+Range: Visual range of the caster 
+Duration: Instant
+Casting Time: 8
+Area of Effect: 30-ft. radius
+Saving Throw: 1/2
+
+This spell creates violent whorls of magical energy within the area of effect which do grievous harm to all enemies, inflicting 1d8 damage per level of the caster. Affected creatures are allowed a Saving Throw vs. Spell for half damage. This spell is especially devastating to water elementals and plant creatures, who receive a penalty of -2 to their Saving Throws.~
+@6139  = ~Black Blade of Disaster
+Level: 8
+School: Enchantment
+Range: 0
+Duration: 18 rounds
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None 
+
+This spell imposes a black, magical planar rift over the blade of a normal weapon. The caster wields the blade as if proficient with the weapon, and brandishes it with a base THAC0 of 0. The sword deals 2d12 damage per strike, and acts as a +5 magical weapon in all regards, including hit and damage bonuses. With each hit, there is a 15% chance the victim must make a save vs. spell at -2 or be disintegrated (40d6 points of magic damage, 5d6 on a successful save).~
+@6140  = ~Weird
+Level: 9
+School: Illusion
+Range: Visual range of the caster 
+Duration: Instant
+Casting Time: 9
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+This spell creates phantasmal visions of unimaginable horror in the mind of all enemies in the area of effect. The spell is risky because such intense and unreal illusions may be disbelieved (subjects may avoid the effects if they make a saving throw vs. death). But affected creatures who fail their save are so drastically affected that they die instantly.~
+@6141   = ~Larloch's Energy Drain~
+@6142   = ~Larloch's Energy Drain
+Level: 8
+School: Necromancy
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane.  The practical effect is to drain the victim 4 levels of experience - levels, Hit Dice, hit points, and abilities are lost permanently.  These can only be restored by a priest's Restoration spell.  As the life force passes through the caster, it temporarily invigorates him, granting him an additional 20 hit points, a +4 bonus to attack rolls and saving throws, and +20% bonus to every skill.  These effects last for 1 hour.  The target's magic resistance, if any, does not affect this spell, and there is no saving throw to avoid the Drain.  What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.~
+//
+//
+@6271   = ~Misleading Clone~
+@6272   = ~Misleading Clone
+Level: 6
+School: Illusion
+Range: 0
+Duration: 1 round/level
+Casting Time: 5
+Area of Effect: caster
+Saving Throw: none
+
+This spell creates a rough facsimile of the caster, recognizable though not perfect. The shadow clone has 40% of the caster's hit points and 7-point penalties on to-hit rolls and effective caster level.  The clone may not use consumable items like potions or scrolls (which are not truly replicated), and may not cast priest spells. The clone can however replicate some small amount of the caster's magical abilities, able to cast any 1st level spells the caster memorized that day.
+~
+@6273   = ~Lesser Simulacrum~
+@6274   = ~Lesser Simulacrum
+Level: 7
+School: Illusion
+Range: 0
+Duration: 1 round/level
+Casting Time: 2
+Area of Effect: Caster
+Saving Throw: none
+
+This spell is cast very quickly, creating a reasonable copy of the caster that can be perceived by all five senses of any onlookers. The clone has 60% of the caster's hit points, and 5-point penalties on to-hit rolls and effective caster level. The clone may not use consumable items like potions or scrolls (which are not truly replicated), and may not cast priest spells. The clone can however replicate a moderate amount of the caster's magical abilities, able to cast any spells the caster memorized that day, up to 4th spell level. At the time the clone is created, the caster is rendered invisible for 60 seconds. Onlookers who do not carefully scrutinize the effect might easily believe the clone IS the caster, and the caster may use the distraction to escape or move to some advantageous position.
+~
+@6275   = ~Simulacrum~
+@6276   = ~Simulacrum
+Level: 8
+School: Illusion
+Range: 0
+Duration: 1 round/level
+Casting Time: 5
+Area of Effect: Caster
+Saving Throw: none
+
+This is an improvement on the Lesser Simulacrum spell. The clone created has 75% of the caster's hit points, and 3-point penalties on to-hit rolls and effective caster level. The clone may not use consumable items like potions or scrolls (which are not truly replicated). The clone can, however replicate a substantial amount of the caster's magical abilities, able to cast any arcane spells the caster memorized that day, up to 7th spell level. Additionally, the clone is so real and has such a sense of identity that it can successfully use divine magic (if the caster has such capabilities). Upon casting, the caster is affected by Improved Invisibility, able to move unnoticed and even attack or cast spells without becoming fully visible.
+~
+
+@6277   = ~Projected Simulacrum~
+@6278   = ~Projected Simulacrum
+Level: 9
+School: Illusion
+Range: Touch
+Duration: 1 round/level
+Casting Time: 5
+Area of Effect: One creature
+Saving Throw: none
+
+This powerful spell creates a clone of the target creature, similar to the 8th-level Simulacrum spell. The clone created has 75% of the target creature's hit points, and 3-point penalties on to-hit rolls and effective caster level (if relevant). The clone may not use consumable items like potions or scrolls (which are not truly replicated). The clone can, however replicate a substantial amount of the target's arcane magical abilities, if the target has any - able to cast any arcane spells memorized that day, up to 7th spell level. Additionally, the clone is so real and has such a sense of identity that it can successfully use divine magic (if the target creature has such capabilities).
+~
+@6279  = ~Shadow Clone~
+@6280  = ~Shadow Clone
+Level: 5
+School: Illusion
+Range: 0
+Duration: 6 rounds
+Casting Time: 1
+Area of Effect: caster
+Saving Throw: none
+
+This spell renders the caster invisible, except for <PRO_HISHER> shadow. Moreover, the shadow can move apart from the caster and, while it cannot perform any actions like attacking or casting spells, it can move around and act as a decoy for the invisible mage. The caster will be protected by this invisibility as long as the shadow has not been destroyed, but will be rendered visible if the shadow is killed or dispelled.
+~
+@6411   = ~Chameleon~
+@6412   = ~Chameleon
+Level: 1
+School: Illusion
+Range: Caster
+Duration: 5 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: n/a
+
+This spell alters the appearance of the caster, making <PRO_HIMHER> nearly invisible. <PRO_HESHE> cannot be targeted by spells, has a -4 bonus to AC and a +4 onus to saving throws, and has a +25% bonus to the Move Silently, Hide In Shadows, and Pick Pockets skills.  The effect lasts five rounds; however, if the caster casts a spell or strikes an enemy during that time, the spell ends immediately and the caster becomes fully visible.
+~
+@6413 = ~Protection from Divination~
+@6414 = ~Protection from Divination
+Level: 3
+School: Abjuration
+Range: Touch
+Duration: 8 hours
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None
+
+After casting this spell, if the target become invisible, sanctuaried, or otherwise hidden, divinations such as Invisibility Purge, Oracle, True Sight, and a thief's Detect Illusion ability will not be able to dispel the invisibility or reveal the hidden creature. (Someone who can sense invisible creatures will be able to detect and target the beneficiary of this spell, however.)
+~
+@7011  = ~Grease~
+@7012  = ~Grease
+(Alteration)
+
+Level: 1
+Range: 30 ft.
+Duration: 4 rounds
+Casting Time: 1
+Area of Effect: 30-ft. radius
+Saving Throw: Special
+
+A Grease spell covers a material surface with a slippery layer of a fatty, greasy nature. Any creature entering the area or caught in it when the spell is cast must save vs. Spell at +2 or slip and slide, unable to move effectively. Those who successfully save can move, albeit slowly, for the rest of the round (but will need to save vs. Breath again the following round). Those who remain in the area are allowed a Saving Throw each round until they escape the area.
+~
+@7031  = ~Burning Hands~
+@7032  = ~Burning Hands
+(Alteration)
+
+Level: 1
+Range: 5 ft.
+Duration: Instant 
+Casting Time: 1 
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+When the wizard casts this spell, a jet of searing flame shoots from <PRO_HISHER> fingertips. The wizard's hands must be held so as to send forth a fanlike sheet of flames: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The burning hands send out flame jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the wizard. The target suffers 1d4 points of damage, +1 point for each 3 levels of the caster, to a maximum of 1d4+6 points of fire damage. A creature that successfully saves vs. Breath receives half damage.
+~
+@7041  = ~Charm Person~
+@7042  = ~Charm Person
+(Enchantment/Charm)
+
+Level: 1
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 1
+Area of Effect: 1 person
+Saving Throw: Neg. 
+
+This spell affects any single person it is cast upon. The term person includes any bipedal human, demihuman, or humanoid of man-size or smaller. Thus, a 10th-level fighter could be charmed, but an ogre could not. The person is allowed a Saving Throw vs. Spell to negate the effect.
+
+If the spell's recipient fails his Saving Throw (with a +3 modifier), he regards the caster as a trusted friend and ally to be heeded and protected. The caster may give him orders, and the charmed individual will carry them out as quickly as possible, except the charmed person cannot be compelled to violence.
+
+If the charmed person is harmed, or if a Dispel Magic spell is cast upon the charmed person, the Charm spell is broken. If two or more Charms simultaneously affect a creature, the most recent Charm takes precedence. Note that the subject has full memory of the events that took place while he was charmed. Also note that you cannot have a charmed creature leave the area where he is charmed. 
+
+Anyone who has been the target of this spell - whether they make their saving throw or not - will be suspicious for a time, and cannot be affected by it for 8 hours.
+~
+@7052  = ~Color Spray
+(Alteration)
+
+Level: 1
+Range: 50 ft.
+Duration: Instant
+Casting Time: 1
+Area of Effect: 90-degree arc
+Saving Throw: Special
+
+Upon casting this spell, the wizard causes a vivid, fan-shaped spray of clashing colors to spring forth from <PRO_HISHER> hand. 1d6 creatures within the area are affected in order of increasing distance from the wizard. The spray seems to solidify as it moves; affected creatures in the area of effect must make a successful Saving Throw or be Slowed for 2 rounds.
+~
+@7061  = ~Blind~
+@7062  = ~Blind
+(Illusion/Phantasm)
+
+Level: 1
+Range: 40 ft.
+Duration: 2 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This 1st-level spell attempts to temporarily blind its target with a flash of light. A Saving Throw is allowed and, if successful, the target merely suffers a -1 penalty to <PRO_HISHER> attack rolls, Armor Class, and damage rolls for two rounds. If the saving throw is unsuccessful, the victim is also partially blinded, <PRO_HESHE> resulting in reduced range of vision and a -4 penalty to <PRO_HISHER> attack rolls and Armor Class. This blindness also wears off after two rounds.
+~
+@7073  = ~Conjure Rabbit~
+@7074  = ~Conjure Rabbit
+
+Level: 1
+School: Conjuration
+Range: Caster
+Duration: 5 rounds
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+This spell allows a caster to summon forth a medium-sized rabbit, seemingly out of thin air. The rabbit is docile and will follow the caster's mental directions, even going so far as to bite nearby enemies. A rabbit so conjured will only remain for five rounds.
+~
+@7075   = ~Rabbit~
+@7121  = ~Magic Missile~
+@7122  = ~Magic Missile
+(Evocation)
+
+Level: 1
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None 
+
+Use of the Magic Missile spell, one of the most popular low-level spells, creates glowing missiles of magical energy that dart forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. Each missile inflicts 1d4+1 points of damage. The spell produces one missile at 1st level, two missiles at 3rd level, and three missiles at 9th level.
+~
+@7123  = ~Melf's Fiery Missiles~
+@7124  = ~Melf's Fiery Missiles
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Breath Weapon
+
+Similar to Mordenkainen's 'Force Missiles' variant, this is an attempt to improve on the basic Magic Missile spell. This version creates between one and five missiles of sizzling magical energy that dart forth and unerringly strike their target, which must be a creature of some sort. Each missile inflicts 1d4 points of damage plus 1d4 points of fire damage (the victim may save vs. Breath to avoid the fire damage). For every 3 extra levels of experience after 1st level, the wizard gains an additional missile - 2 at 4th level, 3 at 7th level, 4 at 10th level, and a maximum of 5 at 13th level.
+
+The Shield spell will block this, just as it blocks the lesser Magic Missile spell.
+~
+@7125  = ~Wand of Magic Missiles~
+@7126  = ~When activated, the wand will fire two missiles of magical energy that dart forth and unerringly strike the target. This includes enemy creatures in a melee. The target creature must be seen or otherwise detected to be hit, however, so near-total concealment, such as that offered by arrow slits, can render the wand ineffective. Each missile will inflict 1d4+1 points of damage.
+
+STATISTICS:
+
+Charge abilities:
+  2 magic missiles will strike the target
+  Damage: 1d4+1 magic each
+  Range: 100 ft.
+  Area of Effect: 1 creature
+
+Requires:
+ 9 Intelligence
+
+Weight: 1
+~
+@7151  = ~Shocking Grasp~
+@7152  = ~Shocking Grasp
+(Alteration)
+
+Level: 1
+Range: Touch
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+When the wizard touches a creature while this spell is in effect, an electrical charge will deal 1d8 points of damage, plus 1 additional point per two levels of the caster (to a maximum of 1d8+5 points of damage, at 10th level.) In addition, the grasp itself does 1d2 fist damage (Strength bonuses apply). The wizard only has one charge, and once an opponent has been touched, the spell's energies have been used. If the wizard misses, the spell is wasted. The wizard has 1 round per level to touch the target creature.
+~
+@7154  = ~Shocking Grasp
+
+Level: 1
+School: Evocation
+Range: Personal
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+When the wizard touches a creature while this spell is in effect, an electrical charge will deal 2d4 points of damage and stun the target for 1 round. If the target makes a successful saving throw vs. spell, he is not stunned. For every two extra experience levels of the caster, the creature will suffer an additional points of damage and roll their saving throw at an increased -1 penalty (to a maximum of 2d4+4 damage and a -4 saving throw penalty, at 9th level). The spell expires once the caster makes a successful melee attack or after 1 turn has passed. The wizard gains a +4 bonus to hit the target.
+~
+@7161  = ~Drowse~
+@7162  = ~Drowse
+(Enchantment/Charm)
+
+Level: 1
+Range: 60 ft.
+Duration: 5 rounds
+Casting Time: 1 
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+When a wizard casts this spell, <PRO_HESHE> causes slumber to come upon one enemy (other than undead and certain other creatures specifically excluded from the spell's effects). The creature must make a saving throw vs. Spells or fall asleep. Attacks against sleeping opponents never miss.
+
+If the sleeping creature takes damage, <PRO_HESHE> will slowly wake up over the course of 1 round. Additionally, once a creature has been put to sleep by this spell, that being cannot be affected by another casting of the spell for 8 hours.
+~
+@7163  = ~Sleep~
+@7164  = ~Sleep
+(Enchantment/Charm)
+
+Level: 2
+Range: 60 ft.
+Duration: 5 rounds
+Casting Time: 1 
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+When a wizard casts this spell, <PRO_HESHE> causes a comatose slumber to come upon one or more enemies within a 30-ft. radius (other than undead and certain other creatures specifically excluded from the spell's effects). Creatures in the area of effect must make a saving throw vs. Spells with a -3 penalty or fall asleep. Monsters with 5 Hit Dice or more are unaffected. Attacks against sleeping opponents never miss.
+
+If a sleeping creature takes damage, they will slowly wake up over the course of 1 round. Additionally, once a creature has been put to sleep by this spell, that being cannot be affected by another casting of the spell for 8 hours.
+~
+@7171 = ~Frost Fingers~
+@7172 = ~Frost Fingers
+(Invocation)
+
+Level: 1
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: none
+
+When this spell is cast, a jet of chilling frost shoots from the caster's fingertips, in jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1 additional point for each three levels of the caster (to a maximum of 1d6+6 damage).
+~
+@7181  = ~Chromatic Orb~
+@7182  = ~Chromatic Orb
+(Evocation)
+
+Level: 1
+Range: 90 ft.
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell causes a colorful sphere to appear in the caster's hand. When thrown, the sphere heads unerringly to its target. The effect the orb varies. Each orb will do damage to the target against which there is no save, and can trigger a secondary effect against which the target must save vs. Spell with a +2 bonus:
+ 20% chance: 1d4 damage and blinds the target for 1 round.
+ 20% chance: 1d4 damage and inflicts pain (-1 penalty to Strength, Dexterity, AC, and THAC0) upon the target.
+ 20% chance: 1d4 damage and stuns the target for 1 round.
+ 20% chance: 1d4 damage and causes weakness (-4 penalty to THAC0) in the target for 5 rounds.
+ 20% chance: 1d4 damage and panics the target for 2 rounds.
+~
+@7191  = ~Larloch's Minor Drain~
+@7192  = ~Larloch's Minor Drain 
+(Necromancy)
+
+Level: 1
+Range: 30 ft.
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+With this spell, the wizard drains the life force from a target and adds it to <PRO_HISHER> own. The target creature suffers 2d3 damage (save vs. Death for half damage), while the caster gains 4 hit points. If the caster goes over <PRO_HISHER> maximum hit point total with this spell, <PRO_HESHE> loses any extra hit points after 1 turn.
+
+A caster may only benefit from the extra hit points provided by this spell once per turn, regardless how many victims are drained, or how quickly.
+~
+@7241  = ~Wild Surge~
+@7242  = ~Wild Surge
+(Invocation/Evocation)
+
+Level: 1
+Range: Special
+Duration: Special
+Casting Time: Special
+Area of Effect: Special
+Saving Throw: Special
+
+This is less a spell than a release of pure wild energy. Magic energy surrounds wild mages and courses through them. This effect is what happens if a wild mage loses control and allows such energy to be unleashed. There is no spell, no intended form the magic takes; only pure, random, magical manifestation.
+
+Wild mages may release this energy at any time, as often as they like; but most spend their careers learning how to prevent it happening, rather than how to make it happen.
+~
+@7251  = ~Spook~
+@7252  = ~Spook
+(Illusion/Phantasm)
+
+Level: 1
+Range: 30 ft.
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+A Spook spell enables the wizard to play upon natural fears to cause the target creature to perceive the caster as someone or something inimical, which then appears to advance upon it in a threatening manner. If the creature does not make a successful Saving Throw vs. Spell, it turns and flees at maximum speed as far from the wizard as possible. The creature suffers a Saving Throw penalty of -1 every 2 levels of the caster, up to a maximum of -6 at 12th level. Although the caster does not actually pursue the fleeing creature, a phantasm from its own mind does. Undead are completely unaffected.
+
+Anyone who has been the target of this spell - whether they make their saving throw or not - will be suspicious for a time, and cannot be affected by it for 8 hours. 
+~
+@7103  = ~Identify~
+@7104  = ~Identify
+
+Level: 1
+School: Divination
+Range: 0
+Duration: instantaneous
+Casting Time: 2
+Area of Effect: caster
+Saving Throw: None 
+
+When this spell is cast, name and enchantments (including curses) of one item or weapon subsequently touched by the caster are revealed without fail. This gives the caster insight into the history, nature, enchantments, and use of the item. Many unidentified items can still be used, but at great risk.
+
+At 5th, 9th, and 13th level, the number of items that can be identified by this spell increases by 1 (to a maximum of 4 items at 13th level).
+~
+@8002  = ~Find Familiar
+(Conjuration/Summoning)
+
+Level: 1
+Range: n/a
+Duration: Special
+Casting Time: 9
+Area of Effect: 1 familiar
+Saving Throw: None
+
+This spell enables the caster to summon a familiar to act as <PRO_HISHER> aide and companion. Familiars are typically small creatures. A creature acting as a familiar can benefit a wizard, conveying its sensory powers to its master, conversing with <PRO_HIMHER>, and serving as a guard, scout, or spy. A wizard can have only one familiar at a time, and <PRO_HESHE> has no control over what sort of creature answers the summoning, if any come at all.
+
+(Note: This spell may only be cast by the protagonist.)
+
+A familiar is more intelligent than others of its type. Its bond with the wizard confers upon it an exceptionally long life, allows it to regenerate 1 hit point per round, and to resist petrification and level drain effects. The caster receives half the familiar's total Hit Points (rounded down) as bonus Hit Points. However, the caster must take care to treat <PRO_HISHER> familiar well, for if the familiar should die, the caster loses the bonus Hit Points and the familiar's Hit Points again as damage. Also when a familiar dies, the caster loses 1 point of Constitution PERMANENTLY.
+
+At 1st level, all familiars share the following characteristics: 9 hit points, AC 4, thac0 17, saving throws 16, 25% magic and damage resistance, immunity to level drain and petrification. At certain experience thresholds - 5,000 / 50,000 / 150,000 / 450,000 / 1,250,000 / 2,500,000 / 4,000,000 - the familiar's hit points, AC, thac0 and saving throws will improve.
+
+Here is a list of the familiars that the player may choose:
+
+Pseudo Dragon
+- Combat: 1 attack per round for 1d3 damage; save or be Slowed for 2 rounds
+- Special Abilities: can cast Blur and Cure Light Wounds, and use a Color Spray breath weapon, once every 3 turns.
+- Special Benefit: the pseudodragon's summoner regenerates 1 hit point per round.
+
+Ferret
+- Combat: 1 attack per round for 1d3 damage
+- Special Abilities: has 80% Pick Pockets score. Can emit a small aura of Nauseating Stench once per turn. For five round, enemies near the ferret must save or suffer 2-point penalties to hit and AC and a 30% chance of casting failure.
+- Special Benefit: the ferret's summoner has a +1 bonus to Constitution.
+
+Rabbit
+- Combat: 1 attack per round for 1d2 damage
+- Special Abilities: has 80% Detect Traps score. Can burrow into the ground to escape danger - similar to the Shadowstep ability - once per turn.
+- Special Benefit: the rabbit's summoner is immune to Slow effects.
+
+Cat
+- Combat: 1 attack per round for 1d3 damage
+- Special Abilities: has 99% in Move Silently/Hide in Shadows, and is Nondetectable (as the spell) to magic divinations.
+- Special Benefit: the cat's summoner has a +1 bonus to Dexterity.
+
+Spider
+- Combat: 1 attack per round for 1d2 damage; save or take 3 poison damage over 1 round
+- Special Abilities: can cast a single-target Web, which can tangle the target for 3 rounds, once per 5 rounds.
+- Special Benefit: the spider's summoner has an extra chance to resist being affected by poisons.
+
+Rat
+- Combat: 1 attack per round for 1d2 damage; save or be diseased for 3 rounds, with reduced Strength and a 30% chance of casting failure
+- Special Abilities: can summon a cohort of 1d6 more rats to defend it, once per 3 turns.
+- Special Benefit: the rat's summoner has a +1 bonus to Intelligence.
+~
+@8003  = ~Find Familiar
+(Conjuration/Summoning)
+
+Level: 1
+Range: n/a
+Duration: Special
+Casting Time: 9
+Area of Effect: 1 familiar
+Saving Throw: None
+
+This spell enables the caster to attempt to summon a familiar to act as <PRO_HISHER> aide and companion. Familiars are typically small creatures. A creature acting as a familiar can benefit a wizard, conveying its sensory powers to its master, conversing with <PRO_HIMHER>, and serving as a guard/scout/spy as well. A wizard can have only one familiar at a time, and <PRO_HESHE> has no control over what sort of creature answers the summoning, if any come at all.
+
+(Note: This spell may only be cast by the protagonist.)
+
+The wizard has an empathic link with the familiar and can issue it mental commands. The creature is always more intelligent than others of its type (typically by 2 or 3 Intelligence points). Its bond with the wizard confers upon it an exceptionally long life and prevents it from truly dying. If the familiar should 'die' in combat the caster may cast Find Familiar again a day later to re-summon it.
+
+Here is a list of the familiars that the player receives according to alignment:
+
+LAWFUL GOOD, NEUTRAL GOOD: Pseudo Dragon
+– Hit Points: 24
+– Armor Class: -2
+– Magic Resistance: 50%
+– Combat: 2 attacks per round at 13 THAC0 for 1d3 damage, save vs. Death or be rendered unconscious for 2 turns
+– Special Abilities: Can cast Blur once per day. Regenerates 1 HP/round. Immune to level drain, sleep, and petrification.
+
+LAWFUL NEUTRAL: Ferret
+– Hit Points: 24
+– Armor Class: 0
+– Magic Resistance: 50%
+– Combat: 2 attacks per round at 13 THAC0 for 1d3 damage
+– Special Abilities: Has 75% in Pick Pockets, 40% in Hide in Shadows/Move Silently, and 20% in Detect Traps. Can cast Blur once per day. Immune to level drain, sleep, and petrification.
+
+LAWFUL EVIL: Imp
+– Hit Points: 18
+– Armor Class: 2
+– Magic Resistance: 25%
+– Combat: 1 attack per round at 15 THAC0 for 1d6 damage
+– Special Abilities: Has 100% resistance to fire, cold, and electricity. Can cast Polymorph Self once per day. Regenerates 1 HP/round.
+
+NEUTRAL: Rabbit
+– Hit Points: 24
+– Armor Class: 1
+– Magic Resistance: 65%
+– Combat: 2 attacks per round at 13 THAC0 for 1d2 damage
+– Special Abilities: Has 50% in Detect Traps and 30% Hide in Shadows/Move Silently. Has 75% resistance to fire, cold, and electricity.
+
+NEUTRAL EVIL: Dust Mephit
+– Hit Points: 24
+– Armor Class: 6
+– Magic Resistance: 10%
+– Combat: 2 attacks per round at 13 THAC0 for 1d2 damage
+– Special Abilities: Has 100% resistance to fire and 50% resistance to slashing, piercing, and missile damage. Can cast Glitterdust once per day and Glass Dust twice per day. Regenerates 1 HP/round. Immune to level drain, sleep, and petrification.
+
+CHAOTIC GOOD: Fairy Dragon
+– Hit Points: 24
+– Armor Class: 4
+– Magic Resistance: 32%
+– Combat: 2 attacks per round at 13 THAC0 for 1d2 damage
+– Special Abilities: Can cast Mirror Image and Invisibility, 10' Radius once per day. Immune to level drain, sleep, and petrification.
+
+CHAOTIC NEUTRAL: Cat
+– Hit Points: 24
+– Armor Class: 0
+– Magic Resistance: 50%
+– Combat: 2 attacks per round at 13 THAC0 for 1d3 damage
+– Special Abilities: Has 30% in Pick Pockets and 99% in Move Silently/Hide in Shadows. Immune to level drain, sleep, and petrification.
+
+CHAOTIC EVIL: Quasit
+– Hit Points: 24
+– Armor Class: 2
+– Magic Resistance: 25%
+– Combat: 3 attacks per round at 13 THAC0 for 1d6 damage
+– Special Abilities: Has 100% resistance to fire, cold, and electricity. Can cast Horror and Blur once per day. Regenerates 1 HP/round.
+~
+@8004  = ~Find Familiar
+(Conjuration/Summoning)
+
+Level: 1
+Range: n/a
+Duration: Special
+Casting Time: 9
+Area of Effect: 1 familiar
+Saving Throw: None
+
+This spell enables the caster to summon a familiar to act as <PRO_HISHER> aide and companion. Familiars are typically small creatures. A creature acting as a familiar can benefit a wizard, conveying its sensory powers to its master, conversing with <PRO_HIMHER>, and serving as a guard, scout, or spy. A wizard can have only one familiar at a time, and <PRO_HESHE> has no control over what sort of creature answers the summoning, if any come at all.
+
+The wizard has an empathic link with the familiar and can issue it mental commands. The creature is always more intelligent than others of its type (typically by 2 or 3 Intelligence points). Its bond with the wizard confers upon it an exceptionally long life and prevents it from truly dying. If the familiar should 'die' in combat the caster may cast Find Familiar again a day later to re-summon it.
+
+At 1st level, all familiars share the following characteristics: 9 hit points, AC 4, thac0 17, saving throws 16, 25% magic and damage resistance, immunity to level drain and petrification. At certain experience thresholds - 5,000 / 50,000 / 150,000 / 450,000 / 1,250,000 / 2,500,000 / 4,000,000 - the familiar's hit points, AC, thac0 and saving throws will improve.
+
+Here is a list of the familiars that the player may choose:
+
+Pseudo Dragon
+- Combat: 1 attack per round for 1d3 damage; save or be Slowed for 2 rounds
+- Special Abilities: can cast Blur and Cure Light Wounds, and use a Color Spray breath weapon, once every 3 turns.
+- Special Benefit: the pseudodragon's summoner has a 10% higher total hit point total, and regenerates 1 hit point per round.
+
+Ferret
+- Combat: 1 attack per round for 1d3 damage
+- Special Abilities: has 80% Pick Pockets score. Can emit a small aura of Nauseating Stench once per turn. For five rounds, enemies near the ferret must save or suffer 2-point penalties to hit and AC and a 30% chance of casting failure.
+- Special Benefit: the ferret's summoner has a 10% higher total hit point total, and has a +1 bonus to Constitution.
+
+Rabbit
+- Combat: 1 attack per round for 1d2 damage
+- Special Abilities: has 80% Detect Traps score. Can burrow into the ground to escape danger - similar to the Shadowstep ability - once per turn.
+- Special Benefit: the rabbit's summoner has a 10% higher total hit point total, and is immune to Slow effects.
+
+Cat
+- Combat: 1 attack per round for 1d3 damage
+- Special Abilities: has 99% in Move Silently/Hide in Shadows, and is Nondetectable (as the spell) to magic divinations.
+- Special Benefit: the cat's summoner has a 10% higher total hit point total, and has a +1 bonus to Dexterity.
+
+Spider
+- Combat: 1 attack per round for 1d2 damage; save or take 3 poison damage over 1 round
+- Special Abilities: can cast a single-target Web, which can tangle the target for 3 rounds, once per 5 rounds.
+- Special Benefit: the spider's summoner has a 10% higher total hit point total, and has an extra chance to resist being affected by poisons.
+
+Rat
+- Combat: 1 attack per round for 1d2 damage; save or be diseased for 3 rounds, with reduced Strength and a 30% chance of casting failure
+- Special Abilities: can summon a cohort of 1d6 more rats to defend it, once per 3 turns.
+- Special Benefit: the rat's summoner has a 10% higher total hit point total, and has a +1 bonus to Intelligence.
+~
+@8011  = ~Pseudodragon~
+@8012  = ~Pseudodragon: this is a tiny, distant relative of full dragons. The pseudodragon can cast Cure Light Wounds, and Blur, and use a colorful 'breath weapon' that mimics the Color Spray spell, once every 3 turns. (At high levels, the Blur improves to a full Improved Invisibility effect.) They can attack twice per round and while their claws are small, they deliver a mild intoxicant which can render the target drowsy and clumsy (mimicking the effects of a Slow spell, for two rounds). 
+
+While this familiar is near its master, the summoner regenerates 1 hit point per round.
+
+As pseudodragons can fly, they are impervious to the effects of Grease, Entangle, Web, and similar spells. As with all familiars, their magical connection to the life force of their master renders them immune to petrification and level drain effects.
+~
+@8013  = ~Pseudodragon~
+@8014  = ~Pseudodragon: pseudodragons are quite intelligent. While small, they are  quick and fairly well-armored. They do not do much damage in combat, but their magical claws are able to render some enemies unconscious. It is also quite resistant to magical spells.
+
+While this familiar is near its master, the summoner will slowly regenerate health.
+
+As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8015  = ~Dog~
+@8016  = ~Dog: ...~
+@8017  = ~Ferret~
+@8018  = ~Ferret: these animals are clever and mischievous, and while cute, they can occasionally carry a noxious stench. In combat they can attack twice per round, and they can emit a small-range nauseating aura which can cause nearby enemies to gag and retch, resulting in 2-point penalties to hit and armor class, and a 30% chance of spell failure.
+
+Ferrets are also sneaky, and can make effective pickpockets on behalf of their masters.  
+
+While this familiar is near its master, the summoner benefits from a +1 bonus to Constitution.
+
+As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8019  = ~Rabbit~
+@8020  = ~Rabbit: while the rabbit is not an impressive combatant, it is exceedingly skilled at avoiding damage. Rabbits have 25% resistance to elemental attacks, and once per turn they can burrow into the ground and move unheeded to a safe area (in practice this resembles the ShadowStep ability of Shadowdancers). Rabbits also have an acute sense of imending danger, and can quite effectively use their sensitive noses and ears to sniff out nearby traps.
+
+While this familiar is near its master, the summoner is immune to Slow spells and similar effects.
+
+As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8021  = ~Cat~
+@8022  = ~Cat: a black cat is a very traditional familiar for wizards, and is quite useful as a scout. They can move unseen as well as any master thief; and they may escape notice even in the face of spells that expose invisible creatures (though creatures with the natural ability to see hidden and invisible beings can still spot a cat).
+
+While this familiar is near its master, the summoner benefits from a +1 bonus to Dexterity.
+
+As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8023  = ~Imp~
+@8024  = ~Imp: ~
+@8025  = ~Spider~
+@8026  = ~Spider: a spider can make a useful, if somewhat creepy-crawly, familiar for a wizard with no aversion to arachnids. They are effective in combat, especially against spellcasters, as they inject victims with a poison that can inflict 3 extra points of damage over 6 seconds. This particular variety of large spiders has the ability to, once every 5 rounds, spit a sticky mess of webbing at an enemy, who may be held fast in it for 3 rounds on a failed saving throw.
+
+While this familiar is near its master, the summoner has an extra chance to save to avoid spells or effects that cause poison damage.
+
+Spiders cannot be held fast by Web spells or similar effects. As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8027  = ~Mephit~
+@8028  = ~Mephit: ...~
+@8029  = ~Quasit~
+@8030  = ~Quasit: ...~
+@8031  = ~Rat~
+@8032  = ~Rat: rats are unusually intelligent and sociable creatures, especially when enhanced by the magic of this spell. Once per 3 turns, this familiar may call upon 1d6 fellow rats to join it in combat. Rats, even domesticated ones are also no strangers to garbage and disease, and may utilize this against their enemies. Each time they successfully strike an enemy, the victim may become diseased, resulting in a short period of weakness and a 25% chance of spell failure.
+
+While this familiar is near its master, the summoner benefits from a +1 bonus to Intelligence.
+
+As with all familiars, its magical connection to the life force of its master renders it immune to petrification and level drain effects.
+~
+@8111  = ~Nauseating Stench~
+@8113  = ~Web Attack~
+@8115  = ~Swarm of Rats~
+@8201  = ~You can imbue your familiar with one of the following spells.  Please note, this will reduce the number of spells you can cast, and the change is permanent!~
+@8202  = ~Do not transfer any spells to the familiar at this time.~
+@8203  = ~Imbue Familiar~
+@8204  = ~Add this spell to the familiar~
+@8205  = ~Choose a different spell~
+@8206  = ~Imbue Familiar
+
+This ability can be used to imbue a familiar with the ability to cast spells. The spells are chosen from those known by the caster.  A 1st-level spell may be imbued when the caster is level 1; a 2nd-level or lower spell at level 3; a 3rd-level or lower spell at level 6; a 4th-level or lower spell at level 10, and a 5th-level or lower spell at level 15. 
+
+Once a familiar is imbued with the ability to cast a spell, it will be able to cast the spell once per combat encounter. Each time a familier is so imbued, the choice is permanent and cannot be undone.
+~
+//
+// familiars (tra refs = BG2 str refs)
+//
+@58296 = ~The small dragon-like creature purrs quizzically with wide eyes. Nervously, it backs away towards <CHARNAME>. Obviously, it doesn't want to talk to you.~
+@58297 = ~The small dragon-like creature flutters its wings happily, looking at you with almost kaleidoscopic eyes. "You wish something?" It awaits your attention, tail flicking.~
+@58298 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58299 = ~*pet and play with it*~
+@58300 = ~You wouldn't happen to have any advice, would you?~
+@58301 = ~How are you? Everything okay down there?~
+@58304 = ~No, it's all right. Let's just keep going.~
+@58866 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58302 = ~Its eyes brighten, and it practically leaps into your arms, ready to be stowed amongst your belongings, where it can sleep and occasionally poke its head out.~
+@58303 = ~The dragon coos with delight, its multicolored eyes whirling as you pat its warm, leathery hide. "You are very kind to me, my <PRO_LADYLORD>," it purrs.~
+@58305 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58306 = ~You wouldn't happen to have any advice, would you?~
+@58307 = ~How are you? Everything okay down there?~
+@58308 = ~Let's just keep going, then.~
+@59477 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58309 = ~The familiar cranes its neck back and looks up at you with a slightly bewildered expression. "You wish to ask *me* for advice, my <PRO_LADYLORD>?"~
+@58310 = ~It looks at the darkness for a long moment before turning its colorful eyes back at you. "Let us be away from this dark place, my <PRO_LADYLORD>. That is my advice."~
+@58311 = ~The dragon looks about quizzically before turning its multifaceted eyes back upon you. "We go to the place of the poor? The slums, my <PRO_LADYLORD>? I do not know."~
+@58312 = ~The little dragon chuckles to itself musically. "You must collect gold, my <PRO_LADYLORD>. Coins and coins enough to find your answers."~
+@58313 = ~It almost seems to frown, its whirling eyes settling on a baleful yellow before continuing. "I do not know, my <PRO_LADYLORD>. You must continue these tasks, no?"~
+@58314 = ~It ponders for a long moment, flicking its tail absently, before turning back again. "We must stop this wizard. Save you and the little sister. That is my advice."~
+@58315 = ~It looks around for a moment, its eyes dimming with fear as its tail curls up under its belly. "We must be away from this place soon, my <PRO_LADYLORD>. Please?"~
+@58316 = ~It thinks for a moment and then its eyes brighten dramatically. "We must find the sacred elven city, my <PRO_LADYLORD>. Your wizard lies therein, I am certain."~
+@58317 = ~It growls menacingly, but not at you. It flicks its tail wickedly several times. "The wizard, my <PRO_LADYLORD>. He must die, and you must live."~
+@58318 = ~The dragon flicks its tail with pleasure and gazes up at you with colorful eyes. "So long as you are well, my <PRO_LADYLORD>, then I am well."~
+@58319 = ~"But since you are asking, I could use a snack. Perhaps a nice gopher. Or some pie... ooooh, yes, I *like* pie!"~
+@58320 = ~"I... I am a little hurt, though, my <PRO_LADYLORD>. The cuts sting, and I am bleeding. It... it is not pleasant."~
+@58321 = ~"I... I am hurt badly, my <PRO_LADYLORD>. I don't want to die, my <PRO_LADYLORD>. I want to stay with you." The dragon whimpers a little and curls its tail around your leg.~
+@58322 = ~"I do like traveling with you. Very much, my <PRO_LADYLORD>. Do you have an apple? I could roast the apple a little and then eat it down. Apples are good!"~
+@58323 = ~"I am amazed at all the new places I see with you. Everything is so wonderful and so colorful! Is all of the world like this, my <PRO_LADYLORD>?"~
+@58324 = ~"I feel wonderful myself, my <PRO_LADYLORD>. My hide is clean, and I stand ready to aid you against danger!"~
+@58325 = ~The dragon flicks its tail contentedly and then turns its eyes back to the path before you. "As you wish, my <PRO_LADYLORD>."~
+@58867 = ~Its eyes brighten, and it practically leaps into your arms, ready to be stowed amongst your belongings, where it can sleep and occasionally poke its head out.~
+@58356 = ~The small creature looks at you with suspicion, and after a moment's inspection, it turns and gives you full view of its rear while it strolls to <CHARNAME>.~
+@58357 = ~The familiar sighs, its nose twitching slightly with curiosity as it looks up with dark eyes. "What is it now, <PRO_MANWOMAN>? I am hungry. I wish to be petted and fed."~
+@58358 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58360 = ~*pet the familiar*~
+@58383 = ~You wouldn't happen to have any advice, would you?~
+@58384 = ~How are you? Everything okay down there?~
+@58873 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@59804 = ~Give me anything you have pickpocketed, will you?~
+@58385 = ~Perhaps later. Let's just keep going.~
+@58359 = ~The familiar eyes your pack, and then reluctantly crawls inside. "Very well. It is better that you carry me. Do not bump me around so much this time."~
+@58361 = ~"Aahhhh..." The familiar half-closes its eyes with contentment, a pleased smile creeping across its face. "Yes, this is good. Food would also be nice."~
+@58362 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@58363 = ~You wouldn't happen to have any advice, would you?~
+@58373 = ~How are you? Everything okay down there?~
+@59479 = ~Come here. I want to pick you up and put you in my pack, where it's a bit safer.~
+@59812 = ~Give me anything you have pickpocketed, will you?~
+@58381 = ~Let's just keep going, then.~
+@58364 = ~The animal looks at you, fairly close to bewildered. "Me? I suppose I have thoughts that it would amuse me to share, but would you even regard them, <PRO_MANWOMAN>?"~
+@58365 = ~Looking about at the darkness, the familiar turns back with a shrug. "I would say let us be off to the surface, <PRO_MANWOMAN>. Surely food is more plentiful there."~
+@58366 = ~It looks about for several moments, watching various city animals and people. It finally turns back, almost startled. "What? Advice? Ah... no. No advice."~
+@58367 = ~The little animal thinks to itself for a few moments and then saunters away, presenting its tail and bum to you. Apparently, it has tired of thinking.~
+@58368 = ~It thinks for a long moment and then seems to drift off, yawning widely. It stares, blinking several times. "Feed me, and then pet me some more. That is my advice."~
+@58369 = ~"Let's see... the wizard is behind all your trials, yes? Then it is easy, <PRO_MANWOMAN>. Find him, kill him, and your troubles are no more. Now will you feed me, yes?"~
+@58370 = ~It looks about balefully, its ears folding back against its head in fear. "This... is a place where I am food. I do not like this place. We should go elsewhere."~
+@58371 = ~"Hmm, the elven city has the Tree of Life within, <PRO_MANWOMAN>, a wondrous thing connected to all that is natural. You must find the city and the Tree. That is my advice."~
+@58372 = ~As it thinks, its eyes glow red with uncharacteristic ferocity. "There is only one solution, <PRO_MANWOMAN>. For you to survive, the wizard must die. That is how it must be."~
+@58374 = ~It looks up with dark eyes, seemingly content to just be near you. It sighs and looks away briefly. "We are connected, you and I. If you are well, so am I."~
+@58375 = ~"But I myself have a few insignificant injuries. I am strengthened because you are stronger than I. If you could treat my wounds, it would please me."~
+@58376 = ~"But I myself am hurt very badly. I bleed, <PRO_MANWOMAN>. I may survive, or I may not... we shall see."~
+@58377 = ~"But since you ask, I am possessed of a craving for food. Procure some for me, and I shall allow you to pet me for a while longer."~
+@58378 = ~"But I think you are a good enough traveling companion. I am pleased with the progress we make. Perhaps I shall remain with you for some time to come; we shall see."~
+@58379 = ~The small animal seems to ponder saying something else, but eventually its attention drifts and it finds something more interesting than you elsewhere. Walking away, it presents its tail and bum to you.~
+@58380 = ~"But all is well enough, <PRO_MANWOMAN>. Why? Are you not well? You will not sicken and die on me, <PRO_MANWOMAN>, would you? If you did, it would sadden me, for a while."~
+@58382 = ~The familiar sighs and turns its eyes disinterestedly to the path before you. "I would prefer to choose our path myself, but you'll no doubt want to be stubborn."~
+@58874 = ~The familiar eyes your pack for a moment, and then reluctantly crawls inside. "Very well. It is better that you carry me. Do not bump me around so much this time, however."~
+@58875 = ~The familiar eyes your pack for a moment, and then reluctantly crawls inside. "Very well. It is better that you carry me. Do not bump me around so much this time, however."~
+@59805 = ~The familiar eyes you suspiciously. "But when I take things, they belong to me."~
+@59806 = ~Never mind that. Hand it over.~
+@59807 = ~Pretty please? I'll feed you and pet you...~
+@59808 = ~Oh, never mind, then.~
+@59809 = ~The small animal rolls its eyes and sighs petulantly. "Fine. But you are very cruel to me, you know."~
+@59810 = ~The small animal twitches its tail, pondering. "Well... perhaps. But I would not put it past you not to keep your word. *sigh* Oh, very well. It amuses me when you beg."~
+@59811 = ~"As it should be. I earned it, after all."~
+@59813 = ~"*sigh* Very well. Although next time, don't expect such cooperation just from a few seconds of petting."~
+@58359 = ~The familiar eyes your pack, and then reluctantly crawls inside. "Very well. It is better that you carry me. Do not bump me around so much this time."~
+//
+//
+@11511 = ~Sunscorch~
+@11512 = ~Sunscorch
+
+Level: 1
+School: Evocation
+Sphere: Sun
+Range: Long
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+When this spell is cast, a brilliant ray of scorching heat slants down from the sky and strikes one target of the caster's choice. The creature struck by the ray sustains 1d3 points of fire damage plus 1d3 every two extra levels of experience (up to a maximum of 5d3). Undead creatures and monsters vulnerable to bright light suffer an extra 1d6 per two levels in addition to this, to a maximum total of 5d3 + 5d6. In addition, targets who fail a saving throw vs. spells are blinded for 3 rounds.
+~
+@12022 = ~Barkskin
+
+Level: 2
+School: Alteration
+Sphere: Plant
+Range: Caster
+Duration: 2 turns
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: None
+
+When cast upon a creature, its skin takes on the appearance of rough, woody bark. What's more, this bark-like texture continually grows to protect the recipient of the spell. The bark can completely turn aside a single blow (but not any magical secondary effects) and is chipped off in the process; one round later, the bark will regrow enough to block another blow. This process of protection and regrowth continues for 2 turns, protecting the recipient from one physical attack per round, after which the spell fades. Multiple castings of this spell are not cumulative.
+~
+@12071 = ~Goodberry~
+@12072 = ~Goodberry
+
+Level: 2
+School: Alteration
+Sphere: Plant
+Range: 15 feet
+Duration: 1 round/level
+Casting Time: 5
+Area of Effect: party
+Saving Throw: None
+
+With this spell, the caster causes a bunch of enchanted berries to grow to unnatural size, and distributes them among <PRO_HISHER> allies. Each portion is as filling and nutritious as a full home-cooked meal, and the enchantment makes them unusually restorative: partaking of the berries eliminates intoxication, reduces fatigue, and causes the eater to regenerate 2 hit points per round, for a number of rounds equal to the caster's level (to a maximum of 20 hit points healed over 10 rounds).
+
+Creating and eating the Goodberries can only be done outside of combat.
+~
+@12122 = ~Slow Poison
+
+Level: 2
+School: Alteration
+Sphere: Healing
+Range: touch
+Duration: 4 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+When this spell is cast upon a poisoned individual, it greatly slows the effects of venom, actually neutralizing all but the most deadly poisons. The effect remains in the target's body for a short time, preventing <PRO_HIMHER> from be affected by poison for three rounds after the spell is cast.
+~
+@12052 = ~Find Traps
+
+Level: 2
+School: Divination
+Sphere: Divination
+Range: Personal
+Duration: 4 hours
+Casting Time: 5
+Area of Effect: 30' radius
+Saving Throw: None
+
+When a priest casts a find traps spell, all traps - concealed normally or magically - of magical or mechanical nature become apparent to him. Once per round, all traps within a 30 foot radius of the caster will be revealed. A trap is any device or magical ward that meets three criteria: it can inflict a sudden or unexpected result, the spellcaster would view the result as undesirable or harmful, and the creator specifically intended the harmful or undesirable result as such. Thus, traps include glyphs and similar spells or devices.
+~
+@12512 = ~Alicorn Lance
+(Invocation)
+
+Level: 2
+Sphere: Combat
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell creates a silver-hued, partially ethereal lance shaped in the form of an alicorn (a unicorn horn). The caster chooses a target, and the alicorn lance instantaneously fires at it, inflicting 4d6 points of magic damage. Although the alicorn lance dissipates after it strikes, it leaves a silvery radiance around the target that makes it easier to see and hit, giving it a -2 penalty to its Armor Class for 3 rounds.
+~
+@13232 = ~Exaltation
+
+Level: 3
+School: Abjuration
+Sphere: Healing
+Range: Touch
+Duration: 1 turn
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell enables a priest to aid and protect any one being other than the priest. By touch, the caster removes the effects of fear, sleep, feeblemindedness, unconsciousness, and intoxication, as well as berserk and confused states of mind. In addition, the recipient is protected against spells and other attacks that cause these effects for the duration of the spell.
+~
+@14041 = ~Remove Afflictions~
+@14042 = ~Remove Afflictions
+
+Level: 4
+School: Necromancy
+Sphere: Healing 
+Range: Touch 
+Duration: Instant 
+Casting Time: 1 
+Area of Effect: 1 creature 
+Saving Throw: None 
+
+This spell removes all toxins diseases, and fatigue from the body, both natural and magical in nature. When this spell is cast upon an individual, it immediately neutralizes any poison cures any disease, alleviates any paralysis, and eliminates any fatigue. This spell will also cure the target of blindness and deafness.
+~
+@14043 = ~Remove Afflictions
+
+Level: 4
+School: Necromancy
+Sphere: Healing
+Range: Touch
+Duration: 1 turn/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell removes all toxins, diseases, and fatigue from the body, both natural and magical in nature. When this spell is cast upon an individual, it immediately neutralizes any poison, cures any disease, alleviates any paralysis, and eliminates any fatigue. In addition, for the duration of the spell, the recipient is immune to any poison or disease they are exposed to, and spells like Poison and Cloudkill won't affect the protected creature.
+~
+@13501 = ~Spiritual Clarity~
+@13502 = ~Spiritual Clarity
+
+Level: 3
+School: Abjuration
+Sphere: Protection
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell enables a priest to aid and protect any one being other than the priest. By touch, the caster removes the effects of fear, sleep, feeblemindedness, unconsciousness, and intoxication, as well as berserk and confused states of mind. In addition, the recipient is protected against spells and other attacks that cause these effects for the duration of the spell.
+~
+@13512 = ~Moonblade
+
+Level: 3
+Sphere: Combat, Sun
+Range: 0
+Duration: 2 turns
+Casting Time: 6
+Area of Effect: The caster
+Saving Throw: None
+
+This spell summons forth a silent, weightless sword-like construct made of moonlight that extends four feet from the caster's hand. The moonblade is considered a +4 weapon for determining what creatures it can hit, though the bonus does not apply to attack rolls made with it. Due to the insubstantial nature of the moonblade, melee bonuses from Strength do not apply, but attacks with the moonblade are considered melee touch attacks, and thus gain a +4 bonus to hit.
+
+The strike of a moonblade drains a target's vitality, inflicting 1d12+4 points of magic damage. There is a 50% chance that someone struck by the Moonblade will be affected by Faerie Fire if they fail a saving throw vs. spells, resulting in a 2-point penalty to armor class and preventing them from going invisible. Undead, who are particularly susceptible to the blade's radiant energy, take additional 1d12 points of damage and must make a saving throw or be Slowed for three rounds. 
+~
+@16112 = ~Wondrous Recall
+
+Level: 6
+School: Alteration
+Sphere: All, Thought
+Range: Personal
+Duration: Instant
+Casting Time: 1 round
+Area of Effect: Caster
+Saving Throw: None
+
+This spell enables the caster to bring back into memory all spells that have been previously cast, of the 1st and 2nd spell levels. (If no spells have been cast yet, nothing happens.)
+~
+@16113 = ~Also known as "mage wine", this potion is highly sought after by mages and bards. When imbibed, the drinker can immediately bring back into memory all spells that have been previously cast of the 1st and 2nd spell levels. If no spells have been cast yet, then nothing happens.
+~
+@21081 = ~Mirrored Eyes~
+@21082 = ~Mirrored Eyes
+
+Level: 1
+School: Alteration
+Range: touch
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: none
+
+This spell grants the recipient immunity to all gaze attacks. This includes basilisk and medusa gaze, as well as vampire charm, and others.
+~
+@21083 = ~Mirrored Eyes
+
+Level: 1
+School: Alteration
+Range: touch
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: none
+
+This spell grants the recipient resistance to all gaze attacks, including basilisk and medusa gaze, as well as vampire charm, and others. When targeted by such an effect, the beneficiary of this spell may attempt a saving throw vs. spells, in addition to any saving throw usually allowed by the attack. If the additional save vs. spells is successful, the effect transmitted by the gaze is avoided entirely.
+~
+@22092 = ~Luck
+
+Level: 1
+School: Divination
+Range: 30 ft.
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+The beneficiaries of this spell gain a slight, instinctive insight into the very immediate future. The result is that the subject appears to have unusually good luck in every regard, receiving a 5% bonus to all actions, for the next 5 rounds. This includes Saving Throws, to-hit rolls, damage, thieving skills, etc.
+~
+@22132 = ~Stinking Cloud
+
+Level: 2
+School: Alteration
+Range: Long
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 30' radius
+Saving Throw: Poison negates
+
+When Stinking Cloud is cast, a billowing mass of nauseous vapors appears centered on a point selected by the caster. Each round a creature is within the cloud, <PRO_HISHER> movement rate is cut by 50% for two rounds. Additionally, if the <PRO_HESHE> fails a saving throw vs. death/poison, <PRO_HESHE> will become nauseated. Nauseated characters are unable to attack or cast spells for two rounds, and have 2-point penalties to armor class, to-hit rolls, and casting speed for four rounds. Those who make successful saving throws can leave the cloud without suffering any ill effects, apart from the movement rate reduction; however, those who remain within the cloud must continue to save each round.  Certain creatures are immune to the effects of the cloud, including all undead and creatures who don't need to breathe, such as elementals.
+~
+@22152 = ~Web
+
+Level: 2
+School: Evocation
+Range: 40 ft.
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+A Web spell creates a many-layered mass of strong, sticky strands similar to spider webs but far larger and tougher. The Web spell covers a maximum area of about 15 ft. in radius (roughly the same size as a Fireball). Creatures caught within the webs can become stuck among the gluey fibers; they must roll a saving throw every round. If the saving throw is successful, then the creature is free to move out of the area, though at a reduced (by half) movement speed. A failed saving throw means the creature is stuck in the webs and are affected as if by a Slow spell: <PRO_HESHE> performs all actions at half the usual speed and suffers a -4 penalty to armor class, and additionally c annot make any physical attacks at all. This Slow effect is compounded by the movement speed penalty, so creatures who fail their saving throw can only move at one-quarter speed to escape the webbed area.
+~
+@22171 = ~Melf's Fiery Missiles~
+@22172 = ~Melf's Fiery Missiles
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Breath Weapon
+
+Similar to Mordenkainen's 'Force Missiles' variant, this is an attempt to improve on the basic Magic Missile spell. This version creates two missiles of sizzling magical energy that dart forth and unerringly strike their target, which must be a creature of some sort. Each missile inflicts 1d4 points of magic damage plus 1d4 points of fire damage (the victim may save vs. Breath to avoid the fire damage). The spell will create three missiles at 4th level, four missiles at 6th level, five missiles at 8th level, and six missiles at 10th level.
+
+The Shield spell will block this, just as it blocks the lesser Magic Missile spell.
+~
+@22512 = ~Decastave
+
+Level: 2
+School: Evocation
+Range: 0
+Duration: 3 rounds + 1 round/level
+Casting Time: 2
+Area of Effect: The caster
+Saving Throw: None
+
+This spell creates a staff of force in the caster's hand. It is treated as a magical weapon, doing 1d6 Hit Points of damage per hit, and it can hit creatures that require +1 weapons to hit. It is a staff, however, so if the caster does not have a proficiency in staff weapons, then the Decastave is used at a penalty. The staff releases sonic energy with each hit; the effect is not strong enough to do damage outright, but it can deafen the target for three rounds on a failed saving throw vs. spells. The Decastave also has a weak vampiric effect, draining a target of 1d2 Hit Points with every strike. These Hit Points are added to the caster's, but they can only heal damage the caster has taken; they will not raise <PRO_HISHER> Hit Points beyond <PRO_HISHER> normal maximum.
+~
+@23211 = ~Spell Thrust~
+@23212 = ~Spell Thrust
+Level: 1
+School: Abjuration
+Range: Long
+Duration: Instant
+Casting Time: 3
+Area of Effect: 5' radius
+Saving Throw: None
+
+When this spell is cast, it will dispel one spell protection on all enemies within the area of effect. This will always dispel the highest level of spell protection on a target first. If a target has two or more protections tied for the highest level, the choice will be random. Magic resistance does not affect this spell.
+
+The spell protections dispelled by Spell Thrust include: Minor Spell Deflection, Minor Globe of Invulnerability, Spell Deflection, Globe of Invulnerability, Greater Spell Deflection, Dispelling Screen and Spell Shield. 
+
+This spell has no effect on a target protected by Spell Trap or Shield of the Archons.
+~
+@25082 = ~Waves of Fatigue
+Level: 5
+School: Alteration
+Range: Long
+Duration: 5 rounds
+Casting Time: 5
+Area of Effect: 30' radius
+Saving Throw: None
+
+Surges of negative energy render all hostile living creatures in the spell's area fatigued. Fatigued individuals have 2-point reductions to attacks rolls and damage dealt by weapons, and take 2 points per die more damage from enemy spells. Such individuals will also have any Haste effects removed. Furthermore, if someone affected by this spell fails a saving throw vs. petrification/polymorph, <PRO_HESHE> will also endure a 2-point penalty to all saving throws, a reduction of 1 attack per 2 rounds, and a 2-point penalty to spellcasting speed.
+~
+@25182 = ~Phantom Blade
+
+Level: 5
+School: Illusion
+Range: 0
+Duration: 3 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+This spell creates a translucent, shadow-like, weightless area of magical force extending from the caster's hand. The silent, blade-shaped construct inflicts a combination of psychic/stunning damage and magic damage. The caster wields the phantom blade as if proficient with it, at <PRO_HISHER> normal THAC0.
+
+The phantom blade acts as a +3 magical sword in terms of to-hit and damage bonuses as well as the type of creatures it can hit. Due to its etheric nature, it causes spellcasters struck to be unable to use magic for one round. This sword can only be used by the caster and remains in <PRO_HISHER> hand for the duration of the spell or until dispelled.
+~
+@25233 = ~Missile Storm~
+@25234 = ~Missile Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as up to ten Magic Missiles race toward each enemy within the area of effect. These are identical to Magic Missiles created by the 1st-level spell, in every respect: each one does 1d6+1 damage, and they are blocked by the Shield spell as well as anything else that would block the Magic Missile spell.
+~
+@25235 = ~Missile Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as up to ten Fiery Missiles race toward each enemy within the area of effect. These are identical to the flaming Magic Missiles created by the 2nd-level spell "Melf's Fiery Missiles," in every respect: each one does 1d4 base damage plus 1d4 fire damage, and they are blocked by the Shield spell as well as anything else that would block the Fiery Missiles spell (including Globes of Invulnerability).
+~
+@25236 = ~Scorcher Storm~
+@25237 = ~Scorcher Storm
+
+Level: 5
+School: Invocation
+Range: 30 feet
+Duration: Instant
+Casting Time: 3
+Area of Effect: Enemies within range
+Saving Throw: None
+
+The air around the caster crackles with energy as a ray of fire hits each enemy within the area of effect. These are identical to the 2nd-level spell "Agannazar's Scorcher."
+~
+@27081 = ~Iron Skin~
+@27082 = ~Iron Skin
+
+Level: 7
+School: Alteration
+Range: Personal
+Duration: 8 hours
+Casting Time: 1
+Area of Effect: Caster
+Saving Throw: n/a
+
+When this powerful spell is cast, an outer skin of stone will emerge from the ground, completely covering and shielding the caster. This skin is, of course, magical and will hinder <PRO_HIMHER> in no way. Five such protective skins are gained, plus one for every two levels of the caster. For example, a 10th level wizard would receive 10 skins while a 20th level wizard would receive 15. Each skin will stop one physical attack and then disappear, so a 10th level wizard would be protected from the first 10 attacks made against <PRO_HIMHER>, but the 11th would affect <PRO_HIMHER> normally. The skins will remain on the caster until he is affected by a Dispel Magic or Breach, all of the skins are removed by physical attacks, or the spell duration expires.
+
+Iron Skins will not protect the caster from any area-effect magical attacks, such as Fireball. However, they will protect the caster from any secondary effects from physical attacks, such as fire, acid, or poison delivered by a weapon, and even magical on-hit effects such as Hold. They will also protect the caster against nonmaagical weapons and most ranged weapons. Multiple castings of this spell are not cumulative and the number of skins gained is not cumulative with those from a Stoneskin spell.
+~
+@27142 = ~Prismatic Spray
+Level: 7
+School: Alteration
+Range: Special
+Duration: Special
+Casting Time: 1
+Area of Effect: Cone
+Saving Throw: Special
+
+When this spell is cast, the wizard causes seven shimmering, multicolored rays of light to flash from his hand. These include all colors of the visible spectrum; each ray has a different power and purpose. Any creature that is caught within the area of effect will be touched by one or more rays. The effects of the rays are listed below and all saves are made at a -4 penalty.
+
+Red - 10d6 points of fire damage (save vs. breath half)
+Orange - 10d6 points of acid damage (save vs. breath half)
+Yellow - 10d6 points of electrical damage (save vs. breath half)
+Green - Death (save vs. poison reduces to 20 poison damage)
+Blue - Petrification (save vs. polymorph neg.)
+Indigo - Blindness (save vs. wands neg.)
+Violet - Maze (save vs. spell neg.)
+~
+@29152 = ~Black Blade of Disaster
+
+Level: 8
+School: Enchantment
+Range: 0
+Duration: 18 rounds
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None 
+
+This spell imposes a black, magical planar rift over the blade of a normal weapon. The caster wields the blade as if proficient with the weapon, and brandishes it with a base THAC0 of 0. The sword deals 2d12 damage per strike, and acts as a +5 magical weapon in all regards, including hit and damage bonuses. With each hit, there is a 15% chance the victim must make a save vs. spell at -2 or be disintegrated.
+~
+@29142 = ~Energy Drain
+(Necromancy) 
+
+Level: 8
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane.  This has the  practical effect of draining the victim of 4 levels of experience. The target loses levels, Hit Dice, Hit Points, and abilities permanently - they can only be restored by a priest's Restoration spell.  There is no saving throw to resist the effect.  What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.
+~
+@29143 = ~Larloch's Energy Drain
+
+Level: 8
+School: Necromancy
+Range: Touch
+Duration: Permanent
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None 
+
+The casting of this spell opens a channel between the caster's plane and the Negative Energy Plane. The caster of the spell acts as a conduit between the two planes, sucking life energy from a victim and transferring it to the Negative Energy Plane. The practical effect is to drain the victim 4 levels of experience - levels, Hit Dice, hit points, and abilities are lost permanently. These can only be restored by a priest's Restoration spell. As the life force passes through the caster, it temporarily invigorates him, granting him an additional 20 hit points, a +4 bonus to attack rolls and saving throws, and +20% bonus to every skill. These effects last for 1 hour. The target's magic resistance, if any, does not affect this spell, and there is no saving throw to avoid the Drain. What's more, the shock of the effect is so great that if the victim fails a saving throw with a -2 penalty, he or she dies instantly.
+~
+@29231 = ~Summon Noble Djinni~
+@29232 = ~Summon Noble Djinni
+
+Level: 10
+Range: 120 ft.
+Duration: 4 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+When wizards and similar magic users become very powerful they may forge an arrangement with an extremely powerful denizen of the inner planes, whereby the creature, an elite noble genie, will assent to assist the wizard in the Prime Material Plane. Only one such arrangement may be made - in this case with a chaotic good Noble Djinni from the Elemental Plane of Air. 
+
+While it appears as though the genie is gated, in actuality it only generates a temporary vessel to act in this world. It has the abilities of a powerful fighter/priest, and carries an electrically charged sword. If the Djinni sustains enough damage in the Prime Material Plane for this temporary body to "die" then its spirit will return to its home plane.
+~
+@29233 = ~Noble Djinni~
+@29241 = ~Summon Noble Efreet~
+@29242 = ~Summon Noble Efreet
+
+Level: 10
+Range: 120 ft.
+Duration: 4 rounds + 1 round/level
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: None
+
+When wizards and similar magic users become very powerful they may forge an arrangement with an extremely powerful denizen of the inner planes, whereby the creature, an elite noble genie, will assent to assist the wizard in the Prime Material Plane. Only one such arrangement may be made - in this case with a neutral evil Noble Efreet from the Elemental Plane of Fire.
+
+While it appears as though the genie is gated, in actuality it only generates a temporary vessel to act in this world. It has the abilities of a powerful fighter/priest, and carries a magical flaming sword. If the Efreet sustains enough damage in the Prime Material Plane for this temporary body to "die" then its spirit will return to its home plane.
+~
+@29243 = ~Noble Efreet~
+//
+//

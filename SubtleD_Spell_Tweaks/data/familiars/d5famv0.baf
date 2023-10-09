@@ -1,0 +1,68 @@
+IF
+	XPGT(Player1,4000000)
+	Global("D5FAMV8","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV8",Myself)
+	SetGlobal("D5FAMV8","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,2499999)
+	XPLT(Player1,4000000)
+	Global("D5FAMV7","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV7",Myself)
+	SetGlobal("D5FAMV7","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,1249999)
+	XPLT(Player1,2500000)
+	Global("D5FAMV6","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV6",Myself)
+	SetGlobal("D5FAMV6","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,449999)
+	XPLT(Player1,1250000)
+	Global("D5FAMV5","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV5",Myself)
+	SetGlobal("D5FAMV5","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,149999)
+	XPLT(Player1,450000)
+	Global("D5FAMV4","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV4",Myself)
+	SetGlobal("D5FAMV4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,49999)
+	XPLT(Player1,150000)
+	Global("D5FAMV3","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV3",Myself)
+	SetGlobal("D5FAMV3","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,4999)
+	XPLT(Player1,50000)
+	Global("D5FAMV2","LOCALS",0)
+THEN
+	RESPONSE #100
+	ApplySpellRES("D5FAMV2",Myself)
+	SetGlobal("D5FAMV2","LOCALS",1)
+END

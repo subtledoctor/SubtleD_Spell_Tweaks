@@ -1,0 +1,2252 @@
+// -----------------------------
+// INNATE FAMILIAR
+// -----------------------------
+
+DEFINE_ACTION_FUNCTION innate_familiars BEGIN 
+
+INCLUDE ~%MOD_FOLDER%/data/core/tnb_kit_list.tpa~ 
+
+//Add Find Familiar innate to mages
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fminn.spl~
+  WRITE_ASCII 0x3a ~spwi123c~ 
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~spwi123b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = ~spcl342~ END
+
+ACTION_PHP_EACH tnb_kit_list AS kitinfo => kitclab BEGIN 
+	ACTION_IF (FILE_EXISTS_IN_GAME ~%kitclab%.2da~) BEGIN 
+		APPEND ~%kitclab%.2da~ ~FAMILIAR 	AP_D5FMINN  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	END 
+END  
+
+COPY_EXISTING ~kitlist.2da~ ~override~
+  COUNT_2DA_ROWS 9 rows
+  FOR (row = 2 ; row < rows ; ++row) BEGIN
+	READ_2DA_ENTRY row 1 9 modname
+	READ_2DA_ENTRY row 5 9 modclab
+	READ_2DA_ENTRY row 8 9 modclass
+	PATCH_IF (modclass = 1) OR (modclass = 19) BEGIN
+	  PATCH_IF !(%modname% STRING_MATCHES_REGEXP ~C0SA+~ = 0) BEGIN
+		INNER_ACTION BEGIN
+		  APPEND ~%modclab%.2da~ ~FAMILIAR 	AP_D5FMINN  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~FAMILIAR~
+		END
+	  END
+	END
+  END
+BUT_ONLY
+
+//Remove Find Familiar from Spell Selection menu
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~SPWI123	1		0~
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND !(GAME_IS ~iwdee~) BEGIN
+	APPEND ~hidespl.2da~ ~SPWI123	1		0		0~
+END
+
+//Replace Scrolls of Find Familiar with Scrolls of Magic Missile. 
+COPY_EXISTING ~scrl77.itm~ ~override/scrl6d.itm~ 
+
+//Update descriptions of mage/sorcerer
+COPY_EXISTING - ~clastext.2da~ ~override~
+		COUNT_2DA_COLS num_cols
+			READ_2DA_ENTRIES_NOW ~r2en_clastext~ num_cols
+			FOR (row = 1; row < r2en_clastext; row += 1) BEGIN
+				READ_2DA_ENTRY_FORMER ~r2en_clastext~ row 0 kitname
+				READ_2DA_ENTRY_FORMER ~r2en_clastext~ row 4 desc
+				PATCH_IF ((~%kitname%~ STRING_EQUAL_CASE ~MAGE~) OR 
+						  (~%kitname%~ STRING_EQUAL_CASE ~SORCERER~)) BEGIN
+					INNER_ACTION  BEGIN 
+						ACTION_IF (desc >= 0) BEGIN
+							ACTION_GET_STRREF desc oldstring
+							OUTER_SPRINT old @1001
+							OUTER_SPRINT new @1002
+							OUTER_PATCH_SAVE oldstring ~%oldstring%~ BEGIN
+								REPLACE_TEXTUALLY ~%old%~ ~%new%~
+							END
+							STRING_SET_EVALUATE desc ~%oldstring%~
+						END 
+					END
+				END
+			END 
+
+LAM JOINABLE_NPC_ARRAYS
+
+ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
+  COPY_EXISTING ~%cre%~ ~override~
+	PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+	  READ_BYTE 0x273 npc_class
+	  PATCH_IF (npc_class = 1) || (npc_class = 5) || (npc_class = 7) || (npc_class = 10) || (npc_class = 13) || (npc_class = 14) || (npc_class = 17) || (npc_class = 19) BEGIN
+		LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fminn~ END
+		LPF ADD_CRE_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5fminn~ END
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+END
+	
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// -----------------------------
+// FAMILIAR CHOICE
+// -----------------------------
+
+// set up spell learning UI w/ list of 8 spells
+
+// patch each one - don't put anything in spellbook
+
+/*
+
+/- find familiar casts 10 subspells
+
+/- sub1 makes caster immune to 2-9 for 1 second
+
+/- sub2-9 change the caster's alignment for 0 seconds and cast ff
+
+/- sub10 triggers spell-learning UI, with 8 options
+
+/- each option 
+/ -- sets a 'familiar' spellstate on caster
+ -- sets a local variable to the familiar's value on caster
+/ -- makes caster immune to sub1, 
+/ -- makes caster immune to 7 of the 8 ff subs, 
+/ -- makes caster immune to sub10, 
+/ -- and casts the other 1 of the 8 ff subs (or just does the same thing)
+
+*/
+
+DEFINE_ACTION_FUNCTION familiar_choice BEGIN 
+
+INCLUDE ~%MOD_FOLDER%/lib/SEQUENCER_MENU.tpa~
+
+ACTION_IF (GAME_IS ~eet~) BEGIN
+  COPY ~%MOD_FOLDER%/data/familiars/spcl342.spl~ ~override~
+END
+ 
+ACTION_IF (FILE_CONTAINS_EVALUATED (~projectl.ids~ ~[ %TAB%]INAREAPA[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  OUTER_SET party_proj = (IDS_OF_SYMBOL (~projectl~ ~INAREAPA~)) + 1
+END
+
+ACTION_IF !(VARIABLE_IS_SET %has_familiar_state%) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_HAS_FAMILIAR~ RET new_state_ind END
+  OUTER_SET has_familiar_state = %new_state_ind%
+END
+
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch.spl~
+  LPF DELETE_EFFECT END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch2~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch4~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch5~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch6~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch7~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch8~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famls~ END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famch0.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch2~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch4~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch5~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch6~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch7~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famch8~ END
+
+/* try just doing this with the 'L' files --> nope, need the other ones
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famch.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famch0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml2~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml4~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml5~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml6~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml7~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5faml8~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5famls~ END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famch0.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml2~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml4~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml5~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml6~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml7~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5faml8~ END
+*/
+
+//COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famch1.spl~
+
+COPY ~%MOD_FOLDER%/data/familiars/d5faml1c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5faml3c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5faml4c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5faml5c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5faml6c.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5faml8c.bam~ ~override~
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5fampsd.bam~ ~override/d5faml1b.bam~
+COPY_EXISTING ~famimp.bam~ ~override/d5faml1b.bam~ IF_EXISTS
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch1.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml1.spl~
+  SAY NAME1 @8011
+  SAY UNIDENTIFIED_DESC @8012
+  WRITE_ASCII 0x3a ~d5faml1c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml1b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 17 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famlg~ END
+
+COPY ~%MOD_FOLDER%/data/familiars/d5famdog.bam~ ~override/d5faml2b.bam~
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch2.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml2.spl~
+  SAY NAME1 @8013
+  SAY UNIDENTIFIED_DESC @8014
+  WRITE_ASCII 0x3a ~d5faml2c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml2b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 49 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famcg~ END
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5famfer.bam~ ~override/d5faml3b.bam~
+COPY_EXISTING ~famfer.bam~ ~override/d5faml3b.bam~ IF_EXISTS
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch3.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml3.spl~
+  SAY NAME1 @8017
+  SAY UNIDENTIFIED_DESC @8018
+  WRITE_ASCII 0x3a ~d5faml3c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml3b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 18 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famln~ END
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5famrab.bam~ ~override/d5faml4b.bam~
+COPY_EXISTING ~famrab.bam~ ~override/d5faml4b.bam~ IF_EXISTS
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch4.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml4.spl~
+  SAY NAME1 @8019
+  SAY UNIDENTIFIED_DESC @8020
+  WRITE_ASCII 0x3a ~d5faml4c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml4b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 34 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famtn~ END
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5famcat.bam~ ~override/d5faml5b.bam~
+COPY_EXISTING ~famcat.bam~ ~override/d5faml5b.bam~ IF_EXISTS
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch5.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml5.spl~
+  SAY NAME1 @8021
+  SAY UNIDENTIFIED_DESC @8022
+  WRITE_ASCII 0x3a ~d5faml5c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml5b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 50 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famcn~ END
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5famspd.bam~ ~override/d5faml6b.bam~
+COPY_EXISTING ~imisc3e.bam~ ~override/d5faml6b.bam~ IF_EXISTS
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch6.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml6.spl~
+  SAY NAME1 @8025
+  SAY UNIDENTIFIED_DESC @8026
+  WRITE_ASCII 0x3a ~d5faml6c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml6b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 19 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famle~ END
+
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch7.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml7.spl~
+  SAY NAME1 @8027
+  SAY UNIDENTIFIED_DESC @8028
+  WRITE_ASCII 0x3a ~d5faml7b~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml7b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 35 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famne~ END
+
+//COPY ~%MOD_FOLDER%/data/familiars/d5famrat.bam~ ~override/d5faml8b.bam~
+COPY ~%MOD_FOLDER%/data/familiars/d5famra2.bam~ ~override/d5faml8b.bam~
+COPY_EXISTING ~spcl342.spl~ ~override/d5famch8.spl~
+//COPY_EXISTING ~spcl342.spl~ ~override/d5faml8.spl~
+  SAY NAME1 @8031
+  SAY UNIDENTIFIED_DESC @8032
+  WRITE_ASCII 0x3a ~d5faml8c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5faml8b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 57 target = 1 parameter2 = 51 timing = 0 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = ~d5famce~ END
+
+ACTION_FOR_EACH num IN ~1~ ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ BEGIN
+  COPY_EXISTING ~d5famch%num%.spl~ ~override/d5faml%num%.spl~
+END
+
+//COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famls.spl~
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode =  target = 1  STR_VAR resource = ~~ END
+
+COPY ~%MOD_FOLDER%/data/familiars/d5famtbl.2da~ ~override~
+
+<<<<<<<< d5/d5famls.2da
+2DA      V1.0
+0
+    		WIZ		BST
+d5faml1		1		0
+d5faml3		1		1
+d5faml4		1		1
+d5faml5		1		1
+d5faml6		1		1
+d5faml8		1		1
+>>>>>>>>
+
+//d5faml2		dog
+//d5faml7		mephit
+
+COPY ~d5/d5famls.2da~ ~override/d5famls.2da~
+
+COPY_EXISTING ~spwi123.spl~ ~override~
+  READ_LONG 0x08 name_strref
+  READ_LONG 0x50 desc_strref
+IF_EXISTS BUT_ONLY
+
+LAF CREATE_SEQUENCER_MENU 
+  INT_VAR 
+	name = %name_strref%
+	tip = RESOLVE_STR_REF (~Choose a familiar from the following options. This choice is permanent.~) 
+	desc = %desc_strref%
+	column = 1
+  STR_VAR 
+	resref = ~d5famls~
+	icon = ~spwi123b~
+	spelltable = ~d5famtbl~ 
+	spelllist = ~d5famls~
+	title = ~Choose a familiar from the following options~
+	label = ~This choice is permanent~
+END
+
+ACTION_FOR_EACH num IN ~1~ ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ BEGIN
+  COPY_EXISTING ~d5famch%num%.spl~ ~override/d5faml%num%L.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 328 target = 1 special = 1 parameter2 = %has_familiar_state% timing = 9 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch0~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch1~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch2~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch3~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch4~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch5~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch6~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch7~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famch8~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 1 STR_VAR resource = ~d5famls~ END
+  COPY_EXISTING ~d5faml%num%L.spl~ ~override~
+	LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = EVAL ~d5famch%num%~ END
+END
+
+COPY_EXISTING ~d5famch.spl~ ~override/spwi123.spl~
+  WRITE_SHORT 0x1c 1
+  WRITE_LONG  0x34 1
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 2 END
+
+COPY_EXISTING ~d5famch.spl~ ~override/spcl342.spl~
+  WRITE_SHORT 0x1c 4
+  WRITE_LONG  0x34 1
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 END
+
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+/*
+***** IDEAS
+
+- make a general mephit creature as NE/famch7
+ -- but give various mephit choices in the choice screen
+ -- they all set alignment to NE, but then apply different spells to the summoned mephit
+ -- ...setting permanent characteristics according to the chosen element
+
+- make an animal companion choice for NG
+ -- only available to beastmasters
+ -- similarly, give different animal choices: bear, wolf, lion, moose, etc.
+ -- ...do permanent polymorph to the summoned animal to set it appropriately
+ -- give cool bonuses for a warrior: +STR, +AC, +HP or DR, fire/cold resistance, etc.
+*/
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+// -----------------------------
+// CHANGE FAMILIARS
+// -----------------------------
+
+// ***** make this independent of the familiar choice component...?
+
+/*
+pseudodragon:	done 	
+dog:					// needs everything
+ferret:			done 	
+rabbit:			done 	
+cat:			done 	
+spider:			done 	
+rat:			done 	
+mephits- 				// need to do them all, plus come up with the system for choosing them
+air:			
+ooze:			
+fire:			
+ice:			
+earth: 			
+radiant:		
+dust: 			
+... 	
+*/
+
+DEFINE_ACTION_FUNCTION familiar_changes BEGIN 
+
+INCLUDE ~%MOD_FOLDER%/lib/spell_evasion.tpa~
+
+ACTION_IF (FILE_CONTAINS_EVALUATED (~projectl.ids~ ~[ %TAB%]INAREAPA[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  OUTER_SET party_proj = (IDS_OF_SYMBOL (~projectl~ ~INAREAPA~)) + 1
+END
+
+ACTION_IF !(VARIABLE_IS_SET %has_familiar_state%) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_HAS_FAMILIAR~ RET new_state_ind END
+  OUTER_SET has_familiar_state = %new_state_ind%
+END
+
+// advancement scripts and items_____________________________________________________
+//
+/* just use a helmet, maybe
+COPY ~%MOD_FOLDER%/core/d5_base.spl~ ~override/d5famv2.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 18 target = 1 parameter1 = 12 parameter2 = 1 timing = 9 END
+*/
+COMPILE ~%MOD_FOLDER%/data/familiars/d5famv0.baf~
+
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override~					//	at 5K xp
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv3.itm~		//	at 50K xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 2 END				//	starts at 3
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 2 END			//	starts at 17
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 2 END			//	starts at 16
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 18 parameter2 = 1 END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv4.itm~		//	at 150K xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 3 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 3 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 3 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 24 parameter2 = 1 END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv5.itm~		//	at 450K xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 4 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 4 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 4 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 30 parameter2 = 1 END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv6.itm~		//	at 1.25M xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 5 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 6 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 6 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 36 parameter2 = 1 END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv7.itm~		//	at 2.5M xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 6 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 8 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 8 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 42 parameter2 = 1 END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.itm~ ~override/d5famv8.itm~		//	at 4M xp
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 8 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 278 parameter1 = 10 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 325 parameter1 = 10 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 18 parameter1 = 48 parameter2 = 1 END
+
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv3.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = ~d5famv2~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5famv2~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5famv2~ END  
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv4.spl~
+  PATCH_FOR_EACH itm IN ~d5famv2~ ~d5famv3~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = EVAL ~%itm%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv4~ END
+  PATCH_FOR_EACH rem IN ~d5famv2~ ~d5famv3~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%rem%~ END
+  END
+  PATCH_FOR_EACH prt IN ~d5famv2~ ~d5famv3~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%prt%~ END  
+  END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv5.spl~
+  PATCH_FOR_EACH itm IN ~d5famv2~ ~d5famv3~ ~d5famv4~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = EVAL ~%itm%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv5~ END
+  PATCH_FOR_EACH rem IN ~d5famv2~ ~d5famv3~ ~d5famv4~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%rem%~ END
+  END
+  PATCH_FOR_EACH prt IN ~d5famv2~ ~d5famv3~ ~d5famv4~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%prt%~ END  
+  END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv6.spl~
+  PATCH_FOR_EACH itm IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = EVAL ~%itm%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv6~ END
+  PATCH_FOR_EACH rem IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%rem%~ END
+  END
+  PATCH_FOR_EACH prt IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%prt%~ END  
+  END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv7.spl~
+  PATCH_FOR_EACH itm IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = EVAL ~%itm%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv7~ END
+  PATCH_FOR_EACH rem IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%rem%~ END
+  END
+  PATCH_FOR_EACH prt IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%prt%~ END  
+  END
+COPY ~%MOD_FOLDER%/data/familiars/d5famv2.spl~ ~override/d5famv8.spl~
+  PATCH_FOR_EACH itm IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ ~d5famv7~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 112 target = 1 timing = 9 STR_VAR resource = EVAL ~%itm%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5famv8~ END
+  PATCH_FOR_EACH rem IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ ~d5famv7~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%rem%~ END
+  END
+  PATCH_FOR_EACH prt IN ~d5famv2~ ~d5famv3~ ~d5famv4~ ~d5famv5~ ~d5famv6~ ~d5famv7~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%prt%~ END  
+  END
+
+
+// pseudodragon______________________________________________________________________
+//
+COPY_EXISTING ~fampsd.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+// give innate CLW
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd1~ END
+// give innate Color Spray
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd2~ END
+// give innate Blur
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd3~ END
+// remove actual Blur
+//  LPF ADD_CRE_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~spwi201~ END
+// give grease/entangle/web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 319 timing = 9 END 		// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END 			// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 100 timing = 9 END 		// grease immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 242 timing = 9 END 		// entangle immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  PATCH_IF (FILE_CONTAINS_EVALUATED (~projectl.ids~ ~[ %TAB%]IDPRO300[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+	SET spike_proj = (IDS_OF_SYMBOL (~projectl~ ~idpro300~)) + 1
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = %spike_proj% timing = 9 END 	// spike growth immunity
+  END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5fampd0~ END
+// change on-hit effect to Slow...? (in cdfampsd.itm)
+IF_EXISTS
+COPY_EXISTING ~sppr103.spl~ ~override/d5fampd1.spl~
+			  ~spwi105.spl~ ~override/d5fampd2.spl~
+			  ~spwi201.spl~ ~override/d5fampd3.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+  WRITE_SHORT 0x1c 4
+  WRITE_SHORT 0x34 1
+  READ_LONG 0x34 lvl
+  READ_LONG 0x64 abil_offset
+  READ_SHORT 0x68 abil_number
+  READ_BYTE (%abil_offset% + 0x0c) abil_target					
+  READ_SHORT (%abil_offset% + 0x0e) abil_range
+  READ_LONG 0x6a eff_offset
+  WHILE (%abil_number% > 0) BEGIN
+    SET abil_number = (%abil_number% - 1)
+    WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
+  END
+  LPF DELETE_EFFECT END
+  PATCH_IF (%abil_target% = 4) BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+	PATCH_IF (%abil_range% < 35) BEGIN
+	  PATCH_IF (%abil_range% > 4) BEGIN
+  		LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+	  END
+	  PATCH_IF (%abil_range% < 5) BEGIN
+  		LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	
+	  END
+	END
+  END
+  ELSE BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %lvl% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+  END
+COPY_EXISTING ~d5fampd1.spl~ ~override~
+			  ~d5fampd2.spl~ ~override~
+			  ~d5fampd3.spl~ ~override~
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 4 duration = 180 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 4 duration = 179 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+
+// entangle immunity: 157 Web effect, 154 Entangle overlay, 158 Grease overlay
+OUTER_SET spike_proj = (IDS_OF_SYMBOL (~projectl~ ~idpro300~)) + 1
+
+COPY_EXISTING ~cdfampsd.itm~ ~override~
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 39 opcode = 40 parameter1 = 0 parameter2 = 0 timing = 0 duration = 12 END
+/*
+CREATE EFF ~d5fampd3~																// slow on hit
+	WRITE_LONG 0x10 40
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 6
+	WRITE_SHORT 0x2c 100
+*/
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fampd0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 98 target = 2 parameter1 = 5 parameter2 = 3 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5fampd0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5fampd0~ END
+	
+COPY_EXISTING ~fampsd25.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+// give innate CLW
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd1~ END
+// give innate Color Spray
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd2~ END
+// give innate self-targeted improved invisibility
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fampd4~ END
+// remove actual Blur
+//  LPF ADD_CRE_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~spwi201~ END
+// give grease/entangle/web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 319 timing = 9 END 	// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END 		// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 100 timing = 9 END 	// grease immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 242 timing = 9 END 	// entangle immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  PATCH_IF (FILE_CONTAINS_EVALUATED (~projectl.ids~ ~[ %TAB%]IDPRO300[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+	SET spike_proj = (IDS_OF_SYMBOL (~projectl~ ~idpro300~)) + 1
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = %spike_proj% timing = 9 END 	// spike growth immunity
+  END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5fampd0~ END
+IF_EXISTS
+COPY_EXISTING ~spwi405.spl~ ~override/d5fampd4.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 power = 4 parameter2 = 1 timing = 1 STR_VAR resource = ~spwi405~ END
+IF_EXISTS
+COPY_EXISTING ~d5fampd4.spl~ ~override~
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 4 duration = 180 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 4 duration = 179 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+IF_EXISTS
+COPY_EXISTING ~fampsd.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8014
+  SAY IDENTIFIED_DESC @8014
+IF_EXISTS
+
+COPY_EXISTING ~fampsd25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8014
+  SAY IDENTIFIED_DESC @8014
+IF_EXISTS
+
+//fairy dragon_______________________________________________________________________
+//
+COPY_EXISTING ~famfair.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+
+COPY_EXISTING ~famfai25.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+
+//ferret_____________________________________________________________________________
+//
+COPY_EXISTING ~famfer.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x6a 80																// pick pockets
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famfr1~ END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 0 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famfr0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+// make nasueating aura
+COPY ~%MOD_FOLDER%/data/familiars/d5famfr1.bam~ ~override~
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famfr1.spl~
+  SAY NAME1 @8111
+  SAY UNIDENTIFIED_DESC @8111
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5famfr1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 30 special = 102 STR_VAR resource = ~d5famfr2~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 4 duration = 30 STR_VAR resource = ~d5famfr1~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 4 duration = 29 STR_VAR resource = ~d5famfr1~ END
+CREATE EFF ~d5famfr2~	
+	WRITE_LONG 0x10 232
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x20 20
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 30
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5famfr2~ #8
+	WRITE_LONG 0x48 102
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famfr2.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = 218 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target = 2 parameter2 = 126 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 278 target = 2 parameter1 = (0 - 2) parameter2 = 0 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 0 target = 2 parameter1 = (0 - 2) parameter2 = 0 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 35 parameter2 = 0 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 35 parameter2 = 1 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 35 parameter2 = 2 timing = 0 duration = 7 savingthrow = 4 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famfr2~ END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famfr0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 10 target = 2 parameter1 = 1 parameter2 = 0 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famfr0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famfr0~ END
+
+COPY_EXISTING ~famfer25.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x6a 100																// pick pockets
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famfr1~ END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famfr0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+
+COPY_EXISTING ~famfer.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8018
+  SAY IDENTIFIED_DESC @8018
+IF_EXISTS
+
+COPY_EXISTING ~famfer25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8018
+  SAY IDENTIFIED_DESC @8018
+IF_EXISTS
+
+
+// rabbit____________________________________________________________________________
+//
+COPY_EXISTING ~famrab.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x69 80																// find traps
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famrb1~ END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
+// make resistances more reasonable
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrb0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+COPY_EXISTING ~spsd02.spl~ ~override/d5famrb1.spl~
+// needs a new name
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 4 duration = 60 STR_VAR resource = ~d5famrb1~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 4 duration = 59 STR_VAR resource = ~d5famrb1~ END
+IF_EXISTS
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famrb0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 2 parameter2 = 40 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famrb0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famrb0~ END
+   
+COPY_EXISTING ~famrab25.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x69 100																// find traps
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famrb1~ END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
+// make resistances more reasonable
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrb0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+IF_EXISTS
+
+COPY_EXISTING ~famrab.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8020
+  SAY IDENTIFIED_DESC @8020
+IF_EXISTS
+
+COPY_EXISTING ~famrab25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8020
+  SAY IDENTIFIED_DESC @8020
+IF_EXISTS
+
+
+// cat_______________________________________________________________________________
+//
+COPY ~%MOD_FOLDER%/data/familiars/d5clck6.itm~ ~override~
+
+COPY_EXISTING ~famcat.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x45 90																// hide in shadows
+  WRITE_BYTE 0x68 90																// move silently
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famct0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+  ADD_CRE_ITEM ~d5clck6~ #0 #0 #0 ~IDENTIFIED~ ~CLOAK~
+IF_EXISTS
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famct0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 15 target = 2 parameter1 = 1 parameter2 = 0 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famct0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famct0~ END
+   
+COPY_EXISTING ~famcat25.cre~ ~override~
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x45 110																// hide in shadows
+  WRITE_BYTE 0x68 110																// move silently
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famct0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+  ADD_CRE_ITEM ~d5clck6~ #0 #0 #0 ~IDENTIFIED~ ~CLOAK~
+IF_EXISTS
+
+COPY_EXISTING ~famcat.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8022
+  SAY IDENTIFIED_DESC @8022
+IF_EXISTS
+
+COPY_EXISTING ~famcat25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8022
+  SAY IDENTIFIED_DESC @8022
+IF_EXISTS
+
+
+// imp--> spider_____________________________________________________________________
+//
+COPY_EXISTING ~famimp.cre~ ~override~
+  SAY 0x08 @8025
+  SAY 0x0c @8025
+  WRITE_BYTE 0x272 116
+  WRITE_LONG 0x28 32559																// spider animation
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  WRITE_ASCII 0x2cc ~famil3~ #8
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famsp3~ END	// lil web ability
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 319 timing = 9 END 				// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END 					// web immunity
+//  LPF ADD_CRE_EFFECT INT_VAR opcode = 248 target = 2 timing = 1 STR_VAR resource = ~d5famsp1~ END	// melee poison
+//  LPF ADD_CRE_EFFECT INT_VAR opcode = 248 target = 2 timing = 1 STR_VAR resource = ~d5famsp2~ END	// melee poison
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famsp0~ END
+  ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
+  ADD_CRE_ITEM ~impclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+IF_EXISTS
+// change imp.itm to do 1d2 damage, and poison .spl
+ACTION_IF (FILE_EXISTS_IN_GAME ~impclaw.itm~) BEGIN
+COPY_EXISTING ~impclaw.itm~ ~override~
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 2 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 25 parameter1 = 2 parameter2 = 3 timing = 0 duration = 6 END
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~impclaw.itm~) BEGIN
+COPY ~%MOD_FOLDER%/data/familiars/impclaw.itm~ ~override~
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 2 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 25 parameter1 = 2 parameter2 = 3 timing = 0 duration = 6 END
+END
+/* 
+// give imp.itm 146 effect for poison, instead of using op248...?
+COPY_EXISTING ~imp.itm~ ~override~
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 2 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 146 target = 2 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famsp1~ END
+IF_EXISTS
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famsp1.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 25 target = 2 parameter1 = 2 parameter2 = 3 timing = 0 duration = 6 END // 
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 parameter1 =  STR_VAR resource = ~d5famsp1~ END // 206 vs. self
+CREATE EFF ~d5famsp1~														// poison
+	WRITE_LONG 0x10 25
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 3
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 6
+	WRITE_SHORT 0x2c 100
+	WRITE_LONG 0x90 1
+	WRITE_ASCII 0x94 ~d5famsp1~ #8
+CREATE EFF ~d5famsp2~														// no stacking poison
+	WRITE_LONG 0x10 206
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 6
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5famsp1~ #8
+*/
+OUTER_SET web_1p_proj = (IDS_OF_SYMBOL (~projectl~ ~WEB1P~)) + 1
+COPY ~%MOD_FOLDER%/data/familiars/d5famsp3.bam~ ~override~
+// ***** this doesn't work
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famsp3.spl~
+  SAY NAME1 @8113
+  SAY UNIDENTIFIED_DESC @8113
+  LPF ALTER_SPELL_HEADER INT_VAR type = 2 target = 1 range = 40 projectile = %web_1p_proj% STR_VAR icon = ~d5famsp3~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 157 target = 2 timing = 0 duration = 18 savingthrow = 2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 109 target = 2 parameter1 = 0 parameter2 = 2 timing = 0 duration = 18 savingthrow = 2 END
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 4 duration = 30 STR_VAR resource = ~d5famsp3~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 4 duration = 29 STR_VAR resource = ~d5famsp3~ END
+
+LAF d5_resolve_state STR_VAR new_state_id = ~D5_POISONEVADE~ RET new_state_ind END
+OUTER_SET poison_evasion_state = %new_state_ind%
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5poisev.2da~) BEGIN
+<<<<<<<< d5/d5poisev.2da
+2DA V1.0 
+RES
+>>>>>>>> 
+ COPY ~d5/d5poisev.2da~ ~override/d5poisev.2da~ 
+ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off SPL_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_type
+	  PATCH_IF fx_type = 25 BEGIN 							// poison
+		PATCH_IF !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPPR722~) && !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPWI714~) BEGIN
+//		  PATCH_PRINT "%SOURCE_RES% is a poison spell"
+		  INNER_ACTION BEGIN
+			APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	SPL~ UNLESS ~%SOURCE_RES%~
+		  END
+		END
+	  END
+	  PATCH_IF fx_type = 12 BEGIN 							// damage (poison)
+    	READ_SHORT fx_off + 0xa damage_type
+		PATCH_IF damage_type = 32 BEGIN
+		  PATCH_IF !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPPR722~) && !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPWI714~) BEGIN
+//			PATCH_PRINT "%SOURCE_RES% is a poison spell"
+			INNER_ACTION BEGIN
+			  APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	SPL~ UNLESS ~%SOURCE_RES%~
+			END
+		  END
+		END
+	  END
+	  PATCH_IF fx_type = 78 BEGIN 							// disease
+//		  PATCH_PRINT "%SOURCE_RES% is a disease spell"
+		  INNER_ACTION BEGIN
+			APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	SPL~ UNLESS ~%SOURCE_RES%~
+		  END
+	  END
+	END
+  END
+ BUT_ONLY
+ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
+  PHP_EACH ab_array AS int => ab_off BEGIN
+	GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+	PHP_EACH fx_array AS int => fx_off BEGIN
+	  READ_SHORT fx_off fx_type
+	  PATCH_IF fx_type = 25 BEGIN 							// poison
+//		  PATCH_PRINT "%SOURCE_RES% is a poison item"
+		  INNER_ACTION BEGIN
+			APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	ITM~ UNLESS ~%SOURCE_RES%~
+		  END
+	  END
+	  PATCH_IF fx_type = 12 BEGIN 							// damage (poison)
+    	READ_SHORT fx_off + 0xa damage_type
+		PATCH_IF damage_type = 32 BEGIN
+//			PATCH_PRINT "%SOURCE_RES% is a poison item"
+			INNER_ACTION BEGIN
+			  APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	ITM~ UNLESS ~%SOURCE_RES%~
+			END
+		END
+	  END
+	  PATCH_IF fx_type = 78 BEGIN 							// disease
+//		  PATCH_PRINT "%SOURCE_RES% is a disease item"
+		  INNER_ACTION BEGIN
+			APPEND ~d5poisev.2da~ ~%SOURCE_RES% 	ITM~ UNLESS ~%SOURCE_RES%~
+		  END
+	  END
+	END
+  END
+ BUT_ONLY
+ COPY_EXISTING ~d5poisev.2da~ ~override~ 
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 0 cols poison_evade_res
+	READ_2DA_ENTRY row 1 cols poison_evade_type
+	PATCH_IF (~%poison_evade_type%~ STRING_EQUAL_CASE ~spl~) BEGIN 
+	 PATCH_IF FILE_EXISTS_IN_GAME ~%poison_evade_res%.spl~ BEGIN
+	  INNER_ACTION BEGIN
+		LAF add_evade_spell INT_VAR evasion_spellstate = %poison_evasion_state% evasion_save = 1 STR_VAR evade_ext = ~spl~ evade_condition = ~spellstate~ evade_res = EVAL ~%poison_evade_res%~ evade_prefix = ~D5VP~ END
+	  END
+	 END
+	END
+	PATCH_IF (~%poison_evade_type%~ STRING_EQUAL_CASE ~itm~) BEGIN 
+	 PATCH_IF FILE_EXISTS_IN_GAME ~%poison_evade_res%.itm~ BEGIN
+	  INNER_ACTION BEGIN
+		LAF add_evade_spell INT_VAR evasion_spellstate = %poison_evasion_state% evasion_save = 1 STR_VAR evade_ext = ~itm~ evade_condition = ~spellstate~ evade_res = EVAL ~%poison_evade_res%~ evade_prefix = ~D5VP~ END
+	  END
+	 END
+	END
+  END
+ BUT_ONLY
+END	// end if not already present
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famsp0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 328 target = 2 special = 1 parameter2 = %poison_evasion_state% timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famsp0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famsp0~ END
+   
+COPY_EXISTING ~famimp25.cre~ ~override~
+  SAY 0x08 @8025
+  SAY 0x0c @8025
+//  WRITE_LONG 0x08 RESOLVE_STR_REF (@8025)
+//  WRITE_LONG 0x0c RESOLVE_STR_REF (@8025)
+  WRITE_BYTE 0x272 116
+  WRITE_LONG 0x28 32559																// spider animation
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  WRITE_ASCII 0x2cc ~famil325~ #8
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famsp3~ END	// lil web ability
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 319 timing = 9 END					// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END 					// web immunity
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famsp0~ END
+//  ADD_CRE_ITEM ~impclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+IF_EXISTS
+
+COPY_EXISTING ~famimp.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8026
+  SAY IDENTIFIED_DESC @8026
+  WRITE_ASCII 0x3a ~imisc3e~ #8
+  WRITE_ASCII 0x58 ~cmisc3e~ #8
+  LPF ALTER_ITEM_HEADER STR_VAR icon = ~imisc3e~ END
+IF_EXISTS
+
+COPY_EXISTING ~famimp25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8026
+  SAY IDENTIFIED_DESC @8026
+  WRITE_ASCII 0x3a ~imisc3e~ #8
+  WRITE_ASCII 0x58 ~cmisc3e~ #8
+  LPF ALTER_ITEM_HEADER STR_VAR icon = ~imisc3e~ END
+IF_EXISTS
+
+
+// quasit--> rat_____________________________________________________________________
+//
+COPY_EXISTING ~famquas.cre~ ~override~
+  SAY 0x08 @8031
+  SAY 0x0c @8031
+  WRITE_BYTE 0x272 151
+  WRITE_LONG 0x28 49920																// rat animation
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  WRITE_ASCII 0x2cc ~famil3~ #8
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+// give summon rats spell
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famrt1~ END	// swarm
+// add disease it to quasclaw.itm, and remove DEX penalty
+// give quasclaw.itm
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrt0~ END
+  ADD_CRE_ITEM ~quasclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
+IF_EXISTS
+
+// make rat version of wish bunnies, 1d6 summons
+COPY ~%MOD_FOLDER%/data/familiars/d5famrt1.bam~ ~override~
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famrt1.spl~
+  SAY NAME1 @8115
+  SAY UNIDENTIFIED_DESC @8115
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5famrt1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 100 STR_VAR resource = ~d5ratsu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 85 STR_VAR resource = ~d5ratsu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 70 STR_VAR resource = ~d5ratsu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 55 STR_VAR resource = ~d5ratsu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 40 STR_VAR resource = ~d5ratsu~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 30 probability1 = 25 STR_VAR resource = ~d5ratsu~ END
+COPY ~%MOD_FOLDER%/data/familiars/d5ratsu.cre~ ~override~
+  SAY NAME1 ~rat~
+  WRITE_LONG 0x28 49920																// rat animation
+  WRITE_BYTE 0x275 20
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~quasclaw.itm~) BEGIN
+ COPY_EXISTING ~quasclaw.itm~ ~override~
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 15 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 44 target = 2 parameter1 = 5 parameter2 = 1 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 0 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 1 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 2 timing = 0 duration = 18 savingthrow = 4 END
+ BUT_ONLY
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~quasclaw.itm~) BEGIN
+ COPY ~%MOD_FOLDER%/data/familiars/quasclaw.itm~ ~override~
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 15 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 44 target = 2 parameter1 = 5 parameter2 = 1 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 0 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 1 timing = 0 duration = 18 savingthrow = 4 END
+  LPF ADD_ITEM_EFFECT INT_VAR opcode = 60 target = 2 parameter1 = 25 parameter2 = 2 timing = 0 duration = 18 savingthrow = 4 END
+ BUT_ONLY
+END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famrt0.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 19 target = 2 parameter1 = 1 parameter2 = 0 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 2 timing = 1 STR_VAR resource = ~d5famrt0~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famrt0~ END
+
+COPY_EXISTING ~famqua25.cre~ ~override~
+  SAY 0x08 @8031
+  SAY 0x0c @8031
+  WRITE_BYTE 0x272 151
+  WRITE_LONG 0x28 49920																// rat animation
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  WRITE_ASCII 0x2cc ~famil325~ #8
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famrt1~ END	// swarm
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrt0~ END
+IF_EXISTS
+
+COPY_EXISTING ~famquas.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8032
+  SAY IDENTIFIED_DESC @8032
+  WRITE_ASCII 0x3a ~famfer~ #8
+  WRITE_ASCII 0x58 ~cfamfer~ #8
+  LPF ALTER_ITEM_HEADER STR_VAR icon = ~famfer~ END
+IF_EXISTS
+  
+COPY_EXISTING ~famqua25.itm~ ~override~
+  SAY UNIDENTIFIED_DESC @8032
+  SAY IDENTIFIED_DESC @8032
+  WRITE_ASCII 0x3a ~famfer~ #8
+  WRITE_ASCII 0x58 ~cfamfer~ #8
+  LPF ALTER_ITEM_HEADER STR_VAR icon = ~famfer~ END
+IF_EXISTS
+
+// mephits___________________________________________________________________________
+//
+COPY_EXISTING ~famdust.cre~ ~override~
+  WRITE_LONG 0x08 RESOLVE_STR_REF (@8027)
+  WRITE_LONG 0x0c RESOLVE_STR_REF (@8027)
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+IF_EXISTS
+// make transformation spells
+// change coloration, give abilities and immunities
+
+COPY_EXISTING ~famdus25.cre~ ~override~
+  WRITE_LONG 0x08 RESOLVE_STR_REF (@8027)
+  WRITE_LONG 0x0c RESOLVE_STR_REF (@8027)
+// set to low level
+  WRITE_SHORT 0x24 9		//	hp
+  WRITE_SHORT 0x26 9
+  WRITE_SHORT 0x46 4		//	AC
+  WRITE_SHORT 0x48 4
+  WRITE_BYTE  0x52 17		//	thac0
+  WRITE_BYTE  0x53 1		//	apr
+  WRITE_BYTE  0x54 16		//	saves
+  WRITE_BYTE  0x55 16
+  WRITE_BYTE  0x56 16
+  WRITE_BYTE  0x57 16
+  WRITE_BYTE  0x58 16
+// set override script
+  WRITE_ASCII 0x248 ~D5FAMV0~ #8
+// set skills & resists
+  WRITE_BYTE 0x59 25
+  WRITE_BYTE 0x5a 25
+  WRITE_BYTE 0x5b 25
+  WRITE_BYTE 0x5c 25
+  WRITE_BYTE 0x5d 25
+  WRITE_BYTE 0x5e 25
+  WRITE_BYTE 0x5f 25
+  WRITE_BYTE 0x60 25
+  WRITE_BYTE 0x61 25
+  WRITE_BYTE 0x62 25
+  WRITE_BYTE 0x63 25
+  WRITE_SHORT 0x46 2
+  REMOVE_MEMORIZED_SPELLS
+  REMOVE_KNOWN_SPELLS
+  LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+IF_EXISTS
+
+COPY_EXISTING ~spwi123.spl~ ~override~
+			  ~spcl342.spl~ ~override~
+  SAY UNIDENTIFIED_DESC @8004
+IF_EXISTS
+
+COMPILE ~%MOD_FOLDER%/data/familiars/famil1.d~
+COMPILE ~%MOD_FOLDER%/data/familiars/famil125.d~
+COMPILE ~%MOD_FOLDER%/data/familiars/famil3.d~
+COMPILE ~%MOD_FOLDER%/data/familiars/famil325.d~
+
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// -----------------------------
+// IMBUE FAMILIARS
+// -----------------------------
+
+/*
+For imbue familiar:
+- famch0 casts every spell0 
+- spell0 protects caster vs. spellA
+- using scroll_abil removes spell0 and protects vs. spell0, and casts spellA
+- scroll_abil has 318 to block itself, if not has_familiar state
+- famch# casts every spellA
+- spellA affects caster/INAREAPA
+- spellA casts spellB, 146 targeting caster
+ -- spellB reduces spell slots by 1 at spellD's level
+ -- spellB makes caster forever immune to spellB
+- spellA has 318 to block effC, targeting preset, if not familiar (need to mark them...?)
+- spellA triggers effC, 177 targeting preset
+ -- effC gives target innateD spell ability
+- innateD casts wizard spell and renews itself after 5 turns (2 turns?)
+
+Now, make versions of 0./A./B./C./D. for every learnable spell < level 5
+
+And add scroll_abil to scrolls
+
+EDIT - no, that doesn't work.  The new item ability doesn't appear.
+
+Maybe use an ability, with the spell learning UI, instead.  Choose from known spells?
+
+*/
+
+DEFINE_ACTION_FUNCTION imbue_familiars BEGIN
+
+ACTION_IF (FILE_CONTAINS_EVALUATED (~projectl.ids~ ~[ %TAB%]INAREAPA[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  OUTER_SET party_proj = (IDS_OF_SYMBOL (~projectl~ ~INAREAPA~)) + 1
+END
+
+ACTION_IF !(VARIABLE_IS_SET %is_familiar_state%) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_IS_FAMILIAR~ RET new_state_ind END
+  OUTER_SET is_familiar_state = %new_state_ind%
+END
+
+ACTION_FOR_EACH fam_cre IN ~fampsd~ ~fampsd25~ ~famfair~ ~famfai25~ ~famfer~ ~famfer25~ ~famrab~ ~famrab25~ ~famcat~ ~famcat25~ ~famimp~ ~famimp25~ ~famdust~ ~famdus25~ ~famquas~ ~famqua25~ BEGIN
+  COPY_EXISTING ~%fam_cre%.cre~ ~override~
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 328 target = 1 special = 1 parameter2 = %is_familiar_state% timing = 9 END
+  IF_EXISTS BUT_ONLY
+END
+
+COPY_EXISTING ~qdscrlmap.2da~ ~override~
+  COUNT_2DA_COLS cols
+  READ_2DA_ENTRIES_NOW ~r2en_schools~ cols
+  FOR (row = 1; row < r2en_schools; row += 1) BEGIN
+	READ_2DA_ENTRY_FORMER ~r2en_schools~ row 0 the_spell
+	READ_2DA_ENTRY_FORMER ~r2en_schools~ row 1 the_scroll
+	TEXT_SPRINT $d5_scroll_spell_list(~%the_scroll%~) ~%the_spell%~
+  END
+IF_EXISTS BUT_ONLY
+
+OUTER_SET imbue_spell_ind = 1
+
+OUTER_SET max_familiar_spell_level = 5
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	READ_SHORT 0x1c spell_type
+	READ_LONG 0x34 spell_level
+	PATCH_IF (spell_type = 1) && (spell_level < (max_familiar_spell_level + 1)) BEGIN
+	  TEXT_SPRINT $d5_imbue_spell_list(~%imbue_spell_ind%~) ~%SOURCE_RES%~
+	  SET ++imbue_spell_ind
+	END
+  END
+BUT_ONLY
+
+/*
+ACTION_PHP_EACH d5_imbue_spell_list AS ind => spell BEGIN 
+  PRINT ~%ind%: %spell%~
+END
+*/
+ 
+<<<<<<<< d5/d5fmclon.2da
+2DA V1.0 
+SPLRES
+		IMBUE	206		XFER	EFF	INNATE
+>>>>>>>> 
+COPY ~d5/d5fmclon.2da~ ~override/d5fmclon.2da~
+
+<<<<<<<< d5/d5fmimb1.txt
+BEGIN ~D5_IMBUE~
+
+IF ~Global("D5_IMBUE","GLOBAL",1)~ THEN BEGIN d5_imbue
+SAY @8201
+>>>>>>>> 
+COPY ~d5/d5fmimb1.txt~ ~weidu_external/%MOD_FOLDER%/d5fmimb1.txt~
+
+<<<<<<<< d5/d5fmimb2.txt
+IF ~~ THEN REPLY @8202 EXIT
+END
+
+>>>>>>>> 
+COPY ~d5/d5fmimb2.txt~ ~weidu_external/%MOD_FOLDER%/d5fmimb2.txt~
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+  ACTION_IF !(VARIABLE_IS_SET %has_familiar_state%) BEGIN
+	LAF d5_resolve_state STR_VAR new_state_id = ~D5_HAS_FAMILIAR~ RET new_state_ind END
+	OUTER_SET has_familiar_state = %new_state_ind%
+  END
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famchz.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5famchx~ END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 328 target = 1 special = 1 parameter2 = %has_familiar_state% timing = 9 END
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famchx.spl~
+  COPY_EXISTING ~spwi123.spl~ ~override~
+				~spcl342.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famchz~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5famchx~ END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %has_familiar_state% parameter2 = 110 timing = 0 duration = 1 STR_VAR resource = ~d5famchz~ END
+  IF_EXISTS
+END
+
+OUTER_SET imbue_spell_ind = 1
+
+ACTION_PHP_EACH d5_imbue_spell_list AS ind => spell BEGIN 
+//  OUTER_SNPRINT 4 prefix ~%spell%~
+//  ACTION_IF (~%prefix%~ STRING_EQUAL_CASE ~spwi~) && (FILE_CONTAINS_EVALUATED (~spell.ids~ ~[ %TAB%]%spell%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+	ACTION_IF (FILE_EXISTS_IN_GAME ~%spell%.spl~) BEGIN
+	  COPY_EXISTING ~%spell%.spl~ ~override~
+		READ_BYTE 0x25 spell_school
+		READ_LONG 0x34 spell_level
+		PATCH_IF !(spell_school = 10) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI908~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI110~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI124~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI420~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI710~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI809~) && !(~%spell%~ STRING_EQUAL_CASE ~SPWI617~) BEGIN
+//		  SNPRINT (0 - 3) spell_num ~%spell%~
+		  READ_STRREF NAME1 spell_name
+		  READ_STRREF UNIDENTIFIED_DESC spell_description
+//		  READ_ASCII 0x3a spell_icon
+/*
+		  INNER_PATCH_SAVE 206_spell ~%SOURCE_RES%~ BEGIN
+			REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5l6~
+		  END
+		  INNER_PATCH_SAVE xfer_spell ~%SOURCE_RES%~ BEGIN
+		 	REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5lx~
+		  END
+		  INNER_PATCH_SAVE slot_spell ~%SOURCE_RES%~ BEGIN
+		 	REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5lt~
+		  END
+		  INNER_PATCH_SAVE spell_eff ~%SOURCE_RES%~ BEGIN
+			REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~D5LV~
+		  END
+		  INNER_PATCH_SAVE innate_spell ~%SOURCE_RES%~ BEGIN
+			REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5l4~
+		  END
+//		  TEXT_SPRINT spell_scroll ~%scroll%~
+*/
+		  TEXT_SPRINT imbue_spell 	~d5ly%ind%~
+		  TEXT_SPRINT 206_spell 	~d5l6%ind%~
+		  TEXT_SPRINT xfer_spell 	~d5lx%ind%~
+		  TEXT_SPRINT reborn_spell 	~d5lz%ind%~
+//		  TEXT_SPRINT slot_spell 	~d5lt%ind%~
+		  TEXT_SPRINT spell_eff 	~D5LV%ind%~
+		  TEXT_SPRINT innate_spell 	~d5l4%ind%~
+		  INNER_ACTION BEGIN
+			APPEND ~d5fmclon.2da~ ~%spell%	%imbue_spell%	%206_spell%	%xfer_spell%	%reborn_spell%	%spell_eff%	%innate_spell%~
+// make innates with cloned spell effects
+			COPY_EXISTING ~%spell%.spl~ ~override/%innate_spell%.spl~
+			 PATCH_TRY
+			  WRITE_SHORT 0x1c 4
+			  LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+			  READ_LONG 0x34 lvl
+			  READ_LONG 0x64 abil_offset
+			  READ_SHORT 0x68 abil_number
+			  READ_BYTE (%abil_offset% + 0x0c) abil_target					
+			  READ_SHORT (%abil_offset% + 0x0e) abil_range
+			  READ_LONG 0x6a eff_offset
+			  WHILE (%abil_number% > 0) BEGIN
+			    SET abil_number = (%abil_number% - 1)
+			    WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
+			  END
+			  LPF DELETE_EFFECT END
+			  PATCH_IF (%abil_target% = 4) BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%spell%~ END
+				PATCH_IF (%abil_range% < 35) BEGIN
+				  PATCH_IF (%abil_range% > 4) BEGIN
+			  		LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+				  END
+				  PATCH_IF (%abil_range% < 5) BEGIN
+				  	LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	
+				  END
+				END
+			  END
+			  ELSE BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %lvl% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%spell%~ END
+				PATCH_IF (%abil_range% > 4) BEGIN
+			  		LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+				END
+			  END
+			 WITH
+			  DEFAULT
+				PATCH_PRINT ~spell not cloned~
+			 END
+// make .EFFs adding the arcane clone
+			CREATE EFF ~%spell_eff%~
+			  WRITE_LONG 0x10 171
+			  WRITE_LONG 0x14 1
+			  WRITE_LONG 0x24 0
+			  WRITE_LONG 0x28 1
+			  WRITE_SHORT 0x2c 100
+			  WRITE_EVALUATED_ASCII 0x30 ~%innate_spell%~ #8
+			  WRITE_LONG 0x90 1
+			  WRITE_EVALUATED_ASCII 0x94 ~%spell_eff%~ #8
+// make 206 spells preventing the xfer spell
+			COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/%206_spell%.spl~
+		  	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%reborn_spell%~ END
+/*
+// make spell to reduce spell slots
+			COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/%slot_spell%.spl~
+			  PATCH_IF spell_level = 1 BEGIN
+				SET slot_level = 1
+			  END
+			  PATCH_IF spell_level = 2 BEGIN
+				SET slot_level = 2				
+			  END
+			  PATCH_IF spell_level = 3 BEGIN
+				SET slot_level = 4
+			  END
+			  PATCH_IF spell_level = 4 BEGIN
+				SET slot_level = 8
+			  END
+			  PATCH_IF spell_level = 5 BEGIN
+				SET slot_level = 16
+			  END
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 42 target = 1 parameter1 = (0 - 1) parameter2 = %slot_level% timing = 9 END
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%slot_spell%~ END
+*/
+// make transfer spell
+			COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/%xfer_spell%.spl~
+				LPF ALTER_SPELL_HEADER INT_VAR target = 5 projectile = %party_proj% END
+//				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%slot_spell%~ END
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 STR_VAR resource = EVAL ~%spell_eff%~ END
+				LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 parameter1 = %is_familiar_state% parameter2 = 111 timing = 0 duration = 1 STR_VAR resource = EVAL ~%spell_eff%~ END
+// make re-summon spell
+			COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/%reborn_spell%.spl~
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%xfer_spell%~ END
+// have FF cast 206 spell
+			ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+			  COPY_EXISTING ~d5famch0.spl~ ~override~
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%206_spell%~ END
+			  IF_EXISTS
+			END
+			ACTION_IF !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+			  COPY_EXISTING ~d5famchz.spl~ ~override~
+				LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%206_spell%~ END
+			  IF_EXISTS
+			END
+// have each famch_ cast the xfer spell
+			ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+			  ACTION_FOR_EACH num IN ~1~ ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ BEGIN
+				COPY_EXISTING ~d5famch%num%.spl~ ~override~
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%reborn_spell%~ END
+				IF_EXISTS
+			  END
+			END
+			ACTION_IF !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+			  COPY_EXISTING ~d5famchx.spl~ ~override~
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%reborn_spell%~ END
+			  IF_EXISTS
+			END
+// create imbue spell
+			COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/%imbue_spell%.spl~
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%206_spell%~ END
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%206_spell%~ END
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%xfer_spell%~ END
+// make dialogue for choosing spell to imbue
+			OUTER_SET dlg_level = (spell_level - 1)
+			OUTER_SET imb_level = (spell_level - 2)
+			OUTER_SPRINT imbue_prefix @8203
+			OUTER_SPRINT imbue_text ~%imbue_prefix%: %spell_name%~
+			OUTER_SET imbue_string = RESOLVE_STR_REF (~%imbue_text%~)
+			APPEND_OUTER ~weidu_external/%MOD_FOLDER%/d5fmimb1.txt~ ~~~~~IF ~GlobalGT("D5_IMBUD","GLOBAL",%imb_level%) GlobalGT("D5_IMLVL","GLOBAL",%dlg_level%) GlobalLT("%imbue_spell%","GLOBAL",1) HaveKnownSpellRES("%spell%")~ THEN REPLY ~%spell_name%~ GOTO d5_imbue_%ind%~~~~~ KEEP_CRLF
+			APPEND_OUTER ~weidu_external/%MOD_FOLDER%/d5fmimb2.txt~ ~~~~~IF ~~ THEN BEGIN d5_imbue_%ind% %WNL% SAY ~%imbue_text%~ %WNL% IF ~~ THEN REPLY @8204 DO ~IncrementGlobal("%imbue_spell%","GLOBAL",1)~ DO ~IncrementGlobal("D5_IMBUD","GLOBAL",1)~ DO ~ApplySpellRES("%imbue_spell%",myself)~ EXIT %WNL% IF ~~ THEN REPLY @8205 GOTO d5_imbue %WNL% END %WNL%~~~~~ KEEP_CRLF
+		  END
+		END
+	  BUT_ONLY
+	END
+//  END
+END
+
+COPY ~weidu_external/%MOD_FOLDER%/d5fmimb1.txt~ ~weidu_external/%MOD_FOLDER%/d5fmimb.d~
+	APPEND_FILE ~weidu_external/%MOD_FOLDER%/d5fmimb2.txt~
+
+COMPILE ~weidu_external/%MOD_FOLDER%/d5fmimb.d~
+
+COPY ~%MOD_FOLDER%/data/familiars/d5fmimb.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5fmimb.spl~ ~override~
+  SAY NAME1 @8203
+  SAY UNIDENTIFIED_DESC @8206
+  WRITE_SHORT 0x1c 4
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5fmimb~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = ~d5fmimb~ END
+  LPF ADD_SPELL_CFEFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fmimb~ END
+COPY ~%MOD_FOLDER%/data/familiars/d5fmimb.eff~ ~override~
+COPY ~%MOD_FOLDER%/data/familiars/d5fmimb.cre~ ~override~
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fmimx.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fmimb~ END
+
+<<<<<<<< d5/d5fmimb.baf
+IF
+	LevelGT(LastSummonerOf(Myself),0)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",1)
+	Continue()
+END
+IF
+	LevelGT(LastSummonerOf(Myself),2)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",2)
+	Continue()
+END
+IF
+	LevelGT(LastSummonerOf(Myself),5)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",3)
+	Continue()
+END
+IF
+	LevelGT(LastSummonerOf(Myself),9)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",4)
+	Continue()
+END
+IF
+	LevelGT(LastSummonerOf(Myself),14)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",5)
+	Continue()
+END
+IF
+	LevelLT(LastSummonerOf(Myself),3)
+	GlobalGT("D5_IMBUD","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",0)
+	Continue()
+END
+IF
+	LevelLT(LastSummonerOf(Myself),6)
+	GlobalGT("D5_IMBUD","GLOBAL",1)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",0)
+	Continue()
+END
+IF
+	LevelLT(LastSummonerOf(Myself),10)
+	GlobalGT("D5_IMBUD","GLOBAL",2)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",0)
+	Continue()
+END
+IF
+	LevelLT(LastSummonerOf(Myself),15)
+	GlobalGT("D5_IMBUD","GLOBAL",3)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_IMLVL","GLOBAL",0)
+	Continue()
+END
+IF
+	NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+	SetNumTimesTalkedTo(1)
+	SetGlobal("D5_IMBUE","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("d5_imbue",Myself))
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+	SetNumTimesTalkedTo(0)
+	SetGlobal("D5_IMBUE","GLOBAL",0)
+	DestroySelf()
+END
+>>>>>>>> 
+COPY ~d5/d5fmimb.baf~ ~weidu_external/%MOD_FOLDER%/d5fmimb.baf~
+
+COMPILE ~weidu_external/%MOD_FOLDER%/d5fmimb.baf~
+
+COPY_EXISTING ~d5famch.spl~ ~override~
+			  ~spwi123.spl~ ~override~
+			  ~spcl342.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5fmimb~ END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~fampsd.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~fampsd25.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+
+COPY_EXISTING ~famfair.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famfai25.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famfer.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famfer25.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famrab.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famrab25.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famcat.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famcat25.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famimp.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famimp25.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famquas.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famqua25.cre~ ~override~
+  WRITE_BYTE 0x273 13																// make thief/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+COPY_EXISTING ~famdust.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  PATCH_IF (GAME_IS ~bgee~) BEGIN
+	WRITE_BYTE 0x234 3
+	WRITE_BYTE 0x235 3
+  END
+  PATCH_IF (GAME_IS ~bg2ee~) BEGIN
+	WRITE_BYTE 0x234 7
+	WRITE_BYTE 0x235 7
+  END
+IF_EXISTS
+COPY_EXISTING ~famdus25.cre~ ~override~
+  WRITE_BYTE 0x273 7																// make fighter/mage
+  WRITE_BYTE 0x234 11
+  WRITE_BYTE 0x235 11
+IF_EXISTS
+
+//fix burning hands targeting_______________________________________________________
+//
+COPY_EXISTING ~spwi103.spl~ ~override~
+  READ_LONG 0x08 burning_hands_strref
+IF_EXISTS BUT_ONLY
+
+ACTION_IF (IS_AN_INT %burning_hands_strref%) BEGIN
+  COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+	PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	  SET burning_change = 0
+	  READ_LONG 0x08 name
+	  PATCH_IF (name = burning_hands_strref) BEGIN
+		GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+		PHP_EACH ab_array AS int => ab_off BEGIN
+		  PATCH_IF (burning_change = 0) BEGIN
+			READ_BYTE (ab_off + 0x0c) target
+			PATCH_IF target = 5 BEGIN
+			  SET burning_change = 1
+			END
+		  END
+		END
+		PATCH_IF (burning_change = 1) BEGIN
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 1 END
+		  LPF ALTER_EFFECT INT_VAR match_opcode = 148 opcode = 146 target = 2 STR_VAR match_resource = ~spwi103~ END
+		END
+	  END
+	END
+  BUT_ONLY
+END
+
+
+END 	//	end define function
+//____________________________________________________________________________________
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// -----------------------------
+// INDELIBLE FAMILIARS
+// -----------------------------
+
+// figure out how the FF CON loss works, and eliminate it.
+// add a 101 effect to FF that blocks opcode 18 for 0 seconds
+// remove the 195 effect from the familiar after it is summoned
+// OR just give the familiar or the caster (figure out which!) perm 101 vs. op195
+// add an aura to familiars increasing summoner's hp by 10% or so...
+// ...IF can get familiar auras working!
+
+DEFINE_ACTION_FUNCTION indelible_familiars BEGIN 
+
+ACTION_IF !(VARIABLE_IS_SET %has_familiar_state%) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_HAS_FAMILIAR~ RET new_state_ind END
+  OUTER_SET has_familiar_state = %new_state_ind%
+END
+
+ACTION_FOR_EACH ff_spell IN ~spwi123~ ~spcl342~ ~d5famch~ BEGIN
+  COPY_EXISTING ~%ff_spell%.spl~ ~override~
+//	below effect should block op18
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 101 target = 1 parameter2 = 18 timing = 0 duration = 1 END
+// below if the caster needs to be protected from op195
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 195 timing = 9 END
+	PATCH_IF !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) && !(FILE_EXISTS_IN_GAME ~qdtnb_imbue_familiars.qd~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 328 target = 1 special = 1 parameter2 = %has_familiar_state% timing = 9 END
+	END
+  IF_EXISTS BUT_ONLY
+END
+
+// if familiar needs to be immune to op195
+ACTION_FOR_EACH fam_cre IN ~fampsd~ ~fampsd25~ ~famfair~ ~famfai25~ ~famfer~ ~famfer25~ ~famrab~ ~famrab25~ ~famcat~ ~famcat25~ ~famimp~ ~famimp25~ ~famdust~ ~famdus25~ ~famquas~ ~famqua25~ BEGIN
+  COPY_EXISTING ~%fam_cre%.cre~ ~override~
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 195 timing = 9 END
+  IF_EXISTS BUT_ONLY
+END
+
+// make +hp aura
+ACTION_FOR_EACH fam_cre IN ~fampsd~ ~fampsd25~ ~famfair~ ~famfai25~ ~famfer~ ~famfer25~ ~famrab~ ~famrab25~ ~famcat~ ~famcat25~ ~famimp~ ~famimp25~ ~famdust~ ~famdus25~ ~famquas~ ~famqua25~ BEGIN
+  COPY_EXISTING ~%fam_cre%.cre~ ~override~
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famhp~ END
+  IF_EXISTS BUT_ONLY
+END
+/*
+CREATE EFF ~d5famhp~	
+	WRITE_LONG 0x10 232
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x20 20
+	WRITE_LONG 0x24 9
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5famhp~ #8
+	WRITE_LONG 0x48 102
+*/
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5famhp.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 18 target = 3 parameter1 = 115 parameter2 = 5 timing = 0 duration = 7 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 3 timing = 1 STR_VAR resource = ~d5famhp~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 3 parameter1 = %has_familiar_state% parameter2 = 111 timing = 0 duration = 7 STR_VAR resource = ~d5famhp~ END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+  COPY_EXISTING ~spwi123.spl~ ~override~
+				~spcl342.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @8003
+  IF_EXISTS
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) BEGIN
+  COPY_EXISTING ~spwi123.spl~ ~override~
+				~spcl342.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @8004
+  IF_EXISTS
+END
+
+END 	//	end define function
+//____________________________________________________________________________________
