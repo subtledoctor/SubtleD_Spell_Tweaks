@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~1.0~ 
+VERSION ~2.1~ 
 
 ALWAYS
 
@@ -22,15 +22,14 @@ AUTO_TRA ~SubtleD_Spell_Tweaks/lang/%s~
 
 AUTO_TRA "weidu_external/lang/%MOD_FOLDER%/%s"
 
-LANGUAGE
-  ~English~
-  ~english~
-  ~SubtleD_Spell_Tweaks/lang/english/setup.tra~
-
-LANGUAGE
-  ~Français~
-  ~french~
-  ~SubtleD_Spell_Tweaks/lang/french/setup.tra~
+AUTO_TRA ~TomeAndBlood/lang/%s~
+LANGUAGE ~English~ ~english~ ~SubtleD_Spell_Tweaks/lang/english/setup.tra~ 
+LANGUAGE ~French~ ~french~
+		~SubtleD_Spell_Tweaks/lang/french/setup.tra~
+		~SubtleD_Spell_Tweaks/lang/french/cantrips.tra~
+		~SubtleD_Spell_Tweaks/lang/french/crafting.tra~
+		~SubtleD_Spell_Tweaks/lang/french/familiars.tra~
+		~SubtleD_Spell_Tweaks/lang/french/spells.tra~
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

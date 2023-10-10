@@ -113,6 +113,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -146,6 +147,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT universal_sr @160110
+					SPRINT universal_no_sr @160150
+					LPF update_school STR_VAR school_no_sr = universal_no_sr school_sr = universal_sr END
 				END
 			BUT_ONLY
 		END
@@ -161,6 +166,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -194,6 +200,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT universal_sr @160110
+					SPRINT universal_no_sr @160150
+					LPF update_school STR_VAR school_no_sr = universal_no_sr school_sr = universal_sr END
 				END
 			BUT_ONLY
 		END
@@ -215,6 +225,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -246,6 +257,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT abjuration_sr @160100
+					SPRINT abjuration_no_sr @160140
+					LPF update_school STR_VAR school_no_sr = abjuration_no_sr school_sr = abjuration_sr END
 				END
 			BUT_ONLY
 		END
@@ -261,6 +276,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -292,6 +308,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT abjuration_sr @160100
+					SPRINT abjuration_no_sr @160140
+					LPF update_school STR_VAR school_no_sr = abjuration_no_sr school_sr = abjuration_sr END
 				END
 			BUT_ONLY
 		END
@@ -313,6 +333,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -344,6 +365,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT alteration_sr @160101
+					SPRINT alteration_no_sr @160141
+					LPF update_school STR_VAR school_no_sr = alteration_no_sr school_sr = alteration_sr END
 				END
 			BUT_ONLY
 		END
@@ -359,6 +384,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -390,6 +416,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT alteration_sr @160101
+					SPRINT alteration_no_sr @160141
+					LPF update_school STR_VAR school_no_sr = alteration_no_sr school_sr = alteration_sr END
 				END
 			BUT_ONLY
 		END
@@ -411,6 +441,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -441,6 +472,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT conjuration_sr @160102
+					SPRINT conjuration_no_sr @160142
+					LPF update_school STR_VAR school_no_sr = conjuration_no_sr school_sr = conjuration_sr END
 				END
 			BUT_ONLY
 		END
@@ -456,6 +491,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -487,6 +523,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT conjuration_sr @160102
+					SPRINT conjuration_no_sr @160142
+					LPF update_school STR_VAR school_no_sr = conjuration_no_sr school_sr = conjuration_sr END
 				END
 			BUT_ONLY
 		END
@@ -508,6 +548,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -539,6 +580,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT divination_sr @160103
+					SPRINT divination_no_sr @160143
+					LPF update_school STR_VAR school_no_sr = divination_no_sr school_sr = divination_sr END
 				END
 			BUT_ONLY
 		END
@@ -554,6 +599,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -585,6 +631,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT divination_sr @160103
+					SPRINT divination_no_sr @160143
+					LPF update_school STR_VAR school_no_sr = divination_no_sr school_sr = divination_sr END
 				END
 			BUT_ONLY
 		END
@@ -606,6 +656,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -637,6 +688,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT enchantment_sr @160104
+					SPRINT enchantment_no_sr @160144
+					LPF update_school STR_VAR school_no_sr = enchantment_no_sr school_sr = enchantment_sr END
 				END
 			BUT_ONLY
 		END
@@ -652,6 +707,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -683,6 +739,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT enchantment_sr @160104
+					SPRINT enchantment_no_sr @160144
+					LPF update_school STR_VAR school_no_sr = enchantment_no_sr school_sr = enchantment_sr END
 				END
 			BUT_ONLY
 		END
@@ -704,6 +764,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -735,6 +796,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT evocation_sr @160105
+					SPRINT evocation_no_sr @160145
+					LPF update_school STR_VAR school_no_sr = evocation_no_sr school_sr = evocation_sr END
 				END
 			BUT_ONLY
 		END
@@ -750,6 +815,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -781,6 +847,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT evocation_sr @160105
+					SPRINT evocation_no_sr @160145
+					LPF update_school STR_VAR school_no_sr = evocation_no_sr school_sr = evocation_sr END
 				END
 			BUT_ONLY
 		END
@@ -802,6 +872,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -833,6 +904,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT illusion_sr @160106
+					SPRINT illusion_no_sr @160146
+					LPF update_school STR_VAR school_no_sr = illusion_no_sr school_sr = illusion_sr END
 				END
 			BUT_ONLY
 		END
@@ -848,6 +923,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -879,6 +955,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT illusion_sr @160106
+					SPRINT illusion_no_sr @160146
+					LPF update_school STR_VAR school_no_sr = illusion_no_sr school_sr = illusion_sr END
 				END
 			BUT_ONLY
 		END
@@ -900,6 +980,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x50 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -931,6 +1012,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x50 ~%new_desc%~
+*/
+					SPRINT necromancy_sr @160107
+					SPRINT necromancy_no_sr @160147
+					LPF update_school STR_VAR school_no_sr = necromancy_no_sr school_sr = necromancy_sr END
 				END
 			BUT_ONLY
 		END
@@ -946,6 +1031,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
+/*
 					READ_STRREF 0x54 "desc"
 					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
 						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
@@ -977,6 +1063,10 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 						END
 					END
 					SAY_EVALUATED 0x54 ~%new_desc%~
+*/
+					SPRINT necromancy_sr @160107
+					SPRINT necromancy_no_sr @160147
+					LPF update_school STR_VAR school_no_sr = necromancy_no_sr school_sr = necromancy_sr END
 				END
 			BUT_ONLY
 		END
@@ -1615,5 +1705,116 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 	END	
 END
 
-
 END 	//	end define function
+
+
+//__________________________________________________________________________________
+//
+//__________________________________________________________________________________
+//
+//__________________________________________________________________________________
+
+
+DEFINE_PATCH_FUNCTION update_school STR_VAR school_no_sr = ~~ school_sr = ~~ BEGIN
+	SPRINT school_desc_1 @160000
+	SPRINT school_desc_2 @160001
+	SPRINT school_desc_3 @160002
+	SPRINT school_desc_4 @160003
+	SPRINT school_desc_5 @160004
+	SPRINT school_desc_6 @160005
+	SPRINT school_desc_7 @160006
+	SPRINT school_desc_8 @160007
+	SPRINT school_desc_9 @160008
+	SPRINT school_desc_10 @160009
+	SPRINT school_desc_11 @160010
+	SPRINT school_desc_12 @160011
+	SPRINT school_desc_13 @160012
+	SPRINT school_desc_14 @160013
+	SPRINT school_desc_15 @160014
+	SPRINT school_desc_16 @160015
+	SPRINT school_desc_17 @160016
+	SPRINT school_desc_18 @160017
+	SPRINT school_desc_19 @160018
+	SPRINT school_desc_20 @160019
+	SPRINT school_desc_21 @160020
+	SPRINT school_desc_22 @160021
+	SPRINT school_desc_23 @160022
+	SPRINT school_desc_24 @160023
+	SPRINT school_desc_25 @160024
+	SPRINT school_desc_26 @160025
+	SPRINT school_desc_27 @160026
+	SPRINT school_desc_28 @160027
+	SPRINT school_desc_29 @160028
+	SPRINT school_desc_30 @160029
+	SPRINT school_desc_31 @160030
+	SPRINT school_desc_32 @160031
+	SPRINT school_desc_33 @160032
+	SPRINT school_desc_34 @160033
+	SPRINT school_desc_35 @160034
+	SPRINT school_desc_36 @160035
+
+	SPRINT abjuration @160100
+	SPRINT alteration @160101
+	SPRINT conjuration @160102
+	SPRINT divination @160103
+	SPRINT enchantment @160104
+	SPRINT evocation @160105
+	SPRINT illusion @160106
+	SPRINT necromancy @160107
+	SPRINT universal @160110
+
+	READ_STRREF 0x54 "desc"
+
+	PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
+		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			REPLACE_TEXTUALLY ~%school_desc_1%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_2%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_3%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_4%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_5%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_6%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_7%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_8%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_9%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_10%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_11%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_12%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_13%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_14%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_15%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_16%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_17%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_18%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_19%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_20%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_21%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_22%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_23%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_24%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_25%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_26%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_27%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_28%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_29%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_30%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_31%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_32%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_33%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_34%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_35%~ ~%school_no_sr%~
+			REPLACE_TEXTUALLY ~%school_desc_36%~ ~%school_no_sr%~
+		END
+	END
+	ELSE BEGIN
+		REPLACE_TEXTUALLY ~%abjuration%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%alteration%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%conjuration%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%divination%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%enchantment%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%evocation%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%illusion%~ ~%school_sr%~
+		REPLACE_TEXTUALLY ~%necromancy%~ ~%school_sr%~
+	END
+
+	SAY_EVALUATED 0x50 ~%new_desc%~
+END

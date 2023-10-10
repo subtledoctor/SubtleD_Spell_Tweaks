@@ -1,0 +1,553 @@
+
+@6041   = ~Séquenceur mineur~
+@6042   = ~Séquenceur mineur
+(Invocation)
+
+Niveau : 4
+Portée : 0
+Durée : permanente
+Temps d'incantation : 9
+Zone d'effet : spécial
+Jet de sauvegarde : aucun
+
+Ce sort permet à un magicien de stocker des sorts et d'y accéder à partir d'un bouton de capacité spéciale. Deux sorts (de niveau 2 ou inférieur) peuvent ainsi être stockés et lancés simultanément. Le séquenceur ne peut pas être donné à un autre joueur. Un magicien ne peut posséder qu'un seul séquenceur à la fois. Une fois le séquenceur utilisé, le lanceur obtiendra une capacité innée pour en créer un nouveau. (Note : quand ce sort est lancé, il est retiré du livre de sorts et peut dès lors être utilisé depuis le bouton, des capacités spéciales).~
+@6043   = ~Séquenceur de sorts~
+@6044   = ~Séquenceur de sorts
+
+Niveau : 7
+Portée : 0
+Durée : Permanente
+Temps d'incantation : 9
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort permet à un magicien de stocker des sorts et d'y accéder à partir d'un bouton de capacité spéciale. Trois sorts (de niveau 4 ou inférieur) peuvent ainsi être stockés et lancés simultanément. Le séquenceur ne peut pas être donné à un autre joueur. Un magicien ne peut posséder qu'un seul séquenceur à la fois. Une fois le séquenceur utilisé, le lanceur obtiendra une capacité innée pour en créer un nouveau. (Note : quand ce sort est lancé, il est retiré du livre de sorts et peut dès lors être utilisé depuis le bouton, des capacités spéciales).~
+@6045   = ~Déclencheur de sorts~
+@6046   = ~Déclencheur de sorts
+
+Niveau : 8
+Portée : 0
+Durée : permanente
+Temps d'incantation : 9
+Zone d'effet : Lanceur
+Jet de Sauvegarde : aucun
+
+Ce sort permet de stocker jusqu'à trois sorts de niveau 6 ou moins et de pouvoir y accéder par le bouton de capacité spéciale, ce qui permet de les lancer simultanément. Un seul Déclencheur peut être utilisé à la fois, et il ne peut être cédé à un autre personnage. Une fois le déclencheur utilisé, le lanceur obtiendra une capacité innée pour en créer un nouveau. (Note : quand ce sort est lancé, il est retiré du livre de sorts et peut dès lors être utilisé depuis le bouton, des capacités spéciales).~
+@6049   = ~Pas de l'ombre~
+@6050   = ~Pas de l'ombre
+
+Le personnage entre dans le Plan des ombres et s'y déplace pendant 7 secondes, tandis que le temps est figé pour tous les autres. Le lanceur ne peut ni attaquer ni lancer de sorts tant qu'il est dans le Plan des ombres.~
+
+//no SR - school => alteration
+@6111  = ~Glisse
+(Transmutation)
+
+Niveau : 1
+Portée : 9 m
+Durée : 3 rounds + 1 round par niveau
+Temps d'incantation : 1
+Zone d'effet : rayon de 4,5 m
+Jet de sauvegarde : spécial
+
+Le sort de glisse permet de recouvrir une surface matérielle d'une substance huileuse et glissante. Toute créature s'aventurant ou prise au piège dans la zone d'effet au moment où le sort est lancé doit réussir un jet de sauvegarde contre les sorts à +2, sans quoi elle glisse et dérape, étant incapable de bouger. Toute créature réussissant un jet de sauvegarde peut se mouvoir, quoique lentement, jusqu'à la fin du round (mais devra refaire un jet de sauvegarde contre les sorts au cours du round suivant). Les créatures restant dans la zone peuvent lancer un jet de sauvegarde à chaque round jusqu'à ce qu'elles s'échappent de la zone.~
+
+//no SR - conjuration->alteration
+@6116  = ~Flèche enflammée
+(Transmutation)
+
+Niveau : 3
+Portée : 18 m
+Durée : 1 round
+Temps d'incantation : 3
+Zone d'effet : 1 créature
+Jet de sauvegarde : demi-dégâts
+
+Ce sort permet au magicien de lancer des carreaux enflammés sur tout ennemi situé à portée de tir. Chaque carreau inflige 1d6 points de dégâts perforants, plus 4d6 points de dégâts de feu. La cible ne subit que la moitié des dégâts du feu si elle réussit un jet de sauvegarde contre les sorts. Le lanceur de sorts peut créer un carreau pour chaque tranche de cinq niveaux d'expérience (2 carreaux au 10e niveau, 3 au 15e niveau, etc.) Tous les carreaux sont tirés sur la cible du sort.~
+//no SR - already enchanntment?
+@6117  = ~Grande malédiction
+(Enchantement/Charme)
+
+Niveau : 4
+Portée : 15 m
+Durée : 2 rounds par niveau 
+Temps d'incantation : 4 
+Zone d'effet : rayon de 4,5 m 
+Jet de sauvegarde : aucun
+
+Ce sort permet d'influencer de façon défavorable tous les jets de sauvegarde ennemis. Ses effets s'appliquent à toute créature hostile située dans la zone d'effet. Les adversaires sous l'influence de ce sort effectuent tous leurs jets de sauvegarde avec un malus de -4.
+~
+//no SR - invisible stalker -> shadow stalker and conjuration-> illusion
+@6118  = ~Chasseur de l'ombre
+(Illusion/Phantasme)
+
+Niveau : 6
+Portée : 36,5 m
+Durée : 9 heures
+Temps d'incantation : 9
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort crée un double du lanceur fait d'ombre pure et lui accorde un certain niveau d'autonomie. Floue et difforme, cette entité combattra pour le lanceur pendant 9 heures (ou jusqu'à sa destruction violente).~
+//no SR version - +4 version - school Invocation => Enchantment
+@6119  = ~Épée de Mordenkainen
+(Enchantement/Charme)
+
+Niveau : 7
+Portée : 0
+Durée : 1 round par niveau
+Temps d'incantation : 7
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort fait apparaître une sorte de champ de force en forme d'épée dans les mains du magicien qui le lance. Lorsqu'il manipule cette arme, le lanceur est considéré comme un guerrier de niveau moitié moindre que le sien. Cette épée est assimilée à une arme +4 et inflige 5d4 points de dégâts à chaque attaque réussie. L'épée flottant dans les airs sous le contrôle du magicien, ce dernier peut continuer à accomplir d'autres actions pendant la durée du sort.~
+
+//SR and no SR
+@6124   = ~Désintégration~
+//no SR alteration-> necromancy
+@6125   = ~Désintégration
+(Nécromancie)
+
+Niveau : 6
+Portée : Champ visuel du lanceur
+Durée : Instantanée
+Temps d'incantation : 6
+Zone d'effet : 1 créature
+Jet de Sauvegarde : Annule
+
+Un rayon vert est dirigé vers la cible. Au contact, celle-ci doit réussir un Jet de Sauvegarde contre les sorts ou être transformée en poussière. Cette transformation est immédiate et irréversible. Ce sort a également une grande chance de détruire tout ou partie de l'équipement de la cible.~
+
+// SR - conjuration->alteration
+@6132  = ~Flèche Enflammée
+
+Niveau : 3
+École : Transmutation
+Portée : longue
+Durée : instantanée
+Temps d'incantation : 3
+Zone d'effet : spéciale
+Jet de sauvegarde contre le souffle : 1/2 dégâts
+
+Ce sort permet au magicien de lancer des flèches enflammées sur ses ennemis. Le jeteur du sort peut créer une flèche pour chaque tranche de 2 niveaux d'expérience (jusqu'à un maximum de 5 flèches au niveau 10), chaque flèche infligeant 1d6 de dégâts de projectiles plus 2d6 points de dégâts de feu. Un jet de sauvegarde contre le souffle à -2 permet de diviser les dégâts par 2. Une fois l'incantation achevée, la première flèche est tirée sur la créature choisie par le magicien, tandis que les flèches supplémentaires ciblent aléatoirement les ennemis à portée de tir.~
+// SR enchantment -> enchantment
+@6133  = ~Grande Malédiction
+
+Niveau : 4
+Ecole : Enchantement
+Portée : longue
+Durée : 2 rounds / niveau
+Temps d'incantation : 4
+Zone d'effet : rayon de 9 m
+Jet de sauvegarde : aucun
+
+Ce sort permet au lanceur du sort d'affecter négativement les jets de sauvegarde de ses ennemis. L'effet est appliqué à toute créature hostile dans la zone d'effet. Les adversaires sous l'influence de ce sort souffrent d'une pénalité de -2 à tous leurs jets de sauvegarde. Les effets de ce sort ne sont pas cumulatifs.
+~
+// SR conjuration->illusion
+@6135  = ~Chasseur invisible
+
+Niveau : 6
+École : Illusion
+Portée : 36,5 m
+Durée : 9 heures
+Temps d'incantation : 9
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort crée un assassin imaginaire presque invisible avec une vision normale. Cette entité poursuit ses cibles sans relâche et les attaque avec des lames indistinctes. Elle restera relativement stable et servira le lanceur pendant 9 heures (ou jusqu'à sa destruction violente)
+~
+// SR alteration->necromancy
+@6136   = ~Désintégration
+
+Niveau : 6
+Ecole : Nécromancie
+Portée : longue
+Durée : instantanée
+Temps d'incantation : 6
+Zone d'effet : 1 créature
+Jet de sauvegarde contre les souffles : partiel
+
+Ce sort produit un rayon vert qui jaillit des doigts du magicien et touche infailliblement sa cible. Au contact, celle-ci doit réussir un jet de sauvegarde contre les souffles à -2 ou subir 2d6 points de dégâts magiques par niveau du lanceur (jusqu'à un maximum de 40d6). Une créature qui réussit son jet de sauvegarde n'est que partiellement touchée, ne subissant que 5d6 points de dégâts. Le rayon affecte même les objets entièrement faits de force, telle que l'épée de Mordenkainen, qui est automatiquement détruite si elle est touchée. Ce sort n'a pas d'effet sur les vêtements ou équipements de la cible.~
+//SR version - school Invocation => Enchantment
+@6137  = ~Épée de Mordenkainen
+
+Niveau : 7
+École : Enchantement
+Portée : jeteur du sort
+Durée : 1 round / niveau
+Temps d'incantation : 7
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort fait apparaître une sorte de champ de force chatoyant en forme d'épée. L'épée flotte dans les airs sous le contrôle total du magicien, jusqu'à expiration du sort ou jusqu'à dissipation. L'épée est considérée comme une arme +4 et attaque par elle-même une fois par round, infligeant 5d4 points de dégâts. Elle possède 100 % de résistance à presque toute forme de dégâts (acide, froid, feu, électricité, poison, etc.), et 95 % de résistance aux dégâts physiques, mais elle est vulnérable aux dégâts purement magiques. L'épée est immunisée contre les sorts affectant l'esprit, possède 36 points de vie, une CA de 5, et un TAC0 de 2. Note : ce sort n'empêche pas le magicien d'accomplir d'autres actions pendant la durée du sort.~
+
+//
+@6271   = ~Clone illusoire~
+@6272   = ~Clone illusoire
+
+Niveau : 6
+École : Illusion
+Portée : 0
+Durée : 1 round par niveau
+Temps d'incantation : 5
+Zone d'effet : le lanceur
+Jet de sauvegarde : Aucun
+
+Ce sort crée une copie grossière du lanceur, reconnaissable mais imparfaite. Le clone d'ombre a 40 % des points de vie du lanceur et une pénalité de 7 points aux jets d'attaque et au niveau effectif de lanceur. Le clone ne peut utiliser l'objets consommables comme les potions ou les parchemins (qui ne sont pas réellement dupliqués) et ne peut pas lancer de sorts de prêtre. Par contre, il peut répliquer une partie conséquente des capacités en magie profane du lanceur. Il peut lancer tout sort de niveau 1 mémorisé par le lanceur pour ce jour.
+~
+@6273   = ~Simulacre mineur~
+@6274   = ~Simulacre mineur
+
+Niveau : 7
+École : Illusion
+Portée : 0
+Durée : 1 round par niveau
+Temps d'incantation : 2
+Zone d'effet : le lanceur
+Jet de sauvegarde : Aucun
+
+Ce sort, qui se lance très rapidement, crée une assez bonne copie du lanceur, qui peut être perçue par les gens alentour par leur cinq sens. Le clone a 60 % des points de vie du lanceur et une pénalité de 5 points aux jets d'attaque et au niveau effectif de lanceur. Le clone ne peut utiliser l'objets consommables comme les potions ou les parchemins (qui ne sont pas réellement dupliqués) et ne peut pas lancer de sorts de prêtre. Il peut répliquer une partie raisonnable des capacités en magie profane du lanceur. Il peut lancer tout sort jusqu'au niveau 4 mémorisé par le lanceur pour ce jour. Dès que le sort est lancé, le lanceur devient invisible pour 60 s. Un spectateur peu attentif pourra facilement croire que le clone est le lanceur et le lanceur pourra profiter de la distraction pour se déplacer ou prendre une position avantageuse.
+~
+@6275   = ~Simulacre~
+@6276   = ~Simulacre
+
+Niveau : 8
+École : Illusion
+Portée : 0
+Durée : 1 round par niveau
+Temps d'incantation : 5
+Zone d'effet : le lanceur
+Jet de sauvegarde : Aucun
+
+C'est une version améliorée du sort Simulacre mineur. Le clone a 75 % des points de vie du lanceur et une pénalité de 3 points aux jets d'attaque et au niveau effectif de lanceur de sorts. Le clone ne peut utiliser l'objets consommables comme les potions ou les parchemins (qui ne sont pas réellement dupliqués). Par contre, il peut répliquer une partie conséquente des capacités en magie profane du lanceur. Le clone est capable de lancer tous les sorts profanes mémorisés jusqu'au niveau 7. De plus, le clone est si réel et a un tel sentiment d'identité qu'il est capable d'utiliser la magie divine (si la cible du sort en est capable). Une fois le sort lancé, le lanceur se retrouve sous l'effet d'Invisibilité majeure et peut se déplacer sans être vu et même attaquer ou lancer des sorts sans devenir complètement visible.
+~
+
+@6277   = ~Simulacre projeté~
+@6278   = ~Simulacre projeté
+
+Niveau : 9
+École : Illusion
+Portée : Toucher
+Durée : 1 round par niveau
+Temps d'incantation : 5
+Zone d'effet : une créature
+Jet de sauvegarde : Aucun
+
+Ce puissant sort crée un clone d'une créature ciblée, comme le sort de niveau 8 Simulacre. Le clone a 75 % des points de vie de la créature et une pénalité de 3 points aux jets d'attaque et au niveau effectif de lanceur de sorts (quand c'est opportun). Le clone ne peut utiliser d'objets consommables comme les potions ou les parchemins (qui ne sont pas réellement dupliqués). Par contre, il peut répliquer une partie conséquente des capacités en magie profane de la cible, si celle-ci en a. Le clone est capable de lancer tous les sorts profanes mémorisés jusqu'au niveau 7. De plus, le clone est si réel et a un tel sentiment d'identité qu'il est capable d'utiliser la magie divine (si la cible du sort en est capable).
+~
+
+@6279  = ~Clone d'ombre~
+@6280  = ~Clone d'ombre
+
+Niveau : 5
+École : Illusion
+Portée : 0
+Durée : 6 rounds
+Temps d'incantation : 1
+Zone d'effet : le lanceur
+Jet de sauvegarde : Aucun
+
+Ce sort rend le lanceur invisible, à part son ombre. Cette ombre peut se déplacer indépendamment du lanceur et, même si elle ne peut exécuter d'action comme attaquer ou lancer des sorts, elle peut servir de leurre pour le magicien invisible. Le lanceur sera protégé par l'invisibilité tant que l'ombre n'a pas été détruite, mais deviendra visible dès que l'ombre sera détruite ou dissipée.
+~
+
+@6351 = ~Contingence~
+@6352 = ~Contingence
+
+Cette faculté permet au lanceur de choisir un sort parmi ceux qu'il connaît (un niveau de sort par 3 niveaux du lanceur, arrondi au-dessus, soit un sort de 7e niveau au maximum pour un magicien de niveau 19). Ensuite, le magicien spécifie une condition parmi les options fournies. Cette condition peut aller d'être repéré par un ennemi à atteindre 10 % de ses points de vie. Quand cette condition sera remplie, le sort sera automatiquement et instantanément lancé, sans requérir d'action de la part du magicien.
+
+Par exemple, un magicien du 12e niveau pourrait placer une Contingence avec le sort Peau de pierre, et comme condition « 50 % des points de vie ». Ainsi, en combat, dès qu'il sera réduit à 50 % ou moins de ses points de vie, le sort Peau de pierre sera lancé.
+~
+@6353 = ~Chaîne de contingence~
+@6354 = ~Chaîne de contingence
+
+La chaîne de contingence canalise une partie de l'énergie magique du lanceur et ne la relâche que sous certaines conditions. Le magicien choisit trois sorts qui ne seront activés que lorsque la condition spécifiée est remplie, par exemple lorsqu'il subit des dégâts. Dans ce cas, les trois sorts sont immédiatement lancés. Les sorts jusqu'au niveau 8 ou inférieur peuvent être utilisés dans la contingence.
+~
+@6413 = ~Non-détection~
+@6414 = ~Non-détection
+(Abjuration)
+
+Niveau : 3
+Portée : contact
+Durée : 8 heures
+Temps d'incantation : 3
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
+
+Une fois ce sort lancé, si la cible devient invisible, sanctuarisée ou se cache, les sorts de divination tels que Élimination des invisibilités, Oracle, Vision véritable, ou la capacité de voleur Détection des illusions ne permettront pas de dissiper l'invisibilité ou de révéler la créature cachée. Par contre, quelqu'un capable de percevoir les créatures invisibles sera en mesure de détecter et de cibler le bénéficiaire de ce sort.
+~
+
+@7103  = ~Identification~
+@7104  = ~Identification
+(Divination)
+
+Niveau : 1
+Portée : 0
+Durée : instantanée
+Temps d'incantation : 2
+Zone d'effet : le lanceur
+Jet de sauvegarde : aucun
+
+Quand ce sort est jeté, le nom et les enchantements (malédictions incluses) d'un objet ou d'une arme touchée par le lanceur lui sont révélés sans condition. Le lanceur a alors un aperçu de l'histoire, de la nature, des enchantements et de l'usage de l'objet. Beaucoup d'objets non identifiés peuvent être utilisés malgré tout, mais le risque est bien plus grand.
+
+Aux niveaux 5, 9 et 13, le nombre d'objets qui peuvent être identifiés par ce sort augmente de 1 (avec un maximum de 4 objets au niveau 13).
+~
+@8002  = ~Familier
+(Conjuration/Convocation)
+
+Niveau : 1
+Portée : n/d
+Durée : Spéciale
+Temps d'incantation : 9
+Zone d'effet : 1 familier
+Jet de sauvegarde : aucun
+
+Ce sort permet au magicien de tenter la convocation d'un familier qui deviendra son aide et son compagnon. Les familiers sont généralement de petites créatures. Une créature agissant en tant que familier peut aider un magicien en envoyant ses pouvoirs sensoriels vers son maître, en lui parlant ou en lui servant de garde, d'éclaireur ou d'espion. Un magicien ne peut avoir qu'un seul familier à la fois, et il ne contrôle pas le type de créature qui sera convoquée par le sort, Si tant est qu'il y en ait une.
+
+Remarque : Ce sort ne peut être lancé que par le protagoniste.
+
+La créature est toujours plus intelligente que les autres de même type (généralement de 2 ou 3 points d'intelligence), et ses liens avec le magicien lui confèrent une vie particulièrement longue. Le magicien garde un lien empathique avec le familier et peut lui transmettre des ordres mentalement. Ce lien lui permet aussi de ne pas mourir réellement. Si le familier venait à mourir au combat, le maître peut lancer à nouveau Familier le jour suivant et rappeler son familier.
+
+Voici une liste des familiers qu'un joueur peut convoquer en fonction de son alignement :
+
+LOYAL BON, NEUTRE BON : Pseudo-dragon
+Points de vie : 24
+Classe d'armure : -2
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3. Jet de sauvegarde contre mort sous peine d'inconscience pendant 2 tours.
+– Capacités spéciales : peut lancer Flou une fois par jour. Régénère 1 point de vie par tour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+LOYAL NEUTRE : Furet
+Points de vie : 24
+Classe d'armure : 0
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3.
+Capacités spéciales : 75 % vol à la tire, 40 % camouflage dans l'ombre & déplacements silencieux, et 20 % détection des pièges. Peut lancer Flou une fois par jour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+LOYAL MAUVAIS : Diablotin
+Points de vie : 18
+Classe d'armure : 2
+Résistance à la magie : 25 %
+Combat : 1 attaque par tour. TAC0 15, dégâts 1d6.
+Capacités spéciales : 100 % de résistance au feu, au froid et à l'électricité. Peut lancer le sort de Métamorphose une fois par jour. Régénère 1 point de vie par tour.
+
+NEUTRE : Lapin
+Points de vie : 24
+Classe d'armure : -4
+Résistance à la magie : 65 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : 50 % détection des pièges, 30 % camouflage dans l'ombre & déplacements silencieux. 75 % de résistance au feu, au froid et à l'électricité.
+
+NEUTRE MAUVAIS : Méphite poussiéreux
+Points de vie : 24
+Classe d'armure : 6
+Résistance à la magie : 10 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : 100 % de résistance au feu et 50 % de résistance aux dégâts tranchants, perforants et de projectiles. Peut lancer les sorts Poussière Scintillante 1 fois par jour et Poussière de verre 2 fois par jour. Régénère 1 point de vie par tour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE BON : Dragon fée
+Points de vie : 24
+Classe d'armure : 4
+Résistance à la magie : 32 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : Peut lancer les sorts Image Miroir & Invisibilité sur 3 mètres, une fois par jour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE NEUTRE : Chat
+Points de vie : 24
+Classe d'armure : 0
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3.
+Capacités spéciales : 30 % vol à la tire et 99 % déplacements silencieux & camouflage dans l'ombre. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE MAUVAIS : Quasit
+Points de vie : 24
+Classe d'armure : 2
+Résistance à la magie : 25 %
+Combat : 3 attaques par tour. TAC0 13, dégâts 1d6.
+Capacités spéciales : 100 % de résistance au feu, au froid et à l'électricité. Peut lancer les sorts Horreur et Flou une fois par jour. Régénère 1 point de vie par tour.
+~
+@8003  = ~Familier
+(Conjuration/Convocation)
+
+Niveau : 1
+Portée : n/d
+Durée : Spéciale
+Temps d'incantation : 9
+Zone d'effet : 1 familier
+Jet de sauvegarde : aucun
+
+Ce sort permet au magicien de tenter la convocation d'un familier qui deviendra son aide et son compagnon. Les familiers sont généralement de petites créatures. Une créature agissant en tant que familier peut aider un magicien en envoyant ses pouvoirs sensoriels vers son maître, en lui parlant ou en lui servant de garde, d'éclaireur ou d'espion. Un magicien ne peut avoir qu'un seul familier à la fois, et il ne contrôle pas le type de créature qui sera convoquée par le sort, Si tant est qu'il y en ait une.
+
+Remarque : Ce sort ne peut être lancé que par le protagoniste.
+
+La créature est toujours plus intelligente que les autres de même type (généralement de 2 ou 3 points d'intelligence), et ses liens avec le magicien lui confèrent une vie particulièrement longue. Le magicien garde un lien empathique avec le familier et peut lui transmettre des ordres mentalement. Ce lien lui permet aussi de ne pas mourir réellement. Si le familier venait à mourir au combat, le maître peut lancer à nouveau Familier le jour suivant et rappeler son familier.
+
+Voici une liste des familiers qu'un joueur peut convoquer en fonction de son alignement :
+
+LOYAL BON, NEUTRE BON : Pseudo-dragon
+Points de vie : 24
+Classe d'armure : -2
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3. Jet de sauvegarde contre mort sous peine d'inconscience pendant 2 tours.
+– Capacités spéciales : peut lancer Flou une fois par jour. Régénère 1 point de vie par tour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+LOYAL NEUTRE : Furet
+Points de vie : 24
+Classe d'armure : 0
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3.
+Capacités spéciales : 75 % vol à la tire, 40 % camouflage dans l'ombre & déplacements silencieux, et 20 % détection des pièges. Peut lancer Flou une fois par jour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+LOYAL MAUVAIS : Diablotin
+Points de vie : 18
+Classe d'armure : 2
+Résistance à la magie : 25 %
+Combat : 1 attaque par tour. TAC0 15, dégâts 1d6.
+Capacités spéciales : 100 % de résistance au feu, au froid et à l'électricité. Peut lancer le sort de Métamorphose une fois par jour. Régénère 1 point de vie par tour.
+
+NEUTRE : Lapin
+Points de vie : 24
+Classe d'armure : -4
+Résistance à la magie : 65 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : 50 % détection des pièges, 30 % camouflage dans l'ombre & déplacements silencieux. 75 % de résistance au feu, au froid et à l'électricité.
+
+NEUTRE MAUVAIS : Méphite poussiéreux
+Points de vie : 24
+Classe d'armure : 6
+Résistance à la magie : 10 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : 100 % de résistance au feu et 50 % de résistance aux dégâts tranchants, perforants et de projectiles. Peut lancer les sorts Poussière Scintillante 1 fois par jour et Poussière de verre 2 fois par jour. Régénère 1 point de vie par tour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE BON : Dragon fée
+Points de vie : 24
+Classe d'armure : 4
+Résistance à la magie : 32 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d2.
+Capacités spéciales : Peut lancer les sorts Image Miroir & Invisibilité sur 3 mètres, une fois par jour. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE NEUTRE : Chat
+Points de vie : 24
+Classe d'armure : 0
+Résistance à la magie : 50 %
+Combat : 2 attaques par tour. TAC0 13, dégâts 1d3.
+Capacités spéciales : 30 % vol à la tire et 99 % déplacements silencieux & camouflage dans l'ombre. Immunisé contre Drain de niveau, Sommeil et Pétrification.
+
+CHAOTIQUE MAUVAIS : Quasit
+Points de vie : 24
+Classe d'armure : 2
+Résistance à la magie : 25 %
+Combat : 3 attaques par tour. TAC0 13, dégâts 1d6.
+Capacités spéciales : 100 % de résistance au feu, au froid et à l'électricité. Peut lancer les sorts Horreur et Flou une fois par jour. Régénère 1 point de vie par tour.
+~
+@8004  = ~Familier
+(Conjuration/Convocation)
+
+Niveau : 1
+Portée : n/d
+Durée : Spéciale
+Temps d'incantation : 9
+Zone d'effet : 1 familier
+Jet de sauvegarde : aucun
+
+Ce sort permet au magicien de tenter la convocation d'un familier qui deviendra son aide et son compagnon. Les familiers sont généralement de petites créatures. Une créature agissant en tant que familier peut aider un magicien en envoyant ses pouvoirs sensoriels vers son maître, en lui parlant ou en lui servant de garde, d'éclaireur ou d'espion. Un magicien ne peut avoir qu'un seul familier à la fois, et il ne contrôle pas le type de créature qui sera convoquée par le sort, Si tant est qu'il y en ait une.
+
+La créature est toujours plus intelligente que les autres de même type (généralement de 2 ou 3 points d'intelligence), et ses liens avec le magicien lui confèrent une vie particulièrement longue. Le magicien garde un lien empathique avec le familier et peut lui transmettre des ordres mentalement. Ce lien lui permet aussi de ne pas mourir réellement. Si le familier venait à mourir au combat, le maître peut lancer à nouveau Familier le jour suivant et rappeler son familier.
+
+Au niveau 1, tous les familiers partagent les mêmes caractéristiques : 9 points de vie, CA 4, TAC0 17, jets de sauvegarde 16, résistance à la magie et aux dégâts 25 %, immunisé à l'absorption de niveau et à la pétrification. À certains seuils d'expérience - 5 000 / 50 000 / 150 000 / 450 000 / 1 250 000 / 2 500 000 / 4 000 000 - les points de vie, la CA, le TAC0 et les jets de sauvegarde du familier s'améliorent.
+
+Voici une liste des familiers qu'un joueur peut choisir :
+
+Pseudo-Dragon
+- Combat : 1 attaque par round pour 1d3 dégâts ; jet de sauvegarde ou Lenteur pour 2 rounds
+- Capacités spéciales : peut lancer Flou et Soin des blessures légères, et utilise un souffle de Vapeurs colorées, une fois tous les 3 tours.
+- Bénéfice spécial : le maître du pseudo-dragon a un total de points de vie 10 % plus élevé et régénère 1 point de vie par round.
+
+Furet
+- Combat : 1 attaque par round pour 1d3 dégâts
+- Capacités spéciales : a un score de Pickpocket de 80 %.Peut émettre une aura de Puanteur écœurante une fois par tour. Pour 5 rounds, les ennemis proches doivent réussir un jet de sauvegarde ou subir une pénalité de 3 points aux jets d'attaque et à la CA plus un risque d'échec des sorts de 30 %.
+- Bénéfice spécial : le maître du furet a un total de points de vie 10 % plus élevé et un bonus de 1 point à la constitution.
+
+Lapin
+- Combat : 1 attaque par round pour 1d2 dégâts
+- Capacités spéciales : a un score de Détection des pièges de 80 %. Peut creuser le sol pour échapper au danger (similaire à Pas de l'ombre) une fois par tour.
+- Bénéfice spécial : le maître du lapin a un total de points de vie 10 % plus élevé et est immunisé aux effets de Lenteur.
+
+Chat
+- Combat : 1 attaque par round pour 1d3 dégâts
+- Capacités spéciales : a des scores de Déplacement silencieux et Se cacher dans l'ombre de 99 % et est sous l'effet de Non-détection (le sort) pour éviter les sorts de divination.
+- Bénéfice spécial : le maître du chat a un total de points de vie 10 % plus élevé et un bonus de 1 point à la dextérité.
+
+Araignée
+- Combat : 1 attaque par round pour 1d2 dégâts ; jet de sauvegarde ou 3 dégâts poison sur 1 round
+- Capacités spéciales : peut lancer une Toile sur une seule cible, qui l'enchevêtre pour 3 rounds, une fois tous les cinq rounds.
+- Bénéfice spécial : le maître de l'araignée a un total de points de vie 10 % plus élevé et a une chance supplémentaire pour éviter les effets des poisons.
+
+Rat
+- Combat : 1 attaque par round pour 1d2 dégâts  jet de sauvegarde ou malade pour 3 rounds, avec réduction de la force et 30 % de risque d'échec des sorts.
+- Capacités spéciales : peut convoquer une cohorte de 1d6 rats supplémentaires pour le défendre, une fois tous les 3 tours.
+- Bénéfice spécial : le maître du rat a un total de points de vie 10 % plus élevé et un bonus de 1 point à l'intelligence.
+~
+// used to replace Level:1 with Level: 2 in spell descriptions and for identify spell tweak
+@150000 = ~Niveau[^:]*: 1~
+@150001 = ~Niveau : 2~
+@150002 = ~Niveau : ~
+// invisibility tweak
+@150003 = ~5[^r][^r]?rounds~ //original
+@150004 = ~10 rounds~ //replacement
+
+// used to remove school from a scroll description
+// no SR
+@160000 = ~(Abjuration)~
+@160001 = ~(Transmutation)~
+@160002 = ~(Conjuration)~
+@160003 = ~(Conjuration/Convocation)~
+@160004 = ~(Divination)~
+@160005 = ~(Enchantement/Charme)~
+@160006 = ~(Évocation)~
+@160007 = ~(Illusion/Fantasme)~
+@160008 = ~(Nécromancie)~
+@160009 = ~(Invocation/Évocation)~
+@160010 = ~(Transmutation, Illusion)~
+@160011 = ~(Abjuration, Invocation/Évocation)~
+@160012 = ~(Divination, Transmutation)~
+@160013 = ~(Abjuration, Transmutation)~
+@160014 = ~(Conjuration/Convocation, Invocation/Évocation)~
+@160015 = ~(Enchantement)~
+@160016 = ~(Illusion)~
+@160017 = ~(Invocation)~
+@160018 = ~(Transmutation, Invocation)~
+@160019 = ~(Transmutation, Nécromancie)~
+@160020 = ~(Transmutation, Enchantement)~
+@160021 = ~(Invocation, Transmutation)~
+@160022 = ~(Divination, Transmutation)~
+@160023 = ~(Nécromancie, Conjuration)~
+@160024 = ~(Abjuration, Invocation)~
+@160025 = ~(Conjuration/Convocation, Nécromancie)~
+@160026 = ~(Convocation)~
+@160027 = ~(Conjuration)~
+@160028 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160029 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160030 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160031 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160032 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160033 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160034 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160035 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+//SR replacement
+@160100 = ~: Abjuration~
+@160101 = ~: Transmutation~
+@160102 = ~: Conjuration~
+@160103 = ~: Divination~
+@160104 = ~: Enchantement~
+@160105 = ~: [EÉ]vocation~
+@160106 = ~: Illusion~
+@160107 = ~: Nécromancie~
+@160110 = ~: Universelle~
+//non-SR replacement
+@160140 = ~(Abjuration)~
+@160141 = ~(Transmutation)~
+@160142 = ~(Conjuration/Convocation)~
+@160143 = ~(Divination)~
+@160144 = ~(Enchantement/Charme)~
+@160145 = ~(Invocation/Évocation)~
+@160146 = ~(Illusion/Fantasme)~
+@160147 = ~(Nécromancie)~
+@160150 = ~ ~ //universal

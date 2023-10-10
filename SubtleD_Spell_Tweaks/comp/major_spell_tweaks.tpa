@@ -335,7 +335,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN 	// no need to patch 203 
 	READ_STRREF 0x54 ~description~
 	PATCH_IF (~%description%~ STRING_CONTAINS_REGEXP ~5 rounds~) = 0 BEGIN
 	  INNER_PATCH_SAVE new_desc ~%description%~ BEGIN
-		REPLACE_TEXTUALLY ~5 rounds~ ~10 rounds~
+//		REPLACE_TEXTUALLY ~5 rounds~ ~10 rounds~
+		SPRINT old_duration @150003
+		SPRINT new_duration @150004
+		REPLACE_TEXTUALLY ~%old_duration%~ ~%new_duration%~
 	  END
 	  SAY_EVALUATED 0x54 ~%new_desc%~
 	END

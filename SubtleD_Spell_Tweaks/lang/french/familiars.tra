@@ -1,0 +1,157 @@
+
+@8011  = ~Pseudo-dragon~
+@8012  = ~Pseudo-dragon : c'est un minuscule parent lointain des vrais dragons. Le pseudo-dragon peut lancer Soin des blessures légères et Flou et peut aussi utiliser une « arme de souffle » colorée qui imite le sort Vapeurs colorée une fois tous les 3 tours (à un niveau élevé, le sort de Flou s'améliore pour devenir un effet d'Invisibilité majeure). Ils peuvent attaquer deux fois par round et, si leurs griffes sont petites, elles sont enduites d'un stupéfiant léger qui peut rendre la cible somnolente et maladroite (imite les effets du sort Lenteur, pendant 2 rounds).
+
+Quand ce familier est à proximité de son maître, le maître régénère 1 point de vie par round.
+
+Comme les pseudo-dragons volent, ils sont insensibles aux effets de Glisse, d'enchevêtrement, de Toile et autres sorts similaires. Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8013  = ~Pseudo-dragon~
+@8014  = ~Pseudo-dragon : Les pseudo-dragons sont plutôt intelligents. Même s'ils sont petits, ils sont rapides et assez bien protégés. Ils ne font pas beaucoup de dégâts au combat, mais leurs griffes magiques sont capables de rendre certains ennemis inconscients. Ils sont aussi relativement résistants aux sorts.
+
+Quand ce familier est à proximité de son maître, le maître récupère lentement sa santé.
+
+Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+//unused
+@8015  = ~Chien~
+//unused
+@8016  = ~Chien : ...~
+@8017  = ~Furet~
+@8018  = ~Furet : Ces animaux sont intelligents et espiègles et, bien qu'attendrissants, peuvent à l'occasion émettre une odeur nauséabonde. Au combat, ils peuvent attaquer deux fois par round et peuvent émettre une aura écœurante de courte portée qui peut amener les ennemis proches à avoir des hauts-le-cœur, provoquant une pénalité de 2 points aux jets d'attaque et à la classe d'armure, ainsi qu'un risque d'échec des sorts de 30 %.
+
+Les furets sont aussi furtifs et peuvent remplir le rôle de pickpocket pour aider leur maître.
+
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la constitution.
+
+Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8019  = ~Lapin~
+@8020  = ~Lapin : Même si le lapin n'est pas un combattant impressionnant, il est très habile pour éviter les blessures. Les lapins ont une résistance de 25 % aux attaques élémentaires et peuvent, une fois par tour, creuser dans le sol et se diriger sans obstacle vers un endroit sûr (en pratique, ceci ressemble à la faculté Pas de l'ombre des Maîtres de l'ombre). Les lapins ont aussi un sens aiguisé du danger et peuvent utiliser très efficacement leurs museaux et leurs oreilles sensibles pour repérer les pièges.
+
+Quand ce familier est à proximité de son maître, le maître est immunisé contre les sorts de Lenteur et autres effets similaires.
+
+Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8021  = ~Chat~
+@8022  = ~Chat : Le chat noir est un familier traditionnel des mages et est très utile comme éclaireur. Ils peuvent se déplacer sans être vus, à la manière un maître voleur, et peuvent rester discrets même devant des sorts qui dévoilent les créatures invisibles (mais les créatures qui ont une faculté naturelle pour voir les êtres cachés et invisibles peuvent malgré tout percevoir un chat).
+
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la dextérité.
+
+Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8023  = ~Diablotin~
+@8024  = ~Diablotin : ~
+@8025  = ~Araignée~
+@8026  = ~Araignée : Une araignée peut faire un familier pratique, mais peut-être un peu repoussant, pour un mage qui ne souffrirait pas d'arachnophobie. Les araignées sont efficaces au combat, surtout contre les lanceurs de sorts grâce au venin qu'elles injectent et qui peut infliger 3 points de dégâts sur 6 secondes. Cette espèce-ci d'araignée, de grande taille, est capable, une fois tous les 5 rounds, de projeter un amas gluant de toiles sur un ennemi, qui risque d'être maintenu en place pendant 3 rounds s'il échoue à son jet de sauvegarde.
+
+Quand ce familier est à proximité de son maître, le maître a une chance supplémentaire d'éviter les sorts ou les effets qui inflige des dégâts de poison.
+
+Les araignées ne peuvent être immobilisées par les toiles ou autres effets similaires. Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8027  = ~Méphite~
+@8028  = ~Méphite : ...~
+@8029  = ~Quasit~
+@8030  = ~Quasit : ...~
+@8031  = ~Rat~
+@8032  = ~Rat : Les rats sont des créatures étonnement intelligentes et sociables, en particulier quand ils sont améliorés par ce sort. Une fois tous les 3 tours, ce familier peut appeler 1d6 camarades rats pour l'aider au combat. Même domestiqués, les rats sont toujours associés aux ordures et aux maladies, ce qui peut être utile contre leurs ennemis. À chaque fois qu'une cible est touchée, elle peut contracter une maladie et subir une brève période de faiblesse et un risque d'échec des sorts de 25 %/
+
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à l'intelligence.
+
+Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
+~
+@8111  = ~Puanteur écœurante~
+@8113  = ~Attaque de toile~
+@8115  = ~Horde de rats~
+@8201  = ~Vous pouvez infuser votre familier avec un des sorts suivants. Attention, ceci réduira le nombre de sorts que vous pouvez lancer et ce changement est permanent !~
+@8202  = ~Ne pas transférer de sort vers le familier pour le moment~
+@8203  = ~Infuser le familier~
+@8204  = ~Infuser le familier avec ce sort~
+@8205  = ~Choisir un autre sort~
+@8206  = ~Infuser le familier
+
+Cette faculté permet d'accorder au familier la capacité de lancer des sorts. Les sorts sont choisis parmi ceux connus du lanceur. Quand le lanceur est de niveau 1, un sort de niveau 1 peut être transféré. Au niveau 3, il peut transférer un sort de niveau 2 au plus, un sort de niveau 3 au plus à partir du niveau 6, un sort de niveau 4 ou plus à partir du niveau 10 et un sort de niveau 5 ou plus à partir du niveau 15.
+
+Une fois que le familier est infusé avec la capacité à lancer un sort il peut lancer ce sort une fois pas rencontre. À chaque fois qu'un familier est infusé de la sorte, le choix est permanent et ne peut être annulé.
+~
+//
+// familiars (tra refs = BG2 str refs)
+//
+@58296 = ~La petite créature semblable à un dragon ronronne d'un air perplexe en écarquillant les yeux. Puis recule nerveusement vers <CHARNAME>. Visiblement, elle ne souhaite pas vous parler.~
+@58297 = ~La petite créature semblable à un dragon bat des ailes joyeusement, en vous regardant avec des yeux changeants, presque kaléidoscopiques. « Vous voulez quelque chose ? » elle cherche à attirer votre attention en remuant la queue.~
+@58298 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58299 = ~*la caresser et jouer avec elle*~
+@58300 = ~Tu n'aurais pas un conseil à me donner, par hasard ?~
+@58301 = ~Comment vas-tu ? Tout va bien ?~
+@58302 = ~Ses yeux s'éclairent et il saute dans vos bras, prêt à être rangé dans vos affaires, où il peut dormir et parfois sortir la tête à l'extérieur.~
+@58303 = ~Le dragon roucoule de contentement, ses yeux multicolores tourbillonnants alors que vous caressez sa peau chaude et tannée. « Vous êtes très gentil avec moi, mon maître », ronronne-t-il.~ ~Le dragon roucoule de contentement, ses yeux multicolores tourbillonnants alors que vous caressez sa peau chaude et tannée. « Vous êtes très gentille avec moi, ma maîtresse », ronronne-t-il.~
+@58304 = ~Non, tout va bien. Continuons.~
+@58866 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58305 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58306 = ~Tu n'aurais pas un conseil à me donner, par hasard ?~
+@58307 = ~Comment vas-tu ? Tout va bien ?~
+@58308 = ~Alors continuons.~
+@59477 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58309 = ~Le familier tend son cou et regarde vers l'arrière dans votre direction d'un air un peu perplexe. « Vous voulez *me* demander conseil, ô maître ? »~ ~Le familier tend son cou et regarde vers l'arrière dans votre direction d'un air un peu perplexe. « Vous voulez *me* demander conseil, ô maîtresse ? »~
+@58310 = ~Il observe l'obscurité pendant un long moment avant de tourner de nouveau son regard vers vous. « Quittons ce sombre endroit, maître. Tel est mon conseil. »~ ~Il observe l'obscurité pendant un long moment avant de tourner de nouveau son regard vers vous. « Quittons ce sombre endroit, maîtresse. Tel est mon conseil. »~
+@58311 = ~Le dragon regarde autour de lui d'un air perplexe avant de tourner de nouveau son regard vers vous. « Nous allons à l'endroit des pauvres ? Les bas quartiers, maître ? Je ne sais pas. »~ ~Le dragon regarde autour de lui d'un air perplexe avant de tourner de nouveau son regard vers vous. « Nous allons à l'endroit des pauvres ? Les bas quartiers, maîtresse ? Je ne sais pas. »~
+@58312 = ~Le petit dragon pousse un petit rire mélodieux. « Vous devez trouver de l'or, mon maître. Des pièces par milliers, suffisamment pour répondre à vos questions. »~ ~Le petit dragon pousse un petit rire mélodieux. « Vous devez trouver de l'or, ma maîtresse. Des pièces par milliers, suffisamment pour répondre à vos questions. »~
+@58313 = ~Il a presque l'air de froncer les sourcils, ses yeux teintés d'un jaune sinistre avant de continuer. « Je ne sais pas, mon maître. Vous devez poursuivre ces tâches, n'est-ce pas ? »~ ~Il a presque l'air de froncer les sourcils, ses yeux teintés d'un jaune sinistre avant de continuer. « Je ne sais pas, ma maîtresse. Vous devez poursuivre ces tâches, n'est-ce pas ? »~
+@58314 = ~Il médite pendant un long moment, remuant sa queue distraitement avant de reprendre. « Nous devons tout faire pour arrêter ce magicien. Mettez-vous en sécurité avec la petite sœur. Tel est mon conseil. »~
+@58315 = ~Il regarde autour de lui pendant un certain temps. La peur se lit dans ses yeux tandis que sa queue s'enroule autour de son ventre. « Nous devons partir d'ici au plus vite, maître, d'accord ? »~ ~Il regarde autour de lui pendant un certain temps. La peur se lit dans ses yeux tandis que sa queue s'enroule autour de son ventre. « Nous devons partir d'ici au plus vite, maîtresse, d'accord ? »~
+@58316 = ~Il médite pendant un moment et ses yeux s'éclairent. « Nous devons trouver la cité elfique sacrée, mon maître. Votre magicien s'y trouve, j'en ai la conviction. »~ ~Il médite pendant un moment et ses yeux s'éclairent. « Nous devons trouver la cité elfique sacrée, ma maîtresse. Votre magicien s'y trouve, j'en ai la conviction. »~
+@58317 = ~Il grogne de façon menaçante, mais pas à votre attention. Il remue sa queue plusieurs fois malicieusement. « Le magicien, maître. C'est lui qui doit mourir et vous qui devez vivre. »~ ~Il grogne de façon menaçante, mais pas à votre attention. Il remue sa queue plusieurs fois malicieusement. « Le magicien, maîtresse. C'est lui qui doit mourir et vous qui devez vivre. »~
+@58318 = ~Le dragon remue la queue et vous regarde avec intérêt. « Tant que vous irez bien, maître, tout ira bien pour moi aussi. »~ ~Le dragon remue la queue et vous regarde avec intérêt. « Tant que vous irez bien, maîtresse, tout ira bien pour moi aussi. »~
+@58319 = ~« Mais puisque vous demandez, je prendrais bien un en-cas. Peut-être un bel écureuil. Ou une tarte... oooh, oui, j'adore les tartes ! »~
+@58320 = ~« Je suis... quand même un peu blessé, maître. Les blessures me brûlent et je saigne. Ce n'est pas très... agréable. »~ ~« Je suis... quand même un peu blessé, maîtresse. Les blessures me brûlent et je saigne. Ce n'est pas très... agréable. »~
+@58321 = ~« Je... je suis grièvement blessé, maître ! Je ne veux pas mourir, papa ! Je veux rester avec vous. » Le dragon gémit et enroule sa queue autour de votre jambe.~ ~« Je... je suis grièvement blessé, maîtresse ! Je ne veux pas mourir, maman ! Je veux rester avec vous. » Le dragon gémit et enroule sa queue autour de votre jambe.~
+@58322 = ~« J'aime beaucoup voyager avec vous, ô maître. Vous auriez une pomme ? Je pourrais la faire rôtir et ensuite la manger. C'est très bon, les pommes ! »~ ~« J'aime beaucoup voyager avec vous, ô maîtresse. Vous auriez une pomme ? Je pourrais la faire rôtir et ensuite la manger. C'est très bon, les pommes ! »~
+@58323 = ~« Je reste ébahi quand je pense à tous les lieux que j'ai vus à vos côtés. Tout est si merveilleux et coloré ! Le monde entier est-il fait ainsi, maître ? »~ ~« Je reste ébahi quand je pense à tous les lieux que j'ai vus à vos côtés. Tout est si merveilleux et coloré ! Le monde entier est-il fait ainsi, maîtresse ? »~
+@58324 = ~« Je me sens merveilleusement bien, mon maître. Ma peau est propre et je suis prêt à vous aider contre tout danger ! »~ ~« Je me sens merveilleusement bien, ma maîtresse. Ma peau est propre et je suis prêt à vous aider contre tout danger ! »~
+@58325 = ~Le dragon remue la queue d'un air satisfait et regarde le chemin devant vous. « Comme vous le souhaitez, ô mon maître. »~ ~Le dragon remue la queue d'un air satisfait et regarde le chemin devant vous. « Comme vous le souhaitez, ô ma maîtresse. »~
+@58867 = ~Ses yeux s'éclairent et il saute dans vos bras, prêt à être rangé dans vos affaires, où il peut dormir et parfois sortir sa tête à l'extérieur.~
+@58356 = ~La petite créature vous regarde avec méfiance. Après vous avoir examinés quelques instants, elle offre son dos à vos yeux en se dirigeant vers <CHARNAME>.~
+@58357 = ~Le familier soupire, le nez tremblant de curiosité, et lève ses yeux noirs. « Et maintenant, <PRO_MANWOMAN> ? J'ai faim. Je veux être soigné et nourri. »~
+@58358 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58360 = ~*caresser le familier*~
+@58383 = ~Tu n'aurais pas un conseil à me donner, par hasard ?~
+@58384 = ~Comment vas-tu ? Tout va bien ?~
+@58873 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@59804 = ~Donne-moi tout ce que tu as chapardé, tu veux bien ?~
+@58385 = ~Plus tard, peut-être. Continuons.~
+@58359 = ~Le familier examine le groupe, puis rampe à l'intérieur. « Très bien. Il vaut mieux que tu me portes. Mais ne me cogne pas partout cette fois. »~
+@58361 = ~« Aaaahhh... » Le familier ferme à demi les yeux de contentement, un large sourire s'inscrivant sur son visage. « Oui, ça fait du bien. Un repas ferait du bien également. »~
+@58362 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@58363 = ~Tu n'aurais pas un conseil à me donner, par hasard ?~
+@58373 = ~Comment vas-tu ? Tout va bien ?~
+@59479 = ~Approche. Je veux te prendre pour te mettre dans mon sac où tu seras plus en sécurité.~
+@59812 = ~Donne-moi tout ce que tu as chapardé, tu veux bien ?~
+@58381 = ~Alors continuons.~
+@58364 = ~L'animal vous regarde, presque étonné. « Moi ? J'ai bien quelques idées que j'aimerais partager, mais t'intéresseront-elles vraiment, <PRO_MANWOMAN> ? »~
+@58365 = ~Le familier scrute les ténèbres et se retourne en haussant les épaules. « Je dirais qu'il faut remonter à la surface, <PRO_MANWOMAN>. Il y a plus de nourriture là-haut. »~
+@58366 = ~Il examine les environs, détaillant les habitants et les animaux de la ville, puis se retourne enfin, presque étonné. « Quoi ? Un conseil ? Euh... non. Je n'ai pas de conseil. »~
+@58367 = ~Le petit animal réfléchit quelques instants et se retourne, vous présentant son arrière-train. Apparemment, il n'avait plus envie de penser.~
+@58368 = ~Il réfléchit un long moment avant de décrocher en bâillant, les yeux fixés dans le vide. « Donne-moi à manger, et fais-moi encore des câlins. Voilà mon conseil. »~
+@58369 = ~Voyons voir... le sorcier se cache derrière toutes tes épreuves, C'est bien ça ? Alors c'est facile, <PRO_MANWOMAN>. Trouve-le, tue-le et tes ennuis seront terminés. Maintenant, tu vas me nourrir, hein ?~
+@58370 = ~Il regarde autour de lui, les oreilles repliées sur sa tête dans un réflexe de peur. « Ici... je suis de la nourriture. Je n'aime pas cet endroit. On devrait aller ailleurs. »~
+@58371 = ~« Hmmm. La cité des elfes abrite l'arbre de vie, <PRO_MANWOMAN>, une chose merveilleuse liée à tout ce qui est naturel. Tu dois trouver la ville et l'arbre. Voilà mon conseil. »~
+@58372 = ~Alors qu'il réfléchit, ses yeux rougeoient d'une lueur de férocité inhabituelle. « Il n'y a qu'une seule solution, <PRO_MANWOMAN>. Si tu veux survivre, le sorcier doit mourir. Il en est ainsi. »~
+@58374 = ~Il vous regarde de ses yeux sombres, semblant heureux d'être près de vous, puis soupire et regarde au loin un instant. « On est proches, toi et moi. Si tu vas bien, moi aussi. »~
+@58375 = ~« Je souffre cependant de quelques blessures insignifiantes. Je suis renforcé par ta force supérieure à la mienne, mais si tu pouvais traiter mes blessures cela me ferait bien plaisir. »~
+@58376 = ~« Je suis cependant moi-même sérieusement blessé. Je saigne, <PRO_MANWOMAN>. Je pourrais y survivre... ou pas. Nous verrons. »~
+@58377 = ~« Mais puisque tu me le demandes, je suis habité d'une envie irrésistible de nourriture. Procure-m'en un peu et je te permettrai de me caresser un peu plus longtemps. »~
+@58378 = ~« Et je pense que tu fais un bon compagnon de voyage. Je suis satisfait des progrès que nous avons faits. Peut-être resterai-je avec toi pour encore un moment, nous verrons. »~
+@58379 = ~Le petit animal semble chercher quelque chose à dire, mais son attention est attirée par autre chose. Il s'éloigne en dandinant de la queue.~
+@58380 = ~« Tout va comme il faut, <PRO_MANWOMAN>. Pourquoi ? Tu ne te sens pas bien ? Tu ne vas pas tomber malade et me laisser orphelin, n'est-ce pas <PRO_MANWOMAN> ? Si tu meurs cela me chagrinera. Pour un temps. »~
+@58382 = ~Le familier soupire et tourne des yeux désintéressés vers le chemin devant vous. « Je préférerais choisir notre chemin moi-même, mais tu vas sûrement te montrer têtu à ce sujet. »~ ~Le familier soupire et tourne des yeux désintéressés vers le chemin devant vous. « Je préférerais choisir notre chemin moi-même, mais tu vas sûrement te montrer têtue à ce sujet. »~
+@58874 = ~Le familier regarde votre sac pendant un instant puis se glisse à l'intérieur à contrecœur. « Très bien. Il est préférable que vous me transportiez. Cependant ne me cognez pas trop partout cette fois-ci. »~
+@58875 = ~Le familier regarde votre sac pendant un instant puis se glisse à l'intérieur à contrecœur. « Très bien. Il est préférable que vous me transportiez. Cependant ne me cognez pas trop partout cette fois-ci. »~
+@59805 = ~Le familier vous regarde avec méfiance. « Mais quand je prend quelque chose, après, c'est à moi. »~
+@59806 = ~Peu importe. Donne-moi ça.~
+@59807 = ~Allez ! s'il te plaît ! Je te donnerai à manger et je te caresserai...~
+@59808 = ~Oh, tant pis, alors.~
+@59809 = ~Le petit animal roule des yeux et soupire de manière irritée. « Très bien. Mais tu es très cruel avec moi, tu sais. »~
+@59810 = ~Le petit animal remue sa queue en méditant. « Bon... peut-être... Mais j'espère que vous tiendrez parole. *soupire* Oh après tout. J'aime bien me faire prier. »~
+@59811 = ~« Bon, je l'ai bien mérité, après tout ! »~
+@59813 = ~*soupire* « Très bien. Mais ne va pas croire que quelques caresses suffiront, la prochaine fois ! »~
+@58359 = ~Le familier inspecte votre sac, puis se faufile à l'intérieur à contrecœur. « Très bien. Il vaut mieux que vous me portiez. Mais évitez de me cogner partout, cette fois. »~

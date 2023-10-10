@@ -1021,7 +1021,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1039,7 +1042,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 			READ_STRREF 0x54 "desc"
 			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+				SPRINT lv1 @150000
+				SPRINT lv2 @150001
+				REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 			END
 			SAY_EVALUATED 0x54 ~%new_desc%~
 		END
@@ -1079,7 +1085,10 @@ ADD_SPELL ~override/spwi108.spl~ 2 2 WIZARD_PROTECTION_FROM_PETRIFICATION
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1097,7 +1106,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~scrl73.itm~) BEGIN
 		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 			READ_STRREF 0x54 "desc"
 			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+				SPRINT lv1 @150000
+				SPRINT lv2 @150001
+				REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 			END
 			SAY_EVALUATED 0x54 ~%new_desc%~
 		END
@@ -1126,7 +1138,10 @@ ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DIMENSION_JUMP[ 
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1141,7 +1156,10 @@ ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_DIMENSION_JUMP[ 
 		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 			READ_STRREF 0x54 "desc"
 			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+				SPRINT lv1 @150000
+				SPRINT lv2 @150001
+				REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 			END
 			SAY_EVALUATED 0x54 ~%new_desc%~
 		END
@@ -1159,7 +1177,7 @@ END
 //Identify: make this a 2nd-level spell and use Bubb's new method to scale with levels
 //  (if not already done earlier)
 
-INCLUDE ~%MOD_FOLDER%/lib/semi_identify.tpa~ 
+INCLUDE ~%MOD_FOLDER%/lib/semi_spont/semi_misc_functions.tpa~ 
 
 LAF semi_spont_identify END
 
@@ -1239,7 +1257,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1257,7 +1278,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 			READ_STRREF 0x54 "desc"
 			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+				SPRINT lv1 @150000
+				SPRINT lv2 @150001
+				REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 			END
 			SAY_EVALUATED 0x54 ~%new_desc%~
 		END
@@ -1350,7 +1374,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1368,7 +1395,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 		PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 			READ_STRREF 0x54 "desc"
 			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//				REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+				SPRINT lv1 @150000
+				SPRINT lv2 @150001
+				REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 			END
 			SAY_EVALUATED 0x54 ~%new_desc%~
 		END
@@ -1427,7 +1457,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END
@@ -1559,7 +1592,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~spwi124.spl~) BEGIN
 	PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
 		READ_STRREF 0x50 "desc"
 		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+//			REPLACE_TEXTUALLY ~Level: 1~ ~Level: 2~
+			SPRINT lv1 @150000
+			SPRINT lv2 @150001
+			REPLACE_TEXTUALLY ~%lv1%~ ~%lv2%~
 		END
 		SAY_EVALUATED 0x50 ~%new_desc%~
 	END

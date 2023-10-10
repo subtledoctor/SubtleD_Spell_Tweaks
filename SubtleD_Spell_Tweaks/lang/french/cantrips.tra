@@ -1,0 +1,485 @@
+
+/////////////////////////
+// innate cantrips
+/////////////////////////
+
+@6004   = ~Prepare this cantrip~
+@6005   = ~Choose a different cantrip~
+@6006   = ~Rabbit~
+@6007   = ~Scary Ogre Berserker!~
+@6008   = ~Prepare Cantrips~
+@6009   = ~Cantrips represent a wizard's smallest and most basic spellcasting ability. This allows a spellcaster to prepare several of the following cantrips:
+- Drowse
+- Vicious Mockery
+- Thorn Grasp
+- Gust
+- Dazzle
+- Minor Illusion
+- Deflective Shell
+- Spell Thrust
+- Rigor Mortis
+- Wisplight
+- Conjure Rabbit
+- Armor
+- Magic Bolt
+- Glimpse
+- Diviner's Eyes
+- Chaotic Orb
+~
+@6010   = ~Cantrip Wand~
+@6011   = ~When wizards first learn to use magic, before deciding whether to specialize, they are taught some of the most basic and minor effects from each school. Unable as yet to cast proper spells, they channel these cantrips through a wand. A crutch, to be sure, but it has the benefit of not requiring memorization and not running out of charges.
+
+A wizard may use a Cantrip Wand as a ranged weapon, casting a Magic Bolt at an enemy once per round, which does 1d4+1 magic damage. (Note, while doing so the wizard will be at a tactical disadvantage against nearby attackers using melee weapons.) Alternatively, the wizard can use the wand to cast one of the following cantrips:
+- Deflective Shell: blocks one 1st- through 3rd level spell targeting the wizard. The Shell last 3 rounds.
+- Conjure Rabbit: conjures a small rodent near the wizard, which lasts for 3 rounds.
+- Glimpse: gives the wizard a brief (2-second) look at another area of the map.
+- Drowse: the target will fall asleep for 1 round on a failed save vs. Spells.
+- Bedazzle: the target suffers a -1 penalty to thac0 and AC for 1 round; on a failed save vs. Breath, the penalties are doubled and last for 2 rounds, and the target is blinded for the first round.
+- Stiffen Bones: the target suffers from painful stiffness, suffering a -1 penalty to thac0 and damage for 1 round; on a failed save vs. Death, the penalties are doubled and last for 2 rounds, and the target is Slowed for the first round.
+- Earthen Grasp: the target will be entangled, unable to move, for 2 rounds on a failed save vs. Petrification.~
+@6013   = ~Drowse~
+@6014   = ~Drowse
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: Target
+Saving Throw: vs. Spells
+
+This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 3 rounds before regaining full consciousness.
+~
+@6015   = ~Vicious Mockery~
+@6016   = ~Vicious Mockery
+
+Level: 0
+Range: 30 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: vs Spells
+
+This cantrip sends intrusive and maddening thoughts into the target's mind. The target will pause for 2 seconds to try and resist the spell's wild urges; then, if they fail a saving throw vs. Spells, the target will go berserk for 3 rounds, wildly attacking the nearest creature whether it be friend or foe.
+~
+@6017   = ~Thorn Grasp~
+@6018   = ~Thorn Grasp
+
+Level: 0
+Range: 30 feet
+Duration: 2 rounds
+Area of Effect: Target
+Saving Throw: vs. Breath
+
+This cantrip causes tendrils to rise up from the ground and grab at the target's legs and body, preventing movement for a few seconds. On a failed saving throw vs. Breath Weapon, the target will be held in place for 2 rounds.
+~
+@6019   = ~Gust~
+@6020   = ~Gust
+
+Level: 0
+Range: 30 feet
+Duration: 1 round
+Area of Effect: one target
+Saving Throw: vs. Breath
+
+This cantrip creates a sudden strong breeze that blows the target 10 feet away from the caster if they fail a saving throw vs. Breath Weapon with a 2-point penalty. Further, if they fail the saving throw with a 2-point bonus, the target will lose their footing and fall down.
+~
+@6021   = ~Dazzle~
+@6022   = ~Dazzle
+
+Level: 0
+Range: 10 feet
+Duration: 2 rounds
+Area of Effect: Target
+Saving Throw: vs. Spells
+
+This cantrip creates intense sparkling light that flash in front of the target's eyes, causing a 2-point penalties to attack rolls for 3 rounds. Further, if the target fails a saving throw vs. spells, they are also blinded for two rounds.
+~
+@6023   = ~Minor Illusion~
+@6024   = ~Minor Illusion
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: special
+Saving Throw: none
+
+This cantrip creates the image of a fearsome ogre at the location of the caster's choosing. This ogre cannot actually harm anyone, and contact with it will dispel the illusion. In the right situation, this can be very valuable as a momentary distraction.
+~
+@6025   = ~Reflected Image~
+@6026   = ~Reflected Image
+
+Level: 0
+Range: 0
+Duration: 4 rounds
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip creates an image of <PRO_HIMHER>self that travels alongside <PRO_HIMHER>. A successful attacker has a 50% chance to strike the image (which then disappears) and a 50% chance to strike the caster.
+~
+@6027   = ~Deflective shell~
+@6028   = ~Deflective shell
+
+Level: 0
+Range: 0
+Duration: 5 rounds
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip raises a fragile magical barrier around the caster. This thin shell of energy will absorb the effects of a single spell of up to 3rd level that is directed at the caster.
+~
+@6029   = ~Spell Thrust~
+@6030   = ~Spell Thrust
+
+Level: 0
+Range: 30 ft.
+Duration: instant
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip will dispel spell protections of 5th level and lower. This includes: Minor Spell Deflection, Minor Globe of Invulnerability, Spell Immunity, and Minor Spell Turning.
+~
+@6031   = ~Rigor  Mortis~
+@6032   = ~Rigor  Mortis
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: vs. Death
+
+This cantrip the target's body to ache and stiffen, Slowing the target for 1 round and, on a failed saving throw vs Death, also causing 3-point penalties to Strength, Dexterity, thac0, and AC for 3 rounds.
+~
+@6033   = ~Wisplight~
+@6034   = ~Wisplight
+
+Level: 0
+Range: 30 feet
+Duration: 3 rounds
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip causes tiny motes of light to coalesce and swirl around the target. This makes <PRO_HIMHER> easier to strike (2-point penalty to AC) and prevents <PRO_HIMHER> from turning invisible for 3 rounds.
+~
+@6035   = ~Conjure Rabbit~
+@6036   = ~Conjure Rabbit
+
+Level: 0
+Range: 20 feet
+Duration: 3 rounds
+Area of Effect: The caster
+Saving Throw: None
+
+This cantrip conjures a medium-sized bunny in the location of the caster's choosing.
+~
+@6037   = ~Armor~
+@6038   = ~Armor
+
+Level: 0
+Range: 0
+Duration: 9 hours
+Area of Effect: caster
+Saving Throw: none
+
+This cantrip creates a magical protection that is something like scale mail armor (AC 6). The magical Armor does not hinder movement, adds no weight or encumbrance, and doesn't prevent spellcasting.
+~
+@6039   = ~Magic Bolt~
+@6040   = ~Magic Bolt
+
+Level: 0
+Range: 30 feet
+Duration: n/a
+Area of Effect: one target
+Saving Throw: none
+
+This cantrip allows the caster to direct a small ball of magical energy at a target, functioning as a once-per round ranged attack that almost never misses. The energy will cause 1d4+1 damage each time it strikes someone. However, it is completely blocked the Shield spell as well as by any magical protection such as Globe of Invulnerability or Spell Deflection.
+~
+@6041   = ~Glimpse~
+@6042   = ~Glimpse
+
+Level: 0
+Range: map
+Duration: 2 seconds
+Area of Effect: special
+Saving Throw: none
+
+This cantrip gives the caster a brief (2-second) look at what is happening in another area of the local map.
+~
+@6043   = ~Diviner's Eyes~
+@6044   = ~Diviner's Eyes
+
+Level: 0
+Range: 20 feet
+Duration: 5 rounds
+Area of Effect: one ally
+Saving Throw: none
+
+This cantrip allows the caster to share <PRO_HISHER> perspective with an ally - literally. Able to evaluate and process the battlefield from both the caster's perspective and their own, the recipient of this cantrip gains a 2-point bonus on to-hit rolls for 5 rounds.
+~
+@6045   = ~Chaos Orb~
+@6046   = ~Chaos Orb
+
+Level: 0
+Range: 30 ft.
+Duration: Special
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell causes a colorful sphere to speed unerringly to its target. The color and effect as it flies through the air; the effects on the target are unpredictable and include damage as well as a secondary effect which occurs on a failed save vs. Spella with a +2 bonus
+ 20% chance: 1d4 magic damage and blinds the target for 1 round.
+ 20% chance: 1d4 acid damage and inflicts pain (-1 penalty to Strength, Dexterity, AC, and THAC0) upon the target for 3 rounds.
+ 20% chance: 1d4 lightning damage and stuns the target for 1 round.
+ 20% chance: 1d4 cold damage and causes weakness (-4 penalty to THAC0) in the target for 3 rounds.
+ 20% chance: 1d4 fire damage and causes the target to panic for 2 rounds.
+~
+@6091   = ~Cancel Magic Bolt~
+
+/////////////////////////
+// level one cantrips
+/////////////////////////
+
+//Grease: no stacking with itself
+@7011  = ~Glisse~
+@7012  = ~Glisse
+(Transmutation)
+
+Niveau : 1
+Portée : 9 mètres
+Durée : 4 rounds
+Temps d'incantation : 1
+Zone d'effet : rayon de 9 mètres
+Jet de sauvegarde : spécial
+
+Le sort de glisse permet de recouvrir une surface matérielle d'une substance huileuse et glissante. Toute créature s'aventurant ou prise au piège dans la zone d'effet au moment où le sort est lancé doit réussir un jet de sauvegarde contre les sorts, sans quoi elle glisse et dérape, étant incapable de bouger. Toute créature réussissant un jet de sauvegarde peut se déplacer, mais lentement, pour le reste du round (mais devra à nouveau faire un jet de sauvegarde contre les souffles au round). Celles qui restent dans la zone d'effet ont droit à un jet de sauvegarde à chaque round jusqu'à ce qu'elles réussissent à quitter la zone.
+~
+
+//Burning Hands: reduced damage
+@7031  = ~Mains ardentes~
+@7032  = ~Mains ardentes
+(Transmutation)
+
+Niveau : 1
+Portée : 1,5 m
+Durée : Instantanée
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : 1/2
+
+Lorsque le magicien lance ce sort, un jet de flammes brûlantes jaillit du bout de ses doigts. Il doit joindre ses deux pouces et placer ses autres doigts en éventail pour que les flammes puissent jaillir vers l'avant. Ces flammes font 1,5 m de long, sur un arc horizontal d'environ 120 degrés devant le magicien. La cible subit 1d4 points de dégâts, +1 point tous les 3 niveaux du lanceur, jusqu'à un maximum de 1d4+6 points de dégâts de feu. Une créature réussissant un jet de sauvegarde contre les sorts ne subit que la moitié des dégâts.
+~
+//Charm Person: one try only, victim cannot attack
+@7041  = ~Charme-personne~
+@7042  = ~Charme-personne
+(Enchantement/Charme)
+
+Niveau : 1
+Portée : Champ visuel du lanceur
+Durée : 5 rounds
+Temps d'incantation : 1
+Zone d'effet : 1 personne
+Jet de sauvegarde : annule
+
+Ce sort affecte tout individu auquel il est jeté. Il peut s'agir de tout humain, demi-homme ou humanoïde bipède de taille inférieure ou égale à celle d'un homme (lutin, dryade, nain, elfe, gnoll, gnome, gobelin, demi-elfe, petite-personne, demi-orque, hobgobelin, humain, kobold, homme-lézard, nixe, orque, pixie, esprit-follet, troglodyte, etc.). Ainsi, un guerrier du 10ème niveau pourra être charmé, mais pas un ogre. La personne peut faire un jet de sauvegarde contre les sorts pour éviter son effet.
+
+Si la cible de l'enchantement rate son jet de sauvegarde contre les sorts (avec un modificateur de +3), il considère le lanceur comme un véritable ami et allié méritant son attention et sa protection. Ce dernier peut donner des ordres au bénéficiaire qui les exécute le plus vite possible, mis à part que la personne charmée ne peut se voir contrainte à la violence.
+
+Si la personne charmée est blessée ou si un sort de dissipation de la magie est lancé sur la personne charmée, le charme est rompu. Si deux sorts de charme ou plus affectent une créature, le sort le plus récent est appliqué. Si plusieurs effets de charmes affectent simultanément une créature, le charme le plus récent prend le dessus. Notez que le sujet se souvient parfaitement des événements qui ont eu lieu lorsqu'il était sous le charme. Notez aussi que vous ne pouvez faire quitter à la créature la zone dans laquelle elle a été charmée.
+
+Toute personne qui a été la cible de ce sort, qu'elle ait réussi son jet de sauvegarde ou non, sera méfiante pendant un certain temps et ne pourra être affectée par le sort pendant 8 heures.
+~
+//Color Spray: replace Sleep w/ Slow (no SR)
+@7052  = ~Vapeur colorée
+(Transmutation)
+
+Niveau : 1
+Portée : 15 mètres
+Durée : Instantanée
+Temps d'incantation : 1
+Zone d'effet : arc de 90 degrés
+Jet de sauvegarde : spécial
+
+Grâce à ce sort, un éventail de couleurs vives jaillit de la main du magicien. Entre une et six créatures (1d6) situées dans la zone sont affectées dans l'ordre croissant de leur proximité au magicien. Toute créature dans la zone d'effet doit réussir un jet de sauvegarde, sous peine d'être ralentie pour 2 rounds.
+~
+//Blindness: change to Dazzle (very short duration)
+@7061  = ~Cécité~
+@7062  = ~Cécité
+(Illusion/Fantasme)
+
+Niveau : 1
+Portée : 12 mètres
+Durée : 2 rounds
+Temps d'incantation : 2
+Zone d'effet : 1 créature
+Jet de sauvegarde : annule
+
+Ce sort de premier niveau aveugle temporairement la cible. Un jet de sauvegarde est permis. S'il réussit, la cible ne subit qu'une pénalité d'un point aux jets d'attaque, de dégâts et à la CA pendant 2 rounds. Si le jet échoue, la victime, aveuglée, a un champ de vision réduit et reçoit un malus de 4 points à ses jets d'attaque et à sa classe d'armure. Cette cécité disparaît après 2 rounds.
+~
+// conjure rabbit as lv1
+@7073  = ~Convocation de lapin~
+@7074  = ~Convocation de lapin
+
+Niveau : 1
+École : Conjuration
+Portée : le lanceur
+Durée : 5 rounds
+Temps d'incantation : 5
+Zone d'effet : spéciale
+Jet de sauvegarde : Aucun
+
+Le lanceur convoque un lapin de taille moyenne à l'endroit, qui apparaît de nulle part. Le lapin est obéissant et suivra les instructions mentales du lanceur, allant jusqu'à mordre les ennemis. Un lapin ainsi convoqué ne restera que 5 rounds.
+~
+@7075   = ~Lapin~
+// Magic Missile - less missiles
+@7121  = ~Projectile magique~
+@7122  = ~Projectile magique
+(Évocation)
+
+Niveau : 1
+Portée : Champ visuel du lanceur
+Durée : Instantanée
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
+
+Ce sort permet de créer jusqu'à trois projectiles d'énergie magique qui fusent du bout des doigts du magicien et frappent à coup sûr leur cible, qui doit être une créature. Contre les créatures, chaque projectile inflige 1d4+1 points de dégâts. Le sort produit un projectile au niveau 1, deux projectiles au niveau 3 et trois projectiles au niveau 9.
+~
+
+//Wand of Magic Missiles: fire 2 missiles each charge
+@7125  = ~Baguette de projectiles magiques~
+@7126  = ~Une fois activée, la baguette crache deux projectiles d'énergie magique qui filent toucher automatiquement leur cible, y compris un ennemi engagé dans un combat au corps à corps. La créature doit être vue, ou au moins détectable, si bien qu'une couverture presque totale, telle celle qu'offre une archère, peut rendre le projectile inopérant. Ceux-ci infligent 1d4+1 points de dégâts à la créature qu'ils frappent.
+
+PARAMÈTRES :
+
+Capacités de charge :
+- 2 projectiles magiques vont frapper la cible
+  Dégâts : 1d4+1
+  Portée : 30,5 m
+  Zone d'effet : 1 créature
+
+Nécessite :
+ 9 en Intelligence
+
+Poids : 1
+~
+// Shocking Grasp - no SR
+@7151  = ~Poigne électrique~
+@7152  = ~Poigne électrique
+(Transmutation)
+
+Niveau : 1
+Portée : contact
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
+
+Avec ce sort, un magicien inflige 1d8 points de dégâts de décharge électrique +1 par tranche de 2 niveaux du lanceur à une créature en la touchant (jusqu’à un maximum de 1d8+5 points de dégâts au niveau 10). En outre, le coup de poing en lui-même inflige 1d2 dégâts (le bonus de force aux dégâts s'applique). Le magicien ne dispose que d'une seule décharge : une fois l'adversaire touché, l'énergie du sort a été utilisée. Si le magicien le rate, le sort est gaspillé. Il dispose également d'un round par niveau pour toucher la créature ciblée avant que le sort ne se dissipe.
+~
+// Shocking Grasp - SR - damage 1d6xlevel/2 -> 2d4 + level/2
+@7154  = ~Poigne Électrique
+Niveau : 1
+École : Évocation
+Portée : jeteur du sort
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : spécial
+
+Quand le magicien touche une créature alors que ce sort est en action, une charge électrique lui infligera 2d4 points de dégâts et étourdira la cible pendant un round. Si la cible réussit son jet de sauvegarde contre les sorts, elle n'est pas étourdie. Pour chaque tranche de deux niveaux supplémentaires du lanceur du sort, la créature subit 1 point de dégâts supplémentaires et une pénalité de 1 point lors du jet de sauvegarde (jusqu'à un maximum de 2d4+4 points de dégâts et de 4 points de pénalité au jet de sauvegarde au niveau 9). Le sort expire lorsque le mage réussit une attaque au corps-à-corps ou après 1 tour. Le mage reçoit un bonus de 4 points pour toucher la cible.
+~
+//Sleep: add Drowse at 1st level, replace PW Sleep with Sleep at 2nd level
+@7161  = ~Somnolence~
+@7162  = ~Somnolence
+(Enchantement/Charme)
+
+Niveau : 1
+Portée 18 m
+Durée : 5 rounds
+Temps d'incantation : 1
+Zone d'effet : rayon de 9 m
+Jet de sauvegarde : annule
+
+Lorsque le magicien lance un sort de sommeil, il provoque un état comateux chez une créature (autres que les morts-vivants et certaines créatures à l'abri des effets de ce sort particulier). La créature doit réussir un jet de sauvegarde contre les sorts ou s'endormir. Les attaques contre les adversaires endormis n'échouent jamais.
+
+Si la créature endormie subit des dégâts, elle se réveille doucement sur une durée de 1 round. De plus, une fois qu'une créature a été endormie par ce sort, elle ne peut être affectée dans les 8 heures qui suivent.
+~
+@7163  = ~Sommeil~
+@7164  = ~Sommeil
+(Enchantement/Charme)
+
+Niveau : 1
+Portée 18 m
+Durée : 5 rounds
+Temps d'incantation : 1
+Zone d'effet : rayon de 9 m
+Jet de sauvegarde : annule
+
+Lorsque le magicien lance un sort de sommeil, il provoque un état comateux chez une ou plusieurs créatures (autres que les morts-vivants et certaines créatures à l'abri des effets de ce sort particulier). Toutes les créatures affectées doivent se trouver à 9 mètres de distance les unes des autres. Les créatures dans la zone d'effet doivent réussir un jet de sauvegarde avec un malus de 3 points ou s'endormir. Les monstres possédant 5 DV ou plus ne sont pas affectés. Les attaques contre les adversaires endormis n'échouent jamais.
+
+Si la créature endormie subit des dégâts, elle se réveille doucement sur une durée de 1 round. De plus, une fois qu'une créature a été endormie par ce sort, elle ne peut être affectée dans les 8 heures qui suivent.
+~
+
+//Chromatic Orb: reduce power, randomize effects
+@7181  = ~Orbe chromatique~
+@7182  = ~Orbe chromatique
+(Évocation)
+
+Niveau : 1
+Portée : 27 m
+Durée : Spéciale
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : spécial
+
+Ce sort crée une sphère de 60 centimètres de diamètre dans la main du jeteur de sorts. Une fois le sort lancé, la sphère se dirige vers sa cible, qu'elle atteint inévitablement. L'effet de l'orbe sur la cible varie. Chaque orbe inflige des dégâts et un autre effet (qui peut être annulé par un jet de sauvegarde contre les sorts à +2) :
+  20 % de chance : 1d4 points de dégâts et aveugle la cible pendant 1 round.
+  20 % de chance : 1d4 points de dégâts et inflige de la douleur (1 point de pénalité à la force, la dextérité, la CA et au TAC0) à la cible.
+  20 % de chance : 1d4 points de dégâts et étourdit la cible pour 1 round.
+  20 % de chance : 1d4 points de dégâts et inflige un affaiblissement (pénalité de 4 points au TAC0) à la cible pour 5 rounds.
+  20 % de chance : 1d4 points de dégâts et fait paniquer la cible pour 2 rounds.
+~
+//LMD: no spamming extra hp
+@7191  = ~Absorption mineure de Larloch~
+@7192  = ~Absorption mineure de Larloch
+(Nécromancie)
+
+Niveau : 1
+Portée : 9 mètres
+Durée : Spéciale
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
+
+Grâce à ce sort, le magicien absorbe la force vitale d'une cible pour l'ajouter à la sienne. La créature visée subit 2d3 points de dégâts, tandis que le mage gagne 4 points de vie. Si le mage dépasse son total maximum de points de vie avec ce sort, il perd tout point de vie en trop au bout d'un tour.
+
+Le lanceur ne peut profiter des points de vie supplémentaires accordés par ce sort qu'une seule fois tous les tours, indépendamment du nombre de victimes.
+~
+//NRD: move to 2nd level
+@7241  = ~Rupture hasardeuse de Nahal~
+@7242  = ~Rupture hasardeuse de Nahal
+(Invocation/Évocation)
+
+Niveau : 1
+Portée : Spéciale
+Durée : Spéciale
+Temps d'incantation : spéciale
+Zone d'effet : spéciale
+Jet de sauvegarde : spécial
+
+Ceci est moins un sort qu'une libération d'énergie magique brute. L'énergie magique entoure et imprègne les entropistes. Cet effet est ce qui survient si un entropiste perd le contrôle et permet à cette énergie de se disperser. Il n'y a pas de sort, pas d'intention dans la magie, seulement une manifestation magique pure et aléatoire.
+
+Les entropistes peuvent libérer cette énergie à tout moment, aussi souvent qu'ils le désirent. D'un autre côté, la plupart passent leur carrière entière à apprendre à l'éviter, plutôt que de le déclencher.
+~
+//Spook: one try per victim
+@7251  = ~Hantise~
+@7252  = ~Hantise
+(Illusion/Fantasme)
+
+Niveau : 1
+Portée : 9 mètres
+Durée : 3 rounds
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : annule
+
+Un sort de hantise permet au magicien de jouer avec les peurs naturelles pour provoquer chez une créature la vision de quelqu'un ou de quelque chose d'inamical avançant vers elle d'une manière menaçante. Si la créature ne réussit pas un jet de sauvegarde contre les sorts, elle s'enfuit le plus vite et le plus loin possible du magicien. La créature a une pénalité de jet de 1 point par tranche de 2 niveaux d'expérience du lanceur du sort, avec un maximum de 6 points au niveau 12. Ce n'est pas le magicien qui poursuit effectivement la créature en fuite, mais un fantasme issu de son esprit. Dans tous les cas, le sort n'est efficace que contre les créatures d'intelligence 2 et plus, et les morts-vivants ne sont pas affectés.
+
+Toute personne qui a été ciblée par ce sort, qu'elle ai ou non réussi le jet de sauvegarde, se méfiera pendant un certain temps, et ne pourra être affectée par ce sort pendant les 8 prochaines heures.
+~
