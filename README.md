@@ -14,8 +14,7 @@
   <p><strong>Author: <a href="http://forums.gibberlings3.net/index.php?showuser=6306">The Subtle Doctor</a></strong></p>
   <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks">Home page</a></strong></p>
   <p><strong><a href="https://www.gibberlings3.net/forums/topic/37238-subtlemods-subtleds-spell-tweaks/">Discussion Forum</a></strong></p>
-  <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks/releases">Download</a></strong></p>
-</div>
+  <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks/releases">Download</a></strong></div>
 <h2>Overview</h2>
 <div class="section">
   <p>This is just a bunch of small tweaks that I sometimes apply to my own game. A bunch of small tweaks (and a couple not-so-small ones) that I think are fun and cool.</p>
