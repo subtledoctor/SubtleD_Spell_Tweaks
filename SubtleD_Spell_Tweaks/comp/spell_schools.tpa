@@ -10,9 +10,6 @@
 
 // NEED TO CHANGE CASTING SOUNDS AS WELL
 
-// USE IDS NAMES INSTEAD OF RES??? WHAT IF IWDIFICATION IS INSTALLED??
-
-
 DEFINE_ACTION_FUNCTION spell_scroll_map BEGIN 
 
 //re-do the scroll map, with an extra column________________________________________
@@ -113,44 +110,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~ ~
-							REPLACE_TEXTUALLY ~(Divination)~ ~ ~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~ ~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~ ~
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~ ~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~ ~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~ ~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~ ~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~ ~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Universal~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Universal ~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT universal_sr @160110
-					SPRINT universal_no_sr @160150
-					LPF update_school STR_VAR school_no_sr = universal_no_sr school_sr = universal_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~universal~ END
 				END
 			BUT_ONLY
 		END
@@ -166,44 +126,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~ ~
-							REPLACE_TEXTUALLY ~(Divination)~ ~ ~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~ ~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~ ~
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~ ~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~ ~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~ ~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~ ~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~ ~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~ ~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Universal ~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Universal ~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT universal_sr @160110
-					SPRINT universal_no_sr @160150
-					LPF update_school STR_VAR school_no_sr = universal_no_sr school_sr = universal_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~universal~ END
 				END
 			BUT_ONLY
 		END
@@ -225,42 +148,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Abjuration)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Abjuration~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT abjuration_sr @160100
-					SPRINT abjuration_no_sr @160140
-					LPF update_school STR_VAR school_no_sr = abjuration_no_sr school_sr = abjuration_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~abjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -276,42 +164,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Abjuration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Abjuration)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Abjuration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Abjuration~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT abjuration_sr @160100
-					SPRINT abjuration_no_sr @160140
-					LPF update_school STR_VAR school_no_sr = abjuration_no_sr school_sr = abjuration_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~abjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -333,42 +186,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Alteration)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Alteration~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT alteration_sr @160101
-					SPRINT alteration_no_sr @160141
-					LPF update_school STR_VAR school_no_sr = alteration_no_sr school_sr = alteration_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~alteration~ END
 				END
 			BUT_ONLY
 		END
@@ -384,42 +202,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Alteration)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Alteration)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Alteration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Alteration~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT alteration_sr @160101
-					SPRINT alteration_no_sr @160141
-					LPF update_school STR_VAR school_no_sr = alteration_no_sr school_sr = alteration_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~alteration~ END
 				END
 			BUT_ONLY
 		END
@@ -441,41 +224,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Conjuration/Summoning)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Conjuration~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT conjuration_sr @160102
-					SPRINT conjuration_no_sr @160142
-					LPF update_school STR_VAR school_no_sr = conjuration_no_sr school_sr = conjuration_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~conjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -491,42 +240,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Conjuration/Summoning)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Conjuration/Summoning)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Conjuration~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Conjuration~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT conjuration_sr @160102
-					SPRINT conjuration_no_sr @160142
-					LPF update_school STR_VAR school_no_sr = conjuration_no_sr school_sr = conjuration_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~conjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -548,42 +262,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Divination)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Divination~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT divination_sr @160103
-					SPRINT divination_no_sr @160143
-					LPF update_school STR_VAR school_no_sr = divination_no_sr school_sr = divination_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~divination~ END
 				END
 			BUT_ONLY
 		END
@@ -599,42 +278,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Divination)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Divination)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Divination~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Divination~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT divination_sr @160103
-					SPRINT divination_no_sr @160143
-					LPF update_school STR_VAR school_no_sr = divination_no_sr school_sr = divination_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~divination~ END
 				END
 			BUT_ONLY
 		END
@@ -656,42 +300,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Enchantment/Charm)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Enchantment~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT enchantment_sr @160104
-					SPRINT enchantment_no_sr @160144
-					LPF update_school STR_VAR school_no_sr = enchantment_no_sr school_sr = enchantment_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~enchantment~ END
 				END
 			BUT_ONLY
 		END
@@ -707,42 +316,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Enchantment/Charm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Enchantment/Charm)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Enchantment~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Enchantment~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT enchantment_sr @160104
-					SPRINT enchantment_no_sr @160144
-					LPF update_school STR_VAR school_no_sr = enchantment_no_sr school_sr = enchantment_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~enchantment~ END
 				END
 			BUT_ONLY
 		END
@@ -764,42 +338,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Evocation)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Evocation~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT evocation_sr @160105
-					SPRINT evocation_no_sr @160145
-					LPF update_school STR_VAR school_no_sr = evocation_no_sr school_sr = evocation_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~evocation~ END
 				END
 			BUT_ONLY
 		END
@@ -815,42 +354,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Evocation)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Evocation)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Evocation~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Evocation~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT evocation_sr @160105
-					SPRINT evocation_no_sr @160145
-					LPF update_school STR_VAR school_no_sr = evocation_no_sr school_sr = evocation_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~evocation~ END
 				END
 			BUT_ONLY
 		END
@@ -872,42 +376,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Illusion/Phantasm)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Illusion~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT illusion_sr @160106
-					SPRINT illusion_no_sr @160146
-					LPF update_school STR_VAR school_no_sr = illusion_no_sr school_sr = illusion_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~illusion~ END
 				END
 			BUT_ONLY
 		END
@@ -923,42 +392,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Necromancy)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Illusion/Phantasm)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Illusion/Phantasm)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Illusion~
-							REPLACE_TEXTUALLY ~: Necromancy~ ~: Illusion~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT illusion_sr @160106
-					SPRINT illusion_no_sr @160146
-					LPF update_school STR_VAR school_no_sr = illusion_no_sr school_sr = illusion_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~illusion~ END
 				END
 			BUT_ONLY
 		END
@@ -980,42 +414,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x50 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Necromancy)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Necromancy~
-						END
-					END
-					SAY_EVALUATED 0x50 ~%new_desc%~
-*/
-					SPRINT necromancy_sr @160107
-					SPRINT necromancy_no_sr @160147
-					LPF update_school STR_VAR school_no_sr = necromancy_no_sr school_sr = necromancy_sr END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~necromancy~ END
 				END
 			BUT_ONLY
 		END
@@ -1031,42 +430,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-/*
-					READ_STRREF 0x54 "desc"
-					PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Divination)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Evocation)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Abjuration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Invocation/Evocation)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Alteration, Illusion)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Evocation, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Divination, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Abjuration, Alteration)~ ~(Necromancy)~
-							REPLACE_TEXTUALLY ~(Conjuration/Summoning, Invocation/Evocation)~ ~(Necromancy)~
-						END
-					END
-					PATCH_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // SR
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-							REPLACE_TEXTUALLY ~: Illusion~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Alteration~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Conjuration~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Divination~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Enchantment~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Evocation~ ~: Necromancy~
-							REPLACE_TEXTUALLY ~: Abjuration~ ~: Necromancy~
-						END
-					END
-					SAY_EVALUATED 0x54 ~%new_desc%~
-*/
-					SPRINT necromancy_sr @160107
-					SPRINT necromancy_no_sr @160147
-					LPF update_school STR_VAR school_no_sr = necromancy_no_sr school_sr = necromancy_sr END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~necromancy~ END
 				END
 			BUT_ONLY
 		END
@@ -1715,106 +1079,196 @@ END 	//	end define function
 //__________________________________________________________________________________
 
 
-DEFINE_PATCH_FUNCTION update_school STR_VAR school_no_sr = ~~ school_sr = ~~ BEGIN
-	SPRINT school_desc_1 @160000
-	SPRINT school_desc_2 @160001
-	SPRINT school_desc_3 @160002
-	SPRINT school_desc_4 @160003
-	SPRINT school_desc_5 @160004
-	SPRINT school_desc_6 @160005
-	SPRINT school_desc_7 @160006
-	SPRINT school_desc_8 @160007
-	SPRINT school_desc_9 @160008
-	SPRINT school_desc_10 @160009
-	SPRINT school_desc_11 @160010
-	SPRINT school_desc_12 @160011
-	SPRINT school_desc_13 @160012
-	SPRINT school_desc_14 @160013
-	SPRINT school_desc_15 @160014
-	SPRINT school_desc_16 @160015
-	SPRINT school_desc_17 @160016
-	SPRINT school_desc_18 @160017
-	SPRINT school_desc_19 @160018
-	SPRINT school_desc_20 @160019
-	SPRINT school_desc_21 @160020
-	SPRINT school_desc_22 @160021
-	SPRINT school_desc_23 @160022
-	SPRINT school_desc_24 @160023
-	SPRINT school_desc_25 @160024
-	SPRINT school_desc_26 @160025
-	SPRINT school_desc_27 @160026
-	SPRINT school_desc_28 @160027
-	SPRINT school_desc_29 @160028
-	SPRINT school_desc_30 @160029
-	SPRINT school_desc_31 @160030
-	SPRINT school_desc_32 @160031
-	SPRINT school_desc_33 @160032
-	SPRINT school_desc_34 @160033
-	SPRINT school_desc_35 @160034
-	SPRINT school_desc_36 @160035
-
-	SPRINT abjuration @160100
-	SPRINT alteration @160101
-	SPRINT conjuration @160102
-	SPRINT divination @160103
-	SPRINT enchantment @160104
-	SPRINT evocation @160105
-	SPRINT illusion @160106
-	SPRINT necromancy @160107
-	SPRINT universal @160110
-
-	READ_STRREF 0x54 "desc"
-
-	PATCH_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN // no SR
-		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~%school_desc_1%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_2%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_3%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_4%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_5%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_6%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_7%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_8%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_9%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_10%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_11%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_12%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_13%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_14%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_15%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_16%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_17%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_18%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_19%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_20%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_21%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_22%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_23%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_24%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_25%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_26%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_27%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_28%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_29%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_30%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_31%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_32%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_33%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_34%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_35%~ ~%school_no_sr%~
-			REPLACE_TEXTUALLY ~%school_desc_36%~ ~%school_no_sr%~
-		END
-	END
-	ELSE BEGIN
-		REPLACE_TEXTUALLY ~%abjuration%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%alteration%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%conjuration%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%divination%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%enchantment%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%evocation%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%illusion%~ ~%school_sr%~
-		REPLACE_TEXTUALLY ~%necromancy%~ ~%school_sr%~
-	END
-
-	SAY_EVALUATED 0x50 ~%new_desc%~
+DEFINE_PATCH_FUNCTION update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~~ BEGIN
+  READ_STRREF desc_offset ~desc~
+  PATCH_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN // no SR
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~universal~) BEGIN
+      SPRINT nu_school @160140
+      SPRINT casting_sound ~CAS_M02~
+      SET casting_animation = 12
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~abjuration~) BEGIN
+      SPRINT nu_school @160141
+      SPRINT casting_sound ~CAS_M02~
+      SET casting_animation = 12
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~alteration~) BEGIN
+      SPRINT nu_school @160142
+      SPRINT casting_sound ~CAS_M08~
+      SET casting_animation = 10
+    END
+     PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~conjuration~) BEGIN
+      SPRINT nu_school @160143
+      SPRINT casting_sound ~CAS_M03~
+      SET casting_animation = 14
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~divination~) BEGIN
+      SPRINT nu_school @160144
+      SPRINT casting_sound ~CAS_M04~
+      SET casting_animation = 16
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~enchantment~) BEGIN
+      SPRINT nu_school @160145
+      SPRINT casting_sound ~CAS_M05~
+      SET casting_animation = 11
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~evocation~) BEGIN
+      SPRINT nu_school @160146
+      SPRINT casting_sound ~CAS_M06~
+      SET casting_animation = 15
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~illusion~) BEGIN
+      SPRINT nu_school @160147
+      SPRINT casting_sound ~CAS_M01~
+      SET casting_animation = 13
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~necromancy~) BEGIN
+      SPRINT nu_school @160148
+      SPRINT casting_sound ~CAS_M07~
+      SET casting_animation = 9
+    END
+    SPRINT school_desc_1 @160000
+    SPRINT school_desc_2 @160001
+    SPRINT school_desc_3 @160002
+    SPRINT school_desc_4 @160003
+    SPRINT school_desc_5 @160004
+    SPRINT school_desc_6 @160005
+    SPRINT school_desc_7 @160006
+    SPRINT school_desc_8 @160007
+    SPRINT school_desc_9 @160008
+    SPRINT school_desc_10 @160009
+    SPRINT school_desc_11 @160010
+    SPRINT school_desc_12 @160011
+    SPRINT school_desc_13 @160012
+    SPRINT school_desc_14 @160013
+    SPRINT school_desc_15 @160014
+    SPRINT school_desc_16 @160015
+    SPRINT school_desc_17 @160016
+    SPRINT school_desc_18 @160017
+    SPRINT school_desc_19 @160018
+    SPRINT school_desc_20 @160019
+    SPRINT school_desc_21 @160020
+    SPRINT school_desc_22 @160021
+    SPRINT school_desc_23 @160022
+    SPRINT school_desc_24 @160023
+    SPRINT school_desc_25 @160024
+    SPRINT school_desc_26 @160025
+    SPRINT school_desc_27 @160026
+    SPRINT school_desc_28 @160027
+    SPRINT school_desc_29 @160028
+    SPRINT school_desc_30 @160029
+    SPRINT school_desc_31 @160030
+    SPRINT school_desc_32 @160031
+    SPRINT school_desc_33 @160032
+    SPRINT school_desc_34 @160033
+    SPRINT school_desc_35 @160034
+    SPRINT school_desc_36 @160035
+  	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+  		REPLACE_TEXTUALLY ~%school_desc_1%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_2%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_3%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_4%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_5%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_6%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_7%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_8%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_9%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_10%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_11%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_12%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_13%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_14%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_15%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_16%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_17%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_18%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_19%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_20%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_21%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_22%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_23%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_24%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_25%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_26%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_27%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_28%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_29%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_30%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_31%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_32%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_33%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_34%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_35%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%school_desc_36%~ ~%nu_school%~
+  	END
+  END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN // SR
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~universal~) BEGIN
+      SPRINT nu_school @160100
+      SPRINT casting_sound ~CAS_M02~
+      SET casting_animation = 12
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~abjuration~) BEGIN
+      SPRINT nu_school @160101
+      SPRINT casting_sound ~CAS_M02~
+      SET casting_animation = 12
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~alteration~) BEGIN
+      SPRINT nu_school @160102
+      SPRINT casting_sound ~CAS_M08~
+      SET casting_animation = 10
+    END
+     PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~conjuration~) BEGIN
+      SPRINT nu_school @160103
+      SPRINT casting_sound ~CAS_M03~
+      SET casting_animation = 14
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~divination~) BEGIN
+      SPRINT nu_school @160104
+      SPRINT casting_sound ~CAS_M04~
+      SET casting_animation = 16
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~enchantment~) BEGIN
+      SPRINT nu_school @160105
+      SPRINT casting_sound ~CAS_M05~
+      SET casting_animation = 11
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~evocation~) BEGIN
+      SPRINT nu_school @160106
+      SPRINT casting_sound ~CAS_M06~
+      SET casting_animation = 15
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~illusion~) BEGIN
+      SPRINT nu_school @160107
+      SPRINT casting_sound ~CAS_M01~
+      SET casting_animation = 13
+    END
+    PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~necromancy~) BEGIN
+      SPRINT nu_school @160108
+      SPRINT casting_sound ~CAS_M07~
+      SET casting_animation = 9
+    END
+    SPRINT sr_universal @160100
+    SPRINT sr_abjuration @160101
+    SPRINT sr_alteration @160102
+    SPRINT sr_conjuration @160103
+    SPRINT sr_divination @160104
+    SPRINT sr_enchantment @160105
+    SPRINT sr_evocation @160106
+    SPRINT sr_illusion @160107
+    SPRINT sr_necromancy @160108
+  	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+  		REPLACE_TEXTUALLY ~%sr_abjuration%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_alteration%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_conjuration%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_divination%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_enchantment%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_evocation%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_illusion%~ ~%nu_school%~
+  		REPLACE_TEXTUALLY ~%sr_necromancy%~ ~%nu_school%~
+  	END
+  END
+  SAY_EVALUATED desc_offset ~%new_desc%~
+  WRITE_EVALUATED_ASCII 0x10 ~%casting_sound%~ #8
+  WRITE_SHORT 0x22 %casting_animation%
 END

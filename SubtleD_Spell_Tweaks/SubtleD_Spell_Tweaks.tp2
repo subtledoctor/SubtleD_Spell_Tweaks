@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.2~ 
+VERSION ~2.3~ 
 
 ALWAYS
 
@@ -23,19 +23,22 @@ AUTO_TRA ~SubtleD_Spell_Tweaks/lang/%s~
 AUTO_TRA "weidu_external/lang/%MOD_FOLDER%/%s"
 
 AUTO_TRA ~TomeAndBlood/lang/%s~
-LANGUAGE ~English~ ~english~ ~SubtleD_Spell_Tweaks/lang/english/setup.tra~ 
+LANGUAGE ~English~ ~english~ 
+		~SubtleD_Spell_Tweaks/lang/english/setup.tra~ 
+		~SubtleD_Spell_Tweaks/lang/english/schools.tra~ 
 LANGUAGE ~French~ ~french~
 		~SubtleD_Spell_Tweaks/lang/french/setup.tra~
 		~SubtleD_Spell_Tweaks/lang/french/cantrips.tra~
 		~SubtleD_Spell_Tweaks/lang/french/crafting.tra~
 		~SubtleD_Spell_Tweaks/lang/french/familiars.tra~
 		~SubtleD_Spell_Tweaks/lang/french/spells.tra~
+		~SubtleD_Spell_Tweaks/lang/french/schools.tra~ 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-BEGIN @1
+BEGIN @9
 DESIGNATED 1
 
 COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5__sdst.d5~
@@ -44,20 +47,42 @@ COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5__sdst.d5~
 ////////////////////////////////////////////////////////////////////////////////////////
 
 // -----------------------------
-// 10: CHANGE ARCANE OPPOSITION SCHOOLS (Subtledoctor)
-// 11: no opposition schools
-// 12: iwd opposition schools
-// 13: iwd opposition schools, low-level spells universal
-// 14: bg2 opposition schools
-// 15: bg2 opposition schools, low-level spells universal
-// 16: PnP opposition schools
-// 17: PnP opposition schools, low-level spells universal
+// 10: REBALANCED SPELL SCHOOLS (Subtledoctor)
+// -----------------------------
+BEGIN @10
+DESIGNATED 10
+REQUIRE_PREDICATE (ENGINE_IS ~soa tob iwd bgee bg2ee iwdee eet~) @1 
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_schools.qd~ //detection for this component 
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
+  LAF spell_scroll_map END
+END
+
+INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
+
+LAF spell_schools END
+
+//____________________________________________________________________________________
+
+// -----------------------------
+// 20: CHANGE ARCANE OPPOSITION SCHOOLS (Subtledoctor)
+// 21: no opposition schools
+// 22: iwd opposition schools
+// 23: iwd opposition schools, low-level spells universal
+// 24: bg2 opposition schools
+// 25: bg2 opposition schools, low-level spells universal
+// 26: PnP opposition schools
+// 27: PnP opposition schools, low-level spells universal
 // -----------------------------
 
 //no wizard opposition schools______________________________________________________
 //
-BEGIN @11
-DESIGNATED 11
+BEGIN @21
+DESIGNATED 21
 SUBCOMPONENT @10
 //GROUP @5
 
@@ -73,8 +98,8 @@ LAF change_opposition_schools STR_VAR mode = ~none~ END
 
 //iwd opposition schools____________________________________________________________
 //
-BEGIN @12
-DESIGNATED 12
+BEGIN @22
+DESIGNATED 22
 SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet~)
 //GROUP @5
 
@@ -90,8 +115,8 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~iwd~
 
 //iwd opposition schools > level 4__________________________________________________
 //
-BEGIN @13
-DESIGNATED 13
+BEGIN @23
+DESIGNATED 23
 SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
@@ -109,8 +134,8 @@ LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_
 
 //bg2 opposition schools____________________________________________________________
 //
-BEGIN @14
-DESIGNATED 14
+BEGIN @24
+DESIGNATED 24
 SUBCOMPONENT @10 (GAME_IS ~iwd iwdee~)
 //GROUP @5
 
@@ -126,8 +151,8 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~bg2~
 
 //bg2 opposition schools > level 4__________________________________________________
 //
-BEGIN @15
-DESIGNATED 15
+BEGIN @25
+DESIGNATED 25
 SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
@@ -145,8 +170,8 @@ LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_
 
 //pnp opposition schools____________________________________________________________
 //
-BEGIN @16
-DESIGNATED 16
+BEGIN @26
+DESIGNATED 26
 SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
@@ -162,8 +187,8 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~pnp~
 
 //pnp opposition schools > level 4__________________________________________________
 //
-BEGIN @17
-DESIGNATED 17
+BEGIN @27
+DESIGNATED 27
 SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
@@ -178,28 +203,6 @@ END
 INCLUDE ~%MOD_FOLDER%/sdst_settings.ini~
 
 LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_spell_level% STR_VAR mode = ~pnp~ END
-
-//____________________________________________________________________________________
-
-// -----------------------------
-// 20: REBALANCED SPELL SCHOOLS (Subtledoctor)
-// -----------------------------
-BEGIN @20
-DESIGNATED 20
-REQUIRE_PREDICATE (ENGINE_IS ~soa tob iwd bgee bg2ee iwdee eet~) @1 
-//GROUP @5
-
-COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_schools.qd~ //detection for this component 
-
-INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
-
-ACTION_IF !(FILE_EXISTS_IN_GAME ~qdscrlmap.2da~) BEGIN
-  LAF spell_scroll_map END
-END
-
-INCLUDE ~%MOD_FOLDER%/comp/spell_schools.tpa~ 
-
-LAF spell_schools END
 
 //____________________________________________________________________________________
 

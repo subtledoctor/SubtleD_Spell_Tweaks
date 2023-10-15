@@ -7,17 +7,17 @@
 @7 = ~~
 //
 //
-@1  = ~Would you like to display components from random individual spell tweaks?~
+@9  = ~Would you like to display components from random individual spell tweaks?~
 //
-@10 = ~Re-equilibrage des ecoles profanes opposees~
-@11 = ~Pas d'ecoles opposees~
-@12 = ~ecoles opposees de style IWD~
-@13 = ~ecoles opposees de style IWD, permettre les sorts mineurs~
-@14 = ~ecoles opposees de style BG2~
-@15 = ~ecoles opposees de style BG2, permettre les sorts mineurs~
-@16 = ~ecoles opposees papier (PnP)~
-@17 = ~ecoles opposees papier (PnP), permettre les sorts mineurs~
-@20 = ~Re-equilibrage des ecoles de magie~
+@10 = ~Re-equilibrage des ecoles de magie~
+@20 = ~Re-equilibrage des ecoles profanes opposees~
+@21 = ~Pas d'ecoles opposees~
+@22 = ~ecoles opposees de style IWD~
+@23 = ~ecoles opposees de style IWD, permettre les sorts mineurs~
+@24 = ~ecoles opposees de style BG2~
+@25 = ~ecoles opposees de style BG2, permettre les sorts mineurs~
+@26 = ~ecoles opposees papier (PnP)~
+@27 = ~ecoles opposees papier (PnP), permettre les sorts mineurs~
 //
 @30 = ~High-Level Spells Penetrate Magic Resistance~
 //

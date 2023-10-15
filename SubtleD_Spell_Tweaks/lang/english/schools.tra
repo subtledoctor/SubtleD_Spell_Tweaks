@@ -1,0 +1,60 @@
+// used to remove school from a scroll description
+// no SR
+@160000 = ~(Abjuration)~
+@160001 = ~(Alteration)~
+@160002 = ~(Conjuration)~
+@160003 = ~(Conjuration/Summoning)~
+@160004 = ~(Divination)~
+@160005 = ~(Enchantment/Charm)~
+@160006 = ~(Evocation)~
+@160007 = ~(Illusion/Phantasm)~
+@160008 = ~(Necromancy)~
+@160009 = ~(Invocation/Evocation)~
+@160010 = ~(Alteration, Illusion)~
+@160011 = ~(Evocation, Alteration)~
+@160012 = ~(Divination, Alteration)~
+@160013 = ~(Abjuration, Alteration)~
+@160014 = ~(Conjuration/Summoning, Invocation/Evocation)~
+@160015 = ~(Enchantement)~
+@160016 = ~(Illusion)~
+@160017 = ~(Invocation/Evocation)~
+@160018 = ~(Alteration, Invocation/Evocation)~
+@160019 = ~(Alteration, Necromancy)~
+@160020 = ~(Alteration, Enchantment)~
+@160021 = ~(Invocation/Evocation, Alteration)~
+@160022 = ~(Divination, Alteration)~
+@160023 = ~(Necromancy, Conjuration)~
+@160024 = ~(Abjuration, Invocation/Evocation)~
+@160025 = ~(Conjuration/Summoning, Necromancy)~
+@160026 = ~(Summoning)~
+@160027 = ~(Conjuration)~
+@160028 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160029 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160030 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160031 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160032 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160033 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160034 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+@160035 = ~zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz123~
+//SR replacement
+@160100 = ~: Universal~
+@160101 = ~: Abjuration~
+@160102 = ~: Alteration~
+@160103 = ~: Conjuration~
+@160104 = ~: Divination~
+@160105 = ~: Enchantment~
+@160106 = ~: Evocation~
+@160107 = ~: Illusion~
+@160108 = ~: Necromancy~
+//non-SR replacement
+@160140 = ~ ~ //universal
+@160141 = ~(Abjuration)~
+@160142 = ~(Alteration)~
+@160143 = ~(Conjuration/Summoning)~
+@160144 = ~(Divination)~
+@160145 = ~(Enchantment/Charm)~
+@160146 = ~(Evocation)~
+@160147 = ~(Illusion/Phantasm)~
+@160148 = ~(Necromancy)~
+//
+//
