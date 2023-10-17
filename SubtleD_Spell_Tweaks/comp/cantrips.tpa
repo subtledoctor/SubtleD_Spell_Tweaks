@@ -209,6 +209,7 @@ CREATE SPL ~d5ctpds~	//	deflective shell
   SAY UNIDENTIFIED_DESC @6028
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
+  WRITE_BYTE 0x27 1	//	sectype =  spellprotections
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpds~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 201 power = 1 target = 1 parameter1 = 1 parameter2 = 1 timing = 0 duration = 30 STR_VAR resource = ~d5ctpdsb~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 201 power = 1 target = 1 parameter1 = 1 parameter2 = 2 timing = 0 duration = 30 END
@@ -238,7 +239,7 @@ COPY_EXISTING ~spwi321.spl~ ~override/d5ctpst.spl~
   WRITE_LONG 0x34 1
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpst~ END
   LPF DELETE_EFFECT END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 2 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
 ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
     APPEND ~hidespl.2da~ ~SPWI321	1		0~
 END
@@ -572,6 +573,11 @@ COPY_EXISTING ~d5ct172.spl~ ~override~
   END
 IF_EXISTS BUT_ONLY
 */
+
+// fix spell thrust though
+COPY_EXISTING ~d5ct9i.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctpst~ resource = ~spwi321~ END
+IF_EXISTS BUT_ONLY
 
 <<<<<<<< d5/d5cntrp.d
 BEGIN ~D5CNTRP~

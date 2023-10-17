@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.4~ 
+VERSION ~2.4.2~ 
 
 ALWAYS
 
@@ -83,7 +83,7 @@ LAF spell_schools END
 //
 BEGIN @21
 DESIGNATED 21
-SUBCOMPONENT @10
+SUBCOMPONENT @20
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -100,7 +100,7 @@ LAF change_opposition_schools STR_VAR mode = ~none~ END
 //
 BEGIN @22
 DESIGNATED 22
-SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet~)
+SUBCOMPONENT @20 (GAME_IS ~bgt tob bgee bg2ee eet~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -117,7 +117,7 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~iwd~
 //
 BEGIN @23
 DESIGNATED 23
-SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+SUBCOMPONENT @20 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -136,7 +136,7 @@ LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_
 //
 BEGIN @24
 DESIGNATED 24
-SUBCOMPONENT @10 (GAME_IS ~iwd iwdee~)
+SUBCOMPONENT @20 (GAME_IS ~iwd iwdee~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -153,7 +153,7 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~bg2~
 //
 BEGIN @25
 DESIGNATED 25
-SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+SUBCOMPONENT @20 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -172,7 +172,7 @@ LAF change_opposition_schools INT_VAR low_level_allowed = %specialist_universal_
 //
 BEGIN @26
 DESIGNATED 26
-SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+SUBCOMPONENT @20 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
@@ -189,7 +189,7 @@ LAF change_opposition_schools INT_VAR low_level_allowed = 0 STR_VAR mode = ~pnp~
 //
 BEGIN @27
 DESIGNATED 27
-SUBCOMPONENT @10 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
+SUBCOMPONENT @20 (GAME_IS ~bgt tob bgee bg2ee eet iwd iwdee~)
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_opp_schools.qd~ //detection for this component 
