@@ -578,23 +578,23 @@ BEGIN ~D5CNTRP~
 
 IF ~Global("D5CNTPR","GLOBAL",1)~ THEN BEGIN d5cntrp
  SAY @6008
- IF ~Global("D5CNTRP_1","GLOBAL",0)~ THEN REPLY @6013 GOTO d5cntrp_1			//	
- IF ~Global("D5CNTRP_2","GLOBAL",0)~ THEN REPLY @6015 GOTO d5cntrp_2			//	
- IF ~Global("D5CNTRP_3","GLOBAL",0)~ THEN REPLY @6017 GOTO d5cntrp_3			//	
- IF ~Global("D5CNTRP_4","GLOBAL",0)~ THEN REPLY @6019 GOTO d5cntrp_4			//	
- IF ~Global("D5CNTRP_5","GLOBAL",0)~ THEN REPLY @6021 GOTO d5cntrp_5			//	
- IF ~Global("D5CNTRP_6","GLOBAL",0)~ THEN REPLY @6023 GOTO d5cntrp_6			//	
- IF ~Global("D5CNTRP_7","GLOBAL",0)~ THEN REPLY @6025 GOTO d5cntrp_7			//	
- IF ~Global("D5CNTRP_8","GLOBAL",0)~ THEN REPLY @6027 GOTO d5cntrp_8			//	
- IF ~Global("D5CNTRP_9","GLOBAL",0)~ THEN REPLY @6029 GOTO d5cntrp_9			//	
- IF ~Global("D5CNTRP_10","GLOBAL",0)~ THEN REPLY @6031 GOTO d5cntrp_10 		//	
- IF ~Global("D5CNTRP_11","GLOBAL",0)~ THEN REPLY @6033 GOTO d5cntrp_11 		//	
- IF ~Global("D5CNTRP_12","GLOBAL",0)~ THEN REPLY @6035 GOTO d5cntrp_12 		//	
- IF ~Global("D5CNTRP_13","GLOBAL",0)~ THEN REPLY @6037 GOTO d5cntrp_13 		//	
- IF ~Global("D5CNTRP_14","GLOBAL",0)~ THEN REPLY @6039 GOTO d5cntrp_14 		//	
- IF ~Global("D5CNTRP_15","GLOBAL",0)~ THEN REPLY @6041 GOTO d5cntrp_15 		//	
- IF ~Global("D5CNTRP_16","GLOBAL",0)~ THEN REPLY @6043 GOTO d5cntrp_16 		//	
- IF ~Global("D5CNTRP_17","GLOBAL",0)~ THEN REPLY @6045 GOTO d5cntrp_17 		//	
+ IF ~Global("D5CNTRP_1","GLOBAL",0)~ THEN REPLY @6013 GOTO d5cntrp_1		//	drowse
+ IF ~Global("D5CNTRP_2","GLOBAL",0)~ THEN REPLY @6015 GOTO d5cntrp_2		//	vicious mockery
+ IF ~Global("D5CNTRP_3","GLOBAL",0)~ THEN REPLY @6017 GOTO d5cntrp_3		//	thorn grasp
+ IF ~Global("D5CNTRP_4","GLOBAL",0)~ THEN REPLY @6019 GOTO d5cntrp_4		//	gust
+ IF ~Global("D5CNTRP_5","GLOBAL",0)~ THEN REPLY @6021 GOTO d5cntrp_5		//	dazzle
+ IF ~Global("D5CNTRP_6","GLOBAL",0)~ THEN REPLY @6023 GOTO d5cntrp_6		//	minor illusion
+ IF ~Global("D5CNTRP_7","GLOBAL",0)~ THEN REPLY @6025 GOTO d5cntrp_7		//	reflected image
+ IF ~Global("D5CNTRP_8","GLOBAL",0)~ THEN REPLY @6027 GOTO d5cntrp_8		//	deflective shell
+ IF ~Global("D5CNTRP_9","GLOBAL",0)~ THEN REPLY @6029 GOTO d5cntrp_9		//	spell thrust
+ IF ~Global("D5CNTRP_10","GLOBAL",0)~ THEN REPLY @6031 GOTO d5cntrp_10 		//	rigor mortis
+ IF ~Global("D5CNTRP_11","GLOBAL",0)~ THEN REPLY @6033 GOTO d5cntrp_11 		//	wisplight
+ IF ~Global("D5CNTRP_12","GLOBAL",0)~ THEN REPLY @6035 GOTO d5cntrp_12 		//	conjure rabbit
+ IF ~Global("D5CNTRP_13","GLOBAL",0)~ THEN REPLY @6037 GOTO d5cntrp_13 		//	armor
+ IF ~Global("D5CNTRP_14","GLOBAL",0)~ THEN REPLY @6039 GOTO d5cntrp_14 		//	magic bolt
+ IF ~Global("D5CNTRP_15","GLOBAL",0)~ THEN REPLY @6041 GOTO d5cntrp_15 		//	glimpse
+ IF ~Global("D5CNTRP_16","GLOBAL",0)~ THEN REPLY @6043 GOTO d5cntrp_16 		//	diviner's eyes
+ IF ~Global("D5CNTRP_17","GLOBAL",0)~ THEN REPLY @6045 GOTO d5cntrp_17 		//	chaos orb
 END
 
 IF ~~ THEN BEGIN d5cntrp_1 											// 
@@ -786,6 +786,18 @@ THEN
 END
 
 IF
+	GlobalLT("D5CNTRP","GLOBAL",1)
+	!Class(LastSummonerOf(Myself),SORCERER)
+	!Class(LastSummonerOf(Myself),BARD)
+	!Class(LastSummonerOf(Myself),MAGE_ALL)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	SetGlobal("D5CNTRP_7","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
 	True()
 THEN
 	RESPONSE #100
@@ -820,18 +832,21 @@ END
 COMPILE ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.baf~
 
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctp00.bam~ ~override~
+COPY ~%MOD_FOLDER%/data/cantrips/d5ctp01.bam~ ~override~
 CREATE SPL ~d5ctp00~	//	cantrip choice spell
   SAY NAME1 @6008
   SAY UNIDENTIFIED_DESC @6009
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
-  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 2 target = 5 required_level = 1 STR_VAR icon = ~d5ctp00~ END
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 2 target = 5 required_level = 1 STR_VAR icon = ~d5ctp01~ END
   FOR (num=1; num<18; ++num) BEGIN
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 timing = 1 STR_VAR resource = EVAL ~d5ct%num%l~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 timing = 1 STR_VAR resource = EVAL ~d5ct%num%i~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct%num%b~ END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 12 STR_VAR resource = ~d5ctp00~ END
+COPY_EXISTING ~d5ctp00.spl~ ~override/d5ctp01.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5ctp01~ END
 
 CREATE EFF ~d5ctp00~
   WRITE_LONG 0x10 67

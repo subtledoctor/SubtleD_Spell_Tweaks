@@ -9,7 +9,7 @@
 <body>
 <h1>SubtleMods: SubtleD's Spell Tweaks</h1>
 <div class="section">
-  <p><strong> Version 2.1 </strong><br />
+  <p><strong> Version 2.4 </strong><br />
   <strong> Languages:</strong> English</p>
   <p><strong>Author: <a href="http://forums.gibberlings3.net/index.php?showuser=6306">The Subtle Doctor</a></strong></p>
   <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks">Home page</a></strong></p>
