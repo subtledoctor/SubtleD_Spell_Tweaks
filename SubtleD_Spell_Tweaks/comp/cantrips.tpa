@@ -230,7 +230,7 @@ CREATE SPL ~d5ctpst~	//	spell thrust
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 27 required_level = 1 STR_VAR icon = ~d5ctpst~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 2 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 2 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
 */
 COPY_EXISTING ~spwi321.spl~ ~override/d5ctpst.spl~
   SAY NAME1 @6029
@@ -298,7 +298,7 @@ CREATE SPL ~d5ctpar~	//	armor
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpar~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
 */
 COPY_EXISTING ~spwi102.spl~ ~override/d5ctpar.spl~
   SAY NAME1 @6037
@@ -307,7 +307,7 @@ COPY_EXISTING ~spwi102.spl~ ~override/d5ctpar.spl~
   WRITE_LONG 0x34 1
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpar~ END
   LPF DELETE_EFFECT END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi102~ END
 ACTION_IF (FILE_EXISTS_IN_GAME ~hidespl.2da~) AND (GAME_IS ~iwdee~) BEGIN
     APPEND ~hidespl.2da~ ~SPWI102	1		0~
 END
@@ -331,7 +331,8 @@ CREATE SPL ~d5ctpmx~	//	cancel magic bolt
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 0 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctpmx~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 power = 1 target = 1 parameter1 = 1 timing = 0 duration = 600 STR_VAR resource = ~d5ctpmbm~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~d5ctpmbm~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~d5ctpmx~ END
 //  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = ~d5ct172~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5ct14g~ END
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmx.bam~ ~override~
@@ -350,6 +351,7 @@ COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmbm.bam~ ~override~
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctpmbm.itm~ ~override~
   SAY NAME2 @6039
   SAY IDENTIFIED_DESC @6040
+  WRITE_LONG 0x60 5
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter2 = (0 - 1) timing = 2 STR_VAR resource = ~d5ct14g~ END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = ~d5ctpmx~ END
 //  LPF ALTER_ITEM_HEADER INT_VAR projectile = %d5_msred% END
@@ -382,6 +384,11 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
     LPF CLONE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = ~d5ctpmbm~ END
   END
 BUT_ONLY
+ACTION_FOR_EACH spl_def IN ~sppr701~ ~spwi318~ ~spwi406~ ~spwi519~ ~spwi522~ ~spwi602~ ~spwi701~ ~spwi902~ BEGIN
+  COPY_EXISTING ~%spl_def%.spl~ ~override~
+    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~d5ctpmb1~ END 
+  IF_EXISTS BUT_ONLY
+END
 
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctpgl.bam~ ~override~
 CREATE SPL ~d5ctpgl~	//	glimpse
@@ -418,7 +425,7 @@ COPY_EXISTING ~spwi118.spl~ ~override/d5ctpco.spl~
   WRITE_LONG 0x34 1
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5ctpst~ END
   LPF DELETE_EFFECT END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter1 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 power = 1 target = 1 parameter2 = 1 timing = 1 duration = 0 STR_VAR resource = ~spwi321~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 power = 1 target = 1 parameter2 = 0 timing = 0 duration = 0 STR_VAR resource = ~EFF_M83~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 141 power = 1 target = 2 parameter2 = 25 timing = 1 duration = 0 savingthrow = 1 savebonus = 2 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter2 = (64<<16) timing = 1 duration = 0 probability1 = 100 probability2 = 81 savingthrow = 1 savebonus = 2 dicenumber = 1 dicesize = 4 END
