@@ -537,55 +537,6 @@ INCLUDE ~%MOD_FOLDER%/lib/semi_innate.tpa~
 
 LAF semi_innate_casting INT_VAR semi_innate_stat = 109 semi_innate_shift = 12 STR_VAR semi_innate_prefix = ~d5ct~ semi_innate_array = ~semi_innate_cantrips~ points_table = ~d5ctpts~ table_spl = ~d5ctpts~ END
 
-//ACTION_FOR_EACH cantrip_spl IN ~dr~ ~vm~ ~tg~ ~gu~ ~dz~ ~ri~ ~mi~ ~ds~ ~st~ ~rm~ ~wl~ ~cr~ ~ar~ ~mb~ ~gl~ ~de~ ~co~ BEGIN
-OUTER_FOR (num=1; num<18; ++num) BEGIN
-  COPY_EXISTING ~d5ct%num%i.spl~ ~override~
-    LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctx-1~ END
-    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5xxfat~ END
-  IF_EXISTS BUT_ONLY
-  COPY_EXISTING ~d5ct%num%l.spl~ ~override~
-    LPF DELETE_EFFECT INT_VAR match_opcode = 146 END
-    LPF DELETE_EFFECT INT_VAR match_opcode = 326 END
-  IF_EXISTS BUT_ONLY
-END
-
-// remove reference to stat 109 and change all relevant D5__PLS.SPL to just give 1
-COPY_EXISTING ~d5ctpls.spl~ ~override~
-  PATCH_FOR_EACH let IN ~b~ ~c~ ~d~ BEGIN
-    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = EVAL ~d5ctlot%let%~ END
-  END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctlota~ END
-  LPF DELETE_EFFECT INT_VAR match_opcode = 318 END
-IF_EXISTS BUT_ONLY
-
-COPY_EXISTING ~d5ctfsh.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctpls~ END
-  LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5zrest~ END
-  LPF DELETE_EFFECT INT_VAR match_opcode = 321 END
-
-/* eh, not worth the added complexity. just use the wrapper spells
-ACTION_PHP_EACH semi_cantrips_assoc AS num => let BEGIN
-  COPY_EXISTING ~d5ct%num%g.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
-  IF_EXISTS
-  COPY_EXISTING ~d5ct%let%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct172~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = EVAL ~d5ctpls~ END
-  IF_EXISTS
-END
-
-COPY_EXISTING ~d5ct172.spl~ ~override~
-  PHP_EACH semi_cantrips_assoc AS num => let BEGIN
-    LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
-  END
-IF_EXISTS BUT_ONLY
-*/
-
-// fix spell thrust though
-COPY_EXISTING ~d5ct9i.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctpst~ resource = ~spwi321~ END
-IF_EXISTS BUT_ONLY
-
 <<<<<<<< d5/d5cntrp.d
 BEGIN ~D5CNTRP~
 
@@ -844,8 +795,60 @@ END
 
 COMPILE ~weidu_external/%MOD_FOLDER%/compile/d5cntrp.baf~
 
+//ACTION_FOR_EACH cantrip_spl IN ~dr~ ~vm~ ~tg~ ~gu~ ~dz~ ~ri~ ~mi~ ~ds~ ~st~ ~rm~ ~wl~ ~cr~ ~ar~ ~mb~ ~gl~ ~de~ ~co~ BEGIN
+OUTER_FOR (num=1; num<18; ++num) BEGIN
+  COPY_EXISTING ~d5ct%num%i.spl~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctx-1~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5xxfat~ END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 146 match_timing = 1 timing = 4 duration = 1 STR_VAR match_resource = EVAL ~d5ctpls~ END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~d5ct%num%l.spl~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 146 END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 206 match_timing = 9 timing = 0 duration = 126144000 END
+  IF_EXISTS BUT_ONLY
+END
+
+// remove reference to stat 109 and change all relevant D5__PLS.SPL to just give 1
+COPY_EXISTING ~d5ctpls.spl~ ~override~
+  PATCH_FOR_EACH let IN ~b~ ~c~ ~d~ BEGIN
+    LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = EVAL ~d5ctlot%let%~ END
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctlota~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 318 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~d5ctfsh.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 timing = 4 duration = 2 STR_VAR match_resource = ~d5ctpls~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5zrest~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 321 END
+
+/* eh, not worth the added complexity. just use the wrapper spells
+ACTION_PHP_EACH semi_cantrips_assoc AS num => let BEGIN
+  COPY_EXISTING ~d5ct%num%g.spl~ ~override~
+    LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+  IF_EXISTS
+  COPY_EXISTING ~d5ct%let%.spl~ ~override~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct172~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = EVAL ~d5ctpls~ END
+  IF_EXISTS
+END
+
+COPY_EXISTING ~d5ct172.spl~ ~override~
+  PHP_EACH semi_cantrips_assoc AS num => let BEGIN
+    LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+  END
+IF_EXISTS BUT_ONLY
+*/
+
+// fix spell thrust though
+COPY_EXISTING ~d5ct9i.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctpst~ resource = ~spwi321~ END
+IF_EXISTS BUT_ONLY
+
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctp00.bam~ ~override~
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctp01.bam~ ~override~
+
 CREATE SPL ~d5ctp00~	//	cantrip choice spell
   SAY NAME1 @6008
   SAY UNIDENTIFIED_DESC @6009
@@ -853,11 +856,14 @@ CREATE SPL ~d5ctp00~	//	cantrip choice spell
   WRITE_LONG 0x34 1
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 2 target = 5 required_level = 1 STR_VAR icon = ~d5ctp01~ END
   FOR (num=1; num<18; ++num) BEGIN
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 timing = 1 STR_VAR resource = EVAL ~d5ct%num%l~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 timing = 1 STR_VAR resource = EVAL ~d5ct%num%i~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct%num%b~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = EVAL ~d5ct%num%l~ END
+  END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = ~d5ct172~ END
+  FOR (num=1; num<18; ++num) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = EVAL ~d5ct%num%b~ END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 12 STR_VAR resource = ~d5ctp00~ END
+
 COPY_EXISTING ~d5ctp00.spl~ ~override/d5ctp01.spl~
   LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5ctp01~ END
 
