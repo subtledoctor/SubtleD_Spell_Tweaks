@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.5~ 
+VERSION ~2.6~ 
 
 ALWAYS
 
@@ -272,7 +272,7 @@ LAF invisibility_tweaks END
 BEGIN @50
 DESIGNATED 50
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 //GROUP @5
 
 INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
@@ -342,8 +342,12 @@ LAF cantrip_wands END
 //____________________________________________________________________________________
 
 // -----------------------------
-// 81: CHOOSE-YOUR-OWN FAMILIAR
+// 80: FAMILIARS (Subtledoctor)
+// 81: Choose-Your-Own Familiar 
+// 82: Imbue Familiars with Spells
+// 83: Allow Familiars to Use Cantrips
 // -----------------------------
+
 BEGIN @81
 DESIGNATED 81
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1
@@ -376,6 +380,22 @@ LAF imbue_familiars END
 
 //____________________________________________________________________________________
 
+// -----------------------------
+// 83: CANTRIPS FOR FAMILIARS
+// -----------------------------
+BEGIN @83
+DESIGNATED 83
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) @4
+//GROUP @5
+
+COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_familiars_cantrips.qd~ //detection for this component 
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/familiars.tpa~
+
+LAF cantrips_familiars END
+
+//____________________________________________________________________________________
+
  
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -395,7 +415,7 @@ LAF tweak_faerie_fire END
 
 BEGIN @1151
 DESIGNATED 1151
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
@@ -531,7 +551,7 @@ LAF tweak_true_seeing END
 
 BEGIN @1603
 DESIGNATED 1603
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -559,7 +579,7 @@ LAF tweak_wondrous_recall END
 
 BEGIN @1613
 DESIGNATED 1613
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -664,7 +684,7 @@ LAF tweak_sleep END
 BEGIN @2151
 DESIGNATED 2151
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @1
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -703,7 +723,7 @@ LAF tweak_mirror_image END
 BEGIN @2213
 DESIGNATED 2213
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @6
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -801,7 +821,7 @@ LAF tweak_otilukes_sphere END
 
 BEGIN @2418
 DESIGNATED 2418
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -823,7 +843,7 @@ LAF tweak_shadow_monsters END
 BEGIN @2508
 DESIGNATED 2508
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -842,7 +862,7 @@ LAF tweak_lower_resistance END
 
 BEGIN @2518
 DESIGNATED 2518
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -881,7 +901,7 @@ LAF tweak_mantle END
 
 BEGIN @2711
 DESIGNATED 2711
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -891,7 +911,7 @@ LAF tweak_chaos END
 
 BEGIN @2714
 DESIGNATED 2714
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 
@@ -901,7 +921,7 @@ LAF tweak_prismatic_spray END
 
 BEGIN @2808
 DESIGNATED 2808
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @4
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 

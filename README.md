@@ -9,7 +9,7 @@
 <body>
 <h1>SubtleMods: SubtleD's Spell Tweaks</h1>
 <div class="section">
-  <p><strong> Version 2.5 </strong><br />
+  <p><strong> Version 2.6 </strong><br />
   <strong> Languages:</strong> English</p>
   <p><strong>Author: <a href="http://forums.gibberlings3.net/index.php?showuser=6306">The Subtle Doctor</a></strong></p>
   <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks">Home page</a></strong></p>
@@ -98,7 +98,7 @@
     <p>Component 62 changes 1st-level arcane spells such that they do not cost spell slots, meaning you can cast any you have memorized without limit. To account for this, you will have fewer 1st-level memorization slots and more 2nd-level memorization slots. Some spells are slightly rebalanced or moved to 2nd level to account for this. A benefit of this component is that it will naturally work with existing AI scripts - meaning enemy mages will naturally use these 'cantrips' against you and will never totally run out of spells.</p>
     <p>Component 63 gives you a "wand" that you equip in a weapon slot. It has a ranged attack that operates as a cantrip ("Minor Magic Missile") and which allows you to use one of seven other cantrips as item abilities with unlimited uses.</p>
   </div>
-  <h4 class="subheader">Component 81-82: Familiars</h4>
+  <h4 class="subheader">Component 81-83: Familiars</h4>
   <div class="section">
     <p>Component 81, "Choose-Your-Own-Familiar," allows you to choose which familiar you want (from a slightly modified list) instead of being bound by your alignment. Currently, the available familiars are Pseudodragon, Ferret, Rabbit, Cat, Spider, and Rat. Each has its own special skills and abilities, and each provides a different small passive benefit to the caster:
     <ul>
@@ -110,7 +110,8 @@
       <li>Cat: 90% Stealth skill. Is immune to being revealed by divinations, similar to a thief with a Cloak of Nondetection. Caster has +1 DEX while familiar is out of the backpack.</li>
     </ul>
     <p>This also eliminates the hp damage and CON loss you take when a familiar dies. So you can re-summon/revive the familiar without penalty, once per day. As a consequence, this also eliminates the flat hit point bonus you get from summoning a familiar.  Instead, you will get a 15% boost to your max hit points, whenever your familiar is out of your pack and within your general vicinity.</p>
-    <p>Component 68, "Imbue Familiars," allows you to imbue your familiar with up to five spells (one each from spell levels 1 through 5, from your known spells). The familiar will be able to cast each spell as an innate ability, once per hour.</p>
+    <p>Component 82, "Imbue Familiars," allows you to imbue your familiar with up to five spells (one each from spell levels 1 through 5, from your known spells). The familiar will be able to cast each spell as an innate ability, once per hour.</p>
+    <p>Component 83, "Cantrips for Familiars," gives familiars the ability to prepare one or more cantrips each day, which can be used at will. This functions exactly like the Innate Cantrips from component #61 - and in fact can only be installed if that component is already installed.</p>
   </div>
   <h4 class="subheader">Component 1151: Tweak Sunscorch (SR-only)</h4>
   <div class="section">

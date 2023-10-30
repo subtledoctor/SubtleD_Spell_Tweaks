@@ -684,6 +684,17 @@ THEN
 END
 
 IF
+	GlobalLT("D5CNTRP","GLOBAL",1)
+	!Class(LastSummonerOf(Myself),SORCERER)
+	!Class(LastSummonerOf(Myself),BARD)
+	!Class(LastSummonerOf(Myself),MAGE_ALL)
+THEN
+	RESPONSE #100
+	SetGlobal("D5CNTPR","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("D5CNTRP",Myself))
+END
+
+IF
 	True()
 THEN
 	RESPONSE #100
@@ -800,12 +811,12 @@ OUTER_FOR (num=1; num<18; ++num) BEGIN
   COPY_EXISTING ~d5ct%num%i.spl~ ~override~
     LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctx-1~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5xxfat~ END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 146 match_timing = 1 timing = 4 duration = 1 STR_VAR match_resource = EVAL ~d5ctpls~ END
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 match_timing = 1 timing = 4 duration = 1 STR_VAR match_resource = EVAL ~d5ctpls~ END
   IF_EXISTS BUT_ONLY
   COPY_EXISTING ~d5ct%num%l.spl~ ~override~
     LPF DELETE_EFFECT INT_VAR match_opcode = 146 END
     LPF DELETE_EFFECT INT_VAR match_opcode = 326 END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 206 match_timing = 9 timing = 0 duration = 126144000 END
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 206 match_timing = 9 timing = 0 duration = 126144000 END
   IF_EXISTS BUT_ONLY
 END
 
@@ -814,19 +825,19 @@ COPY_EXISTING ~d5ctpls.spl~ ~override~
   PATCH_FOR_EACH let IN ~b~ ~c~ ~d~ BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = EVAL ~d5ctlot%let%~ END
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctlota~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~d5ctlota~ END
   LPF DELETE_EFFECT INT_VAR match_opcode = 318 END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~d5ctfsh.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 timing = 4 duration = 2 STR_VAR match_resource = ~d5ctpls~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 326 opcode = 146 parameter1 = 0 parameter2 = 1 timing = 4 duration = 2 STR_VAR match_resource = ~d5ctpls~ END
   LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = ~d5zrest~ END
   LPF DELETE_EFFECT INT_VAR match_opcode = 321 END
 
 /* eh, not worth the added complexity. just use the wrapper spells
 ACTION_PHP_EACH semi_cantrips_assoc AS num => let BEGIN
   COPY_EXISTING ~d5ct%num%g.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 171 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
   IF_EXISTS
   COPY_EXISTING ~d5ct%let%.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5ct172~ END
@@ -836,14 +847,14 @@ END
 
 COPY_EXISTING ~d5ct172.spl~ ~override~
   PHP_EACH semi_cantrips_assoc AS num => let BEGIN
-    LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 172 STR_VAR match_resource = EVAL ~d5ct%num%i~ resource = EVAL ~d5ct%let%~ END
   END
 IF_EXISTS BUT_ONLY
 */
 
 // fix spell thrust though
 COPY_EXISTING ~d5ct9i.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ctpst~ resource = ~spwi321~ END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 146 STR_VAR match_resource = ~d5ctpst~ resource = ~spwi321~ END
 IF_EXISTS BUT_ONLY
 
 COPY ~%MOD_FOLDER%/data/cantrips/d5ctp00.bam~ ~override~

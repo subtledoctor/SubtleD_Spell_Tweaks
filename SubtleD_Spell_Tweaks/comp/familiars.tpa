@@ -569,6 +569,9 @@ COPY_EXISTING ~fampsd.cre~ ~override~
 	LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = %spike_proj% timing = 9 END 	// spike growth immunity
   END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5fampd0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 // change on-hit effect to Slow...? (in cdfampsd.itm)
 IF_EXISTS
 COPY_EXISTING ~sppr103.spl~ ~override/d5fampd1.spl~
@@ -679,6 +682,9 @@ COPY_EXISTING ~fampsd25.cre~ ~override~
 	LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = %spike_proj% timing = 9 END 	// spike growth immunity
   END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5fampd0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 IF_EXISTS
 COPY_EXISTING ~spwi405.spl~ ~override/d5fampd4.spl~
   LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 END
@@ -731,6 +737,9 @@ COPY_EXISTING ~famfair.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
   REMOVE_KNOWN_SPELLS
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 
@@ -765,6 +774,9 @@ COPY_EXISTING ~famfai25.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
   REMOVE_KNOWN_SPELLS
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 
@@ -805,6 +817,9 @@ COPY_EXISTING ~famfer.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famfr1~ END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 0 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famfr0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 // make nasueating aura
@@ -877,6 +892,9 @@ COPY_EXISTING ~famfer25.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famfr1~ END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famfr0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 
@@ -934,6 +952,9 @@ COPY_EXISTING ~famrab.cre~ ~override~
   WRITE_BYTE 0x5f 25
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrb0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 COPY_EXISTING ~spsd02.spl~ ~override/d5famrb1.spl~
@@ -989,6 +1010,9 @@ COPY_EXISTING ~famrab25.cre~ ~override~
   WRITE_BYTE 0x5f 25
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrb0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
 IF_EXISTS
 
@@ -1042,6 +1066,9 @@ COPY_EXISTING ~famcat.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famct0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
   ADD_CRE_ITEM ~d5clck6~ #0 #0 #0 ~IDENTIFIED~ ~CLOAK~
 IF_EXISTS
@@ -1087,6 +1114,9 @@ COPY_EXISTING ~famcat25.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 2 timing = 9 END
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famct0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
   ADD_CRE_ITEM ~d5clck6~ #0 #0 #0 ~IDENTIFIED~ ~CLOAK~
 IF_EXISTS
@@ -1147,6 +1177,9 @@ COPY_EXISTING ~famimp.cre~ ~override~
 //  LPF ADD_CRE_EFFECT INT_VAR opcode = 248 target = 2 timing = 1 STR_VAR resource = ~d5famsp2~ END	// melee poison
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famsp0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~reghp1~ #0 #0 #0 ~IDENTIFIED~ ~RRING LRING~
   ADD_CRE_ITEM ~impclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
 IF_EXISTS
@@ -1348,6 +1381,9 @@ COPY_EXISTING ~famimp25.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END 					// web immunity
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famsp0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 //  ADD_CRE_ITEM ~impclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
 IF_EXISTS
 
@@ -1412,6 +1448,9 @@ COPY_EXISTING ~famquas.cre~ ~override~
 // give quasclaw.itm
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrt0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
   ADD_CRE_ITEM ~quasclaw~ #0 #0 #0 ~IDENTIFIED~ ~WEAPON1~ EQUIP
 IF_EXISTS
 
@@ -1496,6 +1535,9 @@ COPY_EXISTING ~famqua25.cre~ ~override~
   LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5famrt1~ END	// swarm
   LPF ADD_CRE_EFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 9 END 	// missile AC bonus
   LPF ADD_CRE_EFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 20 timing = 9 special = 102 STR_VAR resource = ~d5famrt0~ END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 IF_EXISTS
 
 COPY_EXISTING ~famquas.itm~ ~override~
@@ -1549,6 +1591,9 @@ COPY_EXISTING ~famdust.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
   REMOVE_KNOWN_SPELLS
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 IF_EXISTS
 // make transformation spells
 // change coloration, give abilities and immunities
@@ -1586,6 +1631,9 @@ COPY_EXISTING ~famdus25.cre~ ~override~
   REMOVE_MEMORIZED_SPELLS
   REMOVE_KNOWN_SPELLS
   LPF ADD_CRE_EFFECT INT_VAR opcode = 22 target = 1 parameter1 = 1 timing = 9 END
+  PATCH_IF (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) BEGIN
+    LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5ctp01~ END
+  END
 IF_EXISTS
 
 COPY_EXISTING ~spwi123.spl~ ~override~
@@ -2250,3 +2298,36 @@ END
 
 END 	//	end define function
 //____________________________________________________________________________________
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// -----------------------------
+// CANTRIPS FOR FAMILIARS
+// -----------------------------
+
+/*
+give them innate cantrips if it is installed
+*/
+
+DEFINE_ACTION_FUNCTION cantrips_familiars BEGIN
+
+ACTION_FOR_EACH fam IN ~fampsd~ ~fampsd25~ ~famfair~ ~famfai25~ ~famfer~ ~famfer25~ ~famrab~ ~famrab25~ ~famcat~ ~famcat25~ ~famimp~ ~famimp25~ ~famquas~ ~famqua25~ ~famdust~ ~famdus25~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%fam%.cre~) BEGIN
+    COPY_EXISTING ~%fam%.cre~ ~override~
+      LPF ADD_CRE_EFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = ~d5ctp01~ END
+  END
+END
+
+END	//	end function
+//____________________________________________________________________________________
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
