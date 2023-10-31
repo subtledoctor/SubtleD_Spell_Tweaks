@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.6~ 
+VERSION ~2.6.1~ 
 
 ALWAYS
 
@@ -386,6 +386,7 @@ LAF imbue_familiars END
 BEGIN @83
 DESIGNATED 83
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5ctp01.spl~) @4
+//REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~qdtnb_familiar_choice.qd~) @4
 //GROUP @5
 
 COPY_EXISTING ~sw1h01.itm~ ~override/qdtnb_familiars_cantrips.qd~ //detection for this component 
