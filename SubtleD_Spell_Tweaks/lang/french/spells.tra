@@ -538,3 +538,8 @@ Rat
 // invisibility tweak
 @150003 = ~5[^r][^r]?rounds~ //original
 @150004 = ~10 rounds~ //replacement
+
+// Choose familiar UI
+@150100 = ~Choisissez un familier parmi les options suivantes. Ce choix est définitif.~ // tip
+@150101 = ~Choisissez un familier parmi les options suivantes~ // title
+@150102 = ~Ce choix est définitif~ // label
