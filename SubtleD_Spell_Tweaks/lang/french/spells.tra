@@ -247,7 +247,18 @@ Jet de sauvegarde : Aucun
 
 Ce sort rend le lanceur invisible, à part son ombre. Cette ombre peut se déplacer indépendamment du lanceur et, même si elle ne peut exécuter d'action comme attaquer ou lancer des sorts, elle peut servir de leurre pour le magicien invisible. Le lanceur sera protégé par l'invisibilité tant que l'ombre n'a pas été détruite, mais deviendra visible dès que l'ombre sera détruite ou dissipée.
 ~
+@6411   = ~Caméléon~
+@6412   = ~Caméléon
+Nivuea : 1
+École : Illusion
+Portée : jeteur de sort
+Durée : 5 rounds
+Temps d'incantation : 1
+Zoned'effet : 1 créature
+Jet de sauvegarde : aucun
 
+Ce sort modofie l'apparence du jeteur de sort en le rendant presque invisible. Il ne peut être ciblé par les sorts, bénéficie d'un bonus de 4 points à la classe d'armure et aux jets de sauvegarde, et d'un bonus de 25 % aux compétences Déplacement silencieux, Se cacher dans l'ombre et Vol à la tire. L'effet dure 5 rounds, mais si le jeteur lance un sort ou frappe un ennemi, le sort prend fin immédiatement et le lanceur devient complètement visible.
+~
 @6351 = ~Contingence~
 @6352 = ~Contingence
 
