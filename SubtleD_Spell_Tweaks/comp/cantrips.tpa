@@ -360,8 +360,8 @@ CREATE SPL ~d5ctpmb1~	//	magic bolt
   SAY UNIDENTIFIED_DESC @6040
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
-  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 5 required_level = 1 END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 1 parameter1 = 2 parameter2 = (64<<16) timing = 1 duration = 0 dicenumber = 1 dicesize = 3 END
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 required_level = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 power = 1 target = 2 parameter1 = 2 parameter2 = (64<<16) timing = 1 duration = 0 dicenumber = 1 dicesize = 3 END
 // ***** make variants for fire, cold, & lightning...?
 // apply 206 vs this to Shield and all magic protections
 COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
