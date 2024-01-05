@@ -57,6 +57,7 @@ CREATE SPL ~d5ctpdr~	//	drowse
   WRITE_LONG 0x34 1
   LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 speed = 2 location = 4 target = 1 range = 30 required_level = 1 STR_VAR icon = ~d5ctpdr~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 power = 1 target = 2 parameter2 = (0 - 1) timing = 0 duration = 18 savingthrow = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 39 power = 1 target = 2 parameter2 = 1 timing = 0 duration = 18 savingthrow = 1 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 power = 1 target = 2 parameter2 = 14 timing = 0 duration = 18 savingthrow = 1 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 power = 1 target = 2 parameter1 = 0 timing = 1 duration = 0 savingthrow = 1 STR_VAR resource = ~SPCOMEND~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 232 power = 1 target = 2 parameter2 = 11 timing = 0 duration = 18 savingthrow = 1 STR_VAR resource = ~d5wakeup~ END
