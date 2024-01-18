@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.6.3~
+VERSION ~2.6.4~
 
 ALWAYS
 
@@ -224,13 +224,24 @@ LAF tweak_magic_resistance END
 // -----------------------------
 // 35: SPELL TWEAKS: LEVEL DRAIN (Subtledoctor)
 // -----------------------------
-BEGIN @35
-DESIGNATED 35
+BEGIN @36
+DESIGNATED 36
+SUBCOMPONENT @35
 //GROUP @5
 
 INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
 
 LAF tweak_level_drain END
+//____________________________________________________________________________________
+
+BEGIN @37
+DESIGNATED 37
+SUBCOMPONENT @35
+//GROUP @5
+
+INCLUDE ~SubtleD_Spell_Tweaks/comp/major_spell_tweaks.tpa~
+
+LAF temp_level_drain END
 
 //____________________________________________________________________________________
 

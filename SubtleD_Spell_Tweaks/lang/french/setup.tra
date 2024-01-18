@@ -22,7 +22,9 @@
 //
 @30 = ~High-Level Spells Penetrate Magic Resistance~
 //
-@35 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
+@35 = ~Les effets d'absorption de niveau~
+@36 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
+@37 = ~Ajouter la durée des effets d'absorption de niveau~
 @40 = ~Revision des clones illusoires~
 @45 = ~Revision d'Invisibilite et de Vision veritable~
 @50  = ~Modifier Rapidité et Lenteur pour qu'ils s'annulent l'un l'autre~
