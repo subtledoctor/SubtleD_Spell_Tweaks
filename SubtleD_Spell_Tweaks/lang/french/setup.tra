@@ -22,9 +22,9 @@
 //
 @30 = ~Les sorts de haut niveau penetrent la resistance a la magie~
 //
-@35 = ~Les effets d'absorption de niveau~
-@36 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
-@37 = ~Ajouter la durée des effets d'absorption de niveau~
+@35 = ~Effets d'absorption de niveau~
+@36 = ~Ajouter un jet de sauvegarde pour l'absorption de niveau~
+@37 = ~Rendre l'absorption de niveau temporaire~
 @40 = ~Revision des clones illusoires~
 @45 = ~Revision des sorts 'Invisibilite' et 'Vision veritable'~
 @50 = ~Modifier 'Rapidite' et 'Lenteur' pour qu'ils s'annulent l'un l'autre~
