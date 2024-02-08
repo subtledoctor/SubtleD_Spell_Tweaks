@@ -136,8 +136,11 @@ COPY_EXISTING ~spin883.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = 65 END
 IF_EXISTS BUT_ONLY
 
+/* meh, just use splstate #107, ProPetrification
 LAF d5_resolve_state STR_VAR new_state_id = ~D5_GAZEEVADE~ RET new_state_ind END
 OUTER_SET gaze_evasion_state = %new_state_ind%
+*/
+
 <<<<<<<< d5/d5gazeev.2da
 2DA V1.0 
 RES
@@ -199,7 +202,7 @@ COPY_EXISTING ~d5gazeev.2da~ ~override~
 	PATCH_IF (~%gaze_evade_type%~ STRING_EQUAL_CASE ~spl~) BEGIN 
 	  PATCH_IF (FILE_EXISTS_IN_GAME ~%gaze_evade_res%.spl~) BEGIN
 		INNER_ACTION BEGIN
-		  LAF add_evade_spell INT_VAR evasion_spellstate = %gaze_evasion_state% evasion_save = 1 STR_VAR evade_ext = ~spl~ evade_condition = ~spellstate~ evade_res = EVAL ~%gaze_evade_res%~ evade_prefix = ~D5VG~ END
+		  LAF add_evade_spell INT_VAR evasion_spellstate = 107 evasion_save = 1 STR_VAR evade_ext = ~spl~ evade_condition = ~spellstate~ evade_res = EVAL ~%gaze_evade_res%~ evade_prefix = ~D5VG~ END
 		END
 	  END
 	END
@@ -209,7 +212,7 @@ BUT_ONLY
 COPY_EXISTING ~spwi108.spl~ ~override~
   SAY NAME1 @21081
   SAY UNIDENTIFIED_DESC @21083
-  LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = %gaze_evasion_state% special = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 101 match_parameter2 = 134 opcode = 328 parameter1 = 0 parameter2 = 107 special = 1 END
 IF_EXISTS BUT_ONLY
 
 END
@@ -376,11 +379,15 @@ DEFINE_ACTION_FUNCTION tweak_blur BEGIN
 LAF d5_resolve_state STR_VAR new_state_id = ~D5_SNAREARROW~ RET new_state_ind END
 OUTER_SET missile_snaring_state = %new_state_ind%
 OUTER_SET snare_string = RESOLVE_STR_REF (~Deflect~)
+
 ACTION_IF !(FILE_EXISTS_IN_GAME ~7eyes.2da~) BEGIN
   COPY ~%MOD_FOLDER%/data/spell_tweaks/7eyes.2da~ ~override~
 END
 
 APPEND ~7eyes.2da~ ~SNARE_ARROW  %missile_snaring_state%      %snare_string%      12*0x800000 *           *           *            *            *          *          *          * ~ UNLESS ~SNARE_ARROW~
+
+COPY_EXISTING ~7eyes.2da~ ~override~
+  LPF 2DA_MISSING_COLS END
 
 COPY_EXISTING ~7eyes.2da~ ~override~
   COUNT_2DA_ROWS 1 rows
@@ -2135,9 +2142,13 @@ END
 
 DEFINE_ACTION_FUNCTION tweak_moment_of_prescience BEGIN
 // make not breachable
-COPY_EXISTING ~sppr603.spl~ ~override~
-  WRITE_BYTE 0x27 0
-IF_EXISTS BUT_ONLY
+OUTER_SET spell_ids = IDS_OF_SYMBOL (~spell~ ~WIZARD_MOMENT_OF_PRESCIENCE~)
+ACTION_IF !(spell_ids = 0 - 1) BEGIN
+  LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_MOMENT_OF_PRESCIENCE~ RET spell_res END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    WRITE_BYTE 0x27 0
+  IF_EXISTS BUT_ONLY
+END
 
 END
 
