@@ -1,4 +1,4 @@
-// v2 - only one cancel spell
+// v3 - plus facestabs
 
 //INVISIBILITY + SANCTUARY MACRO______________________________________________________
 //
@@ -97,6 +97,8 @@ DEFINE_ACTION_MACRO D5_INSANCTIBILITY BEGIN
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 153 parameter2 = 1 STR_VAR resource = ~~ END
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 66 parameter1 = 128 parameter2 = 0 STR_VAR insert = ~first~ END
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 opcode = 272 parameter1 = 3 parameter2 = 3 STR_VAR resource = ~d5pr109x~ insert = ~last~ END 
+		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 248 parameter2 = 0 STR_VAR resource = ~D5PR109X~ END
+		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 303 parameter2 = 2 STR_VAR resource = ~~ END
 	  COPY_EXISTING ~d5pr109x.spl~ ~override~
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 power = 0 parameter1 = 0 timing = 1 STR_VAR resource = EVAL ~%spell%~ END
 	END
@@ -150,6 +152,8 @@ DEFINE_ACTION_MACRO D5_INSANCTIBILITY BEGIN
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 153 parameter2 = 1 STR_VAR resource = ~~ END
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 66 parameter1 = 128 parameter2 = 0 STR_VAR insert = ~first~ END
 		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 opcode = 272 parameter1 = 3 parameter2 = 3 STR_VAR resource = ~d5pr109x~ insert = ~last~ END 
+		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 248 parameter2 = 0 STR_VAR resource = ~D5PR109X~ END
+		LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 20 match_parameter2 = 0 opcode = 303 parameter2 = 2 STR_VAR resource = ~~ END
 	  COPY_EXISTING ~d5pr109x.spl~ ~override~
 		LPF ALTER_SPELL_HEADER INT_VAR target = 1 range = 999 END
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 power = 0 parameter1 = 0 timing = 1 STR_VAR resource = EVAL ~%item%~ END

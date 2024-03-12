@@ -388,7 +388,8 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 BUT_ONLY
 ACTION_FOR_EACH spl_def IN ~sppr701~ ~spwi318~ ~spwi406~ ~spwi519~ ~spwi522~ ~spwi602~ ~spwi701~ ~spwi902~ BEGIN
   COPY_EXISTING ~%spl_def%.spl~ ~override~
-    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~d5ctpmb1~ END 
+    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 200 opcode = 206 parameter1 = (0 - 1) STR_VAR resource = ~d5ctpmb1~ END 
+    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 201 opcode = 206 parameter1 = (0 - 1) STR_VAR resource = ~d5ctpmb1~ END 
   IF_EXISTS BUT_ONLY
 END
 
