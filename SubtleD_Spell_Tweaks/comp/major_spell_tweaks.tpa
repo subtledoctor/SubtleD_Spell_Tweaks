@@ -465,6 +465,12 @@ CREATE EFF ~d5tsill2~
 	WRITE_SHORT 0x2c 100
 //__________________________________________________________________________________
 
+//backstab immunity when detecting invisible_________________________________________
+//
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 292 parameter1 = 0 parameter2 = 1 END
+//__________________________________________________________________________________
+
 
 //handle nondetection spells/items__________________________________________________
 //
