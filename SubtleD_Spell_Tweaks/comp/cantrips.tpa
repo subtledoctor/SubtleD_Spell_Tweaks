@@ -538,7 +538,7 @@ COPY ~d5/d5ctpts.2da~ ~override/d5ctpts.2da~
 
 INCLUDE ~%MOD_FOLDER%/lib/semi_innate.tpa~
 
-LAF semi_innate_casting INT_VAR semi_innate_stat = 109 semi_innate_shift = 12 STR_VAR semi_innate_prefix = ~d5ct~ semi_innate_array = ~semi_innate_cantrips~ points_table = ~d5ctpts~ table_spl = ~d5ctpts~ END
+LAF semi_innate_casting INT_VAR semi_innate_stat = 110 semi_innate_shift = 16 STR_VAR semi_innate_prefix = ~d5ct~ semi_innate_array = ~semi_innate_cantrips~ points_table = ~d5ctpts~ table_spl = ~d5ctpts~ END
 
 <<<<<<<< d5/d5cntrp.d
 BEGIN ~D5CNTRP~
@@ -823,7 +823,7 @@ OUTER_FOR (num=1; num<18; ++num) BEGIN
   IF_EXISTS BUT_ONLY
 END
 
-// remove reference to stat 109 and change all relevant D5__PLS.SPL to just give 1
+// remove reference to stat 110 and change all relevant D5__PLS.SPL to just give 1
 COPY_EXISTING ~d5ctpls.spl~ ~override~
   PATCH_FOR_EACH let IN ~b~ ~c~ ~d~ BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 326 STR_VAR match_resource = EVAL ~d5ctlot%let%~ END

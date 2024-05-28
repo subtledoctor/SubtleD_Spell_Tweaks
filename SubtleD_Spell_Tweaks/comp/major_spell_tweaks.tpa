@@ -300,7 +300,7 @@ DEFINE_ACTION_FUNCTION invisibility_tweaks BEGIN
 //
 INCLUDE ~%MOD_FOLDER%/lib/d5_insanctibility.tpa~
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5__insanctibility.d5~ BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__insanctibility.d5~) BEGIN
   LAM D5_INSANCTIBILITY
 END
 
@@ -469,6 +469,14 @@ CREATE EFF ~d5tsill2~
 //
 COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 292 parameter1 = 0 parameter2 = 1 END
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 292 parameter1 = 0 parameter2 = 1 END
+
+/*
+COPY_EXISTING_REGEXP GLOB ~^.+\.cre$~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 292 parameter1 = 0 parameter2 = 1 END
+*/
 //__________________________________________________________________________________
 
 

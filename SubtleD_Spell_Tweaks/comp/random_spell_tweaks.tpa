@@ -1930,8 +1930,8 @@ DEFINE_ACTION_FUNCTION tweak_wondrous_recall BEGIN
 COPY_EXISTING ~sppr611.spl~ ~override~
   SAY UNIDENTIFIED_DESC @16112
   LPF ALTER_SPELL_HEADER INT_VAR target = 1 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_target = 1 target = 2 END
   LPF DELETE_EFFECT INT_VAR match_opcode = 261 END
-  LPF ALTER_EFFECT INT_VAR target = 2 END
   FOR (spls = 1; spls < 15; ++spls) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 2 parameter1 = 2 parameter2 = 1 timing = 1 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 261 target = 2 parameter1 = 1 parameter2 = 1 timing = 1 END
