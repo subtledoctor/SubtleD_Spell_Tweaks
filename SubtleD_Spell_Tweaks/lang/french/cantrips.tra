@@ -3,233 +3,235 @@
 // innate cantrips
 /////////////////////////
 
-@6004   = ~Prepare this cantrip~
-@6005   = ~Choose a different cantrip~
-@6006   = ~Rabbit~
-@6007   = ~Scary Ogre Berserker!~
-@6008   = ~Prepare Cantrips~
-@6009   = ~Cantrips represent a wizard's smallest and most basic spellcasting ability. This allows a spellcaster to prepare several of the following cantrips:
-- Drowse
-- Vicious Mockery
-- Thorn Grasp
-- Gust
-- Dazzle
-- Minor Illusion
-- Deflective Shell
-- Spell Thrust
-- Rigor Mortis
-- Wisplight
-- Conjure Rabbit
-- Armor
-- Magic Bolt
-- Glimpse
-- Diviner's Eyes
-- Chaotic Orb
+@6004   = ~Préparer ce tour de magie~
+@6005   = ~Choisir un autre tour de magie~
+@6006   = ~Lapin~
+@6007   = ~Ogre berserker qui fait peur !~
+@6008   = ~Préparer les tours de magie~
+@6009   = ~Ce pouvoir représente la faculté magique la plus élémentaire du magicien. Il permet au mage de choisir plusieurs des tours de magie suivants :
+- Somnolence
+- Moquerie méchante
+- Emprise des ronces
+- Coup de vent
+- Égarement
+- Illusion mineure
+- Coquille de déflexion
+- Annulation des protections
+- Rigidité cadavérique
+- Feu follet
+- Convocation de lapin
+- Armure
+- Carreau magique
+- Aperçu
+- Regard du devin
+- Orbe Chaotique
 ~
-@6010   = ~Cantrip Wand~
-@6011   = ~When wizards first learn to use magic, before deciding whether to specialize, they are taught some of the most basic and minor effects from each school. Unable as yet to cast proper spells, they channel these cantrips through a wand. A crutch, to be sure, but it has the benefit of not requiring memorization and not running out of charges.
+@6010   = ~Baguette de tours de magie~
+@6011   = ~Au tout début de leur apprentissage de la magie, avant de décider de se spécialiser ou non, les mages apprennent les effets les plus simples et anodins de chaque école de magie. Encore incapables de lancer réellement des sorts, ils exécutent ces tours de magie à l'aide d'une baguette. Ce n'est ni plus ni moins qu'une béquille, mais au moins, cela évite d'avoir à mémoriser les sorts et la baguette ne risque pas de tomber à court de charge.
 
-A wizard may use a Cantrip Wand as a ranged weapon, casting a Magic Bolt at an enemy once per round, which does 1d4+1 magic damage. (Note, while doing so the wizard will be at a tactical disadvantage against nearby attackers using melee weapons.) Alternatively, the wizard can use the wand to cast one of the following cantrips:
-- Deflective Shell: blocks one 1st- through 3rd level spell targeting the wizard. The Shell last 3 rounds.
-- Conjure Rabbit: conjures a small rodent near the wizard, which lasts for 3 rounds.
-- Glimpse: gives the wizard a brief (2-second) look at another area of the map.
-- Drowse: the target will fall asleep for 1 round on a failed save vs. Spells.
-- Bedazzle: the target suffers a -1 penalty to thac0 and AC for 1 round; on a failed save vs. Breath, the penalties are doubled and last for 2 rounds, and the target is blinded for the first round.
-- Stiffen Bones: the target suffers from painful stiffness, suffering a -1 penalty to thac0 and damage for 1 round; on a failed save vs. Death, the penalties are doubled and last for 2 rounds, and the target is Slowed for the first round.
-- Earthen Grasp: the target will be entangled, unable to move, for 2 rounds on a failed save vs. Petrification.~
-@6013   = ~Drowse~
-@6014   = ~Drowse
-
-Level: 0
-Range: 20 feet
-Duration: 3 rounds
-Area of Effect: Target
-Saving Throw: vs. Spells
-
-This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 3 rounds before regaining full consciousness.
+Le mage peut utiliser la baguette de tours de magie comme arme à distance, en lançant un sort de Carreau magique sur un ennemi une fois par round. Le carreau inflige 1d4+1 points de dégâts magiques (Le mage est alors en situation désavantageuse vis-à-vis des ennemis au corps à corps avec lui). Il a aussi la possibilité d'utiliser la baguette pour lancer l'un des tours de magie suivants :
+- Coquille de déflexion : bloque un sort de niveau 1 à 3 qui cible le magicien. La coquille dure 3 tours.
+- Convocation de lapin : convoque un petit rongeur à côté du magicien pendant 3 rounds.
+- Aperçu : donne au lanceur un bref aperçu (2 rounds) d'une autre partie de la zone actuelle.
+- Somnolence : la cible s'endort pour 1 round sur un échec au jet de sauvegarde contre les sorts.
+- Égarement : la cible subit une pénalité de 1 point au TAC0 et à la classe d‘armure pour 1 round. Sur un échec au jet de sauvegarde contre les souffles, les pénalités sont doublées et durent 2 rounds et la cible est aveuglée le premier round.
+- Raidissement des os : la cible souffre d'une raideur douloureuse, avec une pénalité de 1 point au TAC0 et aux dégâts pendant 1 round. Sur un échec au jet de sauvegarde contre la mort, les pénalités sont doublées, durent 2 rounds et la cible est ralentie pendant le premier round.
+- Poigne terreuse : la cible est enchevêtrée pendant 2 rounds, incapable de se déplacer, sur un échec au jet de sauvegarde contre la pétrification.
 ~
-@6015   = ~Vicious Mockery~
-@6016   = ~Vicious Mockery
+@6013   = ~Somnolence~
+@6014   = ~Somnolence
 
-Level: 0
-Range: 30 feet
-Duration: 3 rounds
-Area of Effect: one target
-Saving Throw: vs Spells
+Niveau : 0
+Portée : 6 mètres
+Durée : 3 round
+Zone d'effet : 1 cible
+Jet de sauvegarde : sorts annule
 
-This cantrip sends intrusive and maddening thoughts into the target's mind. The target will pause for 2 seconds to try and resist the spell's wild urges; then, if they fail a saving throw vs. Spells, the target will go berserk for 3 rounds, wildly attacking the nearest creature whether it be friend or foe.
+Ce tour de magie amène la cible à s'assoupir brièvement et à s'affaler au sol pendant 3 rounds avant de se réveiller complètement.
 ~
-@6017   = ~Thorn Grasp~
-@6018   = ~Thorn Grasp
+@6015   = ~Moquerie méchante~
+@6016   = ~Moquerie méchante
 
-Level: 0
-Range: 30 feet
-Duration: 2 rounds
-Area of Effect: Target
-Saving Throw: vs. Breath
+Niveau : 0
+Portée : 9 mètres
+Durée : 3 round
+Zone d'effet : 1 cible
+Jet de sauvegarde : sorts, partiel
 
-This cantrip causes tendrils to rise up from the ground and grab at the target's legs and body, preventing movement for a few seconds. On a failed saving throw vs. Breath Weapon, the target will be held in place for 2 rounds.
+Ce tour de magie insère des pensées intrusives et exaspérantes dans la tête de la cible. La cible s'interrompra pendant 2 secondes pour essayer de résister au sort. En cas d'échec à un jet de sauvegarde contre les sorts, elle deviendra berserk pendant 3 round, attaquant sauvagement la plus proche créature, qu'elle soit amie ou ennemie.
 ~
-@6019   = ~Gust~
-@6020   = ~Gust
+@6017   = ~Emprise des ronces~
+@6018   = ~Emprise des ronces
 
-Level: 0
-Range: 30 feet
-Duration: 1 round
-Area of Effect: one target
-Saving Throw: vs. Breath
+Niveau : 0
+Portée : 9 mètres
+Durée : 2 round
+Zone d'effet : 1 cible
+Jet de sauvegarde : souffle
 
-This cantrip creates a sudden strong breeze that blows the target 10 feet away from the caster if they fail a saving throw vs. Breath Weapon with a 2-point penalty. Further, if they fail the saving throw with a 2-point bonus, the target will lose their footing and fall down.
+Ce tour de magie fait surgir des vrilles du sol qui s'accrochent au jambes et au corps de la cible et l'empêchent de se déplacer pendant quelques secondes. Sur un échec à un jet de sauvegarde contr les souffles, la cible est immobilisée pendant 2 rounds.
 ~
-@6021   = ~Dazzle~
-@6022   = ~Dazzle
+@6019   = ~Coup de vent~
+@6020   = ~Coup de vent
 
-Level: 0
-Range: 10 feet
-Duration: 2 rounds
-Area of Effect: Target
-Saving Throw: vs. Spells
+Niveau : 0
+Portée : 9 mètres
+Durée : 1 round
+Zone d'effet : 1 cible
+Jet de sauvegarde : souffle
 
-This cantrip creates intense sparkling light that flash in front of the target's eyes, causing a 2-point penalties to attack rolls for 3 rounds. Further, if the target fails a saving throw vs. spells, they are also blinded for two rounds.
+Ce tour de magie crée un coup de vent soudain qui emporte la cible sur 3 mètres en l'éloignant du lanceur si elle échoue à un jet de sauvegarde contre les souffles avec une pénalité de 2 points. Si de plus elle échoue au jet avec un bonus de 2 points, elle perd l'équilibre et tombe au sol.
 ~
-@6023   = ~Minor Illusion~
-@6024   = ~Minor Illusion
+@6021   = ~Égarement~
+@6022   = ~Égarement
 
-Level: 0
-Range: 20 feet
-Duration: 3 rounds
-Area of Effect: special
-Saving Throw: none
+Niveau : 0
+Portée : 3 mètres
+Durée : 2 rounds
+Zone d'effet : 1 cible
+Jet de sauvegarde : sorts annule
 
-This cantrip creates the image of a fearsome ogre at the location of the caster's choosing. This ogre cannot actually harm anyone, and contact with it will dispel the illusion. In the right situation, this can be very valuable as a momentary distraction.
+Ce tour de magique crée une lumière intense et scintillante devant les yeux de la cible. Il subit une pénalité de 2 point au TAC0 pendant 3 rounds. Si la cible échoue à un jet de sauvegarde contre les sorts, elle est aveuglée pendant 2 ronds.
 ~
-@6025   = ~Reflected Image~
-@6026   = ~Reflected Image
+@6023   = ~Illusion mineure~
+@6024   = ~Illusion mineure
 
-Level: 0
-Range: 0
-Duration: 4 rounds
-Area of Effect: caster
-Saving Throw: none
+Niveau : 0
+Portée : 6 mètres
+Durée : 3 rounds
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
 
-This cantrip creates an image of <PRO_HIMHER>self that travels alongside <PRO_HIMHER>. A successful attacker has a 50% chance to strike the image (which then disappears) and a 50% chance to strike the caster.
+Ce tour de magie projette l'image d'un ogre terrifiant à l'endroit désigné par le lanceur. En réalité, cet ogre ne peut faire aucun mal à qui que ce soit et tout contact avec lui fera disparaître l'illusion. Dans les bonne conditions, ce sort peut être très utile comme distraction momentanée.
 ~
-@6027   = ~Deflective shell~
-@6028   = ~Deflective shell
+@6025   = ~Image Réfléchie~
+@6026   = ~Image Réfléchie
 
-Level: 0
-Range: 0
-Duration: 5 rounds
-Area of Effect: caster
-Saving Throw: none
+Niveau : 0
+Portée : le lanceur
+Durée : 4 rounds
+Zone d'effet : le lanceur
+Jet de sauvegarde : aucun
 
-This cantrip raises a fragile magical barrier around the caster. This thin shell of energy will absorb the effects of a single spell of up to 3rd level that is directed at the caster.
+Ce tour de magie crée une image du jeteur de sorts qui se déplace à ses côté. Un attaquant qui réussit une attaque a 50 % de chances de toucher l'image (qui disparaît alors) et 50 % de chance de tuocher le lanceur.
 ~
-@6029   = ~Spell Thrust~
-@6030   = ~Spell Thrust
+@6027   = ~Coquille de déflexion~
+@6028   = ~Coquille de déflexion
 
-Level: 0
-Range: 30 ft.
-Duration: instant
-Area of Effect: one target
-Saving Throw: none
+Niveau : 0
+Portée : le lanceur
+Durée : 5 rounds
+Zone d'effet : le lanceur
+Jet de sauvegarde : aucun
 
-This cantrip will dispel spell protections of 5th level and lower. This includes: Minor Spell Deflection, Minor Globe of Invulnerability, Spell Immunity, and Minor Spell Turning.
+Ce tour de magie érige une fragile barrière magique autour du jeteur de sorts. Cette fine coquille d'énergie absorbera les effets d'un unique sort de niveau 3 au plus qui prend le lanceur pour cible.
 ~
-@6031   = ~Rigor  Mortis~
-@6032   = ~Rigor  Mortis
+@6029   = ~Annulation des protections~
+@6030   = ~Annulation des protections
 
-Level: 0
-Range: 20 feet
-Duration: 3 rounds
-Area of Effect: one target
-Saving Throw: vs. Death
+Niveau : 0
+Portée : 9 mètres
+Durée : instantanée
+Zone d'effet: 1 cible
+Jet de sauvegarde : aucun
 
-This cantrip the target's body to ache and stiffen, Slowing the target for 1 round and, on a failed saving throw vs Death, also causing 3-point penalties to Strength, Dexterity, thac0, and AC for 3 rounds.
+Ce tour de magie dissipe les protections de sort de niveau 5 au plus. Ceci inclut : Déviation de sorts mineure, Globe mineur d'invulnérabilité, Immunité contre les sorts et Renvoi des sorts mineurs
 ~
-@6033   = ~Wisplight~
-@6034   = ~Wisplight
+@6031   = ~Rigidité cadavérique~
+@6032   = ~Rigidité cadavérique
 
-Level: 0
-Range: 30 feet
-Duration: 3 rounds
-Area of Effect: one target
-Saving Throw: none
+Niveau : 0
+Portée : 6 mètres
+Durée : 3 rounds
+Zone d'effet : 1 créature
+Jet de sauvegarde : mort, partiel
 
-This cantrip causes tiny motes of light to coalesce and swirl around the target. This makes <PRO_HIMHER> easier to strike (2-point penalty to AC) and prevents <PRO_HIMHER> from turning invisible for 3 rounds.
+Ce tour de magie raidit et endolorit le corps de la cible pendant 1 round. Sur un échec à un jet de sauvegarde contre la mort, la cible subit de plus des pénalités de 3 points à la force, à la dextérité, au TAC0 et à la classe d'armure pendant 3 rounds.
 ~
-@6035   = ~Conjure Rabbit~
-@6036   = ~Conjure Rabbit
+@6033   = ~Feu follet~
+@6034   = ~Feu follet
 
-Level: 0
-Range: 20 feet
-Duration: 3 rounds
-Area of Effect: The caster
-Saving Throw: None
+Niveau : 0
+Portée : 9 mètres
+Durée : 3 rounds
+Zone d'effet : 1 créature
+Jet de sauvegarde : Aucun
 
-This cantrip conjures a medium-sized bunny in the location of the caster's choosing.
+Ce tur de magie réunit plusieurs minuscules particules lumineuses qui tourbillonnent autour de la cible, ce qui la rend plus facile à toucher (malus de 2 points à la classe d'armure) et l'empêche de devenir invisible pendant 3 rounds.
 ~
-@6037   = ~Armor~
-@6038   = ~Armor
+@6035   = ~Convocation de lapin~
+@6036   = ~Convocation de lapin
 
-Level: 0
-Range: 0
-Duration: 9 hours
-Area of Effect: caster
-Saving Throw: none
+Niveau : 0
+Portée : 6 mètres
+Durée : 3 rounds
+Zone d'effet : le lanceur
+Jet de sauvegarde : Aucun
 
-This cantrip creates a magical protection that is something like scale mail armor (AC 6). The magical Armor does not hinder movement, adds no weight or encumbrance, and doesn't prevent spellcasting.
+Ce tour de magie convoque un rongeur de taille moyenne à l'endroit indiqué par le lanceur.
 ~
-@6039   = ~Magic Bolt~
-@6040   = ~Magic Bolt
+@6037   = ~Armure~
+@6038   = ~Armure
 
-Level: 0
-Range: 30 feet
-Duration: n/a
-Area of Effect: one target
-Saving Throw: none
+Niveau : 0
+Portée : personnelle
+Durée : 9 heures
+Zone d'effet : le lanceur
+Jet de sauvegarde : aucun
 
-This cantrip allows the caster to direct a small ball of magical energy at a target, functioning as a once-per round ranged attack that almost never misses. The energy will cause 1d4+1 damage each time it strikes someone. However, it is completely blocked the Shield spell as well as by any magical protection such as Globe of Invulnerability or Spell Deflection.
+Ce tour de magie crée une protection magique qui protège comme une armure d'écailles (CA 6). L'armure ne pèse rien, n'encombre pas l'utilisateur et n'exclut pas non plus la possibilité de lancer des sorts.
 ~
-@6041   = ~Glimpse~
-@6042   = ~Glimpse
+@6039   = ~Carreau magique~
+@6040   = ~Carreau magique
 
-Level: 0
-Range: map
-Duration: 2 seconds
-Area of Effect: special
-Saving Throw: none
+Niveau : 0
+Portée : 9 mètres
+Durée : instantanée
+Zone d'effet : 1 cible
+Jet de sauvegarde : aucun
 
-This cantrip gives the caster a brief (2-second) look at what is happening in another area of the local map.
+Ce tour de magie crée un petit carreau d'énergie magique que le lanceur peut diriger et qui se comporte comme une arme à distance avec une attaque par round qui n'échoue presque jamais. Le carreau d'énergie inflige 1d4+1 points de dégâts à la cible pour chaque attaque réussie. Par contre, elle est complètement interceptée par le sort Bouclier, mais aussi par toute protection magique comme un Globe d'invulnérabilité ou une Déviation des sorts.
 ~
-@6043   = ~Diviner's Eyes~
-@6044   = ~Diviner's Eyes
+@6041   = ~Aperçu~
+@6042   = ~Aperçu
 
-Level: 0
-Range: 20 feet
-Duration: 5 rounds
-Area of Effect: one ally
-Saving Throw: none
+Niveau : 0
+Portée : spécial
+Durée : 2 secondes
+Zone d'effet : spécial
+Jet de sauvegarde : aucun
 
-This cantrip allows the caster to share <PRO_HISHER> perspective with an ally - literally. Able to evaluate and process the battlefield from both the caster's perspective and their own, the recipient of this cantrip gains a 2-point bonus on to-hit rolls for 5 rounds.
+Ce tour de magie donne au jeteur du sort un bref (2 secondes) aperçu de ce qui se passe dans une autre partie de la zone dans laquelle il se trouve.
 ~
-@6045   = ~Chaos Orb~
-@6046   = ~Chaos Orb
+@6043   = ~Regard du devin~
+@6044   = ~Regard du devin
 
-Level: 0
-Range: 30 ft.
-Duration: Special
-Area of Effect: 1 creature
-Saving Throw: Special
+Niveau : 0
+Portée : 6 mètres
+Durée : 5 rounds
+Zone d'effet : 1 allié
+Jet de sauvegarde : aucun
 
-This spell causes a colorful sphere to speed unerringly to its target. The color and effect as it flies through the air; the effects on the target are unpredictable and include damage as well as a secondary effect which occurs on a failed save vs. Spella with a +2 bonus
- 20% chance: 1d4 magic damage and blinds the target for 1 round.
- 20% chance: 1d4 acid damage and inflicts pain (-1 penalty to Strength, Dexterity, AC, and THAC0) upon the target for 3 rounds.
- 20% chance: 1d4 lightning damage and stuns the target for 1 round.
- 20% chance: 1d4 cold damage and causes weakness (-4 penalty to THAC0) in the target for 3 rounds.
- 20% chance: 1d4 fire damage and causes the target to panic for 2 rounds.
+Ce tour de magie permet au jeteur de sorts de partager son point de vue avec un allié... littéralement. Avec la capacité d'évaluer et de gérer le champ de bataille de sa propre perspective et de celle du lanceur en même temps, le bénéficiaire de ce tour obtient un bonus de 2 points aux jets d'attaque pendant 5 rounds.
 ~
-@6091   = ~Cancel Magic Bolt~
+@6045   = ~Orbe chaotique~
+@6046   = ~Orbe chaotique
+
+Niveau : 0
+Portée : 9 mètres
+Durée : spéciale
+Zone d'effet : 1 créature
+Jet de sauvegarde : spécial
+
+Ce tour de magie crée uen sphère colorée qui fuse vers sa cible. Autant la couleur de la sphère que les effets sur la cible sont imprévisibles. Au contact, la sphère cause des dégâts avec en supplément un effet secondaire en cas d'échec à un jet de sauvegarde contre les sorts avec un bonus de 2 points.
+
+- 20 % de chances : 1d4 points de dégâts magique et  aveugle la cible pendant 1 round.
+- 20 % de chances : 1d4 points de dégâts acides et provoque de la douleur (pénalité de 1 point à la force, à la dextérité, à la CA et au TAC0) pendant 3 rounds.
+- 20 % de chances : 1d4 points de dégâts électriques et étourdit la cible pendant 1 round.
+- 20 % de chances : 1d4 points de dégâts de froid et provoque une faiblesse (pénalité de 4 points au TAC0) pendant 3 rounds.
+- 20 % de chances : 1d4 points de dégâts de feu et fait paniquer la cible pendant 2 rounds.
+~
+@6091   = ~Mettre fin à Carreau magique~
 
 /////////////////////////
 // level one cantrips
@@ -309,7 +311,7 @@ Temps d'incantation : 2
 Zone d'effet : 1 créature
 Jet de sauvegarde : annule
 
-Ce sort de premier niveau aveugle temporairement la cible. Un jet de sauvegarde est permis. S'il réussit, la cible ne subit qu'une pénalité d'un point aux jets d'attaque, de dégâts et à la CA pendant 2 rounds. Si le jet échoue, la victime, aveuglée, a un champ de vision réduit et reçoit un malus de 4 points à ses jets d'attaque et à sa classe d'armure. Cette cécité disparaît après 2 rounds.
+Ce sort de premier niveau aveugle temporairement la cible. Un jet de sauvegarde est permis. S'il réussit, la cible ne subit qu'une pénalité d'un point aux jets d'attaque, de dégâts et à la classe d’armure pendant 2 rounds. Si le jet échoue, la victime, aveuglée, a un champ de vision réduit et reçoit un malus de 4 points à ses jets d'attaque et à sa classe d'armure. Cette cécité disparaît après 2 rounds.
 ~
 // conjure rabbit as lv1
 @7073  = ~Convocation de lapin~
@@ -411,7 +413,7 @@ Temps d'incantation : 1
 Zone d'effet : rayon de 9 m
 Jet de sauvegarde : annule
 
-Lorsque le magicien lance un sort de sommeil, il provoque un état comateux chez une ou plusieurs créatures (autres que les morts-vivants et certaines créatures à l'abri des effets de ce sort particulier). Toutes les créatures affectées doivent se trouver à 9 mètres de distance les unes des autres. Les créatures dans la zone d'effet doivent réussir un jet de sauvegarde avec un malus de 3 points ou s'endormir. Les monstres possédant 5 DV ou plus ne sont pas affectés. Les attaques contre les adversaires endormis n'échouent jamais.
+Lorsque le magicien lance un sort de sommeil, il provoque un état comateux chez une ou plusieurs créatures (autres que les morts-vivants et certaines créatures à l'abri des effets de ce sort particulier). Toutes les créatures affectées doivent se trouver à 9 mètres de distance les unes des autres. Les créatures dans la zone d'effet doivent réussir un jet de sauvegarde avec un malus de 3 points ou s'endormir. Les monstres possédant 5 DV ou plus ne sont pas affectés. Les attaques contre les adversaires endormis n'échouent jamais.
 
 Si la créature endormie subit des dégâts, elle se réveille doucement sur une durée de 1 round. De plus, une fois qu'une créature a été endormie par ce sort, elle ne peut être affectée dans les 8 heures qui suivent.
 ~
@@ -481,5 +483,5 @@ Jet de sauvegarde : annule
 
 Un sort de hantise permet au magicien de jouer avec les peurs naturelles pour provoquer chez une créature la vision de quelqu'un ou de quelque chose d'inamical avançant vers elle d'une manière menaçante. Si la créature ne réussit pas un jet de sauvegarde contre les sorts, elle s'enfuit le plus vite et le plus loin possible du magicien. La créature a une pénalité de jet de 1 point par tranche de 2 niveaux d'expérience du lanceur du sort, avec un maximum de 6 points au niveau 12. Ce n'est pas le magicien qui poursuit effectivement la créature en fuite, mais un fantasme issu de son esprit. Dans tous les cas, le sort n'est efficace que contre les créatures d'intelligence 2 et plus, et les morts-vivants ne sont pas affectés.
 
-Toute personne qui a été ciblée par ce sort, qu'elle ai ou non réussi le jet de sauvegarde, se méfiera pendant un certain temps, et ne pourra être affectée par ce sort pendant les 8 prochaines heures.
+Toute personne qui a été ciblée par ce sort, qu'elle ait ou non réussi le jet de sauvegarde, se méfiera pendant un certain temps, et ne pourra être affectée par ce sort pendant les 8 prochaines heures.
 ~
