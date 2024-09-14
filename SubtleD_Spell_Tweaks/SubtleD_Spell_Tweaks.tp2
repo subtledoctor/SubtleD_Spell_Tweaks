@@ -1,8 +1,14 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.8.3~
+VERSION ~2.8.5~
 
 ALWAYS
+
+	ACTION_IF GAME_IS ~iwdee~ BEGIN
+	  ACTION_IF FILE_EXISTS_IN_GAME ~#bonecir.spl~ BEGIN
+		COPY_EXISTING ~sppr101.spl~ ~override/#bonecir.spl~
+	  END
+	END
 
 	INCLUDE ~SubtleD_Spell_Tweaks/lib/misc_functions.tpa~
 
