@@ -1,21 +1,21 @@
 // used to remove school from a scroll description
 // no SR
 @160000 = ~(Abjuration)~
-@160001 = ~(Transmutation)~
+@160001 = ~(Transmutation)\|(Alteration)~ // english possible
 @160002 = ~(Conjuration)~
-@160003 = ~(Conjuration/Convocation)~
+@160003 = ~(Conjuration/Convocation)\|(Conjuration/Summoning)~
 @160004 = ~(Divination)~
-@160005 = ~(Enchantement/Charme)~
-@160006 = ~(Évocation)~
-@160007 = ~(Illusion/Fantasme)~
-@160008 = ~(Nécromancie)~
-@160009 = ~(Invocation/Évocation)~
-@160010 = ~(Transmutation, Illusion)~
-@160011 = ~(Abjuration, Invocation/Évocation)~
-@160012 = ~(Divination, Transmutation)~
-@160013 = ~(Abjuration, Transmutation)~
-@160014 = ~(Conjuration/Convocation, Invocation/Évocation)~
-@160015 = ~(Enchantement)~
+@160005 = ~(Enchantement/Charme)\|(Enchantment/Charm)~
+@160006 = ~([ÉE]vocation)~
+@160007 = ~(Illusion/Fantasme)\|(Illusion/Phantasm)~
+@160008 = ~(Nécromancie)\|(Necromancy)~
+@160009 = ~(Invocation/Évocation)\|(Invocation/Evocation)~
+@160010 = ~(Transmutation, Illusion)\|(Alteration, Illusion)~
+@160011 = ~(Abjuration, Invocation/[ÉE]vocation)~
+@160012 = ~(Divination, Transmutation)\|(Divination, Alteration)~
+@160013 = ~(Abjuration, Transmutation)\|(Abjuration, Alteration)~
+@160014 = ~(Conjuration/Convocation, Invocation/Évocation)\|(Conjuration/Summoning, Invocation/Evocation)~
+@160015 = ~(Enchante?ment)~
 @160016 = ~(Illusion)~
 @160017 = ~(Invocation)~
 @160018 = ~(Transmutation, Invocation)~
