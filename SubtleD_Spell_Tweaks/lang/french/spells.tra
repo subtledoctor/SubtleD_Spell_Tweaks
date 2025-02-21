@@ -260,6 +260,41 @@ Par exemple, un magicien du 12e niveau pourrait placer une Contingence avec le s
 
 La chaîne de contingence canalise une partie de l'énergie magique du lanceur et ne la relâche que sous certaines conditions. Le magicien choisit trois sorts qui ne seront activés que lorsque la condition spécifiée est remplie, par exemple lorsqu'il subit des dégâts. Dans ce cas, les trois sorts sont immédiatement lancés. Les sorts jusqu'au niveau 8 ou inférieur peuvent être utilisés dans la contingence.
 ~
+@6408 = ~Vision véritable
+
+Portée : 0
+Durée : 6 heures
+Temps d'incantation : 6
+Zone d'effet : rayon de 36,5 m
+Jet de sauvegarde : aucun
+
+Lorsque ce sort est lancé, le jeteur de sorts obtient la capacité de voir la position exacte des créatures ou des objets sous l'effet de déphasage ou d'invisibilité, et de percer les illusions à jour. Ce sort neutralise effectivement des sortilèges tels que Flou et Image-Miroir, permet au lanceur de sorts de voir et cibler des créatures normalement invisibles, et le rend immunisé aux sorts d'illusions hostiles comme Hantise. Le lanceur de sorts est également guéri de toute forme de cécité et y est immunisé pendant toute la durée du sort.
+~
+@6409 = ~Vision véritable
+(Divination)
+
+Niveau : 5
+Sphère : Divination
+Portée : 0
+Durée : 6 heures
+Temps d'incantation : 6
+Zone d'effet : rayon de 36,5 m
+Jet de sauvegarde : aucun
+
+Lorsque ce sort est lancé, le jeteur de sorts obtient la capacité de voir la position exacte des créatures ou des objets sous l'effet de déphasage ou d'invisibilité, et de percer les illusions à jour. Ce sort neutralise effectivement des sortilèges tels que Flou et Image-Miroir, permet au lanceur de sorts de voir et cibler des créatures normalement invisibles, et le rend immunisé aux sorts d'illusions hostiles comme Hantise. Le lanceur de sorts est également guéri de toute forme de cécité et y est immunisé pendant toute la durée du sort.
+~
+@6410 = ~Vision véritable
+(Divination)
+
+Niveau : 6
+Portée : 0
+Durée : 6 heures
+Temps d'incantation : 6
+Zone d'effet : rayon de 36,5 m
+Jet de sauvegarde : aucun
+
+Lorsque ce sort est lancé, le jeteur de sorts obtient la capacité de voir la position exacte des créatures ou des objets sous l'effet de déphasage ou d'invisibilité, et de percer les illusions à jour. Ce sort neutralise effectivement des sortilèges tels que Flou et Image-Miroir, permet au lanceur de sorts de voir et cibler des créatures normalement invisibles, et le rend immunisé aux sorts d'illusions hostiles comme Hantise. Le lanceur de sorts est également guéri de toute forme de cécité et y est immunisé pendant toute la durée du sort.
+~
 @6413 = ~Non-détection~
 @6414 = ~Non-détection
 (Abjuration)

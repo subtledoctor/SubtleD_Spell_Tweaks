@@ -734,6 +734,41 @@ Saving Throw: none
 
 This spell renders the caster invisible, except for <PRO_HISHER> shadow. Moreover, the shadow can move apart from the caster and, while it cannot perform any actions like attacking or casting spells, it can move around and act as a decoy for the invisible mage. The caster will be protected by this invisibility as long as the shadow has not been destroyed, but will be rendered visible if the shadow is killed or dispelled.
 ~
+@6408   = ~True Seeing
+
+Range: 0
+Duration: 6 hours
+Casting Time: 6
+Area of Effect: special
+Saving Throw: None 
+
+When this ability is used, the caster gains the ability to see the exact locations of creatures or objects under displacement or invisibility effects, and see through illusions. This allows the caster to see and target creatures with illusionary defenses such as Invisibility and Mirror Image, and makes the caster immune to hostile illusion spells such as Spook. Illusionary creatures will be revealed as deceptions and unable to affect the caster at all. The caster is also cured of any form of blindness and is immune to it for the duration of the spell.
+~
+@6409   = ~True Seeing
+(Divination)
+
+Level: 5
+Sphere: Divination
+Range: 0
+Duration: 6 hours
+Casting Time: 6
+Area of Effect: special
+Saving Throw: None 
+
+When this spell is cast, the caster gains the ability to see the exact locations of creatures or objects under displacement or invisibility effects, and see through illusions. This allows the caster to see and target creatures with illusionary defenses such as Invisibility and Mirror Image, and makes the caster immune to hostile illusion spells such as Spook. Illusionary creatures will be revealed as deceptions and unable to affect the caster at all. The caster is also cured of any form of blindness and is immune to it for the duration of the spell.
+~
+@6410   = ~True Seeing
+(Divination)
+
+Level: 6
+Range: 0
+Duration: 6 hours
+Casting Time: 6
+Area of Effect: special
+Saving Throw: None 
+
+When this spell is cast, the caster gains the ability to see the exact locations of creatures or objects under displacement or invisibility effects, and see through illusions. This allows the caster to see and target creatures with illusionary defenses such as Invisibility and Mirror Image, and makes the caster immune to hostile illusion spells such as Spook. Illusionary creatures will be revealed as deceptions and unable to affect the caster at all. The caster is also cured of any form of blindness and is immune to it for the duration of the spell.
+~
 @6411   = ~Chameleon~
 @6412   = ~Chameleon
 Level: 1

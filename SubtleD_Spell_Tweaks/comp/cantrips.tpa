@@ -871,7 +871,7 @@ CREATE SPL ~d5ctp00~	//	cantrip choice spell
   SAY UNIDENTIFIED_DESC @6009
   WRITE_SHORT 0x1c 4
   WRITE_LONG 0x34 1
-  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 2 target = 5 required_level = 1 STR_VAR icon = ~d5ctp01~ END
+  LPF D5_ADD_ONE_SPELL_HEADER INT_VAR type = 1 location = 4 target = 5 required_level = 1 STR_VAR icon = ~d5ctp01~ END
   FOR (num=1; num<18; ++num) BEGIN
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = EVAL ~d5ct%num%l~ END
   END

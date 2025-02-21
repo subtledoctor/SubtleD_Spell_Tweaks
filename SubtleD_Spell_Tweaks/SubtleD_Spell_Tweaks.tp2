@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/SubtleD_Spell_Tweaks~
 AUTHOR ~subtledoctor~
-VERSION ~2.8.8~
+VERSION ~2.9~
 
 ALWAYS
 
@@ -561,6 +561,7 @@ BEGIN @1505
 DESIGNATED 1505
 REQUIRE_PREDICATE (ENGINE_IS ~bgee bg2ee iwdee eet~) @1 
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) OR (FILE_EXISTS_IN_GAME ~qdtnb_spelltweaks_invis.qd~) @1
+FORBID_COMPONENT ~SubtleD_Spell_Tweaks.tp2~ ~45~ @6
 // REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__sdst.d5~) @6
 //GROUP @6
 

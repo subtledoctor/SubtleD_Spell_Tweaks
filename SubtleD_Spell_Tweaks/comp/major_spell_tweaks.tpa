@@ -358,8 +358,8 @@ COPY_EXISTING ~sppr309.spl~ ~override~
   READ_LONG 0x08 spell_name
   READ_LONG 0x50 spell_desc
   PATCH_FOR_EACH second IN ~6~ ~12~ ~18~ ~24~ ~30~ BEGIN 	//	do this more often
-	LPF CLONE_EFFECT INT_VAR match_opcode = 146 match_duration = %second% duration = (%second% - 2) STR_VAR match_resource = ~sppr309d~ END
-	LPF CLONE_EFFECT INT_VAR match_opcode = 146 match_duration = %second% duration = (%second% - 4) STR_VAR match_resource = ~sppr309d~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 146 match_duration = %second% duration = (%second% - 2) STR_VAR match_resource = ~sppr309d~ END
+	LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 146 match_duration = %second% duration = (%second% - 4) STR_VAR match_resource = ~sppr309d~ END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 2 power = 3 parameter2 = 20 timing = 0 duration = 30 END
 IF_EXISTS
@@ -419,36 +419,128 @@ END
 // plus deafness
 // and/or caster level penalty? 
 
-COPY_EXISTING ~sppr505.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 100 parameter2 = 7 parameter1 = 7 END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~spwi609.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 100 parameter2 = 7 parameter1 = 7 END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~spcl232.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 100 parameter2 = 7 parameter1 = 7 END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~spcl732.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 100 parameter2 = 7 parameter1 = 7 END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~sppr505d.spl~ ~override~
+COPY ~%MOD_FOLDER%/data/core/d5_base.spl~ ~override/sppr505.spl~
+	WRITE_LONG 0x08 12096
+	SAY UNIDENTIFIED_DESC @6409
+	WRITE_ASCII 0x10 ~CAS_P03~ #8
+	WRITE_SHORT 0x1c 2
+	WRITE_SHORT 0x22 16
+	WRITE_BYTE 0x25 3
+	WRITE_BYTE 0x27 13
+	WRITE_LONG 0x34 5
+	WRITE_ASCII 0x3a ~SPWI609C~ #8
+	LPF ALTER_SPELL_HEADER INT_VAR type = 3 target = 5 location = 2 speed = 6 STR_VAR icon = ~SPWI609B~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 target = 1 timing = 0 duration = 2 resist_dispel = 3 STR_VAR resource = ~SPTRUSEE~ END 				// visual
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 141 target = 1 parameter2 = 30 timing = 1 resist_dispel = 3 END 											// lighting
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 50 target = 1 parameter1 = 1394231552 parameter2 = 1310720 timing = 0 duration = 1 resist_dispel = 3 END 	// color pulse
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target = 1 parameter2 = 108 timing = 0 duration = 1200 resist_dispel = 3 END 							// portrait icon
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = 1 parameter2 = 118 timing = 0 duration = 1200 resist_dispel = 3 END 			// stat
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 75 target = 1 timing = 1 resist_dispel = 3 END 															// cure blindness
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 240 target = 1 timing = 1 END 																			// remove blind icon
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 74 timing = 0 duration = 1200 resist_dispel = 3 END 							// immune to blindness
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 169 target = 1 parameter2 = 8 timing = 0 duration = 1200 resist_dispel = 3 END 							// prevent blind icon
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 267 target = 1 parameter2 = 1474 timing = 0 duration = 1200 resist_dispel = 3 END 						// disable blinded string
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 193 target = 1 parameter2 = 1 timing = 0 duration = 1200 resist_dispel = 3 END 							// detection
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 100 target = 1 parameter1 = 7 parameter2 = 7 timing = 0 duration = 1200 resist_dispel = 3 END 			// immunity to illusionary
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 1200 resist_dispel = 3 STR_VAR resource = ~d5tsight~ END // contingency repeat
+	PATCH_IF !(GAME_IS ~iwdee~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 timing = 0 duration = 1200 resist_dispel = 3 STR_VAR resource = ~SPWI106~ END 			// immune to BG blindness/obscuring mist
+	END
+	PATCH_IF (GAME_IS ~iwdee~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 timing = 0 duration = 1200 resist_dispel = 3 STR_VAR resource = ~SPWI106~ END 			// immune to IWD blindness
+	END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 timing = 0 duration = 1200 resist_dispel = 3 STR_VAR resource = ~SPWI125~ END 				// immune to spook
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 timing = 0 duration = 1200 resist_dispel = 3 STR_VAR resource = ~SPWI815~ END 				// immune to pw:blind
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode =  END // anything else...?
+
+COPY_EXISTING ~sppr505.spl~ ~override/spwi609.spl~
+	SAY UNIDENTIFIED_DESC @6410
+	WRITE_SHORT 0x1c 1
+	WRITE_LONG 0x34 6
+
+COPY_EXISTING ~sppr505.spl~ ~override/spcl232.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+
+COPY_EXISTING ~sppr505.spl~ ~override/spcl732.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~spin633.spl~) BEGIN	//	DOMT
+  COPY_EXISTING ~sppr505.spl~ ~override/spin633.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~ca#tsigh.spl~) BEGIN
+  COPY_EXISTING ~sppr505.spl~ ~override/ca#tsigh.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~tg#rc29.spl~) BEGIN
+  COPY_EXISTING ~sppr505.spl~ ~override/tg#rc29.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~tg#rc44.spl~) BEGIN
+  COPY_EXISTING ~sppr505.spl~ ~override/tg#rc44.spl~
+	SAY UNIDENTIFIED_DESC @6408
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+
+/* fiend innate no need
+ACTION_IF (FILE_EXISTS_IN_GAME ~spin166.spl~) BEGIN
+  COPY_EXISTING ~sppr505.spl~ ~override/.spl~
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+*/
+/* kua-toa? no need?
+ACTION_IF (FILE_EXISTS_IN_GAME ~spin684.spl~) BEGIN
+  COPY_EXISTING ~sppr505.spl~ ~override/.spl~
+	WRITE_SHORT 0x1c 4
+	WRITE_LONG 0x34 1
+	LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+END
+*/
+
+COPY ~%MOD_FOLDER%/data/core/d5_base.spl~ ~override/d5tseein.spl~
+	LPF ALTER_SPELL_HEADER INT_VAR type = 3 target = 5 location = 2 speed = 0 projectile = 159 END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 136 target = 2 timing = 1 END // force visible, sort of
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 136 target = 2 timing = 4 duration = 3 END // ditto
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill1~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill2~ END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~spwi609d.spl~ ~override~
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill1~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill2~ END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~spcl232d.spl~ ~override~
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill1~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~d5tsill2~ END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~d5tsnewe.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 193 opcode = 100 parameter2 = 7 parameter1 = 7 END
-IF_EXISTS BUT_ONLY
-COPY_EXISTING ~d5tsnewf.spl~ ~override~
-    WRITE_BYTE 0x27 0
-IF_EXISTS BUT_ONLY
+	PATCH_IF (FILE_EXISTS_IN_GAME ~dvtsight.eff~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 7 parameter2 = 7 timing = 0 duration = 7 STR_VAR resource = ~dvtsight~ END
+	END
+
+CREATE EFF ~d5tsight~
+    WRITE_LONG 0x10 232
+    WRITE_LONG 0x14 1
+    WRITE_LONG 0x18 0
+    WRITE_LONG 0x1c 0
+    WRITE_LONG 0x20 20
+    WRITE_LONG 0x24 0
+    WRITE_LONG 0x28 1200
+    WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~D5TSEEIN~ #8
+    WRITE_LONG 0x48 102
+
 CREATE EFF ~d5tsill1~
 	WRITE_LONG 0x10 22
 	WRITE_LONG 0x14 2
@@ -457,6 +549,7 @@ CREATE EFF ~d5tsill1~
 	WRITE_LONG 0x24 0
 	WRITE_LONG 0x28 7
 	WRITE_SHORT 0x2c 100
+
 CREATE EFF ~d5tsill2~
 	WRITE_LONG 0x10 80
 	WRITE_LONG 0x14 2
@@ -464,6 +557,7 @@ CREATE EFF ~d5tsill2~
 	WRITE_LONG 0x28 7
 	WRITE_SHORT 0x2c 100
 //__________________________________________________________________________________
+
 
 //backstab immunity when detecting invisible_________________________________________
 //
@@ -523,7 +617,7 @@ IF_EXISTS BUT_ONLY
 //make sure invis. purge etc. expose sanctuary______________________________________
 //
 COPY_EXISTING ~sppr309d.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 116 opcode = 160 END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 116 opcode = 160 END
 IF_EXISTS BUT_ONLY
 
 

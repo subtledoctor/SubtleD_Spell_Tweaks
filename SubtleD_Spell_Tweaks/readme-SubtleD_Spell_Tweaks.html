@@ -9,7 +9,7 @@
 <body>
 <h1>SubtleMods: SubtleD's Spell Tweaks</h1>
 <div class="section">
-  <p><strong> Version 2.8 </strong><br />
+  <p><strong> Version 2.9 </strong><br />
   <strong> Languages:</strong> English</p>
   <p><strong>Author: <a href="http://forums.gibberlings3.net/index.php?showuser=6306">The Subtle Doctor</a></strong></p>
   <p><strong><a href="https://github.com/subtledoctor/SubtleD_Spell_Tweaks">Home page</a></strong></p>
@@ -68,9 +68,10 @@
   </div>
   <h4 class="subheader">Component 45: Revised Invisibility</h4>
   <div class="section">
-    <p>This component merges the effects of Invisibility and Sanctuary (you can now loot chests and open doors while invisible :) ). The upshot is, if you cast 2nd-level Detect Invisible, the caster will be able to see and target invisible enemies but other party members who cannot see invisible cannot.</p>
-    <p>The Nondetection spell is renamed "Protection from Divination" and improved to actually block any DIVINATIONATTACK effects, like Invisibility Purge, Detect Illusion, and Oracle. A caster of Detect Invisible or True Sight <b>will</b> be able to spot and target enemies who are protected by Protection from Divination - Detect Invisible and True Sight affect the caster, not the target. But Protection from Divination will ensure that illusionary protections like Blur and Mirror Image are not dispelled.</p>
-    <p>Additionally, the 5th-level Oracle spell is empowered to destroy nearby illusionary creatures, including Shadow Monsters if they are revised by this mod, and Projected Images and similar clones.</p>
+    <p>This component merges the effects of Invisibility and Sanctuary (you can now loot chests and open doors while invisible :) ). The benefit of this is in changing how invisibility detection works. Instead of being an offensive method to comlpletely dispel invisibility, spells and abilities like See Invisible and True Seeing will allow <b>the caster</b> the caster to see and target invisible enemies. Other party members, however, who cannot see invisible creatures, cannot target invisible enemies. To distinguish itself from the lower level spell, True Seeing will protect from Blindness, Spook, and similar illusions, and have a duration of 6 hours.</p>
+    <p>The Nondetection spell is renamed "Protection from Divination" and improved to actually block any DIVINATIONATTACK effects, like Invisibility Purge, Detect Illusion, and Oracle. A caster of Detect Invisible or True Sight <b>will</b> be able to spot and target enemies who are protected by Protection from Divination - Detect Invisible and True Sight affect the caster's eyes, they are not divination attacks against the target. But Protection from Divination will ensure that illusionary protections like Blur and Mirror Image are not dispelled.</p>
+    <p>The 5th-level Oracle spell is empowered to destroy nearby illusionary creatures, including Shadow Monsters if they are revised by this mod, and Projected Images and similar clones.</p>
+    <p>Thieves who are invisible will not need to be behind an enemy to backstab, they will get the benefit of backstabbing from any direction. (Thieves using the nonmagical stealth ability, however, will still need to be behind their target to backstab.)</p>
   </div>
   <h4 class="subheader">Component 50: Pre-EE Behavior for Haste and Slow</h4>
   <div class="section">
