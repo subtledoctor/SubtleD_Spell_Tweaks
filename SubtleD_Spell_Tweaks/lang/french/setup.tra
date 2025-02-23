@@ -1,14 +1,14 @@
-@1 = ~This component is not available for Baldur's Gate, Icewind Dale or Icewind Dale 2.~ 
-@2 = ~This component is only available for the Enhanced Editions.~ 
-@3 = ~This component requires the Enhanced Engine v2.0 or later.~ 
-@4 = ~skipping, for reasons~
-@5 = ~Broad Magic System Tweaks~
-@6 = ~Individual Spell Tweaks~
+@1 = ~Ce composant n'est pas disponible pour Baldur's Gate, Icewind Dale ou Icewind Dale 2.~
+@2 = ~Ce composant est seulement disponible pour les jeux EE (Enhanced Editions).~
+@3 = ~Ce composant necessite le moteur Enhanced Engine v2.0 ou ulterieur.~
+@4 = ~ignore, juste parce que~
+@5 = ~Ajustement general du systeme de magie~
+@6 = ~Ajustements individuels de sorts~
 @7 = ~~
-@8 = ~This component requires Spell Revisions~
+@8 = ~Ce composant necessite Spell Revisions~
 //
 //
-@9  = ~Would you like to display components from random individual spell tweaks?~
+@9  = ~Souhaitez-vous afficher les composants d'ajustement individuels de sorts ?~
 //
 @10 = ~Re-equilibrage des ecoles de magie~
 @20 = ~Re-equilibrage des ecoles profanes opposees~
@@ -20,15 +20,15 @@
 @26 = ~ecoles opposees papier (PnP)~
 @27 = ~ecoles opposees papier (PnP), permettre les sorts mineurs~
 //
-@30 = ~High-Level Spells Penetrate Magic Resistance~
+@30 = ~Les sorts de haut niveau penetrent la resistance a la magie~
 //
-@35 = ~Les effets d'absorption de niveau~
-@36 = ~Ajouter un jet de sauvegarde pour les effets d'absorption de niveau~
-@37 = ~Ajouter la durée des effets d'absorption de niveau~
+@35 = ~Effets d'absorption de niveau~
+@36 = ~Ajouter un jet de sauvegarde pour l'absorption de niveau~
+@37 = ~Rendre l'absorption de niveau temporaire~
 @40 = ~Revision des clones illusoires~
-@45 = ~Revision d'Invisibilite et de Vision veritable~
-@50  = ~Modifier Rapidité et Lenteur pour qu'ils s'annulent l'un l'autre~
-@55 = ~Modifier les sorts de soin et similaires pour ignorer les protections contre les sorts~
+@45 = ~Revision des sorts 'Invisibilite' et 'Vision veritable'~
+@50 = ~Modifier 'Rapidite' et 'Lenteur' pour qu'ils s'annulent l'un l'autre~
+@55 = ~Modifier les sorts de soin pour ignorer les protections contre les sorts~
 @60 = ~Tours de magie~
 @61 = ~Tours de magie innes~
 @62 = ~Tours de magie de niveau 1~
@@ -37,63 +37,63 @@
 @82 = ~Le mod de Pooky : Infuser les familiers~
 @83 = ~Tours de magie pour les familiers~
 @1010 = ~Modifier les sorts de soin et similaires pour ignorer les protections contre les sorts~
-@1151  = ~Réduire les dégâts mais améliorer la Cécité pour le Soleil ardent de Spell Revisions~
-@1152  = ~Améliorer Lueur féerique~
-@1202  = ~Modifier Peau d'écorce pour bloquer une attaque par round~
-@1205  = ~Ajuster Détection des pièges~
-@1207  = ~Modifier Baies magiques pour en faire une régénération hors combat~
-@1212  = ~Ajuster Ralentissement du Poison~
-@1251  = ~Améliorer les dégâts et modifier le type de dégâts pour Lance d'alicorne~
-@1323  = ~Améliorer le temps d'incantation pour Exaltation et Clarté spirituelle~
-@1351  = ~Ajouter des effets de Lueur féerique et Lenteur au toucher de la Lame de lune~
-@1404  = ~Remplacer Neutralisation du poison par Suppression des afflictions~
-@1409  = ~Ajuster Protection contre la mort~
-@1413  = ~Ajuster Protection contre le plan négatif~
-@1451  = ~Modifier Vague destructrice pour ne pas affecter le groupe~
-@1505  = ~Modifier Vision Véritable pour affecter le groupe~
-@1603  = ~Rendre Barrière de lames dissipable par Brèche~
-@1609  = ~Modifier Aube illusoire pour ignorer la résistance à la magie~
-@1611  = ~Modifier Souvenir merveilleux pour restaurer tous les sorts de niveau 1 et 2~
-@1613  = ~Modifier Miroir physique pour bloquer une attaque toutes les 3 secondes~
-@1614  = ~Rendre Orbe desséchant de Sol plus facile à lancer~
-@1707  = ~Modifier Rayon de soleil pour ignorer la résistance à la magie~
-@1710  = ~Ajouter un effet de Lenteur à Parole sacrée~
-@2104  = ~Ajuster Charme personne et Charme néfaste~
-@2105  = ~Ajouter un effet d'aveuglement pour 1 round à Vapeur colorée~
-@2108  = ~Changer Protection contre la pétrification en 'Rétrovision'~
-@2110  = ~Make Identify Scale with Level~
-@2116  = ~Autoriser les cibles de Sommeil à se réveiller quand elles sont frappées~
-@2151  = ~Changer 'Expeditious Retreat' de Spell Revisions en 'Caméléon'~
-@2201  = ~Ajouter un évitement des projectiles à Flou~
-@2209  = ~Modifier Chance pour affecter tout le groupe~
-@2212  = ~Déplacer Image miroir au niveau 3~
-@2213  = ~Ajouter des effets persistants au Nuage puant de Spell Revisions~
-@2215  = ~Modifier Toile d'araignée pour ralentir au lieu d'immobiliser~
-@2217  = ~Changer Incinérateur d'Agannazar en Projectiles ardents de Melf~
-@2224  = ~Améliorer Poussière scintillante~
-@2251  = ~Ajouter un effet de Surdité au toucher à Bâton décuplé~
-@2316  = ~Ajuster Charme néfaste~
-@2321  = ~Déplacer Annulation des protections au niveau 1~
-@2324  = ~Modifier Immobilisation des morts-vivants et Contrôle des morts-vivants pour ignorer la résistance à la magie~
-@2352  = ~Augmenter la portée de Lance de glace~
-@2413  = ~Autoriser la cible de Sphère résistante d'Otiluke à utiliser son inventaire~
-@2418  = ~Rendre Bouclier de feu et Gaine acide de Mestil dissipable par Brèche~
-@2451  = ~Modifier les monstres de Convocation d'ombre plus illusoires~
-@2508  = ~Améliorer Vagues de fatigue de Spell Revisions~
-@2514  = ~Donner une Zone d'effet à Baisser résistance~
-@2518  = ~Changer le type de dégâts et l'école de Lame fantomatique~
-@2523  = ~Remplacer Feu du Soleil~
-@25231  = ~Remplacer Feu du Soleil par « Tempête de Projectiles »~
-@25232  = ~Remplacer Feu du Soleil par « Tempête de Incinérateur »~
+@1151  = ~Reduire les degats mais ameliorer la cecite pour le 'Soleil ardent' de Spell Revisions~
+@1152  = ~Ameliorer 'Lueur feerique'~
+@1202  = ~Modifier 'Peau d'ecorce' pour bloquer une attaque par round~
+@1205  = ~Ajuster 'Detection des pieges'~
+@1207  = ~Modifier 'Baies magiques' pour en faire une regeneration hors combat~
+@1212  = ~Ajuster 'Ralentissement du Poison'~
+@1251  = ~Ameliorer les degats et modifier le type de degats pour 'Lance d'alicorne'~
+@1323  = ~Ameliorer le temps d'incantation pour 'Exaltation' et 'Clarte spirituelle'~
+@1351  = ~Ajouter des effets de 'Lueur feerique' et 'Lenteur' au toucher de la 'Lame de lune'~
+@1404  = ~Remplacer 'Neutralisation du poison' par 'Suppression des afflictions'~
+@1409  = ~Ajuster 'Protection contre la mort'~
+@1413  = ~Ajuster 'Protection contre le plan negatif'~
+@1451  = ~Modifier 'Vague destructrice' pour ne pas affecter le groupe~
+@1505  = ~Modifier 'Vision veritable' pour affecter le groupe~
+@1603  = ~Rendre 'Barriere de lames' dissipable par 'Breche'~
+@1609  = ~Modifier 'Aube illusoire' pour ignorer la resistance a la magie~
+@1611  = ~Modifier 'Souvenir merveilleux' pour restaurer tous les sorts de niveau 1 et 2~
+@1613  = ~Modifier 'Miroir physique' pour bloquer une attaque toutes les 3 secondes~
+@1614  = ~Rendre 'Orbe dessechant de Sol' plus facile a lancer~
+@1707  = ~Modifier 'Rayon de soleil' pour ignorer la resistance a la magie~
+@1710  = ~Ajouter un effet de Lenteur a 'Parole sacree'~
+@2104  = ~Ajuster 'Charme personne' et 'Charme nefaste'~
+@2105  = ~Ajouter un effet d'aveuglement pour 1 round a 'Vapeur coloree'~
+@2108  = ~Changer 'Protection contre la petrification' en 'Retrovision'~
+@2110  = ~Modifier 'Identification' pour que le sort s'ameliore avec le niveau~
+@2116  = ~Autoriser les cibles de 'Sommeil' a se reveiller quand elles sont frappees~
+@2151  = ~Changer 'Repli expeditif' de Spell Revisions en 'Cameleon'~
+@2201  = ~Ajouter un evitement des projectiles a 'Flou'~
+@2209  = ~Modifier 'Chance' pour affecter tout le groupe~
+@2212  = ~Deplacer 'Image miroir' au niveau 3~
+@2213  = ~Ajouter des effets persistants au 'Nuage puant' de 'Spell Revisions'~
+@2215  = ~Modifier 'Toile d'araignee' pour ralentir au lieu d'immobiliser~
+@2217  = ~Changer 'Incinerateur d'Agannazar' en 'Projectiles ardents de Melf'~
+@2224  = ~Ameliorer 'Poussiere scintillante'~
+@2251  = ~Ajouter un effet de Surdite au toucher a 'Baton decuple'~
+@2316  = ~Ajuster 'Charme nefaste'~
+@2321  = ~Deplacer 'Annulation des protections' au niveau 1~
+@2324  = ~Modifier 'Immobilisation des morts-vivants' et 'Controle des morts-vivants' pour ignorer la resistance a la magie~
+@2352  = ~Augmenter la portee de 'Lance de glace'~
+@2413  = ~Autoriser la cible de 'Sphere resistante d'Otiluke' a utiliser son inventaire~
+@2418  = ~Rendre 'Bouclier de feu' et 'Gaine acide de Mestil' dissipables par 'Breche'~
+@2451  = ~Rendre les monstres de 'Convocation d'ombre' plus illusoires~
+@2508  = ~Ameliorer 'Vagues de fatigue' de Spell Revisions~
+@2514  = ~Modifier 'Abaissement de la resistance' pour en faire un sort de zone~
+@2518  = ~Changer le type de degats et l'ecole de 'Lame fantomatique'~
+@2523  = ~Remplacer 'Feu du Soleil'~
+@25231  = ~Remplacer 'Feu du Soleil' par 'Tempete de Projectiles'~
+@25232  = ~Remplacer 'Feu du Soleil' par 'Tempete d'incinerateurs'~
 @2708  = ~Remplacer Manteau par 'Peau de fer'~
-@2711  = ~Ajuster les effets de Chaos~
-@2714  = ~Modifier les effets de Vaporisation Prismatique~
-@2808  = ~Rendre Moment de prescience dissipable par Brèche~
-@2811  = ~Déplacer Symbole, terreur au niveau 7~
-@2916  = ~Déplacer Changement de forme au niveau 8~
-@2915  = ~Déplacer Lame noire du désastre au niveau 8~
-@2914  = ~Ajouter un effet de mort instantanée à Absorption d'énergie~
-@2923  = ~Remplacer Convocation de planétaire en Convocation de djinn noble~
+@2711  = ~Ajuster les effets de 'Chaos'~
+@2714  = ~Modifier les effets de 'Vaporisation prismatique'~
+@2808  = ~Rendre 'Moment de prescience' dissipable par 'Breche'~
+@2811  = ~Deplacer 'Symbole, terreur' au niveau 7~
+@2916  = ~Deplacer 'Changement de forme' au niveau 8~
+@2915  = ~Deplacer 'Lame noire du desastre' au niveau 8~
+@2914  = ~Ajouter un effet de mort instantanee a 'Absorption d'energie'~
+@2923  = ~Remplacer 'Convocation de planetaire' par 'Convocation de djinn noble'~
 //
 //
 @11511 = ~Soleil ardent~
@@ -105,10 +105,10 @@ Sphère : Soleil
 Portée : longue
 Durée : instantanée
 Temps d'incantation : 5
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde contre le souffle : partiel
 
-Au terme de l'incantation, un rayon de soleil tombe du ciel et va frapper la cible désignée par le prêtre. La créature touchée par le rayon subit 1d3 points de dégâts de feu plus 1d3 tous les deux niveaux du lanceur (jusqu'à un maximum de 5d3). Les créatures mortes-vivantes et les monstres vulnérables à la lumière du jour subissent des dégâts additionnels de 1d6 tous les deux niveaux du lanceur, jusqu'à un maximum de 5d3 + 5d6. Les victimes qui ratent leur jet de sauvegarde contre les sorts sont aveuglées pendant 3 rounds.
+Au terme de l'incantation, un rayon de soleil tombe du ciel et va frapper la cible désignée par le prêtre. La créature touchée par le rayon subit 1d3 points de dégâts de feu plus 1d3 tous les deux niveaux du lanceur (jusqu'à un maximum de 5d3). Les créatures mortes-vivantes et les monstres vulnérables à la lumière du jour subissent des dégâts additionnels de 1d6 tous les deux niveaux du lanceur, jusqu'à un maximum de 5d3 + 5d6. Les victimes qui ratent leur jet de sauvegarde contre les sorts sont aveuglées pendant 3 rounds.
 ~
 @12022 = ~Peau d'écorce
 
@@ -116,12 +116,12 @@ Niveau : 2
 École : Transmutation
 Sphère : Végétale
 Portée : toucher
-Durée : 2 tours
+Durée : 2 tours
 Temps d'incantation : 5
-Zone d'effet : 1 créature
-Jet de sauvegarde : aucun 
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
 
-Lorsqu'un prêtre jette le sort de Peau d'écorce sur une créature, la peau de cette dernière devient aussi dure que de l'écorce. De plus, cette couche semblable à de l'écorce pousse continuellement et protège le bénéficiaire du sort. L'écorce peut complètement dévier un unique coup (mais pas d'éventuels effets magiques supplémentaires), ce qui la fait tomber ; un round plus tard, l'écorce aura assez repoussé pour arrêter un autre coup. Cet enchaînement de protection et repousse se prolonge pendant 2 tours, protégeant le bénéficiaire d'une attaque physique par round, après quoi le sort prend fin. Les effets de ce sort ne cumulent pas avec eux-mêmes.
+Lorsqu'un prêtre jette le sort de Peau d'écorce sur une créature, la peau de cette dernière devient aussi dure que de l'écorce. De plus, cette couche semblable à de l'écorce pousse continuellement et protège le bénéficiaire du sort. L'écorce peut complètement dévier un unique coup (mais pas d'éventuels effets magiques supplémentaires), ce qui la fait tomber ; un round plus tard, l'écorce aura assez repoussé pour arrêter un autre coup. Cet enchaînement de protection et repousse se prolonge pendant 2 tours, protégeant le bénéficiaire d'une attaque physique par round, après quoi le sort prend fin. Les effets de ce sort ne cumulent pas avec eux-mêmes.
 ~
 @12071 = ~Baie Magique~
 @12072 = ~Baie Magique
@@ -130,11 +130,11 @@ Niveau : 2
 École : Transmutation
 Sphère : Flore
 Portée : 5 m
-Durée : 1 round par niveau
+Durée : 1 round par niveau
 Temps d'incantation : 5
-Durée : 1 round par niveau
+Durée : 1 round par niveau
 Zone d'effet : le groupe
-Jet de sauvegarde : aucun 
+Jet de sauvegarde : aucun
 
 Quand il lance ce sort, le lanceur amène une poignée de baies enchantée à grossir jusqu'à une taille surnaturelle et les distribue à ses alliés. Chaque part est aussi nourrissant qu'un repas ordinaire et l'enchantement les rend anormalement réparatrices : consommer les baies supprime l'ivresse, réduit la fatigue et le bénéficiaire régénère 2 points de vie par round, pendant un nombre de rounds égal au niveau du lanceur de sorts (jusqu'à un maximum de 20 points de vies soignés en 10 rounds).
 
@@ -148,16 +148,16 @@ Sphère : Guérison
 Portée : toucher
 Durée : 4 rounds
 Temps d'incantation : 1
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
-Lorsque ce sort est jeté sur un individu empoisonné, il ralentit fortement l'effet du venin, allant jusqu'à neutraliser tous les poisons mis à part les plus mortels. L'effet du sort persiste sur la cible brièvement, empêchant ainsi le poison de l'affecter pendant 3 rounds après que le sort a été lancé.
+Lorsque ce sort est jeté sur un individu empoisonné, il ralentit fortement l'effet du venin, allant jusqu'à neutraliser tous les poisons mis à part les plus mortels. L'effet du sort persiste sur la cible brièvement, empêchant ainsi le poison de l'affecter pendant 3 rounds après que le sort a été lancé.
 ~
 @12052 = ~Détection des pièges
 
 Niveau : 2
 École : Divination
-Sphère : Divination 
+Sphère : Divination
 Portée : jeteur du sort
 Durée : 4 heures
 Temps d'incantation : 5
@@ -174,10 +174,10 @@ Sphère : Combat
 Portée : champ visuel du lanceur
 Durée : instantanée
 Temps d'incantation : 5
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : spécial
 
-Ce sort fait apparaître une lance argentée et partiellement éthérée en forme d'alicorne (une corne de licorne). Le personnage choisit sa cible, que la lance va aussitôt transpercer, lui infligeant 4d6 points de dégâts magiques. Même si la lance se dissipe instantanément après l'impact, elle laisse une aura argentée autour de la cible, rendant celle-ci plus facile à toucher (-2 à la CA pendant 3 rounds).
+Ce sort fait apparaître une lance argentée et partiellement éthérée en forme d'alicorne (une corne de licorne). Le personnage choisit sa cible, que la lance va aussitôt transpercer, lui infligeant 4d6 points de dégâts magiques. Même si la lance se dissipe instantanément après l'impact, elle laisse une aura argentée autour de la cible, rendant celle-ci plus facile à toucher (-2 à la CA pendant 3 rounds).
 ~
 @13232 = ~Exaltation
 
@@ -187,7 +187,7 @@ Sphère : Guérison
 Portée : contact
 Durée : 1 tour
 Temps d'incantation : 4
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort permet au prêtre d'aider et de protéger un compagnon (mais pas lui-même). D'un simple contact, le prêtre fait disparaître les effets de la peur, de la fatigue, de la débilité, de l'inconscience, de l'ébriété, de la confusion et de la rage sanguinaire. De plus, le sujet est protégé contre les sorts et attaques provoquant ces effets jusqu'au terme de la durée indiquée.
@@ -201,7 +201,7 @@ Sphère : Guérison
 Portée : Contact
 Durée : Instantanée
 Temps d'incantation : 4
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort fait disparaître toute substance toxique, maladie et fatigue du corps de la cible, aussi bien d'origine naturelle que magique. Quand ce sort est lancé sur un individu, il neutralise immédiatement tout poison, guérit toute maladie, fait disparaître toute paralysie et élimine toute fatigue. Il guérit aussi la cible de la cécité et de la surdité.
@@ -212,9 +212,9 @@ Niveau : 4
 École : Nécromancie
 Sphère : Guérison
 Portée : Contact
-Durée: 1 tour par niveau
+Durée : 1 tour par niveau
 Temps d'incantation : 1
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort fait disparaître toute substance toxique, maladie et fatigue du corps de la cible, aussi bien d'origine naturelle que magique. Quand ce sort est lancé sur un individu, il neutralise immédiatement tout poison, guérit toute maladie, fait disparaître toute paralysie et élimine toute fatigue. De plus, pendant la durée du sort, le bénéficiaire est immunisé contre tout poison et toute maladie auxquels il est exposé, et les sorts comme Poison et Nuage mortel n'auront aucun effet sur la créature protégée.
@@ -228,7 +228,7 @@ Sphère : Protection
 Portée : Champ de vision du lanceur de sort
 Durée : Instantanée
 Temps d'incantation : 9
-Zone d'effet: 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : Aucun
 
 Avec ce sort, le lanceur de sorts renforce la détermination spirituelle d'une créature et purge l'esprit de la créature des influences négatives. Le sort supprime les effets de peur, de sommeil, de débilité, l'inconscience et l'ivresse, ainsi que les états de rage et de confusion sur une seule créature. De plus, le bénéficiaire est protégé contre les sorts et attaques qui provoquent ces effets pour toute la durée du sort.
@@ -239,7 +239,7 @@ Niveau : 3
 École : Invocation
 Sphère : Combat, Soleil
 Portée : personnelle
-Durée : 2 tours
+Durée : 2 tours
 Temps d'incantation : 6
 Zone d'effet : le lanceur
 Jet de sauvegarde : aucun
@@ -252,11 +252,11 @@ La lame de lune absorbe l'énergie de la cible, ce qui se traduit par un total d
 
 Niveau :6
 École : Transmutation
-Sphère: Universel, Pensée
+Sphère : Universel, Pensée
 Portée : Personnelle
 Durée : Instantanée
 Temps d'incantation : 1 round
-Zone d'effet : Le lanceur
+Zone d'effet : le lanceur
 Jet de sauvegarde : aucun
 
 Ce sort permet au lanceur de rappeler à sa mémoire tous les sorts de niveau 1 et 2 qui ont déjà été lancés. Si aucun de ces sorts n'a été lancé, rien ne se produit.
@@ -269,9 +269,9 @@ Ce sort permet au lanceur de rappeler à sa mémoire tous les sorts de niveau 1 
 Niveau : 1
 École : Altération
 Portée : toucher
-Durée : 1 heure
+Durée : 1 heure
 Temps d'incantation : 1
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort confère à la cible une résistance aux attaques de regard, qui incluent le regard des basilics et des méduses, le charme des vampires, ainsi que d'autres effets. Quand il subit un tel effet, le bénéficiaire peut tenter un jet de sauvegarde contre les sorts en plus de tout jet de sauvegarde ordinairement autorisé par l'attaque. Si le jet de sauvegarde additionnel contre les sorts est réussi, l'effet causé par le regard est entièrement évité.
@@ -281,10 +281,10 @@ Ce sort confère à la cible une résistance aux attaques de regard, qui incluen
 Niveau : 1
 École : Enchantement
 Portée : 9 m
-Durée : 5 tours
-Temps d'incantation : 2 
-Zone d'effet : 1 créature
-Jet de sauvegarde : aucun 
+Durée : 5 tours
+Temps d'incantation : 2
+Zone d'effet : 1 créature
+Jet de sauvegarde : aucun
 
 Le bénéficiaire de ce sort est chanceux dans tout ce qu'il entreprend. Il reçoit 5 % ou 1 point de bonus pour chacun de ses actes, y compris les jets de sauvegarde, les chances d'atteindre une cible, les jets de dés pour les dégâts causés, les talents de voleur, etc.
 ~
@@ -292,20 +292,20 @@ Le bénéficiaire de ce sort est chanceux dans tout ce qu'il entreprend. Il reç
 Niveau : 2
 École : Conjuration
 Portée : longue
-Durée : 1 tour
+Durée : 1 tour
 Temps d'incantation : 2
 Zone d'effet : rayon de 9 mètres
 Jet de sauvegarde contre le poison : annule
 
-Lorsque ce sort est lancé, un nuage de vapeurs nauséabondes centré sur un point sélectionné par le lanceur du sort apparaît. Toute créature prise dans ce nuage voit sa vitesse de déplacement réduite de moitié pendant 2 rounds. De plus, elle doit réussir un jet de sauvegarde contre le poison ou devenir nauséeuse. Une créature nauséeuse ne peut pas attaquer ou lancer de sort pendant 2 rounds, et subit une pénalité de 2 à la classe d'armure aux jets d'attaque et au temps d'incantation pour 4 rounds. Si elle réussit son jet de sauvegarde, la créature peut quitter le nuage sans en subir les effets néfastes excepté la réduction de vitesse de déplacement ; mais si elle y reste, elle doit effectuer un nouveau jet de sauvegarde à chaque round. Les morts-vivants, ainsi que les créatures n'ayant pas besoin de respirer, comme les élémentaires, ne sont pas affectés par ce sort.
+Lorsque ce sort est lancé, un nuage de vapeurs nauséabondes centré sur un point sélectionné par le lanceur du sort apparaît. Toute créature prise dans ce nuage voit sa vitesse de déplacement réduite de moitié pendant 2 rounds. De plus, elle doit réussir un jet de sauvegarde contre le poison ou devenir nauséeuse. Une créature nauséeuse ne peut pas attaquer ou lancer de sort pendant 2 rounds, et subit une pénalité de 2 à la classe d'armure aux jets d'attaque et au temps d'incantation pour 4 rounds. Si elle réussit son jet de sauvegarde, la créature peut quitter le nuage sans en subir les effets néfastes excepté la réduction de vitesse de déplacement ; mais si elle y reste, elle doit effectuer un nouveau jet de sauvegarde à chaque round. Les morts-vivants, ainsi que les créatures n'ayant pas besoin de respirer, comme les élémentaires, ne sont pas affectés par ce sort.
 ~
 @22152 = ~Toile d'araignée
 Niveau : 2
 École : Conjuration
 Portée : longue
-Durée : 1 tour
+Durée : 1 tour
 Temps d'incantation : 5
-Zone d'effet : rayon de 5 mètres
+Zone d'effet : rayon de 5 mètres
 Jet de sauvegarde contre le souffle : annule
 
 Le sort de Toile d'araignée crée une masse à plusieurs couches de fils épais et gluants semblables à ceux d'une toile d'araignée, mais beaucoup plus gros et résistants. La toile couvre une zone d'un rayon de 5 mètres. Les créatures prises dans ces toiles d'araignée ou qui les frôlent simplement restent collées aux fibres gluantes. Les créatures réussissant leur jet de sauvegarde contre les souffles peuvent se déplacer dans la zone à une vitesse diminuée de moitié, mais doivent réussir un nouveau jet de sauvegarde à chaque round passé dans la zone d'effet. Dans le cas contraire, elles subissent un effet semblable à un sort de lenteur. Leur vitesse de déplacement est réduite de moitié elles subissent un malus à la CA de 4 et en plus ne peuvent attaquer. Cet effet de lenteur s'additionne avec la pénalité au mouvement, donc les créatures qui échouent à leur jet de sauvegarde ne peuvent se déplacent à un quart de leur vitesse normale pour sortir de la zone d'effet.
@@ -314,11 +314,11 @@ Le sort de Toile d'araignée crée une masse à plusieurs couches de fils épais
 @22172 = ~Projectiles ardents de Melf
 
 Niveau : 2
-École: Invocation
-Portée: champ visuel du lanceur
-Durée: Instantanée
+École : Invocation
+Portée : champ visuel du lanceur
+Durée : Instantanée
 Temps d'incantation : 1
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : souffles
 
 De la même façon que la variante 'Projectiles de Force de Mordenkainen', ce sort est une tentative d'amélioration du sort de base Projectiles magiques. Cette version créer deux projectiles de magie crépitante qui se dirigent et frappent sans faillir leur cible, qui doit être une créature quelle qu'elle soit. Chaque projectile inflige 1d4 points de dégâts magiques, plus 1d4 points de dégâts de feu (la cible peut réussir un jet de sauvegarde contre les souffles pour éviter les dégâts de feu). Ce sort crée trois projectiles au niveau 4, quatre projectiles au niveau 6, cinq projectiles au niveau 8 et six au niveau 10.
@@ -330,53 +330,52 @@ Le sort Bouclier bloque Projectiles ardents de Melf, de la même manière qu'il 
 Niveau : 2
 École : Invocation
 Portée : 0
-Durée : 3 rounds + 1 round par niveau
+Durée : 3 rounds + 1 round par niveau
 Temps d'incantation : 2
 Zone d'effet : Le lanceur
 Jet de sauvegarde : Aucun
 
-Ce sort crée un bâton de force dans la main du lanceur. Le bâton est considéré comme une arme magique qui inflige 1d6 points de dégâts et peut toucher les créatures qui ne peuvent être touchées que par des armes +1. Cependant, comme il s'agit d'un bâton, si le lanceur n'a pas de compétence dans le maniement du bâton, il le manipule avec une pénalité. Le bâton libère de l'énergie sonique lorsqu'il touche ; l'effet n'est pas assez puissant pour infliger des dégâts, mais il peut assourdir la cible pour 3 rounds sur un échec au jet de sauvegarde contre les sorts. Le bâton décuplé possède aussi un léger effet vampirique et draine la victime de 1d2 points de vie à chaque coup porté. Ces points de vie sont ajoutés à ceux du lanceur, mais ne peuvent que soigner des dégâts que le lanceur a déjà subis. Ils ne peuvent porter les points de vie du lanceur au-dessus de son maximum normal.
+Ce sort crée un bâton de force dans la main du lanceur. Le bâton est considéré comme une arme magique qui inflige 1d6 points de dégâts et peut toucher les créatures qui ne peuvent être touchées que par des armes +1. Cependant, comme il s'agit d'un bâton, si le lanceur n'a pas de compétence dans le maniement du bâton, il le manipule avec une pénalité. Le bâton libère de l'énergie sonique lorsqu'il touche ; l'effet n'est pas assez puissant pour infliger des dégâts, mais il peut assourdir la cible pour 3 rounds sur un échec au jet de sauvegarde contre les sorts. Le bâton décuplé possède aussi un léger effet vampirique et draine la victime de 1d2 points de vie à chaque coup porté. Ces points de vie sont ajoutés à ceux du lanceur, mais ne peuvent que soigner des dégâts que le lanceur a déjà subis. Ils ne peuvent porter les points de vie du lanceur au-dessus de son maximum normal.
 ~
 @23211 = ~Spell Thrust~
-@23212 = ~Spell Thrust
-Level: 1
-School: Abjuration
-Range: Long
-Duration: Instant
-Casting Time: 3
-Area of Effect: 5' radius
-Saving Throw: None
+@23212 = ~Annulation des protections
+Niveau : 1
+École : Abjuration
+Portée : longue
+Durée : instantanée
+Temps d'incantation : 3
+Zone d'effet : rayon de 4,5 mètres
+Jet de sauvegarde : aucun
 
-When this spell is cast, it will dispel one spell protection on all enemies within the area of effect. This will always dispel the highest level of spell protection on a target first. If a target has two or more protections tied for the highest level, the choice will be random. Magic resistance does not affect this spell.
+Ce sort annule une protection magique sur tous les ennemis se trouvant dans la zone d'effet. La protection magique dissipée sera toujours celle de niveau le plus élevé. Si deux protections ou plus sont de même niveau, le sort dissipé sera choisi aléatoirement. La résistance magique des créatures affectées est ignorée.
 
-The spell protections dispelled by Spell Thrust include: Minor Spell Deflection, Minor Globe of Invulnerability, Spell Deflection, Globe of Invulnerability, Greater Spell Deflection, Dispelling Screen and Spell Shield. 
+Les sorts concernés par l'Annulation des protections incluent : Déviation de sorts mineure, Globe mineur d'invulnérabilité, Déviation des sorts, Globe d'invulnérabilité, Déviation de sorts majeure, Écran de dissipation et Bouclier de sort.
 
-This spell has no effect on a target protected by Spell Trap or Shield of the Archons.
+Ce sort n'a aucun effet sur une cible protégée par un Piège à sorts ou un Bouclier des archontes.
 ~
-@25082 = ~Waves of Fatigue
-Level: 5
-School: Alteration
-Range: Long
-Duration: 5 rounds
-Casting Time: 5
-Area of Effect: 30' radius
-Saving Throw: None
+@25082 = ~Vagues de Fatigue
+Niveau : 5
+École : Transmutation
+Portée : longue
+Durée : 5 rounds
+Temps d'incantation : 5
+Zone d'effet : rayon de 9 mètres
+Jet de sauvegarde : pétrification / polymorphisme, partiel
 
-Surges of negative energy render all hostile living creatures in the spell's area fatigued. Fatigued individuals have 2-point reductions to attacks rolls and damage dealt by weapons, and take 2 points per die more damage from enemy spells. Such individuals will also have any Haste effects removed. Furthermore, if someone affected by this spell fails a saving throw vs. petrification/polymorph, <PRO_HESHE> will also endure a 2-point penalty to all saving throws, a reduction of 1 attack per 2 rounds, and a 2-point penalty to spellcasting speed.
+Des jaillissements d'énergie négative rendent fatiguées toutes les créatures vivantes hostiles dans la zone d'effet du sort. Lorsqu'elles sont fatiguées, elles subissent un malus de -2 aux jets d'attaque, aux jets de dégâts d'armes et subissent 2 points supplémentaires par dé de dégâts des sorts des ennemis. Les cibles voient les effets éventuels de rapidité supprimés. Si, de plus, une cible affectée par ce sort échoue à un jet de sauvegarde contre la pétrification / la métamorphose, elle subit une pénalité de 2 points à tous les jets de sauvegarde, perd uen attaque tous les 2 rounds et reçoit un malus de 2 points à la vitesse de lancer de sorts.
 ~
-@25182 = ~Phantom Blade
+@25182 = ~Lame fantôme
+Niveau : 5
+École : Illusion
+Portée : jeteur du sort
+Durée : 1 round / niveau
+Temps d'incantation : 5
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
 
-Level: 5
-School: Illusion
-Range: 0
-Duration: 3 rounds + 1 round/level
-Casting Time: 5
-Area of Effect: Special
-Saving Throw: None
+Ce sort crée une sorte d'épée d'ombre, translucide et légère, qui s'étend à partir de la main du lanceur du sort. Cet objet en forme de lame inflige une combinaison de dégâts de natures psychique et magique. Le magicien manie la lame fantôme sans subir de pénalité pour son manque de compétence, à son TAC0 habituel.
 
-This spell creates a translucent, shadow-like, weightless area of magical force extending from the caster's hand. The silent, blade-shaped construct inflicts a combination of psychic/stunning damage and magic damage. The caster wields the phantom blade as if proficient with it, at <PRO_HISHER> normal THAC0.
-
-The phantom blade acts as a +3 magical sword in terms of to-hit and damage bonuses as well as the type of creatures it can hit. Due to its etheric nature, it causes spellcasters struck to be unable to use magic for one round. This sword can only be used by the caster and remains in <PRO_HISHER> hand for the duration of the spell or until dispelled.
+La lame fantôme se comporte comme une épée magique +3 pour les jets d'attaque et de dégâts, ainsi que pour déterminer ce qu'elle peut toucher. À cause de sa nature éthérée, les jeteurs de sorts qu'elle touche sont incapables de lancer des sorts pendant 1 round. Cette épée ne peut être utilisée que par son créateur et reste dans sa main jusqu'à ce que le sort prenne fin ou qu'il soit dissipé.
 ~
 @25233 = ~Tempête de projectiles~
 @25234 = ~Tempête de projectiles
@@ -401,21 +400,21 @@ Temps d'incantation : 3
 Zone d'effet : Les ennemis à portée
 Jet de sauvegarde : aucun
 
-L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles ardents fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles Ardents générés par le sort de niveau 2 à tout point de vue : chacun d'entre eux cause 1d4 points de dégâts de base plus 1d4 dégâts de feu, et sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles magiques.
+L'air autour du lanceur crépite d'énergie alors que jusqu'à 10 projectiles ardents fusent vers chacun des ennemis dans la zone d'effet. Ils sont identiques aux Projectiles ardents générés par le sort de niveau 2 à tout point de vue : chacun d'entre eux cause 1d4 points de dégâts de base plus 1d4 dégâts de feu, et ils sont bloqués par le sort de Bouclier et tout ce qui bloque Projectiles magiques.
 ~
-@25236 = ~Tempête Incinérateur~
-@25237 = ~Tempête Incinérateur
+@25236 = ~Tempête d'incinérateurs~
+@25237 = ~Tempête d'incinérateurs
 
 Niveau : 5
 École : Invocation
-Portée : 9m
+Portée : 9 mètres
 Durée : Instantanée
 Temps d'incantation : 3
-Zone d'effet : Les ennemis à portée
+Zone d'effet : les ennemis à portée
 Jet de sauvegarde : aucun
 
-L'air autour du lanceur crépite d'énergie alors que feu d'incinerateur fuse vers chacun des ennemis dans la zone d'effet. Chacun projectile est identique au « Incinérateur d'Agannazar. »
-~ 
+L'air autour du lanceur crépite d'énergie alors que des flammes fusent vers chacun des ennemis dans la zone d'effet. Chaque projectile est identique à l'« Incinérateur d'Agannazar ».
+~
 @27081 = ~Peau de fer~
 @27082 = ~Peau de fer
 
@@ -440,7 +439,7 @@ Temps d'incantation : 1
 Zone d'effet : cône
 Jet de sauvegarde : spécial
 
-Lorsque ce sort est lancé, le magicien crée sept rayons de lumière multicolore qui jaillissent de sa main. Chaque rayon a une couleur et un effet déterminé. Toute créature dans la zone d'effet sera touchée par un ou plusieurs rayons. Les effets des rayons sont listés ci-dessous et tous les jets de sauvegarde se font avec un malus de -4.
+Lorsque ce sort est lancé, le magicien crée sept rayons de lumière multicolore qui jaillissent de sa main. Chaque rayon a une couleur et un effet déterminé. Toute créature dans la zone d'effet sera touchée par un ou plusieurs rayons. Les effets des rayons sont listés ci-dessous et tous les jets de sauvegarde se font avec un malus de 4 points.
 
 Rouge - 10d6 points de dégâts de feu (jet de sauvegarde contre le souffle pour réduire de moitié)
 Orange - 10d6 points de dégâts d'acide (jet de sauvegarde contre le souffle pour réduire de moitié)
@@ -468,7 +467,7 @@ Niveau : 8
 Portée : contact
 Durée : permanente
 Temps d'incantation : 3
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort ouvre un canal entre le plan du mage et le plan de l'Énergie Négative. Le lanceur du sort agit comme un conduit entre les deux plans, absorbant la vie d'une créature vivante et la transférant dans le plan de l'Énergie Négative, ce qui en pratique draine 4 niveaux d'expérience de la victime. La cible perd définitivement ses niveaux, dés de vie, points de vie, et capacités. Seul le sort de prêtre Restauration peut les lui faire récupérer. Il n'y a aucun jet de sauvegarde pour résister aux effets de ce sort. De plus, le contrecoup de l'effet est si intense que la victime doit réussir un jet de sauvegarde avec une pénalité de 2 ou mourir sur le coup.
@@ -480,7 +479,7 @@ Niveau : 8
 Portée : contact
 Durée : permanente
 Temps d'incantation : 3
-Zone d'effet : 1 créature
+Zone d'effet : 1 créature
 Jet de sauvegarde : aucun
 
 Ce sort ouvre un canal entre le plan du mage et le plan de l'Énergie Négative. Le lanceur du sort agit comme un conduit entre les deux plans, absorbant la vie d'une créature vivante et la transférant dans le plan de l'Énergie Négative, ce qui en pratique draine 4 niveaux d'expérience de la victime. La cible perd définitivement ses niveaux, dés de vie, points de vie, et capacités. Seul le sort de prêtre Restauration peut les lui faire récupérer. En passant au travers du mage, la force vitale le revigore provisoirement, lui accordant 20 points de vie supplémentaires, un bonus de +4 aux jets d'attaque et aux jets de sauvegarde, et un bonus de +20 % à toutes ses compétences. Ces effets durent 1 heure. La résistance à la magie de la cible, si elle en a une, est ignorée, et aucun jet de sauvegarde n'est accordé pour éviter l'absorption. De plus, le contrecoup de l'effet est si intense que la victime doit réussir un jet de sauvegarde avec une pénalité de 2 ou mourir sur le coup.

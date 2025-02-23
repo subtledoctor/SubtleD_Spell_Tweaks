@@ -1837,3 +1837,7 @@ While it appears as though the genie is gated, in actuality it only generates a 
 @150003 = ~5 rounds~ //original
 @150004 = ~10 rounds~ //replacement
 
+// Choose familiar UI
+@150100 = ~Choose a familiar from the following options. This choice is permanent.~ // tip
+@150101 = ~Choose a familiar from the following options~ // title
+@150102 = ~This choice is permanent~ // label
