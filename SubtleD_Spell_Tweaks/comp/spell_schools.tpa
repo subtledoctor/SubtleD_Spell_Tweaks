@@ -110,7 +110,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~universal~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~universal~ END
 				END
 			BUT_ONLY
 		END
@@ -126,7 +126,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~universal~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~universal~ END
 				END
 			BUT_ONLY
 		END
@@ -148,7 +148,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~abjuration~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~abjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -164,7 +164,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~abjuration~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~abjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -186,7 +186,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~alteration~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~alteration~ END
 				END
 			BUT_ONLY
 		END
@@ -202,7 +202,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~alteration~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~alteration~ END
 				END
 			BUT_ONLY
 		END
@@ -224,7 +224,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~conjuration~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~conjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -240,7 +240,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~conjuration~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~conjuration~ END
 				END
 			BUT_ONLY
 		END
@@ -262,7 +262,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~divination~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~divination~ END
 				END
 			BUT_ONLY
 		END
@@ -278,7 +278,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~divination~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~divination~ END
 				END
 			BUT_ONLY
 		END
@@ -300,7 +300,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~enchantment~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~enchantment~ END
 				END
 			BUT_ONLY
 		END
@@ -316,7 +316,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~enchantment~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~enchantment~ END
 				END
 			BUT_ONLY
 		END
@@ -338,7 +338,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~evocation~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~evocation~ END
 				END
 			BUT_ONLY
 		END
@@ -354,7 +354,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~evocation~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~evocation~ END
 				END
 			BUT_ONLY
 		END
@@ -376,7 +376,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~illusion~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~illusion~ END
 				END
 			BUT_ONLY
 		END
@@ -392,7 +392,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~illusion~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~illusion~ END
 				END
 			BUT_ONLY
 		END
@@ -414,7 +414,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x50 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~necromancy~ END
+					LPF update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~spl~ new_school = ~necromancy~ END
 				END
 			BUT_ONLY
 		END
@@ -430,7 +430,7 @@ ACTION_PHP_EACH d5_scroll_spell_school AS scroll => school BEGIN
 				END
 				READ_LONG 0x54 "valid"
 				PATCH_IF (%valid% >= 0) BEGIN // verify name is valid
-					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR new_school = ~necromancy~ END
+					LPF update_school INT_VAR desc_offset = 0x54 STR_VAR file_type = ~itm~ new_school = ~necromancy~ END
 				END
 			BUT_ONLY
 		END
@@ -1079,7 +1079,7 @@ END 	//	end define function
 //__________________________________________________________________________________
 
 
-DEFINE_PATCH_FUNCTION update_school INT_VAR desc_offset = 0x50 STR_VAR new_school = ~~ BEGIN
+DEFINE_PATCH_FUNCTION update_school INT_VAR desc_offset = 0x50 STR_VAR file_type = ~~ new_school = ~~ BEGIN
   READ_STRREF desc_offset ~desc~
   PATCH_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN // no SR
     PATCH_IF (~%new_school%~ STRING_EQUAL_CASE ~universal~) BEGIN
@@ -1269,6 +1269,8 @@ DEFINE_PATCH_FUNCTION update_school INT_VAR desc_offset = 0x50 STR_VAR new_schoo
   	END
   END
   SAY_EVALUATED desc_offset ~%new_desc%~
-  WRITE_EVALUATED_ASCII 0x10 ~%casting_sound%~ #8
+  PATCH_IF (~%file_type%~ STRING_EQUAL_CASE ~spl~) BEGIN
+    WRITE_EVALUATED_ASCII 0x10 ~%casting_sound%~ #8
+  END
   WRITE_SHORT 0x22 %casting_animation%
 END
