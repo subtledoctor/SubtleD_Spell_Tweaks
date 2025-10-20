@@ -127,16 +127,17 @@ Infinity_DoFile("B3CONRED")
 
 			PATCH_IF MOD_IS_INSTALLED ~LeUI.tp2~ ~0~ OR MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ OR MOD_IS_INSTALLED ~LeUI-SoD.tp2~ ~0~ BEGIN
 
-				LPF REPLACE_MULTILINE INT_VAR num = 1 STR_VAR pattern = ~		showMageMemorizationFlash = false
-		setMageBookLevel(1, true)~ string = ~
+				LPF REPLACE_MULTILINE INT_VAR num = 1 STR_VAR pattern =
+~\([ 	]*showMageMemorizationFlash = false\)\(\(
+[ 	]*selectedSpell = nil\)\|\(
+[ 	]*setMageBookLevel(1, true)\)\)~ string = ~
 		-- B3ContingencyRedirect Edit Start
 
 		if B3ContingencyRedirect_MageDoRedirect() then return end
 
 		-- B3ContingencyRedirect Edit End
 
-		showMageMemorizationFlash = false
-		setMageBookLevel(1, true)~
+\1\2~
 				END
 
 			END ELSE BEGIN
