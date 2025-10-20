@@ -2,7 +2,7 @@
 @8011  = ~Pseudo-dragon~
 @8012  = ~Pseudo-dragon : c'est un minuscule parent lointain des vrais dragons. Le pseudo-dragon peut lancer Soin des blessures légères et Flou et peut aussi utiliser une « arme de souffle » colorée qui imite le sort Vapeurs colorée une fois tous les 3 tours (à un niveau élevé, le sort de Flou s'améliore pour devenir un effet d'Invisibilité majeure). Ils peuvent attaquer deux fois par round et, si leurs griffes sont petites, elles sont enduites d'un stupéfiant léger qui peut rendre la cible somnolente et maladroite (imite les effets du sort Lenteur, pendant 2 rounds).
 
-Quand ce familier est à proximité de son maître, le maître régénère 1 point de vie par round.
+Quand ce familier est à proximité de son maître, le maître régénère 1 point de vie par round.
 
 Comme les pseudo-dragons volent, ils sont insensibles aux effets de Glisse, d'enchevêtrement, de Toile et autres sorts similaires. Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
 ~
@@ -18,11 +18,11 @@ Comme pour tous les familiers, leur connexion avec leur maître les immunise con
 //unused
 @8016  = ~Chien : ...~
 @8017  = ~Furet~
-@8018  = ~Furet : Ces animaux sont intelligents et espiègles et, bien qu'attendrissants, peuvent à l'occasion émettre une odeur nauséabonde. Au combat, ils peuvent attaquer deux fois par round et peuvent émettre une aura écœurante de courte portée qui peut amener les ennemis proches à avoir des hauts-le-cœur, provoquant une pénalité de 2 points aux jets d'attaque et à la classe d'armure, ainsi qu'un risque d'échec des sorts de 30 %.
+@8018  = ~Furet : Ces animaux sont intelligents et espiègles et, bien qu'attendrissants, peuvent à l'occasion émettre une odeur nauséabonde. Au combat, ils peuvent attaquer deux fois par round et peuvent émettre une aura écœurante de courte portée qui peut amener les ennemis proches à avoir des hauts-le-cœur, provoquant une pénalité de 2 points aux jets d'attaque et à la classe d'armure, ainsi qu'un risque d'échec des sorts de 30 %.
 
-Les furets sont aussi furtifs et peuvent remplir le rôle de pickpocket pour aider leur maître.
+Les furets sont aussi furtifs et peuvent remplir le rôle de voleur à la tire pour aider leur maître.
 
-Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la constitution.
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la constitution.
 
 Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
 ~
@@ -36,7 +36,7 @@ Comme pour tous les familiers, leur connexion avec leur maître les immunise con
 @8021  = ~Chat~
 @8022  = ~Chat : Le chat noir est un familier traditionnel des mages et est très utile comme éclaireur. Ils peuvent se déplacer sans être vus, à la manière un maître voleur, et peuvent rester discrets même devant des sorts qui dévoilent les créatures invisibles (mais les créatures qui ont une faculté naturelle pour voir les êtres cachés et invisibles peuvent malgré tout percevoir un chat).
 
-Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la dextérité.
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à la dextérité.
 
 Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
 ~
@@ -54,9 +54,9 @@ Les araignées ne peuvent être immobilisées par les toiles ou autres effets si
 @8029  = ~Quasit~
 @8030  = ~Quasit : ...~
 @8031  = ~Rat~
-@8032  = ~Rat : Les rats sont des créatures étonnement intelligentes et sociables, en particulier quand ils sont améliorés par ce sort. Une fois tous les 3 tours, ce familier peut appeler 1d6 camarades rats pour l'aider au combat. Même domestiqués, les rats sont toujours associés aux ordures et aux maladies, ce qui peut être utile contre leurs ennemis. À chaque fois qu'une cible est touchée, elle peut contracter une maladie et subir une brève période de faiblesse et un risque d'échec des sorts de 25 %/
+@8032  = ~Rat : Les rats sont des créatures étonnement intelligentes et sociables, en particulier quand ils sont améliorés par ce sort. Une fois tous les 3 tours, ce familier peut appeler 1d6 camarades rats pour l'aider au combat. Même domestiqués, les rats sont toujours associés aux ordures et aux maladies, ce qui peut être utile contre leurs ennemis. À chaque fois qu'une cible est touchée, elle peut contracter une maladie et subir une brève période de faiblesse et un risque d'échec des sorts de 25 %.
 
-Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à l'intelligence.
+Quand ce familier est à proximité de son maître, le maître bénéficie d'un bonus de 1 point à l'intelligence.
 
 Comme pour tous les familiers, leur connexion avec leur maître les immunise contre la pétrification et les effets d'absorption de niveau.
 ~
@@ -72,7 +72,7 @@ Comme pour tous les familiers, leur connexion avec leur maître les immunise con
 
 Cette faculté permet d'accorder au familier la capacité de lancer des sorts. Les sorts sont choisis parmi ceux connus du lanceur. Quand le lanceur est de niveau 1, un sort de niveau 1 peut être transféré. Au niveau 3, il peut transférer un sort de niveau 2 au plus, un sort de niveau 3 au plus à partir du niveau 6, un sort de niveau 4 ou plus à partir du niveau 10 et un sort de niveau 5 ou plus à partir du niveau 15.
 
-Une fois que le familier est infusé avec la capacité à lancer un sort il peut lancer ce sort une fois pas rencontre. À chaque fois qu'un familier est infusé de la sorte, le choix est permanent et ne peut être annulé.
+Une fois que le familier est infusé avec la capacité à lancer un sort, il peut lancer ce sort une fois par rencontre. À chaque fois qu'un familier est infusé de la sorte, le choix est permanent et ne peut être annulé.
 ~
 //
 // familiars (tra refs = BG2 str refs)
