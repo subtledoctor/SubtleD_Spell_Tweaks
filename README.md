@@ -108,7 +108,7 @@
       <li>Rabbit: 90% Find Traps skill. Can burrow into the ground to escape danger, just like the Shadowstep ability. Caster is immune to Slow.</li>
       <li>Cat: 90% Stealth skill. Is immune to being revealed by divinations, similar to a thief with a Cloak of Nondetection. Caster has +1 DEX while familiar is out of the backpack.</li>
       <li>Spider: can shoot a Web at a single target once per 5 rounds. Bite can cause 3 extra points of poison damage over one round.  Immune to being stuck in Webs. Caster gets an extra chance to save to avoid poisons while familiar is out of the backpack.</li>
-      <li>Cat: 90% Stealth skill. Is immune to being revealed by divinations, similar to a thief with a Cloak of Nondetection. Caster has +1 DEX while familiar is out of the backpack.</li>
+      <li>Rat: once per encounter, may summon 1D6 more rats. Caster has +1 INT while familiar is out of the backpack.</li>
     </ul>
     <p>This also eliminates the hp damage and CON loss you take when a familiar dies. So you can re-summon/revive the familiar without penalty, once per day. As a consequence, this also eliminates the flat hit point bonus you get from summoning a familiar.  Instead, you will get a 15% boost to your max hit points, whenever your familiar is out of your pack and within your general vicinity.</p>
     <p>Component 82, "Imbue Familiars," allows you to imbue your familiar with up to five spells (one each from spell levels 1 through 5, from your known spells). The familiar will be able to cast each spell as an innate ability, once per hour.</p>
